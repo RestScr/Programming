@@ -8,11 +8,11 @@ namespace Programming.Model
 {
     public enum SmartphoneManufacturers
     {
-        Sony,
-        LG,
-        Huawei,
-        Apple,
-        Lenovo,
-        Samsung
+        Sony = 43,
+        LG = 11,
+        Huawei = 32,
+        Apple = 12,
+        Lenovo = 10,
+        Samsung = 11
     }
 }

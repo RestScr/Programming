@@ -8,9 +8,9 @@ namespace Programming.Model
 {
     public enum EducationForm
     {
-        FullTime,
-        Evening,
-        Distant,
-        Correspondence
+        FullTime = 1,
+        Evening = 2,
+        Distant = 43,
+        Correspondence = 12
     }
 }

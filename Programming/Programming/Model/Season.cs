@@ -8,9 +8,9 @@ namespace Programming.Model
 {
     public enum Season
     {
-        Autumn,
-        Winter,
-        Spring,
-        Summer
+        Autumn = 1,
+        Winter = 4,
+        Spring = 3,
+        Summer = 5
     }
 }
