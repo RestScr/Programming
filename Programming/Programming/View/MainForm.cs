@@ -88,7 +88,7 @@ namespace Programming
         // </summary>
         private void Summer()
         {
-
+            MessageBox.Show("ÓÐÀÀÀÀÀÀ ÑÎËÍÖÅ!!!", "Óðà Ñîëíöå!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         // <summary>
@@ -96,7 +96,7 @@ namespace Programming
         // </summary>
         private void Autumn()
         {
-
+            this.BackColor = System.Drawing.Color.DarkOrange;
         }
 
         // <summary>
@@ -104,7 +104,13 @@ namespace Programming
         // </summary>
         private void Winter()
         {
+            this.BackColor = System.Drawing.Color.DarkGray;
+            
+            System.Drawing.Drawing2D.GraphicsPath window = new System.Drawing.Drawing2D.GraphicsPath();
+            window.AddEllipse(0, 0, this.Width, this.Height);
+            this.Region = new Region(window);
 
+            MessageBox.Show("áððð, õîëîäíî", "áðððð!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         // <summary>
@@ -112,7 +118,7 @@ namespace Programming
         // </summary>
         private void Spring()
         {
-
+            this.BackColor = System.Drawing.Color.LightGreen;
         }
 
 
@@ -125,12 +131,16 @@ namespace Programming
             switch (SeasonComboBox.SelectedIndex)
             {
                 case 0:
+                    Summer();
                     break;
                 case 1:
+                    Autumn();
                     break;
                 case 2:
+                    Winter();
                     break;
                 case 3:
+                    Spring();
                     break;
             }
         }

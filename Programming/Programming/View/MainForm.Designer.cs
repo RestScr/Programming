@@ -35,7 +35,7 @@
             ValuesListBox = new ListBox();
             label1 = new Label();
             EnumsListBox = new ListBox();
-            tabControl1 = new TabControl();
+            MainTabControl = new TabControl();
             EnumsPage = new TabPage();
             SeasonGroupBox = new GroupBox();
             GoButton = new Button();
@@ -47,7 +47,7 @@
             ParseTextBox = new TextBox();
             label4 = new Label();
             EnumGroupBox.SuspendLayout();
-            tabControl1.SuspendLayout();
+            MainTabControl.SuspendLayout();
             EnumsPage.SuspendLayout();
             SeasonGroupBox.SuspendLayout();
             WeekdayParsingGroupBox.SuspendLayout();
@@ -122,14 +122,14 @@
             EnumsListBox.TabIndex = 0;
             EnumsListBox.SelectedIndexChanged += EnumsListBox_SelectedIndexChanged;
             // 
-            // tabControl1
+            // MainTabControl
             // 
-            tabControl1.Controls.Add(EnumsPage);
-            tabControl1.Location = new Point(1, -1);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(876, 546);
-            tabControl1.TabIndex = 1;
+            MainTabControl.Controls.Add(EnumsPage);
+            MainTabControl.Location = new Point(1, -1);
+            MainTabControl.Name = "MainTabControl";
+            MainTabControl.SelectedIndex = 0;
+            MainTabControl.Size = new Size(876, 546);
+            MainTabControl.TabIndex = 1;
             // 
             // EnumsPage
             // 
@@ -169,7 +169,7 @@
             // SeasonComboBox
             // 
             SeasonComboBox.FormattingEnabled = true;
-            SeasonComboBox.Items.AddRange(new object[] { "Summer", "Autumn", "Winter", "Summer" });
+            SeasonComboBox.Items.AddRange(new object[] { "Summer", "Autumn", "Winter", "Spring" });
             SeasonComboBox.Location = new Point(23, 68);
             SeasonComboBox.Name = "SeasonComboBox";
             SeasonComboBox.Size = new Size(213, 28);
@@ -236,13 +236,13 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(874, 546);
-            Controls.Add(tabControl1);
+            Controls.Add(MainTabControl);
             Name = "MainForm";
-            Text = "Form1";
+            Text = "Programming Demo";
             Load += MainForm_Load;
             EnumGroupBox.ResumeLayout(false);
             EnumGroupBox.PerformLayout();
-            tabControl1.ResumeLayout(false);
+            MainTabControl.ResumeLayout(false);
             EnumsPage.ResumeLayout(false);
             SeasonGroupBox.ResumeLayout(false);
             SeasonGroupBox.PerformLayout();
@@ -260,7 +260,7 @@
         private ListBox ValuesListBox;
         private Label label3;
         private TextBox ValueTextBox;
-        private TabControl tabControl1;
+        private TabControl MainTabControl;
         private TabPage EnumsPage;
         private GroupBox WeekdayParsingGroupBox;
         private Button ParseButton;
