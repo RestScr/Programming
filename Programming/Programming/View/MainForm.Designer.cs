@@ -46,6 +46,7 @@
             ParseOutputLabel = new Label();
             ParseTextBox = new TextBox();
             label4 = new Label();
+            ClassesPage = new TabPage();
             EnumGroupBox.SuspendLayout();
             MainTabControl.SuspendLayout();
             EnumsPage.SuspendLayout();
@@ -55,15 +56,16 @@
             // 
             // EnumGroupBox
             // 
+            EnumGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             EnumGroupBox.Controls.Add(label3);
             EnumGroupBox.Controls.Add(ValueTextBox);
             EnumGroupBox.Controls.Add(label2);
             EnumGroupBox.Controls.Add(ValuesListBox);
             EnumGroupBox.Controls.Add(label1);
             EnumGroupBox.Controls.Add(EnumsListBox);
-            EnumGroupBox.Location = new Point(0, 0);
+            EnumGroupBox.Location = new Point(8, 0);
             EnumGroupBox.Name = "EnumGroupBox";
-            EnumGroupBox.Size = new Size(850, 307);
+            EnumGroupBox.Size = new Size(803, 318);
             EnumGroupBox.TabIndex = 0;
             EnumGroupBox.TabStop = false;
             EnumGroupBox.Text = "Enumerations";
@@ -71,7 +73,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(509, 27);
+            label3.Location = new Point(434, 23);
             label3.Name = "label3";
             label3.Size = new Size(68, 20);
             label3.TabIndex = 5;
@@ -79,34 +81,33 @@
             // 
             // ValueTextBox
             // 
-            ValueTextBox.Location = new Point(509, 50);
+            ValueTextBox.Location = new Point(434, 43);
             ValueTextBox.Name = "ValueTextBox";
-            ValueTextBox.ReadOnly = true;
             ValueTextBox.Size = new Size(125, 27);
             ValueTextBox.TabIndex = 4;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(275, 27);
+            label2.Location = new Point(215, 23);
             label2.Name = "label2";
-            label2.Size = new Size(97, 20);
+            label2.Size = new Size(100, 20);
             label2.TabIndex = 3;
-            label2.Text = "Choose value";
+            label2.Text = "Choose value:";
             // 
             // ValuesListBox
             // 
             ValuesListBox.FormattingEnabled = true;
-            ValuesListBox.Location = new Point(275, 50);
+            ValuesListBox.Location = new Point(215, 43);
             ValuesListBox.Name = "ValuesListBox";
-            ValuesListBox.Size = new Size(192, 224);
+            ValuesListBox.Size = new Size(192, 264);
             ValuesListBox.TabIndex = 2;
             ValuesListBox.SelectedIndexChanged += ValuesListBox_SelectedIndexChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(24, 27);
+            label1.Location = new Point(6, 23);
             label1.Name = "label1";
             label1.Size = new Size(149, 20);
             label1.TabIndex = 1;
@@ -116,19 +117,21 @@
             // 
             EnumsListBox.FormattingEnabled = true;
             EnumsListBox.Items.AddRange(new object[] { "Color", "EducationForm", "Genre", "Season", "SmartphoneManufacturers", "Weekday" });
-            EnumsListBox.Location = new Point(24, 50);
+            EnumsListBox.Location = new Point(6, 43);
             EnumsListBox.Name = "EnumsListBox";
-            EnumsListBox.Size = new Size(192, 224);
+            EnumsListBox.Size = new Size(182, 264);
             EnumsListBox.TabIndex = 0;
             EnumsListBox.SelectedIndexChanged += EnumsListBox_SelectedIndexChanged;
             // 
             // MainTabControl
             // 
+            MainTabControl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             MainTabControl.Controls.Add(EnumsPage);
-            MainTabControl.Location = new Point(1, -1);
+            MainTabControl.Controls.Add(ClassesPage);
+            MainTabControl.Location = new Point(0, 1);
             MainTabControl.Name = "MainTabControl";
             MainTabControl.SelectedIndex = 0;
-            MainTabControl.Size = new Size(876, 546);
+            MainTabControl.Size = new Size(823, 499);
             MainTabControl.TabIndex = 1;
             // 
             // EnumsPage
@@ -139,26 +142,27 @@
             EnumsPage.Location = new Point(4, 29);
             EnumsPage.Name = "EnumsPage";
             EnumsPage.Padding = new Padding(3);
-            EnumsPage.Size = new Size(868, 513);
+            EnumsPage.Size = new Size(815, 466);
             EnumsPage.TabIndex = 0;
             EnumsPage.Text = "Enums";
             EnumsPage.UseVisualStyleBackColor = true;
             // 
             // SeasonGroupBox
             // 
+            SeasonGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             SeasonGroupBox.Controls.Add(GoButton);
             SeasonGroupBox.Controls.Add(SeasonComboBox);
             SeasonGroupBox.Controls.Add(SeasonLabel);
-            SeasonGroupBox.Location = new Point(486, 325);
+            SeasonGroupBox.Location = new Point(432, 324);
             SeasonGroupBox.Name = "SeasonGroupBox";
-            SeasonGroupBox.Size = new Size(364, 181);
+            SeasonGroupBox.Size = new Size(379, 137);
             SeasonGroupBox.TabIndex = 2;
             SeasonGroupBox.TabStop = false;
             SeasonGroupBox.Text = "Season Handle";
             // 
             // GoButton
             // 
-            GoButton.Location = new Point(242, 67);
+            GoButton.Location = new Point(185, 68);
             GoButton.Name = "GoButton";
             GoButton.Size = new Size(85, 29);
             GoButton.TabIndex = 2;
@@ -172,7 +176,7 @@
             SeasonComboBox.Items.AddRange(new object[] { "Summer", "Autumn", "Winter", "Spring" });
             SeasonComboBox.Location = new Point(23, 68);
             SeasonComboBox.Name = "SeasonComboBox";
-            SeasonComboBox.Size = new Size(213, 28);
+            SeasonComboBox.Size = new Size(156, 28);
             SeasonComboBox.TabIndex = 1;
             // 
             // SeasonLabel
@@ -186,13 +190,14 @@
             // 
             // WeekdayParsingGroupBox
             // 
+            WeekdayParsingGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             WeekdayParsingGroupBox.Controls.Add(ParseButton);
             WeekdayParsingGroupBox.Controls.Add(ParseOutputLabel);
             WeekdayParsingGroupBox.Controls.Add(ParseTextBox);
             WeekdayParsingGroupBox.Controls.Add(label4);
-            WeekdayParsingGroupBox.Location = new Point(6, 325);
+            WeekdayParsingGroupBox.Location = new Point(8, 324);
             WeekdayParsingGroupBox.Name = "WeekdayParsingGroupBox";
-            WeekdayParsingGroupBox.Size = new Size(461, 181);
+            WeekdayParsingGroupBox.Size = new Size(418, 137);
             WeekdayParsingGroupBox.TabIndex = 1;
             WeekdayParsingGroupBox.TabStop = false;
             WeekdayParsingGroupBox.Text = "Weekday Parsing";
@@ -231,12 +236,22 @@
             label4.TabIndex = 0;
             label4.Text = "Type value for parsing:";
             // 
+            // ClassesPage
+            // 
+            ClassesPage.Location = new Point(4, 29);
+            ClassesPage.Name = "ClassesPage";
+            ClassesPage.Size = new Size(815, 466);
+            ClassesPage.TabIndex = 1;
+            ClassesPage.Text = "Classes";
+            ClassesPage.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(874, 546);
+            ClientSize = new Size(827, 503);
             Controls.Add(MainTabControl);
+            MinimumSize = new Size(845, 550);
             Name = "MainForm";
             Text = "Programming Demo";
             Load += MainForm_Load;
@@ -271,5 +286,6 @@
         private Label SeasonLabel;
         private Button GoButton;
         private ComboBox SeasonComboBox;
+        private TabPage ClassesPage;
     }
 }

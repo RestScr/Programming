@@ -105,7 +105,7 @@ namespace Programming
         private void Winter()
         {
             this.BackColor = System.Drawing.Color.DarkGray;
-            
+
             System.Drawing.Drawing2D.GraphicsPath window = new System.Drawing.Drawing2D.GraphicsPath();
             window.AddEllipse(0, 0, this.Width, this.Height);
             this.Region = new Region(window);
