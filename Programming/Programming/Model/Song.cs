@@ -37,10 +37,7 @@ namespace Programming.Model
             }
             set
             {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Duration cannot be below zero");
-                }
+                Model.Validator.AssertOnPositiveValue(value, "DurationInSeconds");
             }
         }
 

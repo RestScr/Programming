@@ -19,15 +19,12 @@ namespace Programming.Model
             }
             set
             {
-                if (value < 0.0)
-                {
-                    throw new ArgumentException("The width value cannot be below zero");
-                }
+                Model.Validator.AssertOnPositiveValue(value, "Width");
                 _width = value;
             }
         }
 
-        private double Height
+        public double Height
         {
             get
             {
@@ -35,10 +32,7 @@ namespace Programming.Model
             }
             set
             {
-                if (value < 0.0)
-                {
-                    throw new ArgumentException("The height value cannot be below zero");
-                }
+                Model.Validator.AssertOnPositiveValue(value, "Height");
                 _height = value;
             }
         }

@@ -20,10 +20,7 @@ namespace Programming.Model
             }
             set
             {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Flight time cannot be below zero.");
-                }
+                Model.Validator.AssertOnPositiveValue(value, "FlightTimeInMinutes");
 
                 _flightTimeInMinutes = value;
             }
