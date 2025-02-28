@@ -20,11 +20,7 @@ namespace Programming.Model
             }
             set
             {
-                if (value < 0 || value > 23)
-                {
-                    throw new ArgumentException("Hours value can be only between 0 and 23");
-                }
-
+                Model.Validator.AssertValueInRange(value, 0, 23);
                 _hours = value;
             }
         }
@@ -37,11 +33,7 @@ namespace Programming.Model
             }
             set
             {
-                if (value < 0 || value >= 60)
-                {
-                    throw new ArgumentException("Minutes value can only be between 0 and 59");
-                }
-
+                Model.Validator.AssertValueInRange(value, 0, 59);
                 _minutes = value;
             }
         }
@@ -54,11 +46,7 @@ namespace Programming.Model
             }
             set
             {
-                if (value < 0 || value >= 60)
-                {
-                    throw new ArgumentException("Seconds value can only be between 0 and 59");
-                }
-
+                Model.Validator.AssertValueInRange(value, 0, 59);
                 _seconds = value;
             }
         }

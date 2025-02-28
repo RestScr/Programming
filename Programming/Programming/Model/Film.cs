@@ -22,8 +22,7 @@ namespace Programming.Model
             }
             set
             {
-                Model.Validator.AssertOnPositiveValue(value, "DurationInMinutes");
-
+                Model.Validator.AssertOnPositiveValue(value);
                 _durationInMinutes = value;
             }
         }
@@ -36,11 +35,7 @@ namespace Programming.Model
             }
             set
             {
-                if (value < 1990 || value > DateTime.Now.Year)
-                {
-                    throw new ArgumentException("Year of release only can be greater than 1990 and less than current year");
-                }
-
+                Model.Validator.AssertValueInRange(value, 1990, DateTime.Now.Year);
                 _releaseYear = value;
             }
         }
@@ -55,11 +50,7 @@ namespace Programming.Model
             }
             set
             {
-                if (value < 0 || value > 10)
-                {
-                    throw new ArgumentException("Rating can be only between 0 and 10");
-                }
-
+                Model.Validator.AssertValueInRange(value, 0.0, 10.0);
                 _rating = value;
             }
         }

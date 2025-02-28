@@ -8,7 +8,7 @@ namespace Programming.Model
 {
     internal class Song
     {
-        private int _releaseYear = 1999;
+        private int _releaseYear = 1990;
         private int _durationInSeconds = 0;
 
         public string Author { get; set; } = "";
@@ -22,10 +22,8 @@ namespace Programming.Model
             }
             set
             {
-                if (value < 1990 || value > DateTime.Now.Year)
-                {
-                    throw new ArgumentException("Release Year can only be between 1990 and current year");
-                }
+                Model.Validator.AssertValueInRange(value, 1990, DateTime.Now.Year);
+                _releaseYear = value;
             }
         }
 
@@ -37,7 +35,8 @@ namespace Programming.Model
             }
             set
             {
-                Model.Validator.AssertOnPositiveValue(value, "DurationInSeconds");
+                Model.Validator.AssertOnPositiveValue(value);
+                _durationInSeconds = value;
             }
         }
 

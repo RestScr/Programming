@@ -20,8 +20,7 @@ namespace Programming.Model
             }
             set
             {
-                Model.Validator.AssertOnPositiveValue(value, "FlightTimeInMinutes");
-
+                Model.Validator.AssertOnPositiveValue(value);
                 _flightTimeInMinutes = value;
             }
         }
