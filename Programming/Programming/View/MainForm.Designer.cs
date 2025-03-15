@@ -47,15 +47,6 @@
             ParseTextBox = new TextBox();
             label4 = new Label();
             ClassesPage = new TabPage();
-            RectanglesGroupBox = new GroupBox();
-            label7 = new Label();
-            label6 = new Label();
-            label5 = new Label();
-            ColorTextBox = new TextBox();
-            WidthTextBox = new TextBox();
-            HeightTextBox = new TextBox();
-            FindRectangleButton = new Button();
-            RectanglesListBox = new ListBox();
             FilmsGroupBox = new GroupBox();
             label8 = new Label();
             label9 = new Label();
@@ -65,14 +56,29 @@
             DurationTextBox = new TextBox();
             FindFilmButton = new Button();
             FilmsListBox = new ListBox();
+            RectanglesGroupBox = new GroupBox();
+            label7 = new Label();
+            label6 = new Label();
+            label5 = new Label();
+            ColorTextBox = new TextBox();
+            WidthTextBox = new TextBox();
+            HeightTextBox = new TextBox();
+            FindRectangleButton = new Button();
+            RectanglesListBox = new ListBox();
+            RectangleCenterGroupBox = new GroupBox();
+            label11 = new Label();
+            label12 = new Label();
+            CenterXTextBox = new TextBox();
+            CenterYTextBox = new TextBox();
             EnumGroupBox.SuspendLayout();
             MainTabControl.SuspendLayout();
             EnumsPage.SuspendLayout();
             SeasonGroupBox.SuspendLayout();
             WeekdayParsingGroupBox.SuspendLayout();
             ClassesPage.SuspendLayout();
-            RectanglesGroupBox.SuspendLayout();
             FilmsGroupBox.SuspendLayout();
+            RectanglesGroupBox.SuspendLayout();
+            RectangleCenterGroupBox.SuspendLayout();
             SuspendLayout();
             // 
             // EnumGroupBox
@@ -268,93 +274,6 @@
             ClassesPage.Text = "Classes";
             ClassesPage.UseVisualStyleBackColor = true;
             // 
-            // RectanglesGroupBox
-            // 
-            RectanglesGroupBox.Controls.Add(label7);
-            RectanglesGroupBox.Controls.Add(label6);
-            RectanglesGroupBox.Controls.Add(label5);
-            RectanglesGroupBox.Controls.Add(ColorTextBox);
-            RectanglesGroupBox.Controls.Add(WidthTextBox);
-            RectanglesGroupBox.Controls.Add(HeightTextBox);
-            RectanglesGroupBox.Controls.Add(FindRectangleButton);
-            RectanglesGroupBox.Controls.Add(RectanglesListBox);
-            RectanglesGroupBox.Location = new Point(8, 14);
-            RectanglesGroupBox.Name = "RectanglesGroupBox";
-            RectanglesGroupBox.Size = new Size(410, 275);
-            RectanglesGroupBox.TabIndex = 1;
-            RectanglesGroupBox.TabStop = false;
-            RectanglesGroupBox.Text = "Rectangles";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(199, 126);
-            label7.Name = "label7";
-            label7.Size = new Size(45, 20);
-            label7.TabIndex = 7;
-            label7.Text = "Color";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(199, 73);
-            label6.Name = "label6";
-            label6.Size = new Size(49, 20);
-            label6.TabIndex = 6;
-            label6.Text = "Width";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(199, 15);
-            label5.Name = "label5";
-            label5.Size = new Size(54, 20);
-            label5.TabIndex = 5;
-            label5.Text = "Height";
-            // 
-            // ColorTextBox
-            // 
-            ColorTextBox.Location = new Point(199, 149);
-            ColorTextBox.Name = "ColorTextBox";
-            ColorTextBox.Size = new Size(125, 27);
-            ColorTextBox.TabIndex = 4;
-            ColorTextBox.TextChanged += ColorTextBox_TextChanged;
-            // 
-            // WidthTextBox
-            // 
-            WidthTextBox.Location = new Point(199, 96);
-            WidthTextBox.Name = "WidthTextBox";
-            WidthTextBox.Size = new Size(125, 27);
-            WidthTextBox.TabIndex = 3;
-            WidthTextBox.TextChanged += WidthTextBox_TextChanged;
-            // 
-            // HeightTextBox
-            // 
-            HeightTextBox.Location = new Point(199, 38);
-            HeightTextBox.Name = "HeightTextBox";
-            HeightTextBox.Size = new Size(125, 27);
-            HeightTextBox.TabIndex = 2;
-            HeightTextBox.TextChanged += HeightTextBox_TextChanged;
-            // 
-            // FindRectangleButton
-            // 
-            FindRectangleButton.Location = new Point(199, 240);
-            FindRectangleButton.Name = "FindRectangleButton";
-            FindRectangleButton.Size = new Size(125, 29);
-            FindRectangleButton.TabIndex = 1;
-            FindRectangleButton.Text = "Find";
-            FindRectangleButton.UseVisualStyleBackColor = true;
-            FindRectangleButton.Click += FindRectangleButton_Click;
-            // 
-            // RectanglesListBox
-            // 
-            RectanglesListBox.FormattingEnabled = true;
-            RectanglesListBox.Location = new Point(6, 26);
-            RectanglesListBox.Name = "RectanglesListBox";
-            RectanglesListBox.Size = new Size(182, 244);
-            RectanglesListBox.TabIndex = 0;
-            RectanglesListBox.SelectedIndexChanged += RectanglesBox_SelectedIndexChanged;
-            // 
             // FilmsGroupBox
             // 
             FilmsGroupBox.Controls.Add(label8);
@@ -365,9 +284,9 @@
             FilmsGroupBox.Controls.Add(DurationTextBox);
             FilmsGroupBox.Controls.Add(FindFilmButton);
             FilmsGroupBox.Controls.Add(FilmsListBox);
-            FilmsGroupBox.Location = new Point(442, 14);
+            FilmsGroupBox.Location = new Point(420, 14);
             FilmsGroupBox.Name = "FilmsGroupBox";
-            FilmsGroupBox.Size = new Size(358, 275);
+            FilmsGroupBox.Size = new Size(380, 286);
             FilmsGroupBox.TabIndex = 8;
             FilmsGroupBox.TabStop = false;
             FilmsGroupBox.Text = "Films";
@@ -403,7 +322,7 @@
             // 
             RatingTextBox.Location = new Point(199, 149);
             RatingTextBox.Name = "RatingTextBox";
-            RatingTextBox.Size = new Size(125, 27);
+            RatingTextBox.Size = new Size(165, 27);
             RatingTextBox.TabIndex = 4;
             RatingTextBox.TextChanged += RatingTextBox_TextChanged;
             // 
@@ -411,7 +330,7 @@
             // 
             ReleaseYearTextBox.Location = new Point(199, 96);
             ReleaseYearTextBox.Name = "ReleaseYearTextBox";
-            ReleaseYearTextBox.Size = new Size(125, 27);
+            ReleaseYearTextBox.Size = new Size(165, 27);
             ReleaseYearTextBox.TabIndex = 3;
             ReleaseYearTextBox.TextChanged += ReleaseYearTextBox_TextChanged;
             // 
@@ -419,7 +338,7 @@
             // 
             DurationTextBox.Location = new Point(199, 38);
             DurationTextBox.Name = "DurationTextBox";
-            DurationTextBox.Size = new Size(125, 27);
+            DurationTextBox.Size = new Size(165, 27);
             DurationTextBox.TabIndex = 2;
             DurationTextBox.TextChanged += DurationTextBox_TextChanged;
             // 
@@ -436,11 +355,146 @@
             // FilmsListBox
             // 
             FilmsListBox.FormattingEnabled = true;
-            FilmsListBox.Location = new Point(6, 26);
+            FilmsListBox.Location = new Point(17, 26);
             FilmsListBox.Name = "FilmsListBox";
-            FilmsListBox.Size = new Size(182, 244);
+            FilmsListBox.Size = new Size(171, 244);
             FilmsListBox.TabIndex = 0;
             FilmsListBox.SelectedIndexChanged += FilmsListBox_SelectedIndexChanged;
+            // 
+            // RectanglesGroupBox
+            // 
+            RectanglesGroupBox.Controls.Add(RectangleCenterGroupBox);
+            RectanglesGroupBox.Controls.Add(label7);
+            RectanglesGroupBox.Controls.Add(label6);
+            RectanglesGroupBox.Controls.Add(label5);
+            RectanglesGroupBox.Controls.Add(ColorTextBox);
+            RectanglesGroupBox.Controls.Add(WidthTextBox);
+            RectanglesGroupBox.Controls.Add(HeightTextBox);
+            RectanglesGroupBox.Controls.Add(FindRectangleButton);
+            RectanglesGroupBox.Controls.Add(RectanglesListBox);
+            RectanglesGroupBox.Location = new Point(8, 14);
+            RectanglesGroupBox.Name = "RectanglesGroupBox";
+            RectanglesGroupBox.Size = new Size(380, 447);
+            RectanglesGroupBox.TabIndex = 1;
+            RectanglesGroupBox.TabStop = false;
+            RectanglesGroupBox.Text = "Rectangles";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(199, 126);
+            label7.Name = "label7";
+            label7.Size = new Size(45, 20);
+            label7.TabIndex = 7;
+            label7.Text = "Color";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(199, 73);
+            label6.Name = "label6";
+            label6.Size = new Size(49, 20);
+            label6.TabIndex = 6;
+            label6.Text = "Width";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(199, 15);
+            label5.Name = "label5";
+            label5.Size = new Size(54, 20);
+            label5.TabIndex = 5;
+            label5.Text = "Height";
+            // 
+            // ColorTextBox
+            // 
+            ColorTextBox.Location = new Point(199, 149);
+            ColorTextBox.Name = "ColorTextBox";
+            ColorTextBox.Size = new Size(159, 27);
+            ColorTextBox.TabIndex = 4;
+            ColorTextBox.TextChanged += ColorTextBox_TextChanged;
+            // 
+            // WidthTextBox
+            // 
+            WidthTextBox.Location = new Point(199, 96);
+            WidthTextBox.Name = "WidthTextBox";
+            WidthTextBox.Size = new Size(159, 27);
+            WidthTextBox.TabIndex = 3;
+            WidthTextBox.TextChanged += WidthTextBox_TextChanged;
+            // 
+            // HeightTextBox
+            // 
+            HeightTextBox.Location = new Point(199, 38);
+            HeightTextBox.Name = "HeightTextBox";
+            HeightTextBox.Size = new Size(159, 27);
+            HeightTextBox.TabIndex = 2;
+            HeightTextBox.TextChanged += HeightTextBox_TextChanged;
+            // 
+            // FindRectangleButton
+            // 
+            FindRectangleButton.Location = new Point(199, 401);
+            FindRectangleButton.Name = "FindRectangleButton";
+            FindRectangleButton.Size = new Size(159, 29);
+            FindRectangleButton.TabIndex = 1;
+            FindRectangleButton.Text = "Find";
+            FindRectangleButton.UseVisualStyleBackColor = true;
+            FindRectangleButton.Click += FindRectangleButton_Click;
+            // 
+            // RectanglesListBox
+            // 
+            RectanglesListBox.FormattingEnabled = true;
+            RectanglesListBox.Location = new Point(6, 26);
+            RectanglesListBox.Name = "RectanglesListBox";
+            RectanglesListBox.Size = new Size(182, 404);
+            RectanglesListBox.TabIndex = 0;
+            RectanglesListBox.SelectedIndexChanged += RectanglesBox_SelectedIndexChanged;
+            // 
+            // RectangleCenterGroupBox
+            // 
+            RectangleCenterGroupBox.Controls.Add(CenterYTextBox);
+            RectangleCenterGroupBox.Controls.Add(CenterXTextBox);
+            RectangleCenterGroupBox.Controls.Add(label12);
+            RectangleCenterGroupBox.Controls.Add(label11);
+            RectangleCenterGroupBox.Location = new Point(199, 212);
+            RectangleCenterGroupBox.Name = "RectangleCenterGroupBox";
+            RectangleCenterGroupBox.Size = new Size(159, 121);
+            RectangleCenterGroupBox.TabIndex = 8;
+            RectangleCenterGroupBox.TabStop = false;
+            RectangleCenterGroupBox.Text = "Center";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(6, 38);
+            label11.Name = "label11";
+            label11.Size = new Size(21, 20);
+            label11.TabIndex = 0;
+            label11.Text = "X:";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(7, 74);
+            label12.Name = "label12";
+            label12.Size = new Size(20, 20);
+            label12.TabIndex = 1;
+            label12.Text = "Y:";
+            // 
+            // CenterXTextBox
+            // 
+            CenterXTextBox.Location = new Point(30, 35);
+            CenterXTextBox.Name = "CenterXTextBox";
+            CenterXTextBox.ReadOnly = true;
+            CenterXTextBox.Size = new Size(46, 27);
+            CenterXTextBox.TabIndex = 2;
+            // 
+            // CenterYTextBox
+            // 
+            CenterYTextBox.Location = new Point(30, 71);
+            CenterYTextBox.Name = "CenterYTextBox";
+            CenterYTextBox.ReadOnly = true;
+            CenterYTextBox.Size = new Size(46, 27);
+            CenterYTextBox.TabIndex = 3;
             // 
             // MainForm
             // 
@@ -461,10 +515,12 @@
             WeekdayParsingGroupBox.ResumeLayout(false);
             WeekdayParsingGroupBox.PerformLayout();
             ClassesPage.ResumeLayout(false);
-            RectanglesGroupBox.ResumeLayout(false);
-            RectanglesGroupBox.PerformLayout();
             FilmsGroupBox.ResumeLayout(false);
             FilmsGroupBox.PerformLayout();
+            RectanglesGroupBox.ResumeLayout(false);
+            RectanglesGroupBox.PerformLayout();
+            RectangleCenterGroupBox.ResumeLayout(false);
+            RectangleCenterGroupBox.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -507,5 +563,10 @@
         private TextBox DurationTextBox;
         private Button FindFilmButton;
         private ListBox FilmsListBox;
+        private GroupBox RectangleCenterGroupBox;
+        private Label label11;
+        private TextBox CenterYTextBox;
+        private TextBox CenterXTextBox;
+        private Label label12;
     }
 }

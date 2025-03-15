@@ -37,13 +37,16 @@ namespace Programming.Model
             }
         }
 
+        public Model.Point2D Center { get; } = new Model.Point2D();
+
         public string Color { get; set; } = "Black";
 
-        public Rectangle(double width, double height, string color)
+        public Rectangle(double width, double height, string color, Model.Point2D center)
         {
             Width = width;
             Height = height;
             Color = color;
+            Center = center;
         }
 
         public Rectangle() { }

@@ -7,6 +7,9 @@ namespace Programming
 {
     public partial class MainForm : Form
     {
+        // Объект рандомайзера
+        private static Random _random = new Random();
+
         // Статический массив, содержащий типы перечислений
         private static System.Type[] EnumTypes = {
             typeof(Model.Color),
@@ -19,13 +22,19 @@ namespace Programming
 
         // Закрытый массив прямоугольников
         private Model.Rectangle[] _rectangles = {
-            new Model.Rectangle(new Random().NextDouble() * 3, new Random().NextDouble() * 10, "Red"),
-            new Model.Rectangle(new Random().NextDouble() * 6, new Random().NextDouble() * 10, "Green"),
-            new Model.Rectangle(new Random().NextDouble() * 4, new Random().NextDouble() * 12, "Blue"),
-            new Model.Rectangle(new Random().NextDouble() * 7, new Random().NextDouble() * 10, "Yellow"),
-            new Model.Rectangle(new Random().NextDouble() * 5, new Random().NextDouble() * 10, "Orange"),
+            new Model.Rectangle(_random.NextDouble() * 6, new Random().NextDouble() * 10, "Red", 
+                new Point2D(_random.Next(-10, 10), _random.Next(-10, 10))),
+            new Model.Rectangle(_random.NextDouble() * 6, new Random().NextDouble() * 10, "Green",
+                new Point2D(_random.Next(-10, 10), _random.Next(-10, 10))),
+            new Model.Rectangle(_random.NextDouble() * 4, new Random().NextDouble() * 12, "Blue",
+                new Point2D(_random.Next(-10, 10), _random.Next(-10, 10))),
+            new Model.Rectangle(_random.NextDouble() * 7, new Random().NextDouble() * 10, "Yellow",
+                new Point2D(_random.Next(-10, 10), _random.Next(-10, 10))),
+            new Model.Rectangle(_random.NextDouble() * 5, new Random().NextDouble() * 10, "Orange",
+                new Point2D(_random.Next(-10, 10), _random.Next(-10, 10))),
         };
 
+        // Закрытый массив фильмов
         private Model.Film[] _films =
         {
             new Model.Film("Hero Of Worlds", new Random().Next(1, 120), new Random().Next(1990, 2025), "Action", new Random().NextDouble() * 10),
@@ -44,9 +53,10 @@ namespace Programming
             InitializeComponent();
         }
 
-        // <summary>
-        // Загрузка формы
-        // </summary>
+        /// <summary>
+        /// Загрузка формы
+        /// Инициализация листбоксов исходя из созданных приватных массивов
+        /// </summary>
         private void MainForm_Load(object sender, EventArgs e)
         {
             int i = 1;
@@ -185,24 +195,34 @@ namespace Programming
         {
             int index = RectanglesListBox.SelectedIndex;
             _currentRectangle = _rectangles[index];
-            HeightTextBox.Text = Convert.ToString(_rectangles[index].Height);
-            WidthTextBox.Text = Convert.ToString(_rectangles[index].Width);
-            ColorTextBox.Text = Convert.ToString(_rectangles[index].Color);
+            HeightTextBox.Text = Convert.ToString(_currentRectangle.Height);
+            WidthTextBox.Text = Convert.ToString(_currentRectangle.Width);
+            ColorTextBox.Text = Convert.ToString(_currentRectangle.Color);
+            CenterXTextBox.Text = Convert.ToString(_currentRectangle.Center.X);
+            CenterYTextBox.Text = Convert.ToString(_currentRectangle.Center.Y);
         }
 
         private void HeightTextBox_TextChanged(object sender, EventArgs e)
         {
+            // Если прямоугольник не выбран, то обработка прекращается
             if (_currentRectangle == null)
             {
                 return;
             }
 
+            // Логика присваивания введённого значения
             try
             {
                 HeightTextBox.BackColor = System.Drawing.Color.White;
                 _currentRectangle.Height = Convert.ToDouble(HeightTextBox.Text);
             }
             catch (FormatException)
+            {
+                // Случай, если введённое значение не прошло валидацию,
+                // то фон текстбокса меняет свой цвет на красный
+                HeightTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+            catch (ArgumentException)
             {
                 HeightTextBox.BackColor = System.Drawing.Color.LightPink;
             }
@@ -221,6 +241,10 @@ namespace Programming
                 _currentRectangle.Width = Convert.ToDouble(WidthTextBox.Text);
             }
             catch (FormatException)
+            {
+                WidthTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+            catch (ArgumentException)
             {
                 WidthTextBox.BackColor = System.Drawing.Color.LightPink;
             }
@@ -274,6 +298,9 @@ namespace Programming
             FilmsListBox.SelectedIndex = maxRatingFilmIndex;
         }
 
+        // <summary>
+        // Логика листбокса с фильмами при нажатии на элемент в списке
+        // </summary>
         private void FilmsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = FilmsListBox.SelectedIndex;
@@ -283,7 +310,7 @@ namespace Programming
                 return;
             }
 
-            _currentFilm = _films[index];
+            _currentFilm = _films[index]; // запись ссылки выбранного элемента в общую приватную переменную
             RatingTextBox.Text = Convert.ToString(_currentFilm.Rating);
             ReleaseYearTextBox.Text = Convert.ToString(_currentFilm.ReleaseYear);
             DurationTextBox.Text = Convert.ToString(_currentFilm.DurationInMinutes);
@@ -309,18 +336,22 @@ namespace Programming
 
         private void ReleaseYearTextBox_TextChanged(object sender, EventArgs e)
         {
+            // Если фильм не выбран
             if (_currentFilm == null)
             {
                 return;
             }
 
+            // Далее реализуется логика присваивания значения из текстбокса
+            // в свойство года выпуска выбранного фильма
             try
             {
                 ReleaseYearTextBox.BackColor = System.Drawing.Color.White;
                 _currentFilm.ReleaseYear = Convert.ToInt32(ReleaseYearTextBox.Text);
             }
-            catch (Exception)
+            catch (ArgumentException)
             {
+                // Если заданное значение не прошло валидацию
                 ReleaseYearTextBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
