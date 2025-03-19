@@ -200,6 +200,8 @@ namespace Programming
             ColorTextBox.Text = Convert.ToString(_currentRectangle.Color);
             CenterXTextBox.Text = Convert.ToString(_currentRectangle.Center.X);
             CenterYTextBox.Text = Convert.ToString(_currentRectangle.Center.Y);
+
+            IdTextBox.Text = Convert.ToString(_currentRectangle.Id);
         }
 
         private void HeightTextBox_TextChanged(object sender, EventArgs e)

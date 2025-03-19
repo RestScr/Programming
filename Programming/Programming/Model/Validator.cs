@@ -60,7 +60,7 @@ namespace Programming.Model
         // <param name="valueName"> Имя свойства, откуда был вызван валидатор </param>
         public static void AssertValueInRange(int value, int min, int max, [CallerMemberName] string valueName = "")
         {
-            if (value < min || value > max)
+            if (value <= min || value >= max)
             {
                 throw new ArgumentException(valueName + $" value can only be in between {min} and {max}");
             }

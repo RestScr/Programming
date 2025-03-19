@@ -8,8 +8,8 @@ namespace Programming.Model
 {
     public class Point2D
     {
-        public double X { get; } = 0;
-        public double Y { get; } = 0;
+        public double X { get; private set; }
+        public double Y { get; private set; }
 
         public Point2D() { }
 

@@ -8,6 +8,12 @@ namespace Programming.Model
 {
     internal class Rectangle
     {
+        private static int _allRectanglesCount = 0;
+        public static int AllRectanglesCount()
+        {
+            return _allRectanglesCount;
+        }
+
         private double _width = 0;
         private double _height = 0;
 
@@ -41,12 +47,17 @@ namespace Programming.Model
 
         public string Color { get; set; } = "Black";
 
+        public int Id { get; private set; }
+
         public Rectangle(double width, double height, string color, Model.Point2D center)
         {
             Width = width;
             Height = height;
             Color = color;
             Center = center;
+
+            _allRectanglesCount++;
+            Id = _allRectanglesCount;
         }
 
         public Rectangle() { }
