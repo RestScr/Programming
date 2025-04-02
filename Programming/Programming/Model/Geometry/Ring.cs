@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model
+namespace Programming.Model.Geometry
 {
     internal class Ring
     {
@@ -37,17 +37,17 @@ namespace Programming.Model
             }
         }
 
-        public double Area 
-        { 
+        public double Area
+        {
             get
             {
                 return Math.PI * (Math.Pow(_outsideRadius, 2) - Math.Pow(_insideRadius, 2));
             }
         }
 
-        public Model.Point2D Center { get; private set; }
+        public Point2D Center { get; private set; }
 
-        public Ring(double outsideRadius, double insideRadius, Model.Point2D center)
+        public Ring(double outsideRadius, double insideRadius, Point2D center)
         {
             OutsideRadius = outsideRadius;
             InsideRadius = insideRadius;

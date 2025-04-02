@@ -1,7 +1,8 @@
 using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Runtime.InteropServices.ComTypes;
-using Programming.Model;
+using Programming.Model.Enums;
+using Programming.Model.Geometry;
 
 namespace Programming
 {
@@ -12,27 +13,18 @@ namespace Programming
 
         // Статический массив, содержащий типы перечислений
         private static System.Type[] EnumTypes = {
-            typeof(Model.Color),
-            typeof(Model.EducationForm),
-            typeof(Model.Genre),
-            typeof(Model.Season),
-            typeof(Model.SmartphoneManufacturers),
-            typeof(Model.Weekday)
+            typeof(Model.Enums.Color),
+            typeof(EducationForm),
+            typeof(Genre),
+            typeof(Season),
+            typeof(SmartphoneManufacturers),
+            typeof(Weekday)
         };
 
         // Закрытый массив прямоугольников
-        private Model.Rectangle[] _rectangles = {
-            new Model.Rectangle(_random.NextDouble() * 6, new Random().NextDouble() * 10, "Red", 
-                new Point2D(_random.Next(-10, 10), _random.Next(-10, 10))),
-            new Model.Rectangle(_random.NextDouble() * 6, new Random().NextDouble() * 10, "Green",
-                new Point2D(_random.Next(-10, 10), _random.Next(-10, 10))),
-            new Model.Rectangle(_random.NextDouble() * 4, new Random().NextDouble() * 12, "Blue",
-                new Point2D(_random.Next(-10, 10), _random.Next(-10, 10))),
-            new Model.Rectangle(_random.NextDouble() * 7, new Random().NextDouble() * 10, "Yellow",
-                new Point2D(_random.Next(-10, 10), _random.Next(-10, 10))),
-            new Model.Rectangle(_random.NextDouble() * 5, new Random().NextDouble() * 10, "Orange",
-                new Point2D(_random.Next(-10, 10), _random.Next(-10, 10))),
-        };
+        private const int _rectanglesAmount = 10;
+        private List<Model.Geometry.Rectangle> _rectangles =
+            new List<Model.Geometry.Rectangle>(_rectanglesAmount);
 
         // Закрытый массив фильмов
         private Model.Film[] _films =
@@ -45,8 +37,35 @@ namespace Programming
             new Model.Film("Recreation", new Random().Next(1, 120), new Random().Next(1990, 2025), "Art House", new Random().NextDouble() * 10)
         };
 
-        private Model.Rectangle _currentRectangle = null; // переменная выбранного прямоугольника
+        private Model.Geometry.Rectangle _currentRectangle = null; // переменная выбранного прямоугольника
         private Model.Film _currentFilm = null; // переменная выбранного фильма
+
+        /// <summary>
+        /// Метод, генерирующий случайный прямоугольник
+        /// </summary>
+        /// <returns> Сгенерированный прямоугольник </returns>
+        private Model.Geometry.Rectangle GenerateRandomRectangle(string color="red")
+        {
+            return new Model.Geometry.Rectangle(
+                        _random.NextDouble() * 10,
+                        _random.NextDouble() * 10,
+                        color,
+                        new Point2D(_random.NextDouble() * Canvas.Width, _random.NextDouble() * Canvas.Height)
+                       );
+        }
+
+        /// <summary>
+        /// Метод, реализующий случайную генерацию прямоугольников в массиве
+        /// </summary>
+        private void GenerateRectangles()
+        {
+            for (int i = 0; i < _rectanglesAmount; i++)
+            {
+                AddRectangle(
+                    GenerateRandomRectangle()
+                );
+            }
+        }
 
         public MainForm()
         {
@@ -59,11 +78,7 @@ namespace Programming
         /// </summary>
         private void MainForm_Load(object sender, EventArgs e)
         {
-            int i = 1;
-            foreach (Model.Rectangle rectangle in _rectangles)
-            {
-                RectanglesListBox.Items.Add("Rectangle " + i++);
-            }
+            GenerateRectangles();
 
             foreach (Model.Film film in _films)
             {
@@ -71,18 +86,28 @@ namespace Programming
             }
         }
 
-        // <summary>
-        // Добавление новых элементов в ListBox
-        // с удалением предыдущих
-        // </summary>
-        // <param name="listBox"> Данный листбокс </param>
-        // <param name="itemNames"> Список имен элементов </param>
-        static private void SetItemsToListBox(ListBox listBox, string[] itemNames)
+        /// <summary>
+        /// Метод добавления одного объекта в листбокс
+        /// </summary>
+        /// <param name="listBox"> Экземпляр листбокса </param>
+        /// <param name="item"> Сам объект </param>
+        static private void AddItemToListBox(ListBox listBox, string item)
+        {
+            listBox.Items.Add(item);
+        }
+
+        /// <summary>
+        /// Добавление новых элементов в ListBox
+        /// с удалением предыдущих
+        /// </summary>
+        /// <param name="listBox"> Данный листбокс </param>
+        /// <param name="itemNames"> Список имен элементов </param>
+        static private void AddItemsToListBox(ListBox listBox, string[] itemNames)
         {
             listBox.Items.Clear();
             foreach (string name in itemNames)
             {
-                listBox.Items.Add(name);
+                AddItemToListBox(listBox, name);
             }
         }
 
@@ -93,7 +118,7 @@ namespace Programming
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedIndex = EnumsListBox.SelectedIndex;
-            SetItemsToListBox(ValuesListBox, Enum.GetNames(EnumTypes[selectedIndex]));
+            AddItemsToListBox(ValuesListBox, Enum.GetNames(EnumTypes[selectedIndex]));
         }
 
         // <summary>
@@ -162,6 +187,11 @@ namespace Programming
             this.BackColor = System.Drawing.Color.LightGreen;
         }
 
+        private void SetSelectedRectangle(int index)
+        {
+            DrawnRectanglesBox.SelectedIndex = index;
+            RectanglesListBox.SelectedIndex = index;
+        }
 
         // <summary>
         // Кнопка, отвечающая за выполнение событий в зависимости от
@@ -195,6 +225,9 @@ namespace Programming
         {
             int index = RectanglesListBox.SelectedIndex;
             _currentRectangle = _rectangles[index];
+            _currentRectangle = _rectangles[index];
+            SetSelectedRectangle(index);
+
             HeightTextBox.Text = Convert.ToString(_currentRectangle.Height);
             WidthTextBox.Text = Convert.ToString(_currentRectangle.Width);
             ColorTextBox.Text = Convert.ToString(_currentRectangle.Color);
@@ -266,11 +299,11 @@ namespace Programming
         // Закрытый метод, организующий поиск прямоугольника с максимальной шириной в массиве
         // </summary>
         // <param name="rectangles"> Массив прямоугольников </param>
-        private void FindRectangleWithMaxWidth(Model.Rectangle[] rectangles)
+        private void FindRectangleWithMaxWidth(List<Model.Geometry.Rectangle> rectangles)
         {
             int maxWidthRectangleIndex = 0;
 
-            for (int i = 0; i < rectangles.Length; i++)
+            for (int i = 0; i < rectangles.Count(); i++)
             {
                 if (rectangles[maxWidthRectangleIndex].Width < rectangles[i].Width)
                 {
@@ -280,7 +313,7 @@ namespace Programming
 
             RectanglesListBox.SelectedIndex = maxWidthRectangleIndex;
         }
-        
+
         // <summary>
         // Закрытый метод, который ищет фильм с максимальным рейтингом
         // </summary>
@@ -379,6 +412,38 @@ namespace Programming
         private void FindFilmButton_Click(object sender, EventArgs e)
         {
             FindFilmWithMaxRating(_films);
+        }
+
+        /// <summary>
+        /// Add rectangle logic
+        /// </summary>
+        /// <param name="rectangle"> Rectangle object </param>
+        private void AddRectangle(Model.Geometry.Rectangle rectangle)
+        {
+            _rectangles.Add(rectangle);
+            AddItemToListBox(DrawnRectanglesBox, "Rectangle " + rectangle.Id);
+            AddItemToListBox(RectanglesListBox, "Rectangle " + rectangle.Id);
+        }
+
+        private void IncreaseRectanglesButton_Click(object sender, EventArgs e)
+        {
+            AddRectangle(GenerateRandomRectangle());
+        }
+
+        private void DecreaseRectanglesButton_Click(object sender, EventArgs e)
+        {
+            int index = DrawnRectanglesBox.SelectedIndex;
+            _rectangles.RemoveAt(index);
+            RectanglesListBox.Items.RemoveAt(index);
+            DrawnRectanglesBox.Items.RemoveAt(index);
+        }
+
+        private void DrawnRectanglesBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = DrawnRectanglesBox.SelectedIndex;
+            Debug.WriteLine(index);
+            _currentRectangle = _rectangles[index];
+            SetSelectedRectangle(index);
         }
     }
 }
