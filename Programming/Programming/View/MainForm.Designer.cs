@@ -590,6 +590,7 @@
             DrawnHeightTextBox.Name = "DrawnHeightTextBox";
             DrawnHeightTextBox.Size = new Size(125, 27);
             DrawnHeightTextBox.TabIndex = 13;
+            DrawnHeightTextBox.TextChanged += DrawnHeightTextBox_TextChanged;
             // 
             // DrawnWidthTextBox
             // 
@@ -597,6 +598,7 @@
             DrawnWidthTextBox.Name = "DrawnWidthTextBox";
             DrawnWidthTextBox.Size = new Size(125, 27);
             DrawnWidthTextBox.TabIndex = 12;
+            DrawnWidthTextBox.TextChanged += DrawnWidthTextBox_TextChanged;
             // 
             // DrawnYTextBox
             // 
@@ -604,11 +606,13 @@
             DrawnYTextBox.Name = "DrawnYTextBox";
             DrawnYTextBox.Size = new Size(125, 27);
             DrawnYTextBox.TabIndex = 11;
+            DrawnYTextBox.TextChanged += DrawnYTextBox_TextChanged;
             // 
             // DrawnIdBox
             // 
             DrawnIdBox.Location = new Point(71, 274);
             DrawnIdBox.Name = "DrawnIdBox";
+            DrawnIdBox.ReadOnly = true;
             DrawnIdBox.Size = new Size(125, 27);
             DrawnIdBox.TabIndex = 10;
             // 
@@ -618,6 +622,7 @@
             DrawnXTextBox.Name = "DrawnXTextBox";
             DrawnXTextBox.Size = new Size(125, 27);
             DrawnXTextBox.TabIndex = 9;
+            DrawnXTextBox.TextChanged += DrawnXTextBox_TextChanged;
             // 
             // label20
             // 
@@ -693,6 +698,7 @@
             // 
             // Canvas
             // 
+            Canvas.BorderStyle = BorderStyle.FixedSingle;
             Canvas.Location = new Point(274, 3);
             Canvas.Name = "Canvas";
             Canvas.Size = new Size(538, 467);

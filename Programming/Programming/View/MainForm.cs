@@ -1,6 +1,8 @@
+using System;
 using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Runtime.InteropServices.ComTypes;
+using Programming.Model;
 using Programming.Model.Enums;
 using Programming.Model.Geometry;
 
@@ -22,9 +24,12 @@ namespace Programming
         };
 
         // Закрытый массив прямоугольников
-        private const int _rectanglesAmount = 10;
+        private const int _rectanglesAmount = 0;
         private List<Model.Geometry.Rectangle> _rectangles =
             new List<Model.Geometry.Rectangle>(_rectanglesAmount);
+
+        // Закрытый массив нарисованных прямоугольников на канве
+        List<Panel> _rectanglePanels = new List<Panel>();
 
         // Закрытый массив фильмов
         private Model.Film[] _films =
@@ -44,11 +49,11 @@ namespace Programming
         /// Метод, генерирующий случайный прямоугольник
         /// </summary>
         /// <returns> Сгенерированный прямоугольник </returns>
-        private Model.Geometry.Rectangle GenerateRandomRectangle(string color="red")
+        private Model.Geometry.Rectangle GenerateRandomRectangle(string color = "red")
         {
             return new Model.Geometry.Rectangle(
-                        _random.NextDouble() * 10,
-                        _random.NextDouble() * 10,
+                        Math.Max(_random.NextDouble(), 0.5) * 200,
+                        Math.Max(_random.NextDouble(), 0.35) * 200,
                         color,
                         new Point2D(_random.NextDouble() * Canvas.Width, _random.NextDouble() * Canvas.Height)
                        );
@@ -424,26 +429,178 @@ namespace Programming
             AddItemToListBox(DrawnRectanglesBox, "Rectangle " + rectangle.Id);
             AddItemToListBox(RectanglesListBox, "Rectangle " + rectangle.Id);
         }
+        
+        /// <summary>
+        /// Метод определения, есть ли коллизия у заданного прямоугольника
+        /// </summary>
+        /// <returns> True, если есть коллизия хотя бы с одним из прямоугольников, False - иначе</returns>
+        bool DoesCollideWithAny(Model.Geometry.Rectangle rectangle)
+        {
+            for (int i = 0; i < _rectangles.Count; i++)
+            {
+                if (_rectangles[i].Id == rectangle.Id)
+                {
+                    continue;
+                }
+                if (CollisionManager.IsCollision(rectangle, _rectangles[i]))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Логика поиска коллизий, логика перекрашивания прямоугольников в случае коллизий
+        /// </summary>
+        private void FindCollisions()
+        {
+            for (int i = 0; i < _rectangles.Count; i++)
+            {
+                if (DoesCollideWithAny(_rectangles[i]))
+                {
+                    _rectanglePanels[i].BackColor = System.Drawing.Color.FromArgb(127, 255, 127, 127);
+                }
+                else
+                {
+                    _rectanglePanels[i].BackColor = System.Drawing.Color.FromArgb(127, 127, 255, 127);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Добавить изображение прямоугольника на канву
+        /// </summary>
+        /// <param name="rectangle"> Объект прямоугольника </param>
+        private void AddRectanglePanel(Model.Geometry.Rectangle rectangle)
+        {
+            _rectanglePanels.Add(new Panel());
+            _rectanglePanels.Last().Width = (int)_currentRectangle.Width;
+            _rectanglePanels.Last().Height = (int)_currentRectangle.Height;
+            _rectanglePanels.Last().Location = new Point(
+                (int)_currentRectangle.Center.X,
+                (int)_currentRectangle.Center.Y
+            );
+            _rectanglePanels.Last().BackColor = System.Drawing.Color.FromArgb(127, 127, 255, 127);
+            _rectanglePanels.Last().Visible = true;
+            Canvas.Controls.Add(_rectanglePanels.Last());
+
+        }
 
         private void IncreaseRectanglesButton_Click(object sender, EventArgs e)
         {
             AddRectangle(GenerateRandomRectangle());
+            int index = _rectangles.Count() - 1;
+            DrawnRectanglesBox.SelectedIndex = index;
+            AddRectanglePanel(_rectangles[index]);
+            FindCollisions();
         }
 
         private void DecreaseRectanglesButton_Click(object sender, EventArgs e)
         {
             int index = DrawnRectanglesBox.SelectedIndex;
+            if (index < 0)
+            {
+                return;
+            }
             _rectangles.RemoveAt(index);
             RectanglesListBox.Items.RemoveAt(index);
             DrawnRectanglesBox.Items.RemoveAt(index);
+            _rectanglePanels.RemoveAt(index);
+            Canvas.Controls.RemoveAt(index);
+            index = Math.Min(index, _rectangles.Count - 1);
+            if (index < 0)
+            {
+                return;
+            }
+            DrawnRectanglesBox.SelectedIndex = index;
+            _currentRectangle = _rectangles[index];
+
+            FindCollisions();
         }
 
         private void DrawnRectanglesBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = DrawnRectanglesBox.SelectedIndex;
-            Debug.WriteLine(index);
+            if (index < 0)
+            {
+                return;
+            }
             _currentRectangle = _rectangles[index];
             SetSelectedRectangle(index);
+
+            DrawnIdBox.Text = Convert.ToString(_currentRectangle.Id);
+            DrawnXTextBox.Text = Convert.ToString(_currentRectangle.Center.X);
+            DrawnYTextBox.Text = Convert.ToString(_currentRectangle.Center.Y);
+            DrawnWidthTextBox.Text = Convert.ToString(_currentRectangle.Width);
+            DrawnHeightTextBox.Text = Convert.ToString(_currentRectangle.Height);
+        }
+
+        private void DrawnXTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DrawnXTextBox.BackColor = System.Drawing.Color.White;
+                double value = Convert.ToDouble(DrawnXTextBox.Text);
+                _currentRectangle.Center.X = value;
+            }
+            catch (FormatException)
+            {
+                DrawnXTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        private void DrawnYTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DrawnYTextBox.BackColor = System.Drawing.Color.White;
+                double value = Convert.ToDouble(DrawnYTextBox.Text);
+                _currentRectangle.Center.Y = value;
+            }
+            catch (FormatException)
+            {
+                DrawnYTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        private void DrawnWidthTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DrawnWidthTextBox.BackColor = System.Drawing.Color.White;
+                double value = Convert.ToDouble(DrawnWidthTextBox.Text);
+                Validator.AssertOnPositiveValue(value);
+                _currentRectangle.Width = value;
+            }
+            catch (FormatException)
+            {
+                DrawnWidthTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+            catch (ArgumentException)
+            {
+                DrawnWidthTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        private void DrawnHeightTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DrawnHeightTextBox.BackColor = System.Drawing.Color.White;
+                double value = Convert.ToDouble(DrawnHeightTextBox.Text);
+                Validator.AssertOnPositiveValue(value);
+                _currentRectangle.Height = value;
+            }
+            catch (FormatException)
+            {
+                DrawnHeightTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+
+            catch (ArgumentException)
+            {
+                DrawnHeightTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
         }
     }
 }
