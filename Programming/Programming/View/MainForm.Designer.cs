@@ -566,7 +566,7 @@
             // 
             // DecreaseRectanglesButton
             // 
-            DecreaseRectanglesButton.Image = (Image)resources.GetObject("DecreaseRectanglesButton.Image");
+            DecreaseRectanglesButton.Image = Properties.Resources.minus;
             DecreaseRectanglesButton.Location = new Point(100, 200);
             DecreaseRectanglesButton.Name = "DecreaseRectanglesButton";
             DecreaseRectanglesButton.Size = new Size(47, 35);

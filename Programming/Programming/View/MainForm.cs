@@ -475,34 +475,22 @@ namespace Programming
 
         private void IncreaseRectanglesButton_MouseHover(object sender, EventArgs e)
         {
-            int red = IncreaseRectanglesButton.BackColor.R;
-            int green = IncreaseRectanglesButton.BackColor.G;
-            int blue = IncreaseRectanglesButton.BackColor.B;
-            IncreaseRectanglesButton.BackColor = System.Drawing.Color.FromArgb(0, red, green, blue);
+            IncreaseRectanglesButton.Image = Properties.Resources.plus_hover;
         }
 
         private void IncreaseRectanglesButton_MouseLeave(object sender, EventArgs e)
         {
-            int red = IncreaseRectanglesButton.BackColor.R;
-            int green = IncreaseRectanglesButton.BackColor.G;
-            int blue = IncreaseRectanglesButton.BackColor.B;
-            IncreaseRectanglesButton.BackColor = System.Drawing.Color.FromArgb(255, red, green, blue);
+            IncreaseRectanglesButton.Image = Properties.Resources.plus;
         }
 
         private void DecreaseRectanglesButton_MouseHover(object sender, EventArgs e)
         {
-            int red = DecreaseRectanglesButton.BackColor.R;
-            int green = DecreaseRectanglesButton.BackColor.G;
-            int blue = DecreaseRectanglesButton.BackColor.B;
-            DecreaseRectanglesButton.BackColor = System.Drawing.Color.FromArgb(0, red, green, blue);
+            DecreaseRectanglesButton.Image = Properties.Resources.minus_hover;
         }
 
         private void DecreaseRectanglesButton_MouseLeave(object sender, EventArgs e)
         {
-            int red = DecreaseRectanglesButton.BackColor.R;
-            int green = DecreaseRectanglesButton.BackColor.G;
-            int blue = DecreaseRectanglesButton.BackColor.B;
-            DecreaseRectanglesButton.BackColor = System.Drawing.Color.FromArgb(255, red, green, blue);
+            DecreaseRectanglesButton.Image = Properties.Resources.minus;
         }
 
         private void IncreaseRectanglesButton_Click(object sender, EventArgs e)

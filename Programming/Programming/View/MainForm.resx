@@ -118,13 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="DecreaseRectanglesButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAC8AAAAjCAYAAAAE5VPXAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAS
-        cQAAEnEB89x6jgAAAE5JREFUWEft1rENAEAIw8As8Tv/1tCzgBXJltJQXUmmuNxDU+KpxFOJpxJPlZ83
-        rRNPTTw18dTEUxNPTTw18dS68ffBb0o8lXgq8VTiqRZ+nKFbCNqfXgAAAABJRU5ErkJggg==
-</value>
-  </data>
   <data name="IncreaseRectanglesButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAC8AAAAjCAYAAAAE5VPXAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAS
