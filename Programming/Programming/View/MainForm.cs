@@ -43,6 +43,7 @@ namespace Programming
         };
 
         private Model.Geometry.Rectangle _currentRectangle = null; // переменная выбранного прямоугольника
+        private Panel _currentPanel = null; // переменная, хранящая ссылку на выбранный прямоугольник на канве
         private Model.Film _currentFilm = null; // переменная выбранного фильма
 
         /// <summary>
@@ -478,8 +479,8 @@ namespace Programming
             _rectanglePanels.Last().Width = (int)_currentRectangle.Width;
             _rectanglePanels.Last().Height = (int)_currentRectangle.Height;
             _rectanglePanels.Last().Location = new Point(
-                (int)_currentRectangle.Center.X,
-                (int)_currentRectangle.Center.Y
+                (int)(_currentRectangle.Center.X - _currentRectangle.Width / 2),
+                (int)(_currentRectangle.Center.Y - _currentRectangle.Height / 2)
             );
             _rectanglePanels.Last().BackColor = System.Drawing.Color.FromArgb(127, 127, 255, 127);
             _rectanglePanels.Last().Visible = true;
@@ -491,9 +492,10 @@ namespace Programming
         {
             AddRectangle(GenerateRandomRectangle());
             int index = _rectangles.Count() - 1;
-            DrawnRectanglesBox.SelectedIndex = index;
+            _currentRectangle = _rectangles[index];
             AddRectanglePanel(_rectangles[index]);
             FindCollisions();
+            DrawnRectanglesBox.SelectedIndex = index;
         }
 
         private void DecreaseRectanglesButton_Click(object sender, EventArgs e)
@@ -519,25 +521,74 @@ namespace Programming
             FindCollisions();
         }
 
+        /// <summary>
+        /// Метод, очищающий данные в текстовых 
+        /// поля со значениями прямоугольника
+        /// </summary>
+        private void ClearRectangleInfo()
+        {
+            _currentRectangle = null;
+            _currentPanel = null;
+
+            DrawnIdBox.Text = "";
+            DrawnXTextBox.Text = "";
+            DrawnYTextBox.Text = "";
+            DrawnWidthTextBox.Text = "";
+            DrawnHeightTextBox.Text = "";
+        }
+
+        /// <summary>
+        /// Метод, вписывающий данные в текстовые поля конкретного прямоугольника
+        /// </summary>
+        /// <param name="rectangle"> Прямоугольник, данные которого будут выписаны в текстовых полях</param>
+        private void UpdateRectangleInfo(Model.Geometry.Rectangle rectangle)
+        {
+            DrawnIdBox.Text = Convert.ToString(rectangle.Id);
+            DrawnXTextBox.Text = Convert.ToString(rectangle.Center.X);
+            DrawnYTextBox.Text = Convert.ToString(rectangle.Center.Y);
+            DrawnWidthTextBox.Text = Convert.ToString(rectangle.Width);
+            DrawnHeightTextBox.Text = Convert.ToString(rectangle.Height);
+        }
+
         private void DrawnRectanglesBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = DrawnRectanglesBox.SelectedIndex;
             if (index < 0)
             {
+                ClearRectangleInfo();
                 return;
             }
+
             _currentRectangle = _rectangles[index];
+            _currentPanel = _rectanglePanels[index];
+
             SetSelectedRectangle(index);
 
-            DrawnIdBox.Text = Convert.ToString(_currentRectangle.Id);
-            DrawnXTextBox.Text = Convert.ToString(_currentRectangle.Center.X);
-            DrawnYTextBox.Text = Convert.ToString(_currentRectangle.Center.Y);
-            DrawnWidthTextBox.Text = Convert.ToString(_currentRectangle.Width);
-            DrawnHeightTextBox.Text = Convert.ToString(_currentRectangle.Height);
+            UpdateRectangleInfo(_currentRectangle);
+        }
+
+        /// <summary>
+        /// Метод, который обновляет выбранный прямоугольник на канве в зависимости от выбранного
+        /// прямоугольника как сущности
+        /// </summary>
+        private void UpdateSelectedPanelOnCanvas()
+        {
+            _currentPanel.Width = (int)_currentRectangle.Width;
+            _currentPanel.Height = (int)_currentRectangle.Height;
+            _currentPanel.Location = new Point(
+                (int)_currentRectangle.Center.X - _currentPanel.Width / 2,
+                (int)_currentRectangle.Center.Y - _currentPanel.Height / 2
+            );
+            FindCollisions();
         }
 
         private void DrawnXTextBox_TextChanged(object sender, EventArgs e)
         {
+            if (_currentPanel == null)
+            {
+                return;
+            }
+
             try
             {
                 DrawnXTextBox.BackColor = System.Drawing.Color.White;
@@ -548,10 +599,17 @@ namespace Programming
             {
                 DrawnXTextBox.BackColor = System.Drawing.Color.LightPink;
             }
+
+            UpdateSelectedPanelOnCanvas();
         }
 
         private void DrawnYTextBox_TextChanged(object sender, EventArgs e)
         {
+            if (_currentRectangle == null)
+            {
+                return;
+            }
+
             try
             {
                 DrawnYTextBox.BackColor = System.Drawing.Color.White;
@@ -562,10 +620,17 @@ namespace Programming
             {
                 DrawnYTextBox.BackColor = System.Drawing.Color.LightPink;
             }
+
+            UpdateSelectedPanelOnCanvas();
         }
 
         private void DrawnWidthTextBox_TextChanged(object sender, EventArgs e)
         {
+            if (_currentRectangle == null)
+            {
+                return;
+            }
+
             try
             {
                 DrawnWidthTextBox.BackColor = System.Drawing.Color.White;
@@ -581,10 +646,17 @@ namespace Programming
             {
                 DrawnWidthTextBox.BackColor = System.Drawing.Color.LightPink;
             }
+
+            UpdateSelectedPanelOnCanvas();
         }
 
         private void DrawnHeightTextBox_TextChanged(object sender, EventArgs e)
         {
+            if (_currentRectangle == null)
+            {
+                return;
+            }
+
             try
             {
                 DrawnHeightTextBox.BackColor = System.Drawing.Color.White;
@@ -601,6 +673,7 @@ namespace Programming
             {
                 DrawnHeightTextBox.BackColor = System.Drawing.Color.LightPink;
             }
+            UpdateSelectedPanelOnCanvas();
         }
     }
 }
