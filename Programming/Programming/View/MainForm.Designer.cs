@@ -573,6 +573,8 @@
             DecreaseRectanglesButton.TabIndex = 15;
             DecreaseRectanglesButton.TabStop = false;
             DecreaseRectanglesButton.Click += DecreaseRectanglesButton_Click;
+            DecreaseRectanglesButton.MouseLeave += DecreaseRectanglesButton_MouseLeave;
+            DecreaseRectanglesButton.MouseHover += DecreaseRectanglesButton_MouseHover;
             // 
             // IncreaseRectanglesButton
             // 
@@ -583,6 +585,8 @@
             IncreaseRectanglesButton.TabIndex = 14;
             IncreaseRectanglesButton.TabStop = false;
             IncreaseRectanglesButton.Click += IncreaseRectanglesButton_Click;
+            IncreaseRectanglesButton.MouseLeave += IncreaseRectanglesButton_MouseLeave;
+            IncreaseRectanglesButton.MouseHover += IncreaseRectanglesButton_MouseHover;
             // 
             // DrawnHeightTextBox
             // 
@@ -698,10 +702,12 @@
             // 
             // Canvas
             // 
+            Canvas.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            Canvas.AutoSize = true;
             Canvas.BorderStyle = BorderStyle.FixedSingle;
-            Canvas.Location = new Point(274, 3);
+            Canvas.Location = new Point(277, 0);
             Canvas.Name = "Canvas";
-            Canvas.Size = new Size(538, 467);
+            Canvas.Size = new Size(538, 466);
             Canvas.TabIndex = 0;
             // 
             // MainForm
@@ -734,6 +740,11 @@
             ((System.ComponentModel.ISupportInitialize)DecreaseRectanglesButton).EndInit();
             ((System.ComponentModel.ISupportInitialize)IncreaseRectanglesButton).EndInit();
             ResumeLayout(false);
+        }
+
+        private void DecreaseRectanglesButton_MouseHover1(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

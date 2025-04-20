@@ -10,9 +10,6 @@ namespace Programming
 {
     public partial class MainForm : Form
     {
-        // Объект рандомайзера
-        private static Random _random = new Random();
-
         // Статический массив, содержащий типы перечислений
         private static System.Type[] EnumTypes = {
             typeof(Model.Enums.Color),
@@ -46,19 +43,7 @@ namespace Programming
         private Panel _currentPanel = null; // переменная, хранящая ссылку на выбранный прямоугольник на канве
         private Model.Film _currentFilm = null; // переменная выбранного фильма
 
-        /// <summary>
-        /// Метод, генерирующий случайный прямоугольник
-        /// </summary>
-        /// <returns> Сгенерированный прямоугольник </returns>
-        private Model.Geometry.Rectangle GenerateRandomRectangle(string color = "red")
-        {
-            return new Model.Geometry.Rectangle(
-                        Math.Max(_random.NextDouble(), 0.5) * 200,
-                        Math.Max(_random.NextDouble(), 0.35) * 200,
-                        color,
-                        new Point2D(_random.NextDouble() * Canvas.Width, _random.NextDouble() * Canvas.Height)
-                       );
-        }
+        
 
         /// <summary>
         /// Метод, реализующий случайную генерацию прямоугольников в массиве
@@ -68,7 +53,7 @@ namespace Programming
             for (int i = 0; i < _rectanglesAmount; i++)
             {
                 AddRectangle(
-                    GenerateRandomRectangle()
+                    Model.Geometry.RectangleFactory.Randomize(Canvas)
                 );
             }
         }
@@ -488,9 +473,41 @@ namespace Programming
 
         }
 
+        private void IncreaseRectanglesButton_MouseHover(object sender, EventArgs e)
+        {
+            int red = IncreaseRectanglesButton.BackColor.R;
+            int green = IncreaseRectanglesButton.BackColor.G;
+            int blue = IncreaseRectanglesButton.BackColor.B;
+            IncreaseRectanglesButton.BackColor = System.Drawing.Color.FromArgb(0, red, green, blue);
+        }
+
+        private void IncreaseRectanglesButton_MouseLeave(object sender, EventArgs e)
+        {
+            int red = IncreaseRectanglesButton.BackColor.R;
+            int green = IncreaseRectanglesButton.BackColor.G;
+            int blue = IncreaseRectanglesButton.BackColor.B;
+            IncreaseRectanglesButton.BackColor = System.Drawing.Color.FromArgb(255, red, green, blue);
+        }
+
+        private void DecreaseRectanglesButton_MouseHover(object sender, EventArgs e)
+        {
+            int red = DecreaseRectanglesButton.BackColor.R;
+            int green = DecreaseRectanglesButton.BackColor.G;
+            int blue = DecreaseRectanglesButton.BackColor.B;
+            DecreaseRectanglesButton.BackColor = System.Drawing.Color.FromArgb(0, red, green, blue);
+        }
+
+        private void DecreaseRectanglesButton_MouseLeave(object sender, EventArgs e)
+        {
+            int red = DecreaseRectanglesButton.BackColor.R;
+            int green = DecreaseRectanglesButton.BackColor.G;
+            int blue = DecreaseRectanglesButton.BackColor.B;
+            DecreaseRectanglesButton.BackColor = System.Drawing.Color.FromArgb(255, red, green, blue);
+        }
+
         private void IncreaseRectanglesButton_Click(object sender, EventArgs e)
         {
-            AddRectangle(GenerateRandomRectangle());
+            AddRectangle(RectangleFactory.Randomize(Canvas));
             int index = _rectangles.Count() - 1;
             _currentRectangle = _rectangles[index];
             AddRectanglePanel(_rectangles[index]);
