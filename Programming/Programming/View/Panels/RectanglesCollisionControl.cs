@@ -86,11 +86,11 @@ namespace Programming.View.Panels
             {
                 if (DoesCollideWithAny(_rectangles[i]))
                 {
-                    _rectanglePanels[i].BackColor = System.Drawing.Color.FromArgb(127, 255, 127, 127);
+                    _rectanglePanels[i].BackColor = Model.Static.AppColors.CollisionColor;
                 }
                 else
                 {
-                    _rectanglePanels[i].BackColor = System.Drawing.Color.FromArgb(127, 127, 255, 127);
+                    _rectanglePanels[i].BackColor = Model.Static.AppColors.DrawnRectangleColor;
                 }
             }
         }
@@ -108,7 +108,7 @@ namespace Programming.View.Panels
                 (int)(_currentRectangle.Center.X - _currentRectangle.Width / 2),
                 (int)(_currentRectangle.Center.Y - _currentRectangle.Height / 2)
             );
-            _rectanglePanels.Last().BackColor = System.Drawing.Color.FromArgb(127, 127, 255, 127);
+            _rectanglePanels.Last().BackColor = Model.Static.AppColors.DrawnRectangleColor;
             _rectanglePanels.Last().Visible = true;
             Canvas.Controls.Add(_rectanglePanels.Last());
 
