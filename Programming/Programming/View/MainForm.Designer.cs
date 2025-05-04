@@ -30,12 +30,8 @@
         {
             MainTabControl = new TabControl();
             EnumsPage = new TabPage();
+            enumerationsGroupControl1 = new View.Panels.EnumerationsGroupControl();
             seasonsHandleGroup1 = new View.Panels.SeasonsHandleGroup();
-            WeekdayParsingGroupBox = new GroupBox();
-            ParseButton = new Button();
-            ParseOutputLabel = new Label();
-            ParseTextBox = new TextBox();
-            label4 = new Label();
             ClassesPage = new TabPage();
             FilmsGroupBox = new GroupBox();
             label8 = new Label();
@@ -64,10 +60,9 @@
             RectanglesListBox = new ListBox();
             Rectangles = new TabPage();
             rectanglesCollisionControl1 = new View.Panels.RectanglesCollisionControl();
-            enumerationsGroupControl1 = new View.Panels.EnumerationsGroupControl();
+            weekdayParsingGroupControl1 = new View.Panels.WeekdayParsingGroupControl();
             MainTabControl.SuspendLayout();
             EnumsPage.SuspendLayout();
-            WeekdayParsingGroupBox.SuspendLayout();
             ClassesPage.SuspendLayout();
             FilmsGroupBox.SuspendLayout();
             RectanglesGroupBox.SuspendLayout();
@@ -89,9 +84,9 @@
             // 
             // EnumsPage
             // 
+            EnumsPage.Controls.Add(weekdayParsingGroupControl1);
             EnumsPage.Controls.Add(enumerationsGroupControl1);
             EnumsPage.Controls.Add(seasonsHandleGroup1);
-            EnumsPage.Controls.Add(WeekdayParsingGroupBox);
             EnumsPage.Location = new Point(4, 29);
             EnumsPage.Name = "EnumsPage";
             EnumsPage.Padding = new Padding(3);
@@ -100,60 +95,19 @@
             EnumsPage.Text = "Enums";
             EnumsPage.UseVisualStyleBackColor = true;
             // 
+            // enumerationsGroupControl1
+            // 
+            enumerationsGroupControl1.Location = new Point(-4, 0);
+            enumerationsGroupControl1.Name = "enumerationsGroupControl1";
+            enumerationsGroupControl1.Size = new Size(815, 318);
+            enumerationsGroupControl1.TabIndex = 3;
+            // 
             // seasonsHandleGroup1
             // 
             seasonsHandleGroup1.Location = new Point(442, 324);
             seasonsHandleGroup1.Name = "seasonsHandleGroup1";
             seasonsHandleGroup1.Size = new Size(369, 143);
             seasonsHandleGroup1.TabIndex = 2;
-            // 
-            // WeekdayParsingGroupBox
-            // 
-            WeekdayParsingGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            WeekdayParsingGroupBox.Controls.Add(ParseButton);
-            WeekdayParsingGroupBox.Controls.Add(ParseOutputLabel);
-            WeekdayParsingGroupBox.Controls.Add(ParseTextBox);
-            WeekdayParsingGroupBox.Controls.Add(label4);
-            WeekdayParsingGroupBox.Location = new Point(8, 324);
-            WeekdayParsingGroupBox.Name = "WeekdayParsingGroupBox";
-            WeekdayParsingGroupBox.Size = new Size(418, 137);
-            WeekdayParsingGroupBox.TabIndex = 1;
-            WeekdayParsingGroupBox.TabStop = false;
-            WeekdayParsingGroupBox.Text = "Weekday Parsing";
-            // 
-            // ParseButton
-            // 
-            ParseButton.Location = new Point(252, 68);
-            ParseButton.Name = "ParseButton";
-            ParseButton.Size = new Size(94, 29);
-            ParseButton.TabIndex = 3;
-            ParseButton.Text = "Parse";
-            ParseButton.UseVisualStyleBackColor = true;
-            ParseButton.Click += ParseButton_Click;
-            // 
-            // ParseOutputLabel
-            // 
-            ParseOutputLabel.AutoSize = true;
-            ParseOutputLabel.Location = new Point(16, 114);
-            ParseOutputLabel.Name = "ParseOutputLabel";
-            ParseOutputLabel.Size = new Size(0, 20);
-            ParseOutputLabel.TabIndex = 2;
-            // 
-            // ParseTextBox
-            // 
-            ParseTextBox.Location = new Point(18, 69);
-            ParseTextBox.Name = "ParseTextBox";
-            ParseTextBox.Size = new Size(228, 27);
-            ParseTextBox.TabIndex = 1;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(16, 33);
-            label4.Name = "label4";
-            label4.Size = new Size(158, 20);
-            label4.TabIndex = 0;
-            label4.Text = "Type value for parsing:";
             // 
             // ClassesPage
             // 
@@ -427,12 +381,12 @@
             rectanglesCollisionControl1.Size = new Size(822, 470);
             rectanglesCollisionControl1.TabIndex = 0;
             // 
-            // enumerationsGroupControl1
+            // weekdayParsingGroupControl1
             // 
-            enumerationsGroupControl1.Location = new Point(-4, 0);
-            enumerationsGroupControl1.Name = "enumerationsGroupControl1";
-            enumerationsGroupControl1.Size = new Size(815, 318);
-            enumerationsGroupControl1.TabIndex = 3;
+            weekdayParsingGroupControl1.Location = new Point(3, 324);
+            weekdayParsingGroupControl1.Name = "weekdayParsingGroupControl1";
+            weekdayParsingGroupControl1.Size = new Size(433, 143);
+            weekdayParsingGroupControl1.TabIndex = 4;
             // 
             // MainForm
             // 
@@ -446,8 +400,6 @@
             Load += MainForm_Load;
             MainTabControl.ResumeLayout(false);
             EnumsPage.ResumeLayout(false);
-            WeekdayParsingGroupBox.ResumeLayout(false);
-            WeekdayParsingGroupBox.PerformLayout();
             ClassesPage.ResumeLayout(false);
             FilmsGroupBox.ResumeLayout(false);
             FilmsGroupBox.PerformLayout();
@@ -468,11 +420,6 @@
 #endregion
         private TabControl MainTabControl;
         private TabPage EnumsPage;
-        private GroupBox WeekdayParsingGroupBox;
-        private Button ParseButton;
-        private Label ParseOutputLabel;
-        private TextBox ParseTextBox;
-        private Label label4;
         private TabPage ClassesPage;
         private GroupBox RectanglesGroupBox;
         private ListBox RectanglesListBox;
@@ -503,5 +450,6 @@
         private View.Panels.RectanglesCollisionControl rectanglesCollisionControl1;
         private View.Panels.SeasonsHandleGroup seasonsHandleGroup1;
         private View.Panels.EnumerationsGroupControl enumerationsGroupControl1;
+        private View.Panels.WeekdayParsingGroupControl weekdayParsingGroupControl1;
     }
 }
