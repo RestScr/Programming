@@ -46,6 +46,7 @@ namespace Programming.View.Panels
             {
                 return;
             }
+
             _currentRectangle = _rectangles[index];
             SetSelectedRectangle(index);
 
