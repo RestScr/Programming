@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Programming.Model.Static;
 
 namespace Programming.Model
 {
@@ -22,7 +23,7 @@ namespace Programming.Model
             }
             set
             {
-                Model.Validator.AssertOnPositiveValue(value);
+                Validator.AssertOnPositiveValue(value);
                 _durationInMinutes = value;
             }
         }
@@ -35,7 +36,7 @@ namespace Programming.Model
             }
             set
             {
-                Model.Validator.AssertValueInRange(value, 1990, DateTime.Now.Year);
+                Validator.AssertValueInRange(value, 1990, DateTime.Now.Year);
                 _releaseYear = value;
             }
         }
@@ -50,7 +51,7 @@ namespace Programming.Model
             }
             set
             {
-                Model.Validator.AssertValueInRange(value, 0.0, 10.0);
+                Validator.AssertValueInRange(value, 0.0, 10.0);
                 _rating = value;
             }
         }

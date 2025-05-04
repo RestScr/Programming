@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Programming.Model.Static;
 
 namespace Programming.Model
 {
@@ -20,7 +21,7 @@ namespace Programming.Model
             }
             set 
             {
-                Model.Validator.AssertOnStringArgumentForEnglishLetters(value, "Name");
+                Validator.AssertOnStringArgumentForEnglishLetters(value, "Name");
                 _name = value;
             }
         }
@@ -32,7 +33,7 @@ namespace Programming.Model
             } 
             set
             {
-                Model.Validator.AssertOnStringArgumentForEnglishLetters(value, "Surname");
+                Validator.AssertOnStringArgumentForEnglishLetters(value, "Surname");
                 _surname = value;
             }
         }

@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model
+namespace Programming.Model.Static
 {
     public static class Validator
     {
@@ -40,7 +40,7 @@ namespace Programming.Model
         // </summary>
         // <param name="value"> Строковое значение свойства </param>
         // <param name="valueName"> Название свойства для ссылки на него в тексте исключения </param>
-        public static void AssertOnStringArgumentForEnglishLetters(string value, [CallerMemberName]  string valueName = "")
+        public static void AssertOnStringArgumentForEnglishLetters(string value, [CallerMemberName] string valueName = "")
         {
             foreach (char character in value)
             {

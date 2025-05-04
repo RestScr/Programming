@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Programming.Model.Static;
 
 namespace Programming.Model
 {
@@ -20,7 +21,7 @@ namespace Programming.Model
             }
             set
             {
-                Model.Validator.AssertOnPositiveValue(value);
+                Validator.AssertOnPositiveValue(value);
                 _flightTimeInMinutes = value;
             }
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Programming.Model.Static;
 
 namespace Programming.Model
 {
@@ -20,7 +21,7 @@ namespace Programming.Model
             }
             set
             {
-                Model.Validator.AssertValueInRange(value, 0, 23);
+                Validator.AssertValueInRange(value, 0, 23);
                 _hours = value;
             }
         }
@@ -33,7 +34,7 @@ namespace Programming.Model
             }
             set
             {
-                Model.Validator.AssertValueInRange(value, 0, 59);
+                Validator.AssertValueInRange(value, 0, 59);
                 _minutes = value;
             }
         }
@@ -46,7 +47,7 @@ namespace Programming.Model
             }
             set
             {
-                Model.Validator.AssertValueInRange(value, 0, 59);
+                Validator.AssertValueInRange(value, 0, 59);
                 _seconds = value;
             }
         }

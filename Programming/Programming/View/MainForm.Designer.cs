@@ -128,11 +128,12 @@
             // 
             // rectanglesCollisionControl1
             // 
-            rectanglesCollisionControl1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             rectanglesCollisionControl1.AutoSize = true;
-            rectanglesCollisionControl1.Location = new Point(0, 0);
+            rectanglesCollisionControl1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            rectanglesCollisionControl1.Dock = DockStyle.Fill;
+            rectanglesCollisionControl1.Location = new Point(3, 3);
             rectanglesCollisionControl1.Name = "rectanglesCollisionControl1";
-            rectanglesCollisionControl1.Size = new Size(822, 470);
+            rectanglesCollisionControl1.Size = new Size(813, 464);
             rectanglesCollisionControl1.TabIndex = 0;
             // 
             // MainForm

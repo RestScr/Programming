@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Programming.Model.Geometry;
+using Programming.Model.Static;
 
 namespace Programming.View.Panels
 {
@@ -277,7 +278,7 @@ namespace Programming.View.Panels
             {
                 DrawnWidthTextBox.BackColor = System.Drawing.Color.White;
                 double value = Convert.ToDouble(DrawnWidthTextBox.Text);
-                Model.Validator.AssertOnPositiveValue(value);
+                Validator.AssertOnPositiveValue(value);
                 _currentRectangle.Width = value;
             }
             catch (FormatException)
@@ -303,7 +304,7 @@ namespace Programming.View.Panels
             {
                 DrawnHeightTextBox.BackColor = System.Drawing.Color.White;
                 double value = Convert.ToDouble(DrawnHeightTextBox.Text);
-                Model.Validator.AssertOnPositiveValue(value);
+                Validator.AssertOnPositiveValue(value);
                 _currentRectangle.Height = value;
             }
             catch (FormatException)
