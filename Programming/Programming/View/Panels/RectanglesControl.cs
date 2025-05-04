@@ -33,7 +33,6 @@ namespace Programming.View.Panels
 
             for (int i = 0; i < _rectanglesAmount; i++)
             {
-                Debug.WriteLine("Hello");
                 _rectangles.Add(Model.Geometry.RectangleFactory.Randomize());
                 RectanglesListBox.Items.Add(_rectangles[i]);
             }
@@ -47,8 +46,6 @@ namespace Programming.View.Panels
             {
                 return;
             }
-
-            Debug.WriteLine(index);
             _currentRectangle = _rectangles[index];
             SetSelectedRectangle(index);
 
