@@ -25,9 +25,6 @@ namespace Programming
         private List<Model.Geometry.Rectangle> _rectangles =
             new List<Model.Geometry.Rectangle>(_rectanglesAmount);
 
-        // Закрытый массив нарисованных прямоугольников на канве
-        List<Panel> _rectanglePanels = new List<Panel>();
-
         // Закрытый массив фильмов
         private Model.Film[] _films =
         {
@@ -40,23 +37,7 @@ namespace Programming
         };
 
         private Model.Geometry.Rectangle _currentRectangle = null; // переменная выбранного прямоугольника
-        private Panel _currentPanel = null; // переменная, хранящая ссылку на выбранный прямоугольник на канве
         private Model.Film _currentFilm = null; // переменная выбранного фильма
-
-        
-
-        /// <summary>
-        /// Метод, реализующий случайную генерацию прямоугольников в массиве
-        /// </summary>
-        private void GenerateRectangles()
-        {
-            for (int i = 0; i < _rectanglesAmount; i++)
-            {
-                AddRectangle(
-                    Model.Geometry.RectangleFactory.Randomize(Canvas)
-                );
-            }
-        }
 
         public MainForm()
         {
@@ -69,8 +50,6 @@ namespace Programming
         /// </summary>
         private void MainForm_Load(object sender, EventArgs e)
         {
-            GenerateRectangles();
-
             foreach (Model.Film film in _films)
             {
                 FilmsListBox.Items.Add(film.Name + ", " + film.Genre);
@@ -180,7 +159,6 @@ namespace Programming
 
         private void SetSelectedRectangle(int index)
         {
-            DrawnRectanglesBox.SelectedIndex = index;
             RectanglesListBox.SelectedIndex = index;
         }
 
@@ -412,273 +390,12 @@ namespace Programming
         private void AddRectangle(Model.Geometry.Rectangle rectangle)
         {
             _rectangles.Add(rectangle);
-            AddItemToListBox(DrawnRectanglesBox, "Rectangle " + rectangle.Id);
             AddItemToListBox(RectanglesListBox, "Rectangle " + rectangle.Id);
         }
-        
-        /// <summary>
-        /// Метод определения, есть ли коллизия у заданного прямоугольника
-        /// </summary>
-        /// <returns> True, если есть коллизия хотя бы с одним из прямоугольников, False - иначе</returns>
-        bool DoesCollideWithAny(Model.Geometry.Rectangle rectangle)
+
+        private void rectanglesCollisionControl_Load(object sender, EventArgs e)
         {
-            for (int i = 0; i < _rectangles.Count; i++)
-            {
-                if (_rectangles[i].Id == rectangle.Id)
-                {
-                    continue;
-                }
-                if (CollisionManager.IsCollision(rectangle, _rectangles[i]))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
 
-        /// <summary>
-        /// Логика поиска коллизий, логика перекрашивания прямоугольников в случае коллизий
-        /// </summary>
-        private void FindCollisions()
-        {
-            for (int i = 0; i < _rectangles.Count; i++)
-            {
-                if (DoesCollideWithAny(_rectangles[i]))
-                {
-                    _rectanglePanels[i].BackColor = System.Drawing.Color.FromArgb(127, 255, 127, 127);
-                }
-                else
-                {
-                    _rectanglePanels[i].BackColor = System.Drawing.Color.FromArgb(127, 127, 255, 127);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Добавить изображение прямоугольника на канву
-        /// </summary>
-        /// <param name="rectangle"> Объект прямоугольника </param>
-        private void AddRectanglePanel(Model.Geometry.Rectangle rectangle)
-        {
-            _rectanglePanels.Add(new Panel());
-            _rectanglePanels.Last().Width = (int)_currentRectangle.Width;
-            _rectanglePanels.Last().Height = (int)_currentRectangle.Height;
-            _rectanglePanels.Last().Location = new Point(
-                (int)(_currentRectangle.Center.X - _currentRectangle.Width / 2),
-                (int)(_currentRectangle.Center.Y - _currentRectangle.Height / 2)
-            );
-            _rectanglePanels.Last().BackColor = System.Drawing.Color.FromArgb(127, 127, 255, 127);
-            _rectanglePanels.Last().Visible = true;
-            Canvas.Controls.Add(_rectanglePanels.Last());
-
-        }
-
-        private void IncreaseRectanglesButton_MouseHover(object sender, EventArgs e)
-        {
-            IncreaseRectanglesButton.Image = Properties.Resources.plus_hover;
-        }
-
-        private void IncreaseRectanglesButton_MouseLeave(object sender, EventArgs e)
-        {
-            IncreaseRectanglesButton.Image = Properties.Resources.plus;
-        }
-
-        private void DecreaseRectanglesButton_MouseHover(object sender, EventArgs e)
-        {
-            DecreaseRectanglesButton.Image = Properties.Resources.minus_hover;
-        }
-
-        private void DecreaseRectanglesButton_MouseLeave(object sender, EventArgs e)
-        {
-            DecreaseRectanglesButton.Image = Properties.Resources.minus;
-        }
-
-        private void IncreaseRectanglesButton_Click(object sender, EventArgs e)
-        {
-            AddRectangle(RectangleFactory.Randomize(Canvas));
-            int index = _rectangles.Count() - 1;
-            _currentRectangle = _rectangles[index];
-            AddRectanglePanel(_rectangles[index]);
-            FindCollisions();
-            DrawnRectanglesBox.SelectedIndex = index;
-        }
-
-        private void DecreaseRectanglesButton_Click(object sender, EventArgs e)
-        {
-            int index = DrawnRectanglesBox.SelectedIndex;
-            if (index < 0)
-            {
-                return;
-            }
-            _rectangles.RemoveAt(index);
-            RectanglesListBox.Items.RemoveAt(index);
-            DrawnRectanglesBox.Items.RemoveAt(index);
-            _rectanglePanels.RemoveAt(index);
-            Canvas.Controls.RemoveAt(index);
-            index = Math.Min(index, _rectangles.Count - 1);
-            if (index < 0)
-            {
-                return;
-            }
-            DrawnRectanglesBox.SelectedIndex = index;
-            _currentRectangle = _rectangles[index];
-
-            FindCollisions();
-        }
-
-        /// <summary>
-        /// Метод, очищающий данные в текстовых 
-        /// поля со значениями прямоугольника
-        /// </summary>
-        private void ClearRectangleInfo()
-        {
-            _currentRectangle = null;
-            _currentPanel = null;
-
-            DrawnIdBox.Text = "";
-            DrawnXTextBox.Text = "";
-            DrawnYTextBox.Text = "";
-            DrawnWidthTextBox.Text = "";
-            DrawnHeightTextBox.Text = "";
-        }
-
-        /// <summary>
-        /// Метод, вписывающий данные в текстовые поля конкретного прямоугольника
-        /// </summary>
-        /// <param name="rectangle"> Прямоугольник, данные которого будут выписаны в текстовых полях</param>
-        private void UpdateRectangleInfo(Model.Geometry.Rectangle rectangle)
-        {
-            DrawnIdBox.Text = Convert.ToString(rectangle.Id);
-            DrawnXTextBox.Text = Convert.ToString(rectangle.Center.X);
-            DrawnYTextBox.Text = Convert.ToString(rectangle.Center.Y);
-            DrawnWidthTextBox.Text = Convert.ToString(rectangle.Width);
-            DrawnHeightTextBox.Text = Convert.ToString(rectangle.Height);
-        }
-
-        private void DrawnRectanglesBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int index = DrawnRectanglesBox.SelectedIndex;
-            if (index < 0)
-            {
-                ClearRectangleInfo();
-                return;
-            }
-
-            _currentRectangle = _rectangles[index];
-            _currentPanel = _rectanglePanels[index];
-
-            SetSelectedRectangle(index);
-
-            UpdateRectangleInfo(_currentRectangle);
-        }
-
-        /// <summary>
-        /// Метод, который обновляет выбранный прямоугольник на канве в зависимости от выбранного
-        /// прямоугольника как сущности
-        /// </summary>
-        private void UpdateSelectedPanelOnCanvas()
-        {
-            _currentPanel.Width = (int)_currentRectangle.Width;
-            _currentPanel.Height = (int)_currentRectangle.Height;
-            _currentPanel.Location = new Point(
-                (int)_currentRectangle.Center.X - _currentPanel.Width / 2,
-                (int)_currentRectangle.Center.Y - _currentPanel.Height / 2
-            );
-            FindCollisions();
-        }
-
-        private void DrawnXTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (_currentPanel == null)
-            {
-                return;
-            }
-
-            try
-            {
-                DrawnXTextBox.BackColor = System.Drawing.Color.White;
-                double value = Convert.ToDouble(DrawnXTextBox.Text);
-                _currentRectangle.Center.X = value;
-            }
-            catch (FormatException)
-            {
-                DrawnXTextBox.BackColor = System.Drawing.Color.LightPink;
-            }
-
-            UpdateSelectedPanelOnCanvas();
-        }
-
-        private void DrawnYTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (_currentRectangle == null)
-            {
-                return;
-            }
-
-            try
-            {
-                DrawnYTextBox.BackColor = System.Drawing.Color.White;
-                double value = Convert.ToDouble(DrawnYTextBox.Text);
-                _currentRectangle.Center.Y = value;
-            }
-            catch (FormatException)
-            {
-                DrawnYTextBox.BackColor = System.Drawing.Color.LightPink;
-            }
-
-            UpdateSelectedPanelOnCanvas();
-        }
-
-        private void DrawnWidthTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (_currentRectangle == null)
-            {
-                return;
-            }
-
-            try
-            {
-                DrawnWidthTextBox.BackColor = System.Drawing.Color.White;
-                double value = Convert.ToDouble(DrawnWidthTextBox.Text);
-                Validator.AssertOnPositiveValue(value);
-                _currentRectangle.Width = value;
-            }
-            catch (FormatException)
-            {
-                DrawnWidthTextBox.BackColor = System.Drawing.Color.LightPink;
-            }
-            catch (ArgumentException)
-            {
-                DrawnWidthTextBox.BackColor = System.Drawing.Color.LightPink;
-            }
-
-            UpdateSelectedPanelOnCanvas();
-        }
-
-        private void DrawnHeightTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (_currentRectangle == null)
-            {
-                return;
-            }
-
-            try
-            {
-                DrawnHeightTextBox.BackColor = System.Drawing.Color.White;
-                double value = Convert.ToDouble(DrawnHeightTextBox.Text);
-                Validator.AssertOnPositiveValue(value);
-                _currentRectangle.Height = value;
-            }
-            catch (FormatException)
-            {
-                DrawnHeightTextBox.BackColor = System.Drawing.Color.LightPink;
-            }
-
-            catch (ArgumentException)
-            {
-                DrawnHeightTextBox.BackColor = System.Drawing.Color.LightPink;
-            }
-            UpdateSelectedPanelOnCanvas();
         }
     }
 }

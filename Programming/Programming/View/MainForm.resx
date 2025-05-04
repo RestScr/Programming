@@ -117,13 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="IncreaseRectanglesButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAC8AAAAjCAYAAAAE5VPXAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAS
-        cQAAEnEB89x6jgAAAGVJREFUWEftlrEJwEAMxH6WzJNlf8Kkv86oOAwSqHFxqPT5IM99kYSThykZM5Vg
-        PJFgPJFgPJFgPJGwOz7HNml8S+NbGt/S+JbGtzS+5e74fDOn5OBUgvFEgvFEgvFEgvFEwur4H6wsW1/N
-        zzg5AAAAAElFTkSuQmCC
-</value>
-  </data>
 </root>
