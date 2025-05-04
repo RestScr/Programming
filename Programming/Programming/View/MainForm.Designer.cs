@@ -30,6 +30,7 @@
         {
             MainTabControl = new TabControl();
             EnumsPage = new TabPage();
+            weekdayParsingGroupControl1 = new View.Panels.WeekdayParsingGroupControl();
             enumerationsGroupControl1 = new View.Panels.EnumerationsGroupControl();
             seasonsHandleGroup1 = new View.Panels.SeasonsHandleGroup();
             ClassesPage = new TabPage();
@@ -42,31 +43,13 @@
             DurationTextBox = new TextBox();
             FindFilmButton = new Button();
             FilmsListBox = new ListBox();
-            RectanglesGroupBox = new GroupBox();
-            IdTextBox = new TextBox();
-            label13 = new Label();
-            RectangleCenterGroupBox = new GroupBox();
-            CenterYTextBox = new TextBox();
-            CenterXTextBox = new TextBox();
-            label12 = new Label();
-            label11 = new Label();
-            label7 = new Label();
-            label6 = new Label();
-            label5 = new Label();
-            ColorTextBox = new TextBox();
-            WidthTextBox = new TextBox();
-            HeightTextBox = new TextBox();
-            FindRectangleButton = new Button();
-            RectanglesListBox = new ListBox();
             Rectangles = new TabPage();
             rectanglesCollisionControl1 = new View.Panels.RectanglesCollisionControl();
-            weekdayParsingGroupControl1 = new View.Panels.WeekdayParsingGroupControl();
+            rectanglesControl1 = new View.Panels.RectanglesControl();
             MainTabControl.SuspendLayout();
             EnumsPage.SuspendLayout();
             ClassesPage.SuspendLayout();
             FilmsGroupBox.SuspendLayout();
-            RectanglesGroupBox.SuspendLayout();
-            RectangleCenterGroupBox.SuspendLayout();
             Rectangles.SuspendLayout();
             SuspendLayout();
             // 
@@ -95,6 +78,13 @@
             EnumsPage.Text = "Enums";
             EnumsPage.UseVisualStyleBackColor = true;
             // 
+            // weekdayParsingGroupControl1
+            // 
+            weekdayParsingGroupControl1.Location = new Point(3, 324);
+            weekdayParsingGroupControl1.Name = "weekdayParsingGroupControl1";
+            weekdayParsingGroupControl1.Size = new Size(433, 143);
+            weekdayParsingGroupControl1.TabIndex = 4;
+            // 
             // enumerationsGroupControl1
             // 
             enumerationsGroupControl1.Location = new Point(-4, 0);
@@ -111,8 +101,8 @@
             // 
             // ClassesPage
             // 
+            ClassesPage.Controls.Add(rectanglesControl1);
             ClassesPage.Controls.Add(FilmsGroupBox);
-            ClassesPage.Controls.Add(RectanglesGroupBox);
             ClassesPage.Location = new Point(4, 29);
             ClassesPage.Name = "ClassesPage";
             ClassesPage.Size = new Size(819, 470);
@@ -207,160 +197,6 @@
             FilmsListBox.TabIndex = 0;
             FilmsListBox.SelectedIndexChanged += FilmsListBox_SelectedIndexChanged;
             // 
-            // RectanglesGroupBox
-            // 
-            RectanglesGroupBox.Controls.Add(IdTextBox);
-            RectanglesGroupBox.Controls.Add(label13);
-            RectanglesGroupBox.Controls.Add(RectangleCenterGroupBox);
-            RectanglesGroupBox.Controls.Add(label7);
-            RectanglesGroupBox.Controls.Add(label6);
-            RectanglesGroupBox.Controls.Add(label5);
-            RectanglesGroupBox.Controls.Add(ColorTextBox);
-            RectanglesGroupBox.Controls.Add(WidthTextBox);
-            RectanglesGroupBox.Controls.Add(HeightTextBox);
-            RectanglesGroupBox.Controls.Add(FindRectangleButton);
-            RectanglesGroupBox.Controls.Add(RectanglesListBox);
-            RectanglesGroupBox.Location = new Point(8, 14);
-            RectanglesGroupBox.Name = "RectanglesGroupBox";
-            RectanglesGroupBox.Size = new Size(380, 447);
-            RectanglesGroupBox.TabIndex = 1;
-            RectanglesGroupBox.TabStop = false;
-            RectanglesGroupBox.Text = "Rectangles";
-            // 
-            // IdTextBox
-            // 
-            IdTextBox.Location = new Point(233, 26);
-            IdTextBox.Name = "IdTextBox";
-            IdTextBox.ReadOnly = true;
-            IdTextBox.Size = new Size(125, 27);
-            IdTextBox.TabIndex = 10;
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Location = new Point(199, 26);
-            label13.Name = "label13";
-            label13.Size = new Size(27, 20);
-            label13.TabIndex = 9;
-            label13.Text = "ID:";
-            // 
-            // RectangleCenterGroupBox
-            // 
-            RectangleCenterGroupBox.Controls.Add(CenterYTextBox);
-            RectangleCenterGroupBox.Controls.Add(CenterXTextBox);
-            RectangleCenterGroupBox.Controls.Add(label12);
-            RectangleCenterGroupBox.Controls.Add(label11);
-            RectangleCenterGroupBox.Location = new Point(199, 237);
-            RectangleCenterGroupBox.Name = "RectangleCenterGroupBox";
-            RectangleCenterGroupBox.Size = new Size(159, 121);
-            RectangleCenterGroupBox.TabIndex = 8;
-            RectangleCenterGroupBox.TabStop = false;
-            RectangleCenterGroupBox.Text = "Center";
-            // 
-            // CenterYTextBox
-            // 
-            CenterYTextBox.Location = new Point(30, 71);
-            CenterYTextBox.Name = "CenterYTextBox";
-            CenterYTextBox.ReadOnly = true;
-            CenterYTextBox.Size = new Size(46, 27);
-            CenterYTextBox.TabIndex = 3;
-            // 
-            // CenterXTextBox
-            // 
-            CenterXTextBox.Location = new Point(30, 35);
-            CenterXTextBox.Name = "CenterXTextBox";
-            CenterXTextBox.ReadOnly = true;
-            CenterXTextBox.Size = new Size(46, 27);
-            CenterXTextBox.TabIndex = 2;
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Location = new Point(7, 74);
-            label12.Name = "label12";
-            label12.Size = new Size(20, 20);
-            label12.TabIndex = 1;
-            label12.Text = "Y:";
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new Point(6, 38);
-            label11.Name = "label11";
-            label11.Size = new Size(21, 20);
-            label11.TabIndex = 0;
-            label11.Text = "X:";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(199, 170);
-            label7.Name = "label7";
-            label7.Size = new Size(45, 20);
-            label7.TabIndex = 7;
-            label7.Text = "Color";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(199, 117);
-            label6.Name = "label6";
-            label6.Size = new Size(49, 20);
-            label6.TabIndex = 6;
-            label6.Text = "Width";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(199, 59);
-            label5.Name = "label5";
-            label5.Size = new Size(54, 20);
-            label5.TabIndex = 5;
-            label5.Text = "Height";
-            // 
-            // ColorTextBox
-            // 
-            ColorTextBox.Location = new Point(199, 193);
-            ColorTextBox.Name = "ColorTextBox";
-            ColorTextBox.Size = new Size(159, 27);
-            ColorTextBox.TabIndex = 4;
-            ColorTextBox.TextChanged += ColorTextBox_TextChanged;
-            // 
-            // WidthTextBox
-            // 
-            WidthTextBox.Location = new Point(199, 140);
-            WidthTextBox.Name = "WidthTextBox";
-            WidthTextBox.Size = new Size(159, 27);
-            WidthTextBox.TabIndex = 3;
-            WidthTextBox.TextChanged += WidthTextBox_TextChanged;
-            // 
-            // HeightTextBox
-            // 
-            HeightTextBox.Location = new Point(199, 82);
-            HeightTextBox.Name = "HeightTextBox";
-            HeightTextBox.Size = new Size(159, 27);
-            HeightTextBox.TabIndex = 2;
-            HeightTextBox.TextChanged += HeightTextBox_TextChanged;
-            // 
-            // FindRectangleButton
-            // 
-            FindRectangleButton.Location = new Point(199, 401);
-            FindRectangleButton.Name = "FindRectangleButton";
-            FindRectangleButton.Size = new Size(159, 29);
-            FindRectangleButton.TabIndex = 1;
-            FindRectangleButton.Text = "Find";
-            FindRectangleButton.UseVisualStyleBackColor = true;
-            FindRectangleButton.Click += FindRectangleButton_Click;
-            // 
-            // RectanglesListBox
-            // 
-            RectanglesListBox.FormattingEnabled = true;
-            RectanglesListBox.Location = new Point(6, 26);
-            RectanglesListBox.Name = "RectanglesListBox";
-            RectanglesListBox.Size = new Size(182, 404);
-            RectanglesListBox.TabIndex = 0;
-            RectanglesListBox.SelectedIndexChanged += RectanglesBox_SelectedIndexChanged;
-            // 
             // Rectangles
             // 
             Rectangles.Controls.Add(rectanglesCollisionControl1);
@@ -381,12 +217,12 @@
             rectanglesCollisionControl1.Size = new Size(822, 470);
             rectanglesCollisionControl1.TabIndex = 0;
             // 
-            // weekdayParsingGroupControl1
+            // rectanglesControl1
             // 
-            weekdayParsingGroupControl1.Location = new Point(3, 324);
-            weekdayParsingGroupControl1.Name = "weekdayParsingGroupControl1";
-            weekdayParsingGroupControl1.Size = new Size(433, 143);
-            weekdayParsingGroupControl1.TabIndex = 4;
+            rectanglesControl1.Location = new Point(8, 14);
+            rectanglesControl1.Name = "rectanglesControl1";
+            rectanglesControl1.Size = new Size(388, 453);
+            rectanglesControl1.TabIndex = 9;
             // 
             // MainForm
             // 
@@ -403,10 +239,6 @@
             ClassesPage.ResumeLayout(false);
             FilmsGroupBox.ResumeLayout(false);
             FilmsGroupBox.PerformLayout();
-            RectanglesGroupBox.ResumeLayout(false);
-            RectanglesGroupBox.PerformLayout();
-            RectangleCenterGroupBox.ResumeLayout(false);
-            RectangleCenterGroupBox.PerformLayout();
             Rectangles.ResumeLayout(false);
             Rectangles.PerformLayout();
             ResumeLayout(false);
@@ -421,15 +253,6 @@
         private TabControl MainTabControl;
         private TabPage EnumsPage;
         private TabPage ClassesPage;
-        private GroupBox RectanglesGroupBox;
-        private ListBox RectanglesListBox;
-        private TextBox ColorTextBox;
-        private TextBox WidthTextBox;
-        private TextBox HeightTextBox;
-        private Button FindRectangleButton;
-        private Label label7;
-        private Label label6;
-        private Label label5;
         private GroupBox FilmsGroupBox;
         private Label label8;
         private Label label9;
@@ -439,17 +262,11 @@
         private TextBox DurationTextBox;
         private Button FindFilmButton;
         private ListBox FilmsListBox;
-        private GroupBox RectangleCenterGroupBox;
-        private Label label11;
-        private TextBox CenterYTextBox;
-        private TextBox CenterXTextBox;
-        private Label label12;
-        private Label label13;
-        private TextBox IdTextBox;
         private TabPage Rectangles;
         private View.Panels.RectanglesCollisionControl rectanglesCollisionControl1;
         private View.Panels.SeasonsHandleGroup seasonsHandleGroup1;
         private View.Panels.EnumerationsGroupControl enumerationsGroupControl1;
         private View.Panels.WeekdayParsingGroupControl weekdayParsingGroupControl1;
+        private View.Panels.RectanglesControl rectanglesControl1;
     }
 }
