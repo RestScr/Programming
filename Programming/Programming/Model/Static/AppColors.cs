@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Programming.Model.Static
 {
-    internal class AppColors
+    internal static class AppColors
     {
+        public static System.Drawing.Color WrongValueColor { get; } = System.Drawing.Color.LightPink;
+        public static System.Drawing.Color BasicTextBoxColor { get; } = System.Drawing.Color.White;
     }
 }

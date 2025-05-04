@@ -103,18 +103,18 @@ namespace Programming.View.Panels
             // Логика присваивания введённого значения
             try
             {
-                HeightTextBox.BackColor = System.Drawing.Color.White;
+                HeightTextBox.BackColor = Model.Static.AppColors.BasicTextBoxColor;
                 _currentRectangle.Height = Convert.ToDouble(HeightTextBox.Text);
             }
             catch (FormatException)
             {
                 // Случай, если введённое значение не прошло валидацию,
                 // то фон текстбокса меняет свой цвет на красный
-                HeightTextBox.BackColor = System.Drawing.Color.LightPink;
+                HeightTextBox.BackColor = Model.Static.AppColors.WrongValueColor;
             }
             catch (ArgumentException)
             {
-                HeightTextBox.BackColor = System.Drawing.Color.LightPink;
+                HeightTextBox.BackColor = Model.Static.AppColors.WrongValueColor;
             }
         }
 
@@ -127,16 +127,16 @@ namespace Programming.View.Panels
 
             try
             {
-                WidthTextBox.BackColor = System.Drawing.Color.White;
+                WidthTextBox.BackColor = Model.Static.AppColors.BasicTextBoxColor;
                 _currentRectangle.Width = Convert.ToDouble(WidthTextBox.Text);
             }
             catch (FormatException)
             {
-                WidthTextBox.BackColor = System.Drawing.Color.LightPink;
+                WidthTextBox.BackColor = Model.Static.AppColors.WrongValueColor;
             }
             catch (ArgumentException)
             {
-                WidthTextBox.BackColor = System.Drawing.Color.LightPink;
+                WidthTextBox.BackColor = Model.Static.AppColors.WrongValueColor;
             }
         }
 

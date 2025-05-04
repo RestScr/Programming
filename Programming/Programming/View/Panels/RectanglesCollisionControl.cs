@@ -234,13 +234,13 @@ namespace Programming.View.Panels
 
             try
             {
-                DrawnXTextBox.BackColor = System.Drawing.Color.White;
+                DrawnXTextBox.BackColor = Model.Static.AppColors.BasicTextBoxColor;
                 double value = Convert.ToDouble(DrawnXTextBox.Text);
                 _currentRectangle.Center.X = value;
             }
             catch (FormatException)
             {
-                DrawnXTextBox.BackColor = System.Drawing.Color.LightPink;
+                DrawnXTextBox.BackColor = Model.Static.AppColors.WrongValueColor ;
             }
 
             UpdateSelectedPanelOnCanvas();
@@ -255,13 +255,13 @@ namespace Programming.View.Panels
 
             try
             {
-                DrawnYTextBox.BackColor = System.Drawing.Color.White;
+                DrawnYTextBox.BackColor = Model.Static.AppColors.BasicTextBoxColor;
                 double value = Convert.ToDouble(DrawnYTextBox.Text);
                 _currentRectangle.Center.Y = value;
             }
             catch (FormatException)
             {
-                DrawnYTextBox.BackColor = System.Drawing.Color.LightPink;
+                DrawnYTextBox.BackColor = Model.Static.AppColors.WrongValueColor;
             }
 
             UpdateSelectedPanelOnCanvas();
@@ -276,18 +276,18 @@ namespace Programming.View.Panels
 
             try
             {
-                DrawnWidthTextBox.BackColor = System.Drawing.Color.White;
+                DrawnWidthTextBox.BackColor = Model.Static.AppColors.BasicTextBoxColor;
                 double value = Convert.ToDouble(DrawnWidthTextBox.Text);
                 Validator.AssertOnPositiveValue(value);
                 _currentRectangle.Width = value;
             }
             catch (FormatException)
             {
-                DrawnWidthTextBox.BackColor = System.Drawing.Color.LightPink;
+                DrawnWidthTextBox.BackColor = Model.Static.AppColors.WrongValueColor;
             }
             catch (ArgumentException)
             {
-                DrawnWidthTextBox.BackColor = System.Drawing.Color.LightPink;
+                DrawnWidthTextBox.BackColor = Model.Static.AppColors.WrongValueColor;
             }
 
             UpdateSelectedPanelOnCanvas();
@@ -302,19 +302,19 @@ namespace Programming.View.Panels
 
             try
             {
-                DrawnHeightTextBox.BackColor = System.Drawing.Color.White;
+                DrawnHeightTextBox.BackColor = Model.Static.AppColors.BasicTextBoxColor;
                 double value = Convert.ToDouble(DrawnHeightTextBox.Text);
                 Validator.AssertOnPositiveValue(value);
                 _currentRectangle.Height = value;
             }
             catch (FormatException)
             {
-                DrawnHeightTextBox.BackColor = System.Drawing.Color.LightPink;
+                DrawnHeightTextBox.BackColor = Model.Static.AppColors.WrongValueColor;
             }
 
             catch (ArgumentException)
             {
-                DrawnHeightTextBox.BackColor = System.Drawing.Color.LightPink;
+                DrawnHeightTextBox.BackColor = Model.Static.AppColors.WrongValueColor;
             }
             UpdateSelectedPanelOnCanvas();
         }

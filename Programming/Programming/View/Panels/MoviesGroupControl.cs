@@ -91,12 +91,12 @@ namespace Programming.View.Panels
 
             try
             {
-                ReleaseYearTextBox.BackColor = System.Drawing.Color.White;
+                ReleaseYearTextBox.BackColor = Model.Static.AppColors.BasicTextBoxColor;
                 _currentFilm.DurationInMinutes = Convert.ToInt32(DurationTextBox.Text);
             }
             catch (Exception)
             {
-                DurationTextBox.BackColor = System.Drawing.Color.LightPink;
+                DurationTextBox.BackColor = Model.Static.AppColors.WrongValueColor;
             }
         }
 
@@ -112,13 +112,13 @@ namespace Programming.View.Panels
             // в свойство года выпуска выбранного фильма
             try
             {
-                ReleaseYearTextBox.BackColor = System.Drawing.Color.White;
+                ReleaseYearTextBox.BackColor = Model.Static.AppColors.BasicTextBoxColor;
                 _currentFilm.ReleaseYear = Convert.ToInt32(ReleaseYearTextBox.Text);
             }
             catch (ArgumentException)
             {
                 // Если заданное значение не прошло валидацию
-                ReleaseYearTextBox.BackColor = System.Drawing.Color.LightPink;
+                ReleaseYearTextBox.BackColor = Model.Static.AppColors.WrongValueColor;
             }
         }
 
@@ -131,12 +131,12 @@ namespace Programming.View.Panels
 
             try
             {
-                RatingTextBox.BackColor = System.Drawing.Color.White;
+                RatingTextBox.BackColor = Model.Static.AppColors.BasicTextBoxColor;
                 _currentFilm.Rating = Convert.ToDouble(RatingTextBox.Text);
             }
             catch (Exception)
             {
-                RatingTextBox.BackColor = System.Drawing.Color.LightPink;
+                RatingTextBox.BackColor = Model.Static.AppColors.WrongValueColor;
             }
         }
 
