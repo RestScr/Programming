@@ -22,6 +22,7 @@ namespace Programming.View.Panels
         // </summary>
         private void Summer()
         {
+            this.BackColor = Model.Static.AppColors.SummerColor;
             MessageBox.Show("УРАААААА СОЛНЦЕ!!!", "Ура Солнце!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
@@ -30,7 +31,8 @@ namespace Programming.View.Panels
         // </summary>
         private void Autumn()
         {
-            this.BackColor = System.Drawing.Color.DarkOrange;
+            this.BackColor = Model.Static.AppColors.AutumnColor;
+            MessageBox.Show("осень....", "а где солнце????", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         // <summary>
@@ -38,7 +40,7 @@ namespace Programming.View.Panels
         // </summary>
         private void Winter()
         {
-            this.BackColor = System.Drawing.Color.DarkGray;
+            this.BackColor = Model.Static.AppColors.WinterColor;
 
             System.Drawing.Drawing2D.GraphicsPath window = new System.Drawing.Drawing2D.GraphicsPath();
             window.AddEllipse(0, 0, this.Width, this.Height);
@@ -52,7 +54,8 @@ namespace Programming.View.Panels
         // </summary>
         private void Spring()
         {
-            this.BackColor = System.Drawing.Color.LightGreen;
+            this.BackColor = Model.Static.AppColors.SpringColor;
+            MessageBox.Show("снег тает", "как прекрасна весна!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         // <summary>
