@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Programming.Model.Enums
 {
+    /// <summary>
+    /// Перечисление формы обучения.
+    /// </summary>
     public enum EducationForm
     {
         FullTime = 1,

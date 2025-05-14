@@ -144,8 +144,6 @@
             Controls.Add(MainTabControl);
             MinimumSize = new Size(845, 550);
             Name = "MainForm";
-            Text = "Programming Demo";
-            Load += MainForm_Load;
             MainTabControl.ResumeLayout(false);
             EnumsPage.ResumeLayout(false);
             ClassesPage.ResumeLayout(false);

@@ -13,16 +13,18 @@ using Programming.Model.Static;
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Пользовательский элемент управления, отвечающий за
+    /// работу с коллизиями прямоугольников.
+    /// </summary>
     public partial class RectanglesCollisionControl : UserControl
     {
+        /// <summary>
+        /// Стандартный конструктор пользовательского элемента управления.
+        /// </summary>
         public RectanglesCollisionControl()
         {
             InitializeComponent();
-        }
-
-        private void RectanglesCollisionControl_Load(object sender, EventArgs e)
-        {
-
         }
 
         /// <summary>
@@ -36,31 +38,43 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// Add rectangle logic
+        /// Метод, описывающий добавление новых прямоугольников в список и на канву.
         /// </summary>
-        /// <param name="rectangle"> Rectangle object </param>
+        /// <param name="rectangle"> Ссылка на объект прямоугольника. </param>
         private void AddRectangle(Model.Geometry.Rectangle rectangle)
         {
             _rectangles.Add(rectangle);
             AddItemToListBox(DrawnRectanglesBox, "Rectangle " + rectangle.Id);
-            //AddItemToListBox(RectanglesListBox, "Rectangle " + rectangle.Id);
         }
 
-        // Закрытый массив прямоугольников
+        /// <summary>
+        /// Поле, задающее начальное количество прямоугольников
+        /// </summary>
         private const int _rectanglesAmount = 0;
+        /// <summary>
+        /// Список прямоугольников.
+        /// </summary>
         private List<Model.Geometry.Rectangle> _rectangles =
             new List<Model.Geometry.Rectangle>(_rectanglesAmount);
-        private Panel _currentPanel = null; // переменная, хранящая ссылку на выбранный прямоугольник на канве
-
-        // Закрытый массив нарисованных прямоугольников на канве
-        List<Panel> _rectanglePanels = new List<Panel>();
-
-        private Model.Geometry.Rectangle _currentRectangle = null; // переменная выбранного прямоугольника
+        /// <summary>
+        /// Поле, хранящее ссылку на выбранный прямоугольник на канве.
+        /// </summary>
+        private Panel _currentPanel = null; 
 
         /// <summary>
-        /// Метод определения, есть ли коллизия у заданного прямоугольника
+        /// Закрытый массив нарисованных прямоугольников на канве.
         /// </summary>
-        /// <returns> True, если есть коллизия хотя бы с одним из прямоугольников, False - иначе</returns>
+        List<Panel> _rectanglePanels = new List<Panel>();
+
+        /// <summary>
+        /// Поле, хранящее ссылку на выбранный прямоугольник.
+        /// </summary>
+        private Model.Geometry.Rectangle _currentRectangle = null; 
+
+        /// <summary>
+        /// Метод определения, есть ли коллизия у заданного прямоугольника.
+        /// </summary>
+        /// <returns> True, если есть коллизия хотя бы с одним из прямоугольников, False - иначе. </returns>
         bool DoesCollideWithAny(Model.Geometry.Rectangle rectangle)
         {
             for (int i = 0; i < _rectangles.Count; i++)
@@ -78,7 +92,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// Логика поиска коллизий, логика перекрашивания прямоугольников в случае коллизий
+        /// Логика поиска коллизий, логика перекрашивания прямоугольников в случае коллизий.
         /// </summary>
         private void FindCollisions()
         {
@@ -96,9 +110,9 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// Добавить изображение прямоугольника на канву
+        /// Добавить изображение прямоугольника на канву.
         /// </summary>
-        /// <param name="rectangle"> Объект прямоугольника </param>
+        /// <param name="rectangle"> Объект прямоугольника. </param>
         private void AddRectanglePanel(Model.Geometry.Rectangle rectangle)
         {
             _rectanglePanels.Add(new Panel());
@@ -114,26 +128,51 @@ namespace Programming.View.Panels
 
         }
 
+        /// <summary>
+        /// Метод, отвечающий за мерцание кнопки добавления при наведении курсора.
+        /// </summary>
+        /// <param name="sender"> Объект отправителя. </param>
+        /// <param name="e"> Аргументы события. </param>
         private void IncreaseRectanglesButton_MouseHover(object sender, EventArgs e)
         {
             IncreaseRectanglesButton.Image = Properties.Resources.plus_hover;
         }
 
+        /// <summary>
+        /// Метод, отвечающий за возвращение кнопки добавления в исходное состояние без наведенного курсора.
+        /// </summary>
+        /// <param name="sender"> Объект отправителя. </param>
+        /// <param name="e"> Аргументы события. </param>
         private void IncreaseRectanglesButton_MouseLeave(object sender, EventArgs e)
         {
             IncreaseRectanglesButton.Image = Properties.Resources.plus;
         }
 
+        /// <summary>
+        /// Метод, отвечающий за мерцание кнопки удаления при наведении курсора.
+        /// </summary>
+        /// <param name="sender"> Объект отправителя. </param>
+        /// <param name="e"> Аргументы события. </param>
         private void DecreaseRectanglesButton_MouseHover(object sender, EventArgs e)
         {
             DecreaseRectanglesButton.Image = Properties.Resources.minus_hover;
         }
 
+        /// <summary>
+        /// Метод, отвечающий за возвращение кнопки удаления в исходное состояние без наведенного курсора.
+        /// </summary>
+        /// <param name="sender"> Объект отправителя. </param>
+        /// <param name="e"> Аргументы события. </param>
         private void DecreaseRectanglesButton_MouseLeave(object sender, EventArgs e)
         {
             DecreaseRectanglesButton.Image = Properties.Resources.minus;
         }
 
+        /// <summary>
+        /// Логика кнопки добавления прямоугольников.
+        /// </summary>
+        /// <param name="sender"> Объект отправителя. </param>
+        /// <param name="e"> Аргументы события. </param>
         private void IncreaseRectanglesButton_Click(object sender, EventArgs e)
         {
             AddRectangle(RectangleFactory.Randomize(Canvas));
@@ -144,6 +183,11 @@ namespace Programming.View.Panels
             DrawnRectanglesBox.SelectedIndex = index;
         }
 
+        /// <summary>
+        /// Логика кнопки удаления прямоугольников.
+        /// </summary>
+        /// <param name="sender"> Объект отправителя. </param>
+        /// <param name="e"> Аргументы события. </param>
         private void DecreaseRectanglesButton_Click(object sender, EventArgs e)
         {
             int index = DrawnRectanglesBox.SelectedIndex;
@@ -168,7 +212,7 @@ namespace Programming.View.Panels
 
         /// <summary>
         /// Метод, очищающий данные в текстовых 
-        /// поля со значениями прямоугольника
+        /// поля со значениями прямоугольника.
         /// </summary>
         private void ClearRectangleInfo()
         {
@@ -183,9 +227,9 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// Метод, вписывающий данные в текстовые поля конкретного прямоугольника
+        /// Метод, вписывающий данные в текстовые поля конкретного прямоугольника.
         /// </summary>
-        /// <param name="rectangle"> Прямоугольник, данные которого будут выписаны в текстовых полях</param>
+        /// <param name="rectangle"> Прямоугольник, данные которого будут выписаны в текстовых полях. </param>
         private void UpdateRectangleInfo(Model.Geometry.Rectangle rectangle)
         {
             DrawnIdBox.Text = Convert.ToString(rectangle.Id);
@@ -195,6 +239,11 @@ namespace Programming.View.Panels
             DrawnHeightTextBox.Text = Convert.ToString(rectangle.Height);
         }
 
+        /// <summary>
+        /// Инструкции, которые происходят при выборе прямоугольника в листбоксе.
+        /// </summary>
+        /// <param name="sender"> Объект отправителя. </param>
+        /// <param name="e"> Аргументы события. </param>
         private void DrawnRectanglesBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = DrawnRectanglesBox.SelectedIndex;
@@ -212,7 +261,7 @@ namespace Programming.View.Panels
 
         /// <summary>
         /// Метод, который обновляет выбранный прямоугольник на канве в зависимости от выбранного
-        /// прямоугольника как сущности
+        /// прямоугольника как сущности.
         /// </summary>
         private void UpdateSelectedPanelOnCanvas()
         {
@@ -224,7 +273,13 @@ namespace Programming.View.Panels
             );
             FindCollisions();
         }
-
+        
+        /// <summary>
+        /// Метод, описывающий инструкции, происходящие при изменении текста
+        /// в текстбоксе, отвечающем за координату X прямоугольника на канве. 
+        /// </summary>
+        /// <param name="sender"> Ссылка на объект отправителя события. </param>
+        /// <param name="e"> Аргументы событий. </param>
         private void DrawnXTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_currentPanel == null)
@@ -246,6 +301,12 @@ namespace Programming.View.Panels
             UpdateSelectedPanelOnCanvas();
         }
 
+        /// <summary>
+        /// Метод, описывающий инструкции, происходящие при изменении текста
+        /// в текстбоксе, отвечающем за координату Y прямоугольника на канве.
+        /// </summary>
+        /// <param name="sender"> Ссылка на объект отправителя события. </param>
+        /// <param name="e"> Аргументы событий. </param>
         private void DrawnYTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_currentRectangle == null)
@@ -267,6 +328,12 @@ namespace Programming.View.Panels
             UpdateSelectedPanelOnCanvas();
         }
 
+        /// <summary>
+        /// Метод, описывающий инструкции, происходящие при изменении текста
+        /// в текстбоксе, отвечающем за координату ширину прямоугольника на канве.
+        /// </summary>
+        /// <param name="sender"> Ссылка на объект отправителя события. </param>
+        /// <param name="e"> Аргументы событий. </param>
         private void DrawnWidthTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_currentRectangle == null)
@@ -293,6 +360,12 @@ namespace Programming.View.Panels
             UpdateSelectedPanelOnCanvas();
         }
 
+        /// <summary>
+        /// Метод, описывающий инструкции, происходящие при изменении текста
+        /// в текстбоксе, отвечающем за координату высоту прямоугольника на канве.
+        /// </summary>
+        /// <param name="sender"> Ссылка на объект отправителя события. </param>
+        /// <param name="e"> Аргументы событий. </param>
         private void DrawnHeightTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_currentRectangle == null)
@@ -320,7 +393,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// Метод, реализующий случайную генерацию прямоугольников в массиве
+        /// Метод, реализующий случайную генерацию прямоугольников в массиве.
         /// </summary>
         private void GenerateRectangles()
         {

@@ -220,7 +220,6 @@
             Controls.Add(CollisionRectanglesGroupBox);
             Name = "RectanglesCollisionControl";
             Size = new Size(811, 470);
-            Load += RectanglesCollisionControl_Load;
             ((System.ComponentModel.ISupportInitialize)DecreaseRectanglesButton).EndInit();
             ((System.ComponentModel.ISupportInitialize)IncreaseRectanglesButton).EndInit();
             CollisionRectanglesGroupBox.ResumeLayout(false);

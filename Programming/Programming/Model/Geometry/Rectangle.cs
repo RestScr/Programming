@@ -7,17 +7,30 @@ using Programming.Model.Static;
 
 namespace Programming.Model.Geometry
 {
+    /// <summary>
+    /// Класс прямоугольника.
+    /// </summary>
     internal class Rectangle
     {
-        private static int _allRectanglesCount = 0;
-        public static int AllRectanglesCount()
-        {
-            return _allRectanglesCount;
-        }
+        /// <summary>
+        /// Автосвойство количества сгенерированных прямоугольников.
+        /// </summary>
+        private static int AllRectanglesCount { get; set; } = 0;
 
+        /// <summary>
+        /// Ширина.
+        /// </summary>
         private double _width = 0;
+
+        /// <summary>
+        /// Высота.
+        /// </summary>
         private double _height = 0;
 
+        /// <summary>
+        /// Свойство ширины прямоугольника.
+        /// Ширина - положительное число.
+        /// </summary>
         public double Width
         {
             get
@@ -31,6 +44,10 @@ namespace Programming.Model.Geometry
             }
         }
 
+        /// <summary>
+        /// Свойство высоты прямоугольника.
+        /// Высота - положительное число.
+        /// </summary>
         public double Height
         {
             get
@@ -44,23 +61,40 @@ namespace Programming.Model.Geometry
             }
         }
 
+        /// <summary>
+        /// Автосвойства центра координат прямоугольника.
+        /// </summary>
         public Point2D Center { get; } = new Point2D();
 
+        /// <summary>
+        /// Автосвойство цвета прямоугольника.
+        /// </summary>
         public string Color { get; set; } = "Black";
 
+        /// <summary>
+        /// Автосвойства уникального идентификатора прямоугольника.
+        /// </summary>
         public int Id { get; private set; }
 
+        /// <summary>
+        /// Расширенный конструктор прямоугольника.
+        /// </summary>
+        /// <param name="width"> Ширина. </param>
+        /// <param name="height"> Высота. </param>
+        /// <param name="color"> Цвет. </param>
+        /// <param name="center"> Координаты центра. </param>
         public Rectangle(double width, double height, string color, Point2D center)
         {
             Width = width;
             Height = height;
             Color = color;
             Center = center;
-
-            _allRectanglesCount++;
-            Id = _allRectanglesCount;
+            Id = ++AllRectanglesCount;
         }
 
+        /// <summary>
+        /// Стандартный конструктор класса.
+        /// </summary>
         public Rectangle() { }
     }
 }

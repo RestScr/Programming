@@ -10,34 +10,40 @@ using System.Windows.Forms;
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Класс пользовательского элемента управления, отвечающего за времена года.
+    /// </summary>
     public partial class SeasonsHandleGroup : UserControl
     {
+        /// <summary>
+        /// Стандартный конструктор класса.
+        /// </summary>
         public SeasonsHandleGroup()
         {
             InitializeComponent();
         }
 
-        // <summary>
-        // События при выборе лета
-        // </summary>
+        /// <summary>
+        /// События при выборе лета.
+        /// </summary>
         private void Summer()
         {
             this.BackColor = Model.Static.AppColors.SummerColor;
             MessageBox.Show("УРАААААА СОЛНЦЕ!!!", "Ура Солнце!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
-        // <summary>
-        // События при выборе осени
-        // </summary>
+        /// <summary>
+        /// События при выборе осени.
+        /// </summary>
         private void Autumn()
         {
             this.BackColor = Model.Static.AppColors.AutumnColor;
             MessageBox.Show("осень....", "а где солнце????", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
-        // <summary>
-        // События при выборе зимы
-        // </summary>
+        /// <summary>
+        /// События при выборе зимы.
+        /// </summary>
         private void Winter()
         {
             this.BackColor = Model.Static.AppColors.WinterColor;
@@ -49,19 +55,19 @@ namespace Programming.View.Panels
             MessageBox.Show("бррр, холодно", "брррр!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        // <summary>
-        // События при выборе весны
-        // </summary>
+        /// <summary>
+        /// События при выборе весны.
+        /// </summary>
         private void Spring()
         {
             this.BackColor = Model.Static.AppColors.SpringColor;
             MessageBox.Show("снег тает", "как прекрасна весна!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        // <summary>
-        // Кнопка, отвечающая за выполнение событий в зависимости от
-        // выбранного сезона
-        // </summary>
+        /// <summary>
+        /// Кнопка, отвечающая за выполнение событий в зависимости от
+        /// выбранного сезона.
+        /// </summary>
         private void GoButton_Click(object sender, EventArgs e)
         {
             switch (SeasonComboBox.SelectedIndex)

@@ -6,16 +6,33 @@ using System.Threading.Tasks;
 
 namespace Programming.Model.Geometry
 {
+    /// <summary>
+    /// Статический класс, реализующий создание прямоугольников.
+    /// </summary>
     static class RectangleFactory
     {
+        /// <summary>
+        /// Объект рандомайзера.
+        /// </summary>
         static private Random _random = new Random();
+
+        /// <summary>
+        /// Отступ от краев канвы.
+        /// </summary>
         static private double _canvasPadding = 15;
 
+        /// <summary>
+        /// Максимальная ширина прямоугольника.
+        /// </summary>
         private const double _maxRandomWidth = 200;
+
+        /// <summary>
+        /// Максимальная высота прямоугольника.
+        /// </summary>
         private const double _maxRandomHeight = 200;
 
         /// <summary>
-        /// Метод, генерирующий случайный прямоугольник
+        /// Метод, генерирующий случайный прямоугольник для отрисовки на канве.
         /// </summary>
         /// <returns> Сгенерированный прямоугольник </returns>
         static public Geometry.Rectangle Randomize(Panel canvas, string color = "red")
@@ -32,6 +49,11 @@ namespace Programming.Model.Geometry
                        );
         }
 
+        /// <summary>
+        /// Метод, генерирующий объект прямоугольника.
+        /// </summary>
+        /// <param name="color"> Цвет прямоугольника. </param>
+        /// <returns> Сгенерированный прямоугольник. </returns>
         static public Geometry.Rectangle Randomize(string color = "red")
         {
             double width = Math.Max(_random.NextDouble(), 0.5) * _maxRandomWidth;

@@ -6,8 +6,17 @@ using System.Threading.Tasks;
 
 namespace Programming.Model.Geometry
 {
+    /// <summary>
+    /// Сервисный класс, отвечающий за определение коллизий.
+    /// </summary>
     internal static class CollisionManager
     {
+        /// <summary>
+        /// Метод определения наличии коллизии между двумя прямоугольниками.
+        /// </summary>
+        /// <param name="rectangle1"> Ссылка на первый прямоугольник. </param>
+        /// <param name="rectangle2"> Ссылка на второй прямоугольник. </param>
+        /// <returns> Есть ли коллизия. </returns>
         public static bool IsCollision(Rectangle rectangle1, Rectangle rectangle2)
         {
             double leftX = Math.Min(
@@ -37,6 +46,12 @@ namespace Programming.Model.Geometry
             return (absDeltaX < summaryWidth) && (absDeltaY < summaryHeight);
         }
 
+        /// <summary>
+        /// Метод определения коллизии между двумя кольцами.
+        /// </summary>
+        /// <param name="ring1"> Ссылка на первое кольцо. </param>
+        /// <param name="ring2"> Ссылка на второе кольцо. </param>
+        /// <returns> Есть ли коллизия. </returns>
         public static bool IsCollision(Ring ring1, Ring ring2)
         {
             double radiusSum = ring1.OutsideRadius + ring2.OutsideRadius;

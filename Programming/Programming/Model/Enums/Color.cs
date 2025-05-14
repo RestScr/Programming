@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Programming.Model.Enums
 {
+    /// <summary>
+    /// Перечисление цветов.
+    /// </summary>
     public enum Color
     {
         Red = 2,

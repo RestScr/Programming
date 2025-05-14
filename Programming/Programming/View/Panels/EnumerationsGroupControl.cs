@@ -11,14 +11,23 @@ using Programming.Model.Enums;
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Класс пользовательского элемента управления, отвечающего за
+    /// перечисления.
+    /// </summary>
     public partial class EnumerationsGroupControl : UserControl
     {
+        /// <summary>
+        /// Стандартный конструктор элемента управления.
+        /// </summary>
         public EnumerationsGroupControl()
         {
             InitializeComponent();
         }
 
-        // Статический массив, содержащий типы перечислений
+        /// <summary>
+        /// Статический массив, содержащий типы перечислений.
+        /// </summary>
         private static System.Type[] EnumTypes = {
             typeof(Model.Enums.Color),
             typeof(EducationForm),
@@ -53,20 +62,20 @@ namespace Programming.View.Panels
             }
         }
 
-        // <summary>
-        // События, происходящие при выборе
-        // элемента в листбоксе перечислений
-        // </summary>
+        /// <summary>
+        /// События, происходящие при выборе
+        /// элемента в листбоксе перечислений.
+        /// </summary>
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedIndex = EnumsListBox.SelectedIndex;
             AddItemsToListBox(ValuesListBox, Enum.GetNames(EnumTypes[selectedIndex]));
         }
 
-        // <summary>
-        // Действия, происходящие при выборе
-        // элемента в листбоксе значений
-        // </summary>
+        /// <summary>
+        /// Действия, происходящие при выборе
+        /// элемента в листбоксе значений.
+        /// </summary>
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedEnum = EnumsListBox.SelectedIndex;

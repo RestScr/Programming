@@ -8,29 +8,17 @@ using Programming.Model.Geometry;
 
 namespace Programming
 {
+    /// <summary>
+    /// Класс главной формы.
+    /// </summary>
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Стандартный конструктор главной формы.
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
-        }
-
-        /// <summary>
-        /// Загрузка формы
-        /// Инициализация листбоксов исходя из созданных приватных массивов
-        /// </summary>
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-        }
-
-        /// <summary>
-        /// Метод добавления одного объекта в листбокс
-        /// </summary>
-        /// <param name="listBox"> Экземпляр листбокса </param>
-        /// <param name="item"> Сам объект </param>
-        static private void AddItemToListBox(ListBox listBox, string item)
-        {
-            listBox.Items.Add(item);
         }
     }
 }

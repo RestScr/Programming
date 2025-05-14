@@ -11,9 +11,14 @@ using Programming.Model;
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Класс элемента управления, отвечающего за группу с фильмами.
+    /// </summary>
     public partial class MoviesGroupControl : UserControl
     {
-        // Закрытый массив фильмов
+        /// <summary>
+        /// Закрытый массив фильмов.
+        /// </summary>
         private Model.Film[] _films =
         {
             new Model.Film("Hero Of Worlds", new Random().Next(1, 120), new Random().Next(1990, 2025), "Action", new Random().NextDouble() * 10),
@@ -23,14 +28,30 @@ namespace Programming.View.Panels
             new Model.Film("Wings of Wild", new Random().Next(1, 120), new Random().Next(1990, 2025), "Fantasy", new Random().NextDouble() * 10),
             new Model.Film("Recreation", new Random().Next(1, 120), new Random().Next(1990, 2025), "Art House", new Random().NextDouble() * 10)
         };
-        private Model.Film _currentFilm = null; // переменная выбранного фильма
+
+        /// <summary>
+        /// переменная выбранного фильма
+        /// </summary>
+        private Model.Film _currentFilm = null; 
+
+        /// <summary>
+        /// Переменная, определяющая, инициализировался ли элемент управления.
+        /// </summary>
         private bool _initialized = false;
 
+        /// <summary>
+        /// Стандартный конструктор элемента управления.
+        /// </summary>
         public MoviesGroupControl()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Инструкции, происходящие при нажатии на список с фильмами.
+        /// </summary>
+        /// <param name="sender"> Объект отправителя. </param>
+        /// <param name="e"> Аргументы события. </param>
         private void FilmsGroupBox_Enter(object sender, EventArgs e)
         {
             if (_initialized)
@@ -45,10 +66,10 @@ namespace Programming.View.Panels
             _initialized = true;
         }
 
-        // <summary>
-        // Закрытый метод, который ищет фильм с максимальным рейтингом
-        // </summary>
-        // <param name="films"> Массив фильмов </param>
+        /// <summary>
+        /// Закрытый метод, который ищет фильм с максимальным рейтингом.
+        /// </summary>
+        /// <param name="films"> Массив фильмов. </param>
         private void FindFilmWithMaxRating(Model.Film[] films)
         {
             int maxRatingFilmIndex = 0;
@@ -64,9 +85,11 @@ namespace Programming.View.Panels
             FilmsListBox.SelectedIndex = maxRatingFilmIndex;
         }
 
-        // <summary>
-        // Логика листбокса с фильмами при нажатии на элемент в списке
-        // </summary>
+        /// <summary>
+        /// Логика листбокса с фильмами при нажатии на элемент в списке.
+        /// </summary>
+        /// <param name="sender"> Объект отправителя. </param>
+        /// <param name="e"> Аргументы события. </param>
         private void FilmsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = FilmsListBox.SelectedIndex;
@@ -82,6 +105,11 @@ namespace Programming.View.Panels
             DurationTextBox.Text = Convert.ToString(_currentFilm.DurationInMinutes);
         }
 
+        /// <summary>
+        /// Метод, отвечающий за корректность ввода длительности фильма в текстбоксе.
+        /// </summary>
+        /// <param name="sender"> Объект отправителя. </param>
+        /// <param name="e"> Аргументы события. </param>
         private void DurationTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_currentFilm == null)
@@ -100,6 +128,11 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// Метод, отвечающий за корректный ввод года релиза в текстбоксе.
+        /// </summary>
+        /// <param name="sender"> Объект отправителя события. </param>
+        /// <param name="e"> Аргументы события. </param>
         private void ReleaseYearTextBox_TextChanged(object sender, EventArgs e)
         {
             // Если фильм не выбран
@@ -122,6 +155,11 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// Метод, отвечающий за корректный ввод рейтинга в текстбоксе.
+        /// </summary>
+        /// <param name="sender"> Объект отправителя. </param>
+        /// <param name="e"> Аргументы события. </param>
         private void RatingTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_currentFilm == null)
@@ -140,6 +178,11 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// Логика кнопки, отвечающая за поиск фильма с максимальным рейтингом.
+        /// </summary>
+        /// <param name="sender"> Объект отправителя события. </param>
+        /// <param name="e"> Аргументы события. </param>
         private void FindFilmButton_Click(object sender, EventArgs e)
         {
             FindFilmWithMaxRating(_films);

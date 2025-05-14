@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Programming.Model.Enums
 {
+    /// <summary>
+    /// Перечисление жанров.
+    /// </summary>
     public enum Genre
     {
         Comedy = 2,

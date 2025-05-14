@@ -11,19 +11,45 @@ using System.Windows.Forms;
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Класс пользовательского элемента управления, отвечающего за группу редактирования прямоугольников.
+    /// </summary>
     public partial class RectanglesControl : UserControl
     {
+        /// <summary>
+        /// Начальное количество прямоугольников.
+        /// </summary>
         private const int _rectanglesAmount = 10;
+
+        /// <summary>
+        /// Определение, был ли элемент управления инициализирован при нажатии на него.
+        /// </summary>
         private bool _initialized = false;
-        private Model.Geometry.Rectangle _currentRectangle = null; // переменная выбранного прямоугольника
+
+        /// <summary>
+        /// переменная выбранного прямоугольника
+        /// </summary>
+        private Model.Geometry.Rectangle _currentRectangle = null; 
+
+        /// <summary>
+        /// Список прямоугольников.
+        /// </summary>
         private List<Model.Geometry.Rectangle> _rectangles =
             new List<Model.Geometry.Rectangle>();
 
+        /// <summary>
+        /// Стандартный конструктор прямоугольников.
+        /// </summary>
         public RectanglesControl()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Инициализация элемента управления при нажатии.
+        /// </summary>
+        /// <param name="sender"> Объект отправителя.</param>
+        /// <param name="e"> Аргументы события. </param>
         private void RectanglesGroupBox_Enter(object sender, EventArgs e)
         {
             if (_initialized)
@@ -39,6 +65,11 @@ namespace Programming.View.Panels
             _initialized = true;
         }
 
+        /// <summary>
+        /// Выбор прямоугольника в листбоксе.
+        /// </summary>
+        /// <param name="sender"> Объект отправителя. </param>
+        /// <param name="e"> Аргументы события. </param>
         private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = RectanglesListBox.SelectedIndex;
@@ -60,23 +91,28 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// Выделить выбранный прямоугольник в списке прямоугольников
+        /// Выделить выбранный прямоугольник в списке прямоугольников.
         /// </summary>
-        /// <param name="index"> Индекс выделенного прямоугольника </param>
+        /// <param name="index"> Индекс выделенного прямоугольника. </param>
         private void SetSelectedRectangle(int index)
         {
             RectanglesListBox.SelectedIndex = index;
         }
 
+        /// <summary>
+        /// Логика кнопки поиска прямоугольника с максимальной шириной.
+        /// </summary>
+        /// <param name="sender"> Объект отправителя. </param>
+        /// <param name="e"> Аргументы события. </param>
         private void FindRectangleButton_Click(object sender, EventArgs e)
         {
             FindRectangleWithMaxWidth(_rectangles);
         }
 
-        // <summary>
-        // Закрытый метод, организующий поиск прямоугольника с максимальной шириной в массиве
-        // </summary>
-        // <param name="rectangles"> Массив прямоугольников </param>
+        /// <summary>
+        /// Закрытый метод, организующий поиск прямоугольника с максимальной шириной в массиве
+        /// </summary>
+        /// <param name="rectangles"> Массив прямоугольников </param>
         private void FindRectangleWithMaxWidth(List<Model.Geometry.Rectangle> rectangles)
         {
             int maxWidthRectangleIndex = 0;
@@ -92,6 +128,11 @@ namespace Programming.View.Panels
             RectanglesListBox.SelectedIndex = maxWidthRectangleIndex;
         }
 
+        /// <summary>
+        /// Метод, отвечающий за корректный ввод ширины прямоугольника в текстбоксе.
+        /// </summary>
+        /// <param name="sender"> Объект отправителя. </param>
+        /// <param name="e"> Аргументы события. </param>
         private void HeightTextBox_TextChanged(object sender, EventArgs e)
         {
             // Если прямоугольник не выбран, то обработка прекращается
@@ -118,6 +159,11 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// Метод, отвечающий за корректный ввод ширины прямоугольника в текстбоксе.
+        /// </summary>
+        /// <param name="sender"> Объект отправителя. </param>
+        /// <param name="e"> Аргументы события. </param>
         private void WidthTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_currentRectangle == null)
@@ -140,6 +186,11 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// Метод, отвечающий за корректный ввод цвета прямоугольника.
+        /// </summary>
+        /// <param name="sender"> Объект отправителя. </param>
+        /// <param name="e"> Аргументы события. </param>
         private void ColorTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_currentRectangle == null)

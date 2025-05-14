@@ -7,11 +7,25 @@ using Programming.Model.Static;
 
 namespace Programming.Model.Geometry
 {
+    /// <summary>
+    /// Класс кольца.
+    /// </summary>
     internal class Ring
     {
+        /// <summary>
+        /// Внешний радиус кольца.
+        /// </summary>
         private double _outsideRadius;
+
+        /// <summary>
+        /// Внутренний радиус кольца.
+        /// </summary>
         private double _insideRadius;
 
+        /// <summary>
+        /// Свойство, задающее внешний радиус кольца.
+        /// Внешний радиус - положительное число.
+        /// </summary>
         public double OutsideRadius
         {
             get
@@ -25,6 +39,10 @@ namespace Programming.Model.Geometry
             }
         }
 
+        /// <summary>
+        /// Свойство, задающее внутренний радиус кольца.
+        /// Внутренний радиус - число от 0 до внешнего радиуса.
+        /// </summary>
         public double InsideRadius
         {
             get
@@ -38,6 +56,9 @@ namespace Programming.Model.Geometry
             }
         }
 
+        /// <summary>
+        /// Вычисляемое свойство площади кольца.
+        /// </summary>
         public double Area
         {
             get
@@ -46,8 +67,17 @@ namespace Programming.Model.Geometry
             }
         }
 
+        /// <summary>
+        /// Автосвойство координат центра кольца.
+        /// </summary>
         public Point2D Center { get; private set; }
 
+        /// <summary>
+        /// Расширенный конструктор класса.
+        /// </summary>
+        /// <param name="outsideRadius"> Внешний радиус. </param>
+        /// <param name="insideRadius"> Внутренний радиус. </param>
+        /// <param name="center"> Координаты центра кольуа. </param>
         public Ring(double outsideRadius, double insideRadius, Point2D center)
         {
             OutsideRadius = outsideRadius;
