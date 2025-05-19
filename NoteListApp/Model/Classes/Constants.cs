@@ -21,7 +21,7 @@ namespace NoteListApp.Model.Classes
         /// Статическое автосвойство, которое определяет максимальную длину
         /// заголовка заметки.
         /// </summary>
-        public static int MinTitleCharactersLength { get; } = 0;
+        public static int MinTitleCharactersLength { get; } = 1;
 
         /// <summary>
         /// Статическое автосвойство, которое определяет цвет заднего фона

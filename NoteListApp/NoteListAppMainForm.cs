@@ -6,5 +6,10 @@ namespace NoteListApp
         {
             InitializeComponent();
         }
+
+        private void noteListControl1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -12,6 +12,9 @@ namespace NoteListApp.Model.Classes
     /// </summary>
     internal class Note
     {
+        /// <summary>
+        /// Статическое поле, хранящее количество созданных экземпляров.
+        /// </summary>
         private static int _createdNotes = 0;
 
         /// <summary>
@@ -35,15 +38,15 @@ namespace NoteListApp.Model.Classes
             }
             set
             {
-                if (Validator.AssertOnCharacterLength(value, 
+                if (!Validator.AssertOnCharacterLength(value, 
                     Constants.MaxTitleCharactersLength,
                     Constants.MinTitleCharactersLength))
                 {
-                    _title = value;
+                    throw new ArgumentException(
+                        $"Error: Title must be between {Constants.MinTitleCharactersLength} and {Constants.MaxTitleCharactersLength}");
                 }
 
-                throw new ArgumentException(
-                    $"Error: Title must be between in {Constants.MinTitleCharactersLength} and {Constants.MaxTitleCharactersLength}");
+                _title = value;
             }
         }
 

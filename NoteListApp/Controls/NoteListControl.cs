@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -37,6 +38,7 @@ namespace NoteListApp.Controls
         private void NotesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = NotesListBox.SelectedIndex;
+            Debug.WriteLine(index);
             _selectedNote = notes[index];
 
             TitleTextBox.Text = _selectedNote.Title;
@@ -52,17 +54,21 @@ namespace NoteListApp.Controls
         /// <param name="e"> Аргументы события. </param>
         private void CreateNoteButton_Click(object sender, EventArgs e)
         {
+            notes.Insert(0, new Note());
             NotesListBox.Items.Insert(0, new Note());
         }
 
         /// <summary>
         /// Метод обрабатывающий введённое значение, задающее заголовок.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender"> Объект отправителя. </param>
+        /// <param name="e"> Аргументы события. </param>
         private void TitleTextBox_TextChanged(object sender, EventArgs e)
         {
-            TitleTextBox.BackColor = Constants.DefaultTextBoxColor;
+            if (Validator.AssertOnCharacterLength(TitleTextBox.Text, Constants.MaxTitleCharactersLength, Constants.MinTitleCharactersLength))
+            {
+                TitleTextBox.BackColor = Constants.DefaultTextBoxColor;
+            }
         }
 
         /// <summary>
@@ -76,7 +82,7 @@ namespace NoteListApp.Controls
             {
                 _selectedNote.Title = TitleTextBox.Text;
                 _selectedNote.Text = NoteTextBox.Text;
-                _selectedNote.Category = (NoteCategory)(Convert.ToInt32(CategoryComboBox.Text));
+                _selectedNote.Category = (NoteCategory)(CategoryComboBox.SelectedIndex);
             }
             catch (ArgumentException)
             {

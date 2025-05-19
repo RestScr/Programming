@@ -28,18 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
+            noteListControl1 = new Controls.NoteListControl();
             SuspendLayout();
             // 
-            // Form1
+            // noteListControl1
+            // 
+            noteListControl1.Dock = DockStyle.Fill;
+            noteListControl1.Location = new Point(0, 0);
+            noteListControl1.Name = "noteListControl1";
+            noteListControl1.Size = new Size(843, 525);
+            noteListControl1.TabIndex = 0;
+            noteListControl1.Load += noteListControl1_Load;
+            // 
+            // NoteListAppMainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Name = "Form1";
+            ClientSize = new Size(843, 525);
+            Controls.Add(noteListControl1);
+            Name = "NoteListAppMainForm";
             Text = "NoteListApp";
             ResumeLayout(false);
         }
 
         #endregion
+
+        private Controls.NoteListControl noteListControl1;
     }
 }

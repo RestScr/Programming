@@ -20,7 +20,7 @@ namespace NoteListApp.Model.Classes
         /// <returns> Удовлетворяет ли строка условию </returns>
         static public bool AssertOnCharacterLength(string line, int maxCharacters, int minCharacters=0)
         {
-            return line.Length >= minCharacters && line.Length <= maxCharacters;
+            return (line.Length >= minCharacters) && (line.Length <= maxCharacters);
         }
     }
 }
