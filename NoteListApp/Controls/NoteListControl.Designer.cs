@@ -58,6 +58,7 @@
             // 
             // CreateNoteButton
             // 
+            CreateNoteButton.Image = Properties.Resources.add;
             CreateNoteButton.Location = new Point(14, 446);
             CreateNoteButton.Name = "CreateNoteButton";
             CreateNoteButton.Size = new Size(51, 35);
@@ -67,6 +68,7 @@
             // 
             // EditNoteButton
             // 
+            EditNoteButton.Image = Properties.Resources.edit;
             EditNoteButton.Location = new Point(71, 446);
             EditNoteButton.Name = "EditNoteButton";
             EditNoteButton.Size = new Size(54, 35);
@@ -76,11 +78,13 @@
             // 
             // RemoveNoteButton
             // 
+            RemoveNoteButton.Image = Properties.Resources.remove;
             RemoveNoteButton.Location = new Point(131, 446);
             RemoveNoteButton.Name = "RemoveNoteButton";
             RemoveNoteButton.Size = new Size(54, 35);
             RemoveNoteButton.TabIndex = 3;
             RemoveNoteButton.TabStop = false;
+            RemoveNoteButton.Click += RemoveNoteButton_Click;
             // 
             // SelectedNoteGroup
             // 

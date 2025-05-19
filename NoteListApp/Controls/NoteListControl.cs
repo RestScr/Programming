@@ -20,7 +20,7 @@ namespace NoteListApp.Controls
     public partial class NoteListControl : UserControl
     {
         private Note _selectedNote = null;
-        private List<Note> notes = new List<Note>();
+        private List<Note> _notes = new List<Note>();
 
         /// <summary>
         /// Стандартный конструктор элемента управления.
@@ -38,8 +38,11 @@ namespace NoteListApp.Controls
         private void NotesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = NotesListBox.SelectedIndex;
-            Debug.WriteLine(index);
-            _selectedNote = notes[index];
+            if (index < 0)
+            {
+                return;
+            }
+            _selectedNote = _notes[index];
 
             TitleTextBox.Text = _selectedNote.Title;
             NoteTextBox.Text = _selectedNote.Text;
@@ -54,8 +57,8 @@ namespace NoteListApp.Controls
         /// <param name="e"> Аргументы события. </param>
         private void CreateNoteButton_Click(object sender, EventArgs e)
         {
-            notes.Insert(0, new Note());
-            NotesListBox.Items.Insert(0, new Note());
+            _notes.Insert(0, new Note());
+            NotesListBox.Items.Insert(0, _notes[0].Title);
         }
 
         /// <summary>
@@ -78,16 +81,37 @@ namespace NoteListApp.Controls
         /// <param name="e"> Аргументы события. </param>
         private void EditNoteButton_Click(object sender, EventArgs e)
         {
+            if (_selectedNote == null)
+            {
+                return;
+            }
             try
             {
                 _selectedNote.Title = TitleTextBox.Text;
                 _selectedNote.Text = NoteTextBox.Text;
                 _selectedNote.Category = (NoteCategory)(CategoryComboBox.SelectedIndex);
+                int index = _notes.IndexOf(_selectedNote);
+                NotesListBox.Items[index] = _selectedNote.Title;
             }
             catch (ArgumentException)
             {
                 TitleTextBox.BackColor = Constants.WrongColor;
             }
+        }
+
+        private void RemoveNoteButton_Click(object sender, EventArgs e)
+        {
+            int index = NotesListBox.SelectedIndex;
+            if (index < 0)
+            {
+                return;
+            }
+
+            _notes.RemoveAt(index);
+            NotesListBox.Items.RemoveAt(index);
+            _selectedNote = null;
+
+            NotesListBox.SelectedIndex = --index;
         }
     }
 }
