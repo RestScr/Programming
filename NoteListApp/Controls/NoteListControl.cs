@@ -96,9 +96,16 @@ namespace NoteListApp.Controls
             catch (ArgumentException)
             {
                 TitleTextBox.BackColor = Constants.WrongColor;
+                MessageBox.Show("Note Title must contain from 1 up to 100 letters", "Incorrect Value",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        /// <summary>
+        /// Логика кнопки удаления записей.
+        /// </summary>
+        /// <param name="sender"> Объект отправителя. </param>
+        /// <param name="e"> Аргументы события. </param>
         private void RemoveNoteButton_Click(object sender, EventArgs e)
         {
             int index = NotesListBox.SelectedIndex;

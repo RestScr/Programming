@@ -198,7 +198,6 @@
         private PictureBox EditNoteButton;
         private PictureBox RemoveNoteButton;
         private GroupBox SelectedNoteGroup;
-        private TextBox TitleTextBox;
         private RichTextBox NoteTextBox;
         private Label label4;
         private Label label3;
@@ -206,5 +205,6 @@
         private Label label1;
         private ComboBox CategoryComboBox;
         private TextBox CreationTextBox;
+        private TextBox TitleTextBox;
     }
 }
