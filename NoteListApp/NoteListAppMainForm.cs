@@ -6,7 +6,8 @@ namespace NoteListApp
         {
             InitializeComponent();
         }
-        private void noteListControl1_Load(object sender, EventArgs e)
+
+        private void NoteListAppMainForm_Closing(object sender, EventArgs e)
         {
 
         }

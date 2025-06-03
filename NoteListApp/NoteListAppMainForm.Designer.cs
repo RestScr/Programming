@@ -38,7 +38,6 @@
             noteListControl1.Name = "noteListControl1";
             noteListControl1.Size = new Size(843, 525);
             noteListControl1.TabIndex = 0;
-            noteListControl1.Load += noteListControl1_Load;
             // 
             // NoteListAppMainForm
             // 
