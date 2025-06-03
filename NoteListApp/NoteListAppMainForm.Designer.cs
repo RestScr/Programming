@@ -47,6 +47,8 @@
             Controls.Add(noteListControl);
             Name = "NoteListAppMainForm";
             Text = "NoteListApp";
+            FormClosing += NoteListAppMainForm_FormClosing;
+            Load += NoteListAppMainForm_Load;
             ResumeLayout(false);
         }
 

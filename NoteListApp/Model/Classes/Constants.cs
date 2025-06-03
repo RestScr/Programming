@@ -11,6 +11,7 @@ namespace NoteListApp.Model.Classes
     /// </summary>
     static class Constants
     {
+        public static string DataFilePath { get; } = "notes_save.txt";
         /// <summary>
         /// Статическое автосвойство, которое определяет максимальную длину
         /// заголовка заметки.

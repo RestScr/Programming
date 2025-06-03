@@ -9,7 +9,7 @@ namespace NoteListApp.Model.Enums
     /// <summary>
     /// Перечисление категорий.
     /// </summary>
-    enum NoteCategory
+    public enum NoteCategory
     {
         Home=0,
         Job=1,

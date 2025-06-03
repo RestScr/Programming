@@ -19,8 +19,34 @@ namespace NoteListApp.Controls
     /// </summary>
     public partial class NoteListControl : UserControl
     {
+        /// <summary>
+        /// Выбранная запись
+        /// </summary>
         private Note _selectedNote = null;
+        /// <summary>
+        /// Поле списка записей
+        /// </summary>
         private List<Note> _notes = new List<Note>();
+
+        /// <summary>
+        /// Свойство, задающее список записей
+        /// </summary>
+        public List<Note> Notes
+        {
+            get
+            {
+                List<Note> output = new List<Note>();
+                foreach (Note note in _notes)
+                {
+                    output.Add(note);
+                }
+                return output;
+            }
+            private set
+            {
+                _notes = value;
+            }
+        }
 
         /// <summary>
         /// Стандартный конструктор элемента управления.
@@ -28,6 +54,46 @@ namespace NoteListApp.Controls
         public NoteListControl()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// Метод, выгружающий данные из файла при открытии приложения
+        /// </summary>
+        public void LoadDataFromFile()
+        {
+            FileInfo fileInfo = new FileInfo(Constants.DataFilePath);
+            if (!fileInfo.Exists)
+            {
+                fileInfo.Create();
+            }
+
+            string loadText = File.ReadAllText(fileInfo.FullName);
+            List<Note> loadData = Note.Deserialize(loadText);
+
+            foreach (Note note in loadData)
+            {
+                _notes.Add(note);
+                NotesListBox.Items.Add(note.Title);
+            }
+        }
+
+        /// <summary>
+        /// Метод, сохраняющий данные списка при закрытии
+        /// </summary>
+        public void SaveDataToFile()
+        {
+            FileInfo fileInfo = new FileInfo(Constants.DataFilePath);
+            if (!fileInfo.Exists)
+            {
+                fileInfo.Create();
+            }
+
+            string saveData = "";
+            foreach (Note note in Notes)
+            {
+                saveData += note.Serialize();
+            }
+            File.WriteAllText(saveData, fileInfo.FullName);
         }
 
         /// <summary>
