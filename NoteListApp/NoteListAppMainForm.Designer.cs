@@ -28,23 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            noteListControl1 = new Controls.NoteListControl();
+            noteListControl = new Controls.NoteListControl();
             SuspendLayout();
             // 
-            // noteListControl1
+            // noteListControl
             // 
-            noteListControl1.Dock = DockStyle.Fill;
-            noteListControl1.Location = new Point(0, 0);
-            noteListControl1.Name = "noteListControl1";
-            noteListControl1.Size = new Size(843, 525);
-            noteListControl1.TabIndex = 0;
+            noteListControl.Dock = DockStyle.Fill;
+            noteListControl.Location = new Point(0, 0);
+            noteListControl.Name = "noteListControl";
+            noteListControl.Size = new Size(843, 525);
+            noteListControl.TabIndex = 0;
             // 
             // NoteListAppMainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(843, 525);
-            Controls.Add(noteListControl1);
+            Controls.Add(noteListControl);
             Name = "NoteListAppMainForm";
             Text = "NoteListApp";
             ResumeLayout(false);
@@ -52,6 +52,6 @@
 
         #endregion
 
-        private Controls.NoteListControl noteListControl1;
+        private Controls.NoteListControl noteListControl;
     }
 }

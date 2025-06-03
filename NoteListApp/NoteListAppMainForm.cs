@@ -6,10 +6,5 @@ namespace NoteListApp
         {
             InitializeComponent();
         }
-
-        private void NoteListAppMainForm_Closing(object sender, EventArgs e)
-        {
-
-        }
     }
 }
