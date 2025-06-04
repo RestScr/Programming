@@ -61,13 +61,18 @@ namespace NoteListApp.Controls
         /// </summary>
         public void LoadDataFromFile()
         {
+            
             FileInfo fileInfo = new FileInfo(Constants.DataFilePath);
             if (!fileInfo.Exists)
             {
                 fileInfo.Create();
             }
-
+            
             string loadText = File.ReadAllText(fileInfo.FullName);
+            if (loadText == "")
+            {
+                return;
+            }
             List<Note> loadData = Note.Deserialize(loadText);
 
             foreach (Note note in loadData)
@@ -93,7 +98,10 @@ namespace NoteListApp.Controls
             {
                 saveData += note.Serialize();
             }
-            File.WriteAllText(saveData, fileInfo.FullName);
+            if (saveData != "")
+            {
+                File.WriteAllText(fileInfo.FullName, saveData);
+            }
         }
 
         /// <summary>

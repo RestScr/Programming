@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using NoteListApp.Controls;
 using NoteListApp.Model.Classes;
 

@@ -9,7 +9,7 @@ using NoteListApp.Model.Enums;
 namespace NoteListApp.Model.Classes
 {
     /// <summary>
-    /// Класс заметки
+    /// Класс заметки.
     /// </summary>
     public class Note
     {
@@ -115,7 +115,7 @@ namespace NoteListApp.Model.Classes
         public string Serialize()
         {
             string output = "";
-            output += Id + '\n' + Title + '\n' + CreationTime.ToString() + '\n' + Category + ((char)2) + Text + ((char)3);
+            output += Convert.ToString(Id) + '\n' + Title + '\n' + CreationTime.ToString() + '\n' + Convert.ToString((int)Category) + ((char)2) + Text + ((char)3);
 
             return output;
         }
@@ -133,17 +133,21 @@ namespace NoteListApp.Model.Classes
             {
                 string[] metadataAndText = item.Split((char)2);
                 string[] metadata = metadataAndText[0].Split('\n');
+                if (metadata[0] == "")
+                {
+                    break;
+                }
                 int id = Convert.ToInt32(metadata[0]);
                 string title = metadata[1];
 
                 // Парсинг времени создания
                 string[] creationTimeData = metadata[2].Split(' ');
-                string[] creationDateInString = creationTimeData[0].Split('-');
+                string[] creationDateInString = creationTimeData[0].Split('.');
                 string[] creationTimeInString = creationTimeData[1].Split(':');
                 DateTime creationTime = new DateTime(
-                    Convert.ToInt32(creationDateInString[0]), 
+                    Convert.ToInt32(creationDateInString[2]), 
                     Convert.ToInt32(creationDateInString[1]),
-                    Convert.ToInt32(creationDateInString[2]),
+                    Convert.ToInt32(creationDateInString[0]),
                     Convert.ToInt32(creationTimeInString[0]),
                     Convert.ToInt32(creationTimeInString[1]),
                     Convert.ToInt32(creationTimeInString[2])
