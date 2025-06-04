@@ -105,6 +105,7 @@
             // 
             // CategoryComboBox
             // 
+            CategoryComboBox.Enabled = false;
             CategoryComboBox.FormattingEnabled = true;
             CategoryComboBox.Items.AddRange(new object[] { "Дом", "Работа", "Спорт", "Финансы" });
             CategoryComboBox.Location = new Point(96, 237);

@@ -95,6 +95,22 @@ namespace NoteListApp.Model.Classes
             Category = category;
             CreationTime = creationTime;
         }
+        
+        /// <summary>
+        /// Приватный конструктор класса заметки с возможностью задания ID
+        /// </summary>
+        private Note(string title, string text, NoteCategory category, DateTime creationTime, int id)
+        {
+            Id = id;
+            Title = title;
+            Text = text;
+            Category = category;
+            CreationTime = creationTime;
+            if (id > _createdNotes)
+            {
+                _createdNotes = id + 1;
+            }
+        }
 
         /// <summary>
         /// Стандартный конструктор заметки.
@@ -156,7 +172,7 @@ namespace NoteListApp.Model.Classes
                 NoteCategory category = (NoteCategory)(Convert.ToInt32(metadata[3]));
                 string description = metadataAndText[1];
 
-                output.Add(new Note(title, description, category, creationTime));
+                output.Add(new Note(title, description, category, creationTime, id));
             }
             return output;
         }

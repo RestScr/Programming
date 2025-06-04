@@ -98,10 +98,7 @@ namespace NoteListApp.Controls
             {
                 saveData += note.Serialize();
             }
-            if (saveData != "")
-            {
-                File.WriteAllText(fileInfo.FullName, saveData);
-            }
+            File.WriteAllText(fileInfo.FullName, saveData);
         }
 
         /// <summary>
@@ -114,6 +111,11 @@ namespace NoteListApp.Controls
             int index = NotesListBox.SelectedIndex;
             if (index < 0)
             {
+                TitleTextBox.Text = "";
+                NoteTextBox.Text = "";
+                CreationTextBox.Text = "";
+                CategoryComboBox.Text = "";
+                CategoryComboBox.Enabled = false;
                 return;
             }
             _selectedNote = _notes[index];
@@ -122,6 +124,7 @@ namespace NoteListApp.Controls
             NoteTextBox.Text = _selectedNote.Text;
             CreationTextBox.Text = _selectedNote.CreationTime.ToString();
             CategoryComboBox.SelectedIndex = (int)_selectedNote.Category;
+            CategoryComboBox.Enabled = true;
         }
 
         /// <summary>
