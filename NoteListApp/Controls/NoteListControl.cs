@@ -116,6 +116,8 @@ namespace NoteListApp.Controls
                 CreationTextBox.Text = "";
                 CategoryComboBox.Text = "";
                 CategoryComboBox.Enabled = false;
+                TitleTextBox.Enabled = false;
+                NoteTextBox.Enabled = false;
                 return;
             }
             _selectedNote = _notes[index];
@@ -125,6 +127,8 @@ namespace NoteListApp.Controls
             CreationTextBox.Text = _selectedNote.CreationTime.ToString();
             CategoryComboBox.SelectedIndex = (int)_selectedNote.Category;
             CategoryComboBox.Enabled = true;
+            TitleTextBox.Enabled = true;
+            NoteTextBox.Enabled = true;
         }
 
         /// <summary>

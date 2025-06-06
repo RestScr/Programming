@@ -123,6 +123,7 @@
             // 
             // TitleTextBox
             // 
+            TitleTextBox.Enabled = false;
             TitleTextBox.Location = new Point(96, 36);
             TitleTextBox.Name = "TitleTextBox";
             TitleTextBox.Size = new Size(365, 27);
@@ -131,6 +132,7 @@
             // 
             // NoteTextBox
             // 
+            NoteTextBox.Enabled = false;
             NoteTextBox.Location = new Point(96, 69);
             NoteTextBox.Name = "NoteTextBox";
             NoteTextBox.Size = new Size(365, 123);

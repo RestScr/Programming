@@ -125,19 +125,23 @@ namespace NoteListApp.Model.Classes
         }
 
         /// <summary>
-        /// Метод сериализации заметки для записи в текстовый файл
+        /// Метод сериализации заметки для записи в текстовый файл.
         /// </summary>
-        /// <returns> Данные в строковом виде </returns>
+        /// <returns> Данные в строковом виде. </returns>
         public string Serialize()
         {
             string output = "";
-            output += Convert.ToString(Id) + '\n' + Title + '\n' + CreationTime.ToString() + '\n' + Convert.ToString((int)Category) + ((char)2) + Text + ((char)3);
+            output += Convert.ToString(Id) + '\n' 
+                + Title + '\n' 
+                + CreationTime.ToString() + '\n' 
+                + Convert.ToString((int)Category) + ((char)2) + 
+                Text + ((char)3);
 
             return output;
         }
 
         /// <summary>
-        /// Метод для десериализации данных из текста
+        /// Метод для десериализации данных из текста.
         /// </summary>
         /// <param name="text"> Текст для парсинга </param>
         /// <returns> Возврат данных </returns>
