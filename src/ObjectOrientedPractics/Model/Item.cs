@@ -8,7 +8,7 @@ namespace ObjectOrientedPractics.Model
 {
     internal class Item
     {
-        private static int _createdObjects = 0;
+        private static int _createdItems = 0;
 
         private readonly int _id;
         private string _name;
@@ -99,7 +99,7 @@ namespace ObjectOrientedPractics.Model
         /// <param name="cost"> Цена на товар </param>
         public Item(string name, string info, double cost)
         {
-            Id = ++_createdObjects;
+            Id = ++_createdItems;
             Name = name;
             Info = info;
             Cost = cost;
