@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.Model
 {
+    /// <summary>
+    /// Класс покупателя
+    /// </summary>
     internal class Customer
     {
         private static int _createdCustomers = 0;
@@ -45,10 +49,7 @@ namespace ObjectOrientedPractics.Model
             }
             set
             {
-                if (value.Length > 200)
-                {
-                    throw new ArgumentException("Customer's fullname can contain less than 200 symbols");
-                }
+                ValueValidator.AssertStringOnLength(value, 200, "Fullname");
                 _fullname = value;
             }
         }
@@ -64,15 +65,17 @@ namespace ObjectOrientedPractics.Model
             }
             set
             {
-                if (value.Length > 500)
-                {
-                    throw new ArgumentException("Customer's address field can contain less than 500 symbols");
-                }
+                ValueValidator.AssertStringOnLength(value, 500, "Address");
 
                 _address = value;
             }
         }
 
+        /// <summary>
+        /// Конструктор класса покупателя
+        /// </summary>
+        /// <param name="fullname"> ФИО покупателя </param>
+        /// <param name="address"> Адрес проживания (доставки) покупателя </param>
         Customer(string fullname, string address)
         {
             Id = ++_createdCustomers;

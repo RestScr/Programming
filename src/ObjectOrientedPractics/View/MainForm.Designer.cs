@@ -28,12 +28,58 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            tabControl1 = new TabControl();
+            ItemsTab = new TabPage();
+            CustomersTab = new TabPage();
+            tabControl1.SuspendLayout();
+            SuspendLayout();
+            // 
+            // tabControl1
+            // 
+            tabControl1.Controls.Add(ItemsTab);
+            tabControl1.Controls.Add(CustomersTab);
+            tabControl1.Location = new Point(0, 0);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(801, 451);
+            tabControl1.TabIndex = 0;
+            // 
+            // ItemsTab
+            // 
+            ItemsTab.Location = new Point(4, 29);
+            ItemsTab.Name = "ItemsTab";
+            ItemsTab.Padding = new Padding(3);
+            ItemsTab.Size = new Size(793, 418);
+            ItemsTab.TabIndex = 0;
+            ItemsTab.Text = "Items";
+            ItemsTab.UseVisualStyleBackColor = true;
+            // 
+            // CustomersTab
+            // 
+            CustomersTab.Location = new Point(4, 29);
+            CustomersTab.Name = "CustomersTab";
+            CustomersTab.Padding = new Padding(3);
+            CustomersTab.Size = new Size(793, 418);
+            CustomersTab.TabIndex = 1;
+            CustomersTab.Text = "Customers";
+            CustomersTab.UseVisualStyleBackColor = true;
+            // 
+            // MainForm
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(tabControl1);
+            Name = "MainForm";
+            Text = "Form1";
+            tabControl1.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private TabControl tabControl1;
+        private TabPage ItemsTab;
+        private TabPage CustomersTab;
     }
 }

@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.Model
 {
+    /// <summary>
+    /// Класс товара
+    /// </summary>
     internal class Item
     {
         private static int _createdItems = 0;
@@ -28,7 +32,7 @@ namespace ObjectOrientedPractics.Model
             {
                 if (value < 1)
                 {
-                    throw new ArgumentException("Identificator must be positive");
+                    throw new ArgumentException("Class object's Identificator must be a positive number");
                 }
 
                 _id = value;
@@ -46,11 +50,7 @@ namespace ObjectOrientedPractics.Model
             }
             set
             {
-                if (value.Length > 200)
-                {
-                    throw new ArgumentException("Name text length must be less than 200");
-                }
-
+                ValueValidator.AssertStringOnLength(value, 200, "Name");
                 _name = value;
             }
         }
@@ -66,10 +66,8 @@ namespace ObjectOrientedPractics.Model
             }
             set
             {
-                if (value.Length > 1000)
-                {
-                    throw new ArgumentException("Info text length must be less than 1000");
-                }
+                ValueValidator.AssertStringOnLength(value, 1000, "Info");
+                _info = value;
             }
         }
 
@@ -86,7 +84,7 @@ namespace ObjectOrientedPractics.Model
             {
                 if (value > 100000 || value < 0)
                 {
-                    throw new ArgumentException("Cost must be between 0 and 100000");
+                    throw new ArgumentException("Cost must be between in 0 and 100000");
                 }
             }
         }
