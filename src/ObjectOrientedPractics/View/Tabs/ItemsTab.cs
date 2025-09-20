@@ -30,6 +30,25 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
+        /// Функция включения/отключения элементов в зависимости от выбранного элемента.
+        /// </summary>
+        private void DisableElements()
+        {
+            if (_selectedItem == null)
+            {
+                CostBox.Enabled = false;
+                NameRichText.Enabled = false;
+                DescriptionRichText.Enabled = false;ClearBoxes();
+            }
+            else
+            {
+                CostBox.Enabled = true;
+                NameRichText.Enabled = true;
+                DescriptionRichText.Enabled = true;
+            }
+        }
+
+        /// <summary>
         /// Функция добавления товара.
         /// </summary>
         /// <param name="item"> Товар. </param>
@@ -57,6 +76,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 _selectedItem = null;
             }
+            DisableElements();
         }
 
         /// <summary>
@@ -107,6 +127,7 @@ namespace ObjectOrientedPractics.View.Tabs
             CostBox.Text = Convert.ToString(_selectedItem.Cost);
             NameRichText.Text = _selectedItem.Name;
             DescriptionRichText.Text = _selectedItem.Info;
+            DisableElements();
         }
 
         /// <summary>
@@ -119,9 +140,12 @@ namespace ObjectOrientedPractics.View.Tabs
             try
             {
                 CostBox.BackColor = Color.White;
-                double enteredValue = Convert.ToDouble(CostBox.Text);
-                ValueValidator.AssertValueInRange(enteredValue, 0, 100000, "Cost");
-                _selectedItem.Cost = enteredValue;
+                if (_selectedItem != null)
+                {
+                    double enteredValue = Convert.ToDouble(CostBox.Text);
+                    ValueValidator.AssertValueInRange(enteredValue, 0, 100000, "Cost");
+                    _selectedItem.Cost = enteredValue;
+                }
             }
             catch (FormatException)
             {
@@ -143,7 +167,10 @@ namespace ObjectOrientedPractics.View.Tabs
             try
             {
                 NameRichText.BackColor = Color.White;
-                _selectedItem.Name = NameRichText.Text;
+                if (_selectedItem != null)
+                {
+                    _selectedItem.Name = NameRichText.Text;
+                }
             }
             catch (ArgumentException)
             {
@@ -161,12 +188,20 @@ namespace ObjectOrientedPractics.View.Tabs
             try
             {
                 DescriptionRichText.BackColor = Color.White;
-                _selectedItem.Info = DescriptionRichText.Text;
+                if (_selectedItem != null)
+                {
+                    _selectedItem.Info = DescriptionRichText.Text;
+                }
             }
             catch (ArgumentException)
             {
                 DescriptionRichText.BackColor = Color.LightPink;
             }
+        }
+
+        private void ItemsTab_Load(object sender, EventArgs e)
+        {
+            DisableElements();
         }
     }
 }

@@ -181,6 +181,7 @@
             Controls.Add(ItemsList);
             Name = "ItemsTab";
             Size = new Size(843, 470);
+            Load += ItemsTab_Load;
             ResumeLayout(false);
             PerformLayout();
         }
