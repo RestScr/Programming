@@ -123,6 +123,7 @@
             NameRichText.TabIndex = 8;
             NameRichText.Text = "";
             NameRichText.TextChanged += NameRichText_TextChanged;
+            NameRichText.Leave += NameRichText_Leave;
             // 
             // label6
             // 

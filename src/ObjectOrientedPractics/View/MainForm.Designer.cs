@@ -82,7 +82,7 @@
             ClientSize = new Size(859, 509);
             Controls.Add(tabControl1);
             Name = "MainForm";
-            Text = "Form1";
+            Text = "Project Oriented Practics";
             tabControl1.ResumeLayout(false);
             ItemsTab.ResumeLayout(false);
             ResumeLayout(false);

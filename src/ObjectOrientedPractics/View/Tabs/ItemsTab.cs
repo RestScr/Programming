@@ -38,7 +38,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 CostBox.Enabled = false;
                 NameRichText.Enabled = false;
-                DescriptionRichText.Enabled = false;ClearBoxes();
+                DescriptionRichText.Enabled = false; ClearBoxes();
             }
             else
             {
@@ -202,6 +202,11 @@ namespace ObjectOrientedPractics.View.Tabs
         private void ItemsTab_Load(object sender, EventArgs e)
         {
             DisableElements();
+        }
+
+        private void NameRichText_Leave(object sender, EventArgs e)
+        {
+            ItemsList.Items[_items.IndexOf(_selectedItem)] = Convert.ToString(_selectedItem.Id) + " " + _selectedItem.Name;
         }
     }
 }
