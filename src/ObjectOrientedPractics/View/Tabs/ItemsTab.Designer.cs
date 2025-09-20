@@ -50,6 +50,7 @@
             ItemsList.Name = "ItemsList";
             ItemsList.Size = new Size(235, 344);
             ItemsList.TabIndex = 0;
+            ItemsList.SelectedIndexChanged += ItemsList_SelectedIndexChanged;
             // 
             // label1
             // 
@@ -101,9 +102,9 @@
             // 
             CostBox.Location = new Point(331, 94);
             CostBox.Name = "CostBox";
-            CostBox.ReadOnly = true;
             CostBox.Size = new Size(125, 27);
             CostBox.TabIndex = 6;
+            CostBox.TextChanged += CostBox_TextChanged;
             // 
             // label5
             // 
@@ -121,6 +122,7 @@
             NameRichText.Size = new Size(555, 102);
             NameRichText.TabIndex = 8;
             NameRichText.Text = "";
+            NameRichText.TextChanged += NameRichText_TextChanged;
             // 
             // label6
             // 
@@ -138,6 +140,7 @@
             DescriptionRichText.Size = new Size(555, 125);
             DescriptionRichText.TabIndex = 10;
             DescriptionRichText.Text = "";
+            DescriptionRichText.TextChanged += DescriptionRichText_TextChanged;
             // 
             // AddItemButton
             // 
@@ -147,6 +150,7 @@
             AddItemButton.TabIndex = 11;
             AddItemButton.Text = "Add";
             AddItemButton.UseVisualStyleBackColor = true;
+            AddItemButton.Click += AddItemButton_Click;
             // 
             // RemoveItemButton
             // 
@@ -156,6 +160,7 @@
             RemoveItemButton.TabIndex = 12;
             RemoveItemButton.Text = "Remove";
             RemoveItemButton.UseVisualStyleBackColor = true;
+            RemoveItemButton.Click += RemoveItemButton_Click;
             // 
             // ItemsTab
             // 

@@ -25,5 +25,21 @@ namespace ObjectOrientedPractics.Services
                 throw new ArgumentException($"{propertyName} must contain less than {maxLength}");
             }
         }
+
+        public static void AssertValueInRange(double value, double minimal, double maximal, string propertyName)
+        {
+            if (value < minimal || value > maximal)
+            {
+                throw new ArgumentException($"{propertyName} must be a value between {minimal} and {maximal}");
+            }
+        }
+
+        public static void AssertValueOnPositive(int value, string propertyName)
+        {
+            if (value <= 0)
+            {
+                throw new ArgumentException($"{propertyName} must be a positive number");
+            }
+        }
     }
 }

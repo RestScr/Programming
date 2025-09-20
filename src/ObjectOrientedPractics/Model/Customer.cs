@@ -8,7 +8,7 @@ using ObjectOrientedPractics.Services;
 namespace ObjectOrientedPractics.Model
 {
     /// <summary>
-    /// Класс покупателя
+    /// Класс покупателя.
     /// </summary>
     internal class Customer
     {
@@ -19,7 +19,7 @@ namespace ObjectOrientedPractics.Model
         private string _address;
 
         /// <summary>
-        /// Свойство идентификатора объекта
+        /// Свойство идентификатора объекта.
         /// </summary>
         public int Id
         {
@@ -39,7 +39,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Свойство ФИО покупателя
+        /// Свойство ФИО покупателя.
         /// </summary>
         public string Fullname
         {
@@ -55,7 +55,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Свойство адреса покупателя
+        /// Свойство адреса покупателя.
         /// </summary>
         public string Address
         {
@@ -72,11 +72,11 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Конструктор класса покупателя
+        /// Конструктор класса покупателя.
         /// </summary>
-        /// <param name="fullname"> ФИО покупателя </param>
-        /// <param name="address"> Адрес проживания (доставки) покупателя </param>
-        Customer(string fullname, string address)
+        /// <param name="fullname"> ФИО покупателя. </param>
+        /// <param name="address"> Адрес проживания (доставки) покупателя. </param>
+        public Customer(string fullname, string address)
         {
             Id = ++_createdCustomers;
             Fullname = fullname;

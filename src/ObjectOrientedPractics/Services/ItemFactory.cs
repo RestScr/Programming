@@ -3,10 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ObjectOrientedPractics.Model;
 
 namespace ObjectOrientedPractics.Services
 {
-    internal class ItemFactory
+    /// <summary>
+    /// Класс фабрики товаров.
+    /// </summary>
+    internal static class ItemFactory
     {
+        public static Item GenerateItem()
+        {
+            return new Item("тавар", "aboooba", 10050);
+        }
     }
 }

@@ -30,8 +30,8 @@
         {
             tabControl1 = new TabControl();
             ItemsTab = new TabPage();
-            CustomersTab = new TabPage();
             itemsTab1 = new ObjectOrientedPractics.View.Tabs.ItemsTab();
+            CustomersTab = new TabPage();
             tabControl1.SuspendLayout();
             ItemsTab.SuspendLayout();
             SuspendLayout();
@@ -57,22 +57,23 @@
             ItemsTab.Text = "Items";
             ItemsTab.UseVisualStyleBackColor = true;
             // 
-            // CustomersTab
-            // 
-            CustomersTab.Location = new Point(4, 29);
-            CustomersTab.Name = "CustomersTab";
-            CustomersTab.Padding = new Padding(3);
-            CustomersTab.Size = new Size(793, 418);
-            CustomersTab.TabIndex = 1;
-            CustomersTab.Text = "Customers";
-            CustomersTab.UseVisualStyleBackColor = true;
-            // 
             // itemsTab1
             // 
             itemsTab1.Location = new Point(-4, 0);
             itemsTab1.Name = "itemsTab1";
             itemsTab1.Size = new Size(865, 468);
             itemsTab1.TabIndex = 0;
+            itemsTab1.Load += itemsTab1_Load;
+            // 
+            // CustomersTab
+            // 
+            CustomersTab.Location = new Point(4, 29);
+            CustomersTab.Name = "CustomersTab";
+            CustomersTab.Padding = new Padding(3);
+            CustomersTab.Size = new Size(846, 477);
+            CustomersTab.TabIndex = 1;
+            CustomersTab.Text = "Customers";
+            CustomersTab.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 

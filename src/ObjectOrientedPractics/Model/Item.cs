@@ -82,10 +82,9 @@ namespace ObjectOrientedPractics.Model
             }
             set
             {
-                if (value > 100000 || value < 0)
-                {
-                    throw new ArgumentException("Cost must be between in 0 and 100000");
-                }
+                ValueValidator.AssertValueInRange(value, 0, 100000, "Cost");
+
+                _cost = value;
             }
         }
 
