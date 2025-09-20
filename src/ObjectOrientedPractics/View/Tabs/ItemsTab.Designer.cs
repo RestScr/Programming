@@ -41,14 +41,18 @@
             DescriptionRichText = new RichTextBox();
             AddItemButton = new Button();
             RemoveItemButton = new Button();
+            panel1 = new Panel();
+            panel2 = new Panel();
+            panel1.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // ItemsList
             // 
             ItemsList.FormattingEnabled = true;
-            ItemsList.Location = new Point(21, 44);
+            ItemsList.Location = new Point(0, 31);
             ItemsList.Name = "ItemsList";
-            ItemsList.Size = new Size(235, 344);
+            ItemsList.Size = new Size(299, 344);
             ItemsList.TabIndex = 0;
             ItemsList.SelectedIndexChanged += ItemsList_SelectedIndexChanged;
             // 
@@ -56,7 +60,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label1.Location = new Point(21, 21);
+            label1.Location = new Point(0, 8);
             label1.Name = "label1";
             label1.Size = new Size(49, 20);
             label1.TabIndex = 1;
@@ -66,7 +70,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label2.Location = new Point(267, 21);
+            label2.Location = new Point(12, 14);
             label2.Name = "label2";
             label2.Size = new Size(104, 20);
             label2.TabIndex = 2;
@@ -75,7 +79,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(267, 59);
+            label3.Location = new Point(12, 52);
             label3.Name = "label3";
             label3.Size = new Size(27, 20);
             label3.TabIndex = 3;
@@ -84,7 +88,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(267, 97);
+            label4.Location = new Point(12, 90);
             label4.Name = "label4";
             label4.Size = new Size(41, 20);
             label4.TabIndex = 4;
@@ -92,7 +96,7 @@
             // 
             // IDBox
             // 
-            IDBox.Location = new Point(331, 56);
+            IDBox.Location = new Point(76, 49);
             IDBox.Name = "IDBox";
             IDBox.ReadOnly = true;
             IDBox.Size = new Size(125, 27);
@@ -100,7 +104,7 @@
             // 
             // CostBox
             // 
-            CostBox.Location = new Point(331, 94);
+            CostBox.Location = new Point(76, 87);
             CostBox.Name = "CostBox";
             CostBox.Size = new Size(125, 27);
             CostBox.TabIndex = 6;
@@ -109,7 +113,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(267, 145);
+            label5.Location = new Point(12, 138);
             label5.Name = "label5";
             label5.Size = new Size(52, 20);
             label5.TabIndex = 7;
@@ -117,9 +121,9 @@
             // 
             // NameRichText
             // 
-            NameRichText.Location = new Point(270, 177);
+            NameRichText.Location = new Point(12, 179);
             NameRichText.Name = "NameRichText";
-            NameRichText.Size = new Size(555, 102);
+            NameRichText.Size = new Size(558, 102);
             NameRichText.TabIndex = 8;
             NameRichText.Text = "";
             NameRichText.TextChanged += NameRichText_TextChanged;
@@ -128,7 +132,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(267, 291);
+            label6.Location = new Point(12, 284);
             label6.Name = "label6";
             label6.Size = new Size(88, 20);
             label6.TabIndex = 9;
@@ -136,7 +140,7 @@
             // 
             // DescriptionRichText
             // 
-            DescriptionRichText.Location = new Point(270, 323);
+            DescriptionRichText.Location = new Point(15, 316);
             DescriptionRichText.Name = "DescriptionRichText";
             DescriptionRichText.Size = new Size(555, 125);
             DescriptionRichText.TabIndex = 10;
@@ -145,7 +149,7 @@
             // 
             // AddItemButton
             // 
-            AddItemButton.Location = new Point(21, 394);
+            AddItemButton.Location = new Point(0, 381);
             AddItemButton.Name = "AddItemButton";
             AddItemButton.Size = new Size(91, 54);
             AddItemButton.TabIndex = 11;
@@ -155,7 +159,7 @@
             // 
             // RemoveItemButton
             // 
-            RemoveItemButton.Location = new Point(118, 394);
+            RemoveItemButton.Location = new Point(97, 381);
             RemoveItemButton.Name = "RemoveItemButton";
             RemoveItemButton.Size = new Size(91, 54);
             RemoveItemButton.TabIndex = 12;
@@ -163,28 +167,47 @@
             RemoveItemButton.UseVisualStyleBackColor = true;
             RemoveItemButton.Click += RemoveItemButton_Click;
             // 
+            // panel1
+            // 
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(label4);
+            panel1.Controls.Add(DescriptionRichText);
+            panel1.Controls.Add(IDBox);
+            panel1.Controls.Add(label6);
+            panel1.Controls.Add(CostBox);
+            panel1.Controls.Add(NameRichText);
+            panel1.Controls.Add(label5);
+            panel1.Location = new Point(311, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(575, 445);
+            panel1.TabIndex = 13;
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(label1);
+            panel2.Controls.Add(RemoveItemButton);
+            panel2.Controls.Add(ItemsList);
+            panel2.Controls.Add(AddItemButton);
+            panel2.Location = new Point(3, 3);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(302, 445);
+            panel2.TabIndex = 11;
+            // 
             // ItemsTab
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(RemoveItemButton);
-            Controls.Add(AddItemButton);
-            Controls.Add(DescriptionRichText);
-            Controls.Add(label6);
-            Controls.Add(NameRichText);
-            Controls.Add(label5);
-            Controls.Add(CostBox);
-            Controls.Add(IDBox);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(ItemsList);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
             Name = "ItemsTab";
-            Size = new Size(843, 470);
+            Size = new Size(892, 457);
             Load += ItemsTab_Load;
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -202,5 +225,7 @@
         private RichTextBox DescriptionRichText;
         private Button AddItemButton;
         private Button RemoveItemButton;
+        private Panel panel1;
+        private Panel panel2;
     }
 }

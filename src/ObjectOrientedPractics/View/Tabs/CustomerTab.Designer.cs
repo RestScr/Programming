@@ -75,6 +75,7 @@
             RemoveCustomerButton.TabIndex = 2;
             RemoveCustomerButton.Text = "Remove";
             RemoveCustomerButton.UseVisualStyleBackColor = true;
+            RemoveCustomerButton.Click += RemoveCustomerButton_Click;
             // 
             // CustomersList
             // 
@@ -83,6 +84,7 @@
             CustomersList.Name = "CustomersList";
             CustomersList.Size = new Size(307, 384);
             CustomersList.TabIndex = 1;
+            CustomersList.SelectedIndexChanged += CustomersList_SelectedIndexChanged;
             // 
             // label1
             // 
@@ -115,6 +117,7 @@
             AddressRichText.Size = new Size(446, 117);
             AddressRichText.TabIndex = 7;
             AddressRichText.Text = "";
+            AddressRichText.TextChanged += AddressRichText_TextChanged;
             // 
             // CustomerFullnameBox
             // 
@@ -122,6 +125,8 @@
             CustomerFullnameBox.Name = "CustomerFullnameBox";
             CustomerFullnameBox.Size = new Size(446, 27);
             CustomerFullnameBox.TabIndex = 6;
+            CustomerFullnameBox.TextChanged += CustomerFullnameBox_TextChanged;
+            CustomerFullnameBox.Leave += CustomerFullnameBox_Leave;
             // 
             // CustomerIDBox
             // 
@@ -184,6 +189,7 @@
             Controls.Add(panel1);
             Name = "CustomerTab";
             Size = new Size(865, 489);
+            Load += CustomerTab_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
