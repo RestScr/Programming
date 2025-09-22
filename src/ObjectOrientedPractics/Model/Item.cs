@@ -8,7 +8,7 @@ using ObjectOrientedPractics.Services;
 namespace ObjectOrientedPractics.Model
 {
     /// <summary>
-    /// Класс товара
+    /// Класс товара.
     /// </summary>
     internal class Item
     {
@@ -20,7 +20,7 @@ namespace ObjectOrientedPractics.Model
         private double _cost;
 
         /// <summary>
-        /// Свойство, определяющее идентификатор объекта класса
+        /// Свойство, определяющее идентификатор объекта класса.
         /// </summary>
         public int Id
         {
@@ -40,7 +40,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Свойство, определяющее имя товара
+        /// Свойство, определяющее имя товара.
         /// </summary>
         public string Name
         {
@@ -56,7 +56,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Свойство, определяющее описание товара
+        /// Свойство, определяющее описание товара.
         /// </summary>
         public string Info
         {
@@ -72,7 +72,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Свойство, определяющее цену товара
+        /// Свойство, определяющее цену товара.
         /// </summary>
         public double Cost
         {
@@ -89,11 +89,11 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Конструктор товара
+        /// Конструктор товара.
         /// </summary>
-        /// <param name="name"> Название товара </param>
-        /// <param name="info"> Описание товара </param>
-        /// <param name="cost"> Цена на товар </param>
+        /// <param name="name"> Название товара. </param>
+        /// <param name="info"> Описание товара. </param>
+        /// <param name="cost"> Цена на товар. </param>
         public Item(string name, string info, double cost)
         {
             Id = ++_createdItems;
