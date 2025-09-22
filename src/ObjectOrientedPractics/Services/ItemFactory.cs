@@ -14,7 +14,7 @@ namespace ObjectOrientedPractics.Services
     {
         public static Item GenerateItem()
         {
-            return new Item("тавар", "aboooba", 10050);
+            return new Item("Item", "Description", 10050);
         }
     }
 }
