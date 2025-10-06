@@ -2,6 +2,9 @@ using ObjectOrientedPractics.Model;
 
 namespace ObjectOrientedPractics
 {
+    /// <summary>
+    /// Главная форма
+    /// </summary>
     public partial class MainForm : Form
     {
         private Store _shop = new Store();
