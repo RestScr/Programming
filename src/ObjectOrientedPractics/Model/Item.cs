@@ -88,6 +88,9 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// Категория товара
+        /// </summary>
         public Category ItemCategory { get; set; }
 
         /// <summary>

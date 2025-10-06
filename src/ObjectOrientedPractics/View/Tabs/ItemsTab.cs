@@ -127,6 +127,7 @@ namespace ObjectOrientedPractics.View.Tabs
             CostBox.Text = Convert.ToString(_selectedItem.Cost);
             NameRichText.Text = _selectedItem.Name;
             DescriptionRichText.Text = _selectedItem.Info;
+            CategoryComboBox.SelectedIndex = (int)_selectedItem.ItemCategory;
             DisableElements();
         }
 
@@ -202,11 +203,20 @@ namespace ObjectOrientedPractics.View.Tabs
         private void ItemsTab_Load(object sender, EventArgs e)
         {
             DisableElements();
+            foreach (string category in Enum.GetNames(typeof(Category)))
+            {
+                CategoryComboBox.Items.Add(category);
+            }
         }
 
         private void NameRichText_Leave(object sender, EventArgs e)
         {
             ItemsList.Items[_items.IndexOf(_selectedItem)] = Convert.ToString(_selectedItem.Id) + " " + _selectedItem.Name;
+        }
+
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _selectedItem.ItemCategory = (Category)CategoryComboBox.SelectedIndex;
         }
     }
 }

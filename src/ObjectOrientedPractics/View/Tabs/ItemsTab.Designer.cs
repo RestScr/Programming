@@ -42,6 +42,8 @@
             AddItemButton = new Button();
             RemoveItemButton = new Button();
             panel1 = new Panel();
+            CategoryComboBox = new ComboBox();
+            label7 = new Label();
             panel2 = new Panel();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -79,7 +81,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(12, 52);
+            label3.Location = new Point(12, 56);
             label3.Name = "label3";
             label3.Size = new Size(27, 20);
             label3.TabIndex = 3;
@@ -88,7 +90,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(12, 90);
+            label4.Location = new Point(12, 94);
             label4.Name = "label4";
             label4.Size = new Size(41, 20);
             label4.TabIndex = 4;
@@ -96,24 +98,24 @@
             // 
             // IDBox
             // 
-            IDBox.Location = new Point(76, 49);
+            IDBox.Location = new Point(101, 49);
             IDBox.Name = "IDBox";
             IDBox.ReadOnly = true;
-            IDBox.Size = new Size(125, 27);
+            IDBox.Size = new Size(151, 27);
             IDBox.TabIndex = 5;
             // 
             // CostBox
             // 
-            CostBox.Location = new Point(76, 87);
+            CostBox.Location = new Point(101, 91);
             CostBox.Name = "CostBox";
-            CostBox.Size = new Size(125, 27);
+            CostBox.Size = new Size(151, 27);
             CostBox.TabIndex = 6;
             CostBox.TextChanged += CostBox_TextChanged;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(12, 138);
+            label5.Location = new Point(12, 177);
             label5.Name = "label5";
             label5.Size = new Size(52, 20);
             label5.TabIndex = 7;
@@ -121,9 +123,9 @@
             // 
             // NameRichText
             // 
-            NameRichText.Location = new Point(12, 179);
+            NameRichText.Location = new Point(12, 209);
             NameRichText.Name = "NameRichText";
-            NameRichText.Size = new Size(558, 102);
+            NameRichText.Size = new Size(558, 82);
             NameRichText.TabIndex = 8;
             NameRichText.Text = "";
             NameRichText.TextChanged += NameRichText_TextChanged;
@@ -132,7 +134,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(12, 284);
+            label6.Location = new Point(12, 324);
             label6.Name = "label6";
             label6.Size = new Size(88, 20);
             label6.TabIndex = 9;
@@ -140,9 +142,9 @@
             // 
             // DescriptionRichText
             // 
-            DescriptionRichText.Location = new Point(15, 316);
+            DescriptionRichText.Location = new Point(15, 347);
             DescriptionRichText.Name = "DescriptionRichText";
-            DescriptionRichText.Size = new Size(555, 125);
+            DescriptionRichText.Size = new Size(555, 94);
             DescriptionRichText.TabIndex = 10;
             DescriptionRichText.Text = "";
             DescriptionRichText.TextChanged += DescriptionRichText_TextChanged;
@@ -169,6 +171,8 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(CategoryComboBox);
+            panel1.Controls.Add(label7);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label4);
@@ -182,6 +186,24 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(575, 445);
             panel1.TabIndex = 13;
+            // 
+            // CategoryComboBox
+            // 
+            CategoryComboBox.FormattingEnabled = true;
+            CategoryComboBox.Location = new Point(101, 130);
+            CategoryComboBox.Name = "CategoryComboBox";
+            CategoryComboBox.Size = new Size(151, 28);
+            CategoryComboBox.TabIndex = 12;
+            CategoryComboBox.SelectedIndexChanged += CategoryComboBox_SelectedIndexChanged;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(12, 138);
+            label7.Name = "label7";
+            label7.Size = new Size(72, 20);
+            label7.TabIndex = 11;
+            label7.Text = "Category:";
             // 
             // panel2
             // 
@@ -227,5 +249,7 @@
         private Button RemoveItemButton;
         private Panel panel1;
         private Panel panel2;
+        private ComboBox CategoryComboBox;
+        private Label label7;
     }
 }
