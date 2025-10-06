@@ -8,5 +8,14 @@ namespace ObjectOrientedPractics.Model
 {
     public enum Category
     {
+        Notebook,
+        TelevisionSet,
+        Phone,
+        Tablet,
+        BatteryCharger,
+        Keyboard,
+        Mouse,
+        Disk,
+        Headset
     }
 }
