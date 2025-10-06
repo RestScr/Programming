@@ -7,7 +7,7 @@ using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.Model
 {
-    internal class Address
+    public class Address
     {
         private string _index;
         private string _country;
@@ -135,6 +135,19 @@ namespace ObjectOrientedPractics.Model
             Street = street;
             Building = building;
             Apartment = apartment;
+        }
+
+        /// <summary>
+        /// Конструктор адреса по умолчанию.
+        /// </summary>
+        public Address()
+        {
+            Index = "000000";
+            Country = "";
+            City = "";
+            Street = "";
+            Building = "";
+            Apartment = "";
         }
     }
 }
