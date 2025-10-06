@@ -45,7 +45,7 @@ namespace ObjectOrientedPractics.Services
         /// <summary>
         /// Проверить введённую величину на положительность.
         /// </summary>
-        /// <param name="value"> Введенное значение </param>
+        /// <param name="value"> Введенное значение. </param>
         /// <param name="propertyName"> Имя свойства для сообщения об исключении. </param>
         /// <exception cref="ArgumentException"> В случае ошибки валидации выводится ошибка аргументации. </exception>
         public static void AssertValueOnPositive(int value, string propertyName)
@@ -53,6 +53,37 @@ namespace ObjectOrientedPractics.Services
             if (value <= 0)
             {
                 throw new ArgumentException($"{propertyName} must be a positive number");
+            }
+        }
+
+        /// <summary>
+        /// Проверить, является ли даннаяs строка числом.
+        /// </summary>
+        /// <param name="value"> Значение для проверки. </param>
+        /// <exception cref="ArgumentException"> В случае ошибки выводится ошибка аргументации. </exception>
+        public static void AssertStringOnNumber(string value, string propertyName)
+        {
+            for (int i = 0; i < value.Length; i++)
+            {
+                if (value[i] < '0' || value[i] > '9')
+                {
+                    throw new ArgumentException(propertyName + " must be numerical");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Проверить, равна ли длина строки определенному количеству.
+        /// </summary>
+        /// <param name="value"> Введенное значение. </param>
+        /// <param name="length"> Необходимая длина строки. </param>
+        /// <param name="propertyName"> Название свойства. </param>
+        /// <exception cref="ArgumentException"> В случае ошибки валидации возвращается ошибка аргументации. </exception>
+        public static void AssertStringOnStrictLengthEquality(string value, int length, string propertyName)
+        {
+            if (value.Length != length)
+            {
+                throw new ArgumentException(propertyName + " length must be " + length);
             }
         }
     }

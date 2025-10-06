@@ -218,8 +218,9 @@
             // 
             // ItemsTab
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(120F, 120F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            AutoSize = true;
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "ItemsTab";
