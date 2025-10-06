@@ -34,10 +34,9 @@
             CustomersList = new ListBox();
             label1 = new Label();
             panel2 = new Panel();
-            AddressRichText = new RichTextBox();
+            AddressField = new ObjectOrientedPractics.View.Controls.AddressControl();
             CustomerFullnameBox = new TextBox();
             CustomerIDBox = new TextBox();
-            label5 = new Label();
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
@@ -98,32 +97,32 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(AddressRichText);
+            panel2.Controls.Add(AddressField);
             panel2.Controls.Add(CustomerFullnameBox);
             panel2.Controls.Add(CustomerIDBox);
-            panel2.Controls.Add(label5);
             panel2.Controls.Add(label4);
             panel2.Controls.Add(label3);
             panel2.Controls.Add(label2);
             panel2.Location = new Point(322, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(540, 242);
+            panel2.Size = new Size(591, 324);
             panel2.TabIndex = 1;
             // 
-            // AddressRichText
+            // AddressField
             // 
-            AddressRichText.Location = new Point(91, 122);
-            AddressRichText.Name = "AddressRichText";
-            AddressRichText.Size = new Size(446, 117);
-            AddressRichText.TabIndex = 7;
-            AddressRichText.Text = "";
-            AddressRichText.TextChanged += AddressRichText_TextChanged;
+            AddressField.AutoSize = true;
+            AddressField.DeliveryAddress = null;
+            AddressField.Location = new Point(4, 129);
+            AddressField.Name = "AddressField";
+            AddressField.Size = new Size(584, 182);
+            AddressField.TabIndex = 7;
             // 
             // CustomerFullnameBox
             // 
             CustomerFullnameBox.Location = new Point(91, 81);
+            CustomerFullnameBox.MaxLength = 200;
             CustomerFullnameBox.Name = "CustomerFullnameBox";
-            CustomerFullnameBox.Size = new Size(446, 27);
+            CustomerFullnameBox.Size = new Size(496, 27);
             CustomerFullnameBox.TabIndex = 6;
             CustomerFullnameBox.TextChanged += CustomerFullnameBox_TextChanged;
             CustomerFullnameBox.Leave += CustomerFullnameBox_Leave;
@@ -135,15 +134,6 @@
             CustomerIDBox.Name = "CustomerIDBox";
             CustomerIDBox.Size = new Size(125, 27);
             CustomerIDBox.TabIndex = 5;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(3, 122);
-            label5.Name = "label5";
-            label5.Size = new Size(65, 20);
-            label5.TabIndex = 4;
-            label5.Text = "Address:";
             // 
             // label4
             // 
@@ -175,9 +165,9 @@
             // 
             // panel3
             // 
-            panel3.Location = new Point(322, 251);
+            panel3.Location = new Point(322, 333);
             panel3.Name = "panel3";
-            panel3.Size = new Size(540, 235);
+            panel3.Size = new Size(587, 153);
             panel3.TabIndex = 2;
             // 
             // CustomerTab
@@ -188,7 +178,7 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "CustomerTab";
-            Size = new Size(865, 489);
+            Size = new Size(916, 490);
             Load += CustomerTab_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -208,10 +198,9 @@
         private Button AddCustomerButton;
         private Button RemoveCustomerButton;
         private TextBox CustomerIDBox;
-        private Label label5;
         private Label label4;
         private Label label3;
-        private RichTextBox AddressRichText;
         private TextBox CustomerFullnameBox;
+        private Controls.AddressControl AddressField;
     }
 }

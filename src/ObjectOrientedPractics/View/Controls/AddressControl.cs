@@ -35,6 +35,46 @@ namespace ObjectOrientedPractics.View.Controls
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Метод включения/отключения всех компонентов элемента.
+        /// </summary>
+        /// <param name="enabled"> true - включение / false - выключение. </param>
+        public void Enable(bool enabled)
+        {
+            IndexBox.Enabled = enabled;
+            CountryBox.Enabled = enabled;
+            CityBox.Enabled = enabled;
+            StreetBox.Enabled = enabled;
+            BuildingBox.Enabled = enabled;
+            ApartmentBox.Enabled = enabled;
+        }
+
+        /// <summary>
+        /// Метод очистки полей.
+        /// </summary>
+        public void ClearBoxes()
+        {
+            IndexBox.Text = "";
+            CountryBox.Text = "";
+            CityBox.Text = "";
+            StreetBox.Text = "";
+            BuildingBox.Text = "";
+            ApartmentBox.Text = "";
+        }
+
+        /// <summary>
+        /// Заполнить все поля данными из объекта адреса.
+        /// </summary>
+        public void FillBoxes()
+        {
+            IndexBox.Text = DeliveryAddress.Index;
+            CountryBox.Text = DeliveryAddress.Country;
+            CityBox.Text = DeliveryAddress.City;
+            StreetBox.Text = DeliveryAddress.Street;
+            BuildingBox.Text = DeliveryAddress.Building;
+            ApartmentBox.Text = DeliveryAddress.Apartment;
+        }
+
         private void IndexBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -92,7 +132,7 @@ namespace ObjectOrientedPractics.View.Controls
             try
             {
                 BuildingBox.BackColor = Color.White;
-                DeliveryAddress.Index = BuildingBox.Text;
+                DeliveryAddress.Building = BuildingBox.Text;
             }
             catch (ArgumentException)
             {
@@ -105,7 +145,7 @@ namespace ObjectOrientedPractics.View.Controls
             try
             {
                 ApartmentBox.BackColor = Color.White;
-                DeliveryAddress.Index = ApartmentBox.Text;
+                DeliveryAddress.Apartment = ApartmentBox.Text;
             }
             catch (ArgumentException)
             {

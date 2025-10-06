@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Services;
+using ObjectOrientedPractics.View.Controls;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
@@ -37,12 +38,12 @@ namespace ObjectOrientedPractics.View.Tabs
             if (_selectedCustomer == null)
             {
                 CustomerFullnameBox.Enabled = false;
-                AddressRichText.Enabled = false;
+                AddressField.Enable(false);
             }
             else
             {
                 CustomerFullnameBox.Enabled = true;
-                AddressRichText.Enabled = true;
+                AddressField.Enable(true);
             }
         }
 
@@ -91,7 +92,8 @@ namespace ObjectOrientedPractics.View.Tabs
 
             CustomerIDBox.Text = Convert.ToString(_selectedCustomer.Id);
             CustomerFullnameBox.Text = _selectedCustomer.Fullname;
-            AddressRichText.Text = _selectedCustomer.Address;
+            AddressField.DeliveryAddress = _selectedCustomer.Address;
+            AddressField.FillBoxes();
         }
 
         /// <summary>
@@ -103,7 +105,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 CustomerIDBox.Text = "";
                 CustomerFullnameBox.Text = "";
-                AddressRichText.Text = "";
+                AddressField.ClearBoxes();
             }
         }
 
@@ -149,6 +151,11 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 return;
             }
+            // Заполняем поле адреса прошлого выбранного покупателя
+            if (_selectedCustomer != null)
+            {
+                _selectedCustomer.Address = AddressField.DeliveryAddress;
+            }
             _selectedCustomer = _customers[selectedIndex];
             FillBoxes();
             DisableElements();
@@ -168,22 +175,6 @@ namespace ObjectOrientedPractics.View.Tabs
             catch (ArgumentException)
             {
                 CustomerFullnameBox.BackColor = Color.LightPink;
-            }
-        }
-
-        private void AddressRichText_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (_selectedCustomer == null)
-                {
-                    return;
-                }
-                _selectedCustomer.Address = AddressRichText.Text;
-            }
-            catch (ArgumentException)
-            {
-                AddressRichText.BackColor = Color.LightPink;
             }
         }
 

@@ -110,6 +110,7 @@
             // IndexBox
             // 
             IndexBox.Location = new Point(88, 32);
+            IndexBox.MaxLength = 6;
             IndexBox.Name = "IndexBox";
             IndexBox.Size = new Size(125, 27);
             IndexBox.TabIndex = 6;
@@ -118,6 +119,7 @@
             // CountryBox
             // 
             CountryBox.Location = new Point(88, 71);
+            CountryBox.MaxLength = 50;
             CountryBox.Name = "CountryBox";
             CountryBox.Size = new Size(228, 27);
             CountryBox.TabIndex = 7;
@@ -126,6 +128,7 @@
             // CityBox
             // 
             CityBox.Location = new Point(376, 71);
+            CityBox.MaxLength = 50;
             CityBox.Name = "CityBox";
             CityBox.Size = new Size(205, 27);
             CityBox.TabIndex = 8;
@@ -134,6 +137,7 @@
             // StreetBox
             // 
             StreetBox.Location = new Point(88, 111);
+            StreetBox.MaxLength = 100;
             StreetBox.Name = "StreetBox";
             StreetBox.Size = new Size(493, 27);
             StreetBox.TabIndex = 9;
@@ -142,6 +146,7 @@
             // BuildingBox
             // 
             BuildingBox.Location = new Point(88, 152);
+            BuildingBox.MaxLength = 10;
             BuildingBox.Name = "BuildingBox";
             BuildingBox.Size = new Size(125, 27);
             BuildingBox.TabIndex = 10;
@@ -150,6 +155,7 @@
             // ApartmentBox
             // 
             ApartmentBox.Location = new Point(342, 152);
+            ApartmentBox.MaxLength = 10;
             ApartmentBox.Name = "ApartmentBox";
             ApartmentBox.Size = new Size(144, 27);
             ApartmentBox.TabIndex = 11;

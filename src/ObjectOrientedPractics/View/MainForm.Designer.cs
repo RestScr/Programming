@@ -54,16 +54,17 @@
             ItemsTab.Location = new Point(4, 29);
             ItemsTab.Name = "ItemsTab";
             ItemsTab.Padding = new Padding(3);
-            ItemsTab.Size = new Size(890, 481);
+            ItemsTab.Size = new Size(890, 492);
             ItemsTab.TabIndex = 0;
             ItemsTab.Text = "Items";
             ItemsTab.UseVisualStyleBackColor = true;
             // 
             // itemsTab1
             // 
+            itemsTab1.AutoSize = true;
             itemsTab1.Location = new Point(3, 3);
             itemsTab1.Name = "itemsTab1";
-            itemsTab1.Size = new Size(878, 468);
+            itemsTab1.Size = new Size(889, 468);
             itemsTab1.TabIndex = 0;
             // 
             // CustomersTab
@@ -88,12 +89,13 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(897, 524);
+            ClientSize = new Size(896, 524);
             Controls.Add(tabControl1);
             Name = "MainForm";
             Text = "Project Oriented Practics";
             tabControl1.ResumeLayout(false);
             ItemsTab.ResumeLayout(false);
+            ItemsTab.PerformLayout();
             CustomersTab.ResumeLayout(false);
             ResumeLayout(false);
         }

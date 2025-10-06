@@ -124,6 +124,7 @@
             // NameRichText
             // 
             NameRichText.Location = new Point(12, 209);
+            NameRichText.MaxLength = 200;
             NameRichText.Name = "NameRichText";
             NameRichText.Size = new Size(558, 82);
             NameRichText.TabIndex = 8;
@@ -143,6 +144,7 @@
             // DescriptionRichText
             // 
             DescriptionRichText.Location = new Point(15, 347);
+            DescriptionRichText.MaxLength = 1000;
             DescriptionRichText.Name = "DescriptionRichText";
             DescriptionRichText.Size = new Size(555, 94);
             DescriptionRichText.TabIndex = 10;
@@ -184,11 +186,12 @@
             panel1.Controls.Add(label5);
             panel1.Location = new Point(311, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(575, 445);
+            panel1.Size = new Size(601, 485);
             panel1.TabIndex = 13;
             // 
             // CategoryComboBox
             // 
+            CategoryComboBox.Enabled = false;
             CategoryComboBox.FormattingEnabled = true;
             CategoryComboBox.Location = new Point(101, 130);
             CategoryComboBox.Name = "CategoryComboBox";
@@ -213,7 +216,7 @@
             panel2.Controls.Add(AddItemButton);
             panel2.Location = new Point(3, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(302, 445);
+            panel2.Size = new Size(302, 485);
             panel2.TabIndex = 11;
             // 
             // ItemsTab
@@ -224,7 +227,7 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "ItemsTab";
-            Size = new Size(892, 457);
+            Size = new Size(916, 491);
             Load += ItemsTab_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

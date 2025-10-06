@@ -7,6 +7,9 @@ using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.Model
 {
+    /// <summary>
+    /// Класс адреса.
+    /// </summary>
     public class Address
     {
         private string _index;

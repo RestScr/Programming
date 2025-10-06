@@ -38,13 +38,16 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 CostBox.Enabled = false;
                 NameRichText.Enabled = false;
-                DescriptionRichText.Enabled = false; ClearBoxes();
+                DescriptionRichText.Enabled = false;
+                CategoryComboBox.Enabled = false;
+                ClearBoxes();
             }
             else
             {
                 CostBox.Enabled = true;
                 NameRichText.Enabled = true;
                 DescriptionRichText.Enabled = true;
+                CategoryComboBox.Enabled = true;
             }
         }
 
@@ -88,6 +91,7 @@ namespace ObjectOrientedPractics.View.Tabs
             CostBox.Text = "";
             NameRichText.Text = "";
             DescriptionRichText.Text = "";
+            CategoryComboBox.Text = "";
         }
 
         /// <summary>
