@@ -16,7 +16,7 @@ namespace ObjectOrientedPractics.View.Tabs
     /// <summary>
     /// Класс вкладки с покупателями.
     /// </summary>
-    public partial class CustomerTab : UserControl
+    public partial class CustomersTab : UserControl
     {
         private List<Customer> _customers = new List<Customer>();
 
@@ -40,7 +40,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Конструктор вкладки с покупателями.
         /// </summary>
-        public CustomerTab()
+        public CustomersTab()
         {
             InitializeComponent();
         }

@@ -32,7 +32,7 @@
             ItemsTab = new TabPage();
             ItemsControlTab = new ObjectOrientedPractics.View.Tabs.ItemsTab();
             CustomersTab = new TabPage();
-            CustomersControlTab = new ObjectOrientedPractics.View.Tabs.CustomerTab();
+            CustomersControlTab = new ObjectOrientedPractics.View.Tabs.CustomersTab();
             tabControl1.SuspendLayout();
             ItemsTab.SuspendLayout();
             CustomersTab.SuspendLayout();
@@ -107,6 +107,6 @@
         private TabPage ItemsTab;
         private TabPage CustomersTab;
         private View.Tabs.ItemsTab ItemsControlTab;
-        private View.Tabs.CustomerTab CustomersControlTab;
+        private View.Tabs.CustomersTab CustomersControlTab;
     }
 }
