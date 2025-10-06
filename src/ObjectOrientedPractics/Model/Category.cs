@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
+    /// <summary>
+    /// Перечисление категории
+    /// </summary>
     public enum Category
     {
         Notebook,
