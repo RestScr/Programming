@@ -19,7 +19,19 @@ namespace ObjectOrientedPractics.View.Tabs
     {
         private Item _selectedItem { get; set; } = null;
 
-        private List<Item> _items { get; } = new();
+        private List<Item> _items = new();
+
+        public List<Item> Items
+        {
+            get
+            {
+                return _items;
+            }
+            set
+            {
+                _items = value;
+            }
+        }
 
         /// <summary>
         /// Конструктор формы.

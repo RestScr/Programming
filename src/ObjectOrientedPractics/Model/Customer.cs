@@ -10,7 +10,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Класс покупателя.
     /// </summary>
-    internal class Customer
+    public class Customer
     {
         private static int _createdCustomers = 0;
 
