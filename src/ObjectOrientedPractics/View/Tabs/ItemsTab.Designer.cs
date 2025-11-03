@@ -39,30 +39,34 @@
             NameRichText = new RichTextBox();
             label6 = new Label();
             DescriptionRichText = new RichTextBox();
-            AddItemButton = new Button();
-            RemoveItemButton = new Button();
             panel1 = new Panel();
             CategoryComboBox = new ComboBox();
             label7 = new Label();
             panel2 = new Panel();
+            panel3 = new Panel();
+            AddItemButton = new Button();
+            RemoveItemButton = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // ItemsList
             // 
+            ItemsList.Dock = DockStyle.Left;
             ItemsList.FormattingEnabled = true;
-            ItemsList.Location = new Point(0, 31);
+            ItemsList.Location = new Point(0, 20);
             ItemsList.Name = "ItemsList";
-            ItemsList.Size = new Size(299, 344);
+            ItemsList.Size = new Size(302, 353);
             ItemsList.TabIndex = 0;
             ItemsList.SelectedIndexChanged += ItemsList_SelectedIndexChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
+            label1.Dock = DockStyle.Top;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label1.Location = new Point(0, 8);
+            label1.Location = new Point(0, 0);
             label1.Name = "label1";
             label1.Size = new Size(49, 20);
             label1.TabIndex = 1;
@@ -151,26 +155,6 @@
             DescriptionRichText.Text = "";
             DescriptionRichText.TextChanged += DescriptionRichText_TextChanged;
             // 
-            // AddItemButton
-            // 
-            AddItemButton.Location = new Point(0, 381);
-            AddItemButton.Name = "AddItemButton";
-            AddItemButton.Size = new Size(91, 54);
-            AddItemButton.TabIndex = 11;
-            AddItemButton.Text = "Add";
-            AddItemButton.UseVisualStyleBackColor = true;
-            AddItemButton.Click += AddItemButton_Click;
-            // 
-            // RemoveItemButton
-            // 
-            RemoveItemButton.Location = new Point(97, 381);
-            RemoveItemButton.Name = "RemoveItemButton";
-            RemoveItemButton.Size = new Size(91, 54);
-            RemoveItemButton.TabIndex = 12;
-            RemoveItemButton.Text = "Remove";
-            RemoveItemButton.UseVisualStyleBackColor = true;
-            RemoveItemButton.Click += RemoveItemButton_Click;
-            // 
             // panel1
             // 
             panel1.Controls.Add(CategoryComboBox);
@@ -184,9 +168,10 @@
             panel1.Controls.Add(CostBox);
             panel1.Controls.Add(NameRichText);
             panel1.Controls.Add(label5);
-            panel1.Location = new Point(311, 3);
+            panel1.Dock = DockStyle.Left;
+            panel1.Location = new Point(302, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(601, 485);
+            panel1.Size = new Size(601, 491);
             panel1.TabIndex = 13;
             // 
             // CategoryComboBox
@@ -210,22 +195,54 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(label1);
-            panel2.Controls.Add(RemoveItemButton);
             panel2.Controls.Add(ItemsList);
-            panel2.Controls.Add(AddItemButton);
-            panel2.Location = new Point(3, 3);
+            panel2.Controls.Add(panel3);
+            panel2.Controls.Add(label1);
+            panel2.Dock = DockStyle.Left;
+            panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(302, 485);
+            panel2.Size = new Size(302, 491);
             panel2.TabIndex = 11;
+            // 
+            // panel3
+            // 
+            panel3.Controls.Add(AddItemButton);
+            panel3.Controls.Add(RemoveItemButton);
+            panel3.Dock = DockStyle.Bottom;
+            panel3.Location = new Point(0, 373);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(302, 118);
+            panel3.TabIndex = 13;
+            // 
+            // AddItemButton
+            // 
+            AddItemButton.Dock = DockStyle.Left;
+            AddItemButton.Location = new Point(86, 0);
+            AddItemButton.Name = "AddItemButton";
+            AddItemButton.Size = new Size(88, 118);
+            AddItemButton.TabIndex = 11;
+            AddItemButton.Text = "Add";
+            AddItemButton.UseVisualStyleBackColor = true;
+            AddItemButton.Click += AddItemButton_Click;
+            // 
+            // RemoveItemButton
+            // 
+            RemoveItemButton.Dock = DockStyle.Left;
+            RemoveItemButton.Location = new Point(0, 0);
+            RemoveItemButton.Name = "RemoveItemButton";
+            RemoveItemButton.Size = new Size(86, 118);
+            RemoveItemButton.TabIndex = 12;
+            RemoveItemButton.Text = "Remove";
+            RemoveItemButton.UseVisualStyleBackColor = true;
+            RemoveItemButton.Click += RemoveItemButton_Click;
             // 
             // ItemsTab
             // 
             AutoScaleDimensions = new SizeF(120F, 120F);
             AutoScaleMode = AutoScaleMode.Dpi;
             AutoSize = true;
-            Controls.Add(panel2);
             Controls.Add(panel1);
+            Controls.Add(panel2);
             Name = "ItemsTab";
             Size = new Size(916, 491);
             Load += ItemsTab_Load;
@@ -233,6 +250,7 @@
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            panel3.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -249,11 +267,12 @@
         private RichTextBox NameRichText;
         private Label label6;
         private RichTextBox DescriptionRichText;
-        private Button AddItemButton;
-        private Button RemoveItemButton;
         private Panel panel1;
         private Panel panel2;
         private ComboBox CategoryComboBox;
         private Label label7;
+        private Panel panel3;
+        private Button AddItemButton;
+        private Button RemoveItemButton;
     }
 }

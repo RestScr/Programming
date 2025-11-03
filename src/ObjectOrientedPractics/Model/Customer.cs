@@ -68,7 +68,7 @@ namespace ObjectOrientedPractics.Model
                 _address = value;
             }
         }
-
+        
         /// <summary>
         /// Конструктор класса покупателя.
         /// </summary>

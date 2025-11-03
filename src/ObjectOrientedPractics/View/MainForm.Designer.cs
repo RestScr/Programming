@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             tabControl1 = new TabControl();
             ItemsTab = new TabPage();
             ItemsControlTab = new ObjectOrientedPractics.View.Tabs.ItemsTab();
@@ -42,10 +43,11 @@
             // 
             tabControl1.Controls.Add(ItemsTab);
             tabControl1.Controls.Add(CustomersTab);
+            tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(932, 525);
+            tabControl1.Size = new Size(931, 524);
             tabControl1.TabIndex = 0;
             // 
             // ItemsTab
@@ -54,7 +56,7 @@
             ItemsTab.Location = new Point(4, 29);
             ItemsTab.Name = "ItemsTab";
             ItemsTab.Padding = new Padding(3);
-            ItemsTab.Size = new Size(924, 492);
+            ItemsTab.Size = new Size(923, 491);
             ItemsTab.TabIndex = 0;
             ItemsTab.Text = "Items";
             ItemsTab.UseVisualStyleBackColor = true;
@@ -62,9 +64,10 @@
             // ItemsControlTab
             // 
             ItemsControlTab.AutoSize = true;
+            ItemsControlTab.Dock = DockStyle.Fill;
             ItemsControlTab.Location = new Point(3, 3);
             ItemsControlTab.Name = "ItemsControlTab";
-            ItemsControlTab.Size = new Size(915, 491);
+            ItemsControlTab.Size = new Size(917, 485);
             ItemsControlTab.TabIndex = 0;
             // 
             // CustomersTab
@@ -73,16 +76,17 @@
             CustomersTab.Location = new Point(4, 29);
             CustomersTab.Name = "CustomersTab";
             CustomersTab.Padding = new Padding(3);
-            CustomersTab.Size = new Size(924, 492);
+            CustomersTab.Size = new Size(923, 491);
             CustomersTab.TabIndex = 1;
             CustomersTab.Text = "Customers";
             CustomersTab.UseVisualStyleBackColor = true;
             // 
             // CustomersControlTab
             // 
+            CustomersControlTab.Dock = DockStyle.Fill;
             CustomersControlTab.Location = new Point(3, 3);
             CustomersControlTab.Name = "CustomersControlTab";
-            CustomersControlTab.Size = new Size(884, 486);
+            CustomersControlTab.Size = new Size(917, 485);
             CustomersControlTab.TabIndex = 0;
             // 
             // MainForm

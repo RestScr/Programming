@@ -12,5 +12,6 @@ namespace ObjectOrientedPractics.Services
     /// </summary>
     public static class StoreSerializer
     {
+
     }
 }
