@@ -17,8 +17,17 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         private static int _createdCustomers = 0;
 
+        /// <summary>
+        /// Поле идентификатора покупателя.
+        /// </summary>
         private int _id;
+        /// <summary>
+        /// Поле полного имени покупателя.
+        /// </summary>
         private string _fullname;
+        /// <summary>
+        /// Поле адреса покупателя.
+        /// </summary>
         private Address _address;
 
         /// <summary>
