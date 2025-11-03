@@ -32,6 +32,5 @@ namespace ObjectOrientedPractics.Model
                 return cost;
             }
         }
-
     }
 }
