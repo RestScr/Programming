@@ -9,7 +9,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Класс корзины покупателя.
     /// </summary>
-    internal class Cart
+    public class Cart
     {
         /// <summary>
         /// Список товаров покупателя.

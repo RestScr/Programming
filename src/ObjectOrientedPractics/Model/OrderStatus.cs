@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
-    enum OrderStatus
+    public enum OrderStatus
     {
         New,
         Processing,

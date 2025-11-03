@@ -9,7 +9,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Класс заказа.
     /// </summary>
-    internal class Order
+    public class Order
     {
         /// <summary>
         /// Поле класса, отвечающее за общее количество созданных экземпляров.
