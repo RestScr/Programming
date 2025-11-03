@@ -19,6 +19,11 @@ namespace ObjectOrientedPractics.Model
         private string _address;
 
         /// <summary>
+        /// Корзина покупателя.
+        /// </summary>
+        public Cart CustomerCart { get; init; } = new Cart();
+
+        /// <summary>
         /// Свойство идентификатора объекта.
         /// </summary>
         public int Id
