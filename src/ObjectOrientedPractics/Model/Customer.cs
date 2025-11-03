@@ -10,13 +10,13 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Класс покупателя.
     /// </summary>
-    internal class Customer
+    public class Customer
     {
         private static int _createdCustomers = 0;
 
         private int _id;
         private string _fullname;
-        private string _address;
+        private Address _address;
 
         /// <summary>
         /// Корзина покупателя.
@@ -62,7 +62,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Свойство адреса покупателя.
         /// </summary>
-        public string Address
+        public Address Address
         {
             get
             {
@@ -70,18 +70,16 @@ namespace ObjectOrientedPractics.Model
             }
             set
             {
-                ValueValidator.AssertStringOnLength(value, 500, "Address");
-
                 _address = value;
             }
         }
-
+        
         /// <summary>
         /// Конструктор класса покупателя.
         /// </summary>
         /// <param name="fullname"> ФИО покупателя. </param>
         /// <param name="address"> Адрес проживания (доставки) покупателя. </param>
-        public Customer(string fullname, string address)
+        public Customer(string fullname, Address address)
         {
             Id = ++_createdCustomers;
             Fullname = fullname;

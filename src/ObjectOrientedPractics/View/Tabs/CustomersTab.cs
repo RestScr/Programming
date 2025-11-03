@@ -9,22 +9,38 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Services;
+using ObjectOrientedPractics.View.Controls;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
     /// <summary>
     /// Класс вкладки с покупателями.
     /// </summary>
-    public partial class CustomerTab : UserControl
+    public partial class CustomersTab : UserControl
     {
-        private List<Customer> _customers { get; } = new();
+        private List<Customer> _customers = new List<Customer>();
 
         private Customer _selectedCustomer { get; set; } = null;
 
         /// <summary>
+        /// Свойство списка объектов покупателя.
+        /// </summary>
+        public List<Customer> Customers
+        {
+            get
+            {
+                return _customers;
+            }
+            set
+            {
+                _customers = value;
+            }
+        }
+
+        /// <summary>
         /// Конструктор вкладки с покупателями.
         /// </summary>
-        public CustomerTab()
+        public CustomersTab()
         {
             InitializeComponent();
         }
@@ -37,12 +53,12 @@ namespace ObjectOrientedPractics.View.Tabs
             if (_selectedCustomer == null)
             {
                 CustomerFullnameBox.Enabled = false;
-                AddressRichText.Enabled = false;
+                AddressField.Enable(false);
             }
             else
             {
                 CustomerFullnameBox.Enabled = true;
-                AddressRichText.Enabled = true;
+                AddressField.Enable(true);
             }
         }
 
@@ -52,7 +68,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="customer"> Покупатель для добавления. </param>
         private void AddCustomer(Customer customer)
         {
-            _customers.Add(customer);
+            Customers.Add(customer);
             CustomersList.Items.Add(Convert.ToString(customer.Id) + " " + customer.Fullname);
         }
 
@@ -66,7 +82,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 return;
             }
-            _customers.RemoveAt(selectedIndex);
+            Customers.RemoveAt(selectedIndex);
             CustomersList.Items.RemoveAt(selectedIndex--);
             if (selectedIndex >= 0)
             {
@@ -91,7 +107,8 @@ namespace ObjectOrientedPractics.View.Tabs
 
             CustomerIDBox.Text = Convert.ToString(_selectedCustomer.Id);
             CustomerFullnameBox.Text = _selectedCustomer.Fullname;
-            AddressRichText.Text = _selectedCustomer.Address;
+            AddressField.DeliveryAddress = _selectedCustomer.Address;
+            AddressField.FillBoxes();
         }
 
         /// <summary>
@@ -103,7 +120,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 CustomerIDBox.Text = "";
                 CustomerFullnameBox.Text = "";
-                AddressRichText.Text = "";
+                AddressField.ClearBoxes();
             }
         }
 
@@ -149,7 +166,12 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 return;
             }
-            _selectedCustomer = _customers[selectedIndex];
+            // Заполняем поле адреса прошлого выбранного покупателя
+            if (_selectedCustomer != null)
+            {
+                _selectedCustomer.Address = AddressField.DeliveryAddress;
+            }
+            _selectedCustomer = Customers[selectedIndex];
             FillBoxes();
             DisableElements();
         }
@@ -171,22 +193,6 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
-        private void AddressRichText_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (_selectedCustomer == null)
-                {
-                    return;
-                }
-                _selectedCustomer.Address = AddressRichText.Text;
-            }
-            catch (ArgumentException)
-            {
-                AddressRichText.BackColor = Color.LightPink;
-            }
-        }
-
         /// <summary>
         /// Обработчик ввода имени покупателя при выходе из окошка ввода.
         /// </summary>
@@ -194,7 +200,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="e"> Аргументы события. </param>
         private void CustomerFullnameBox_Leave(object sender, EventArgs e)
         {
-            CustomersList.Items[_customers.IndexOf(_selectedCustomer)] = _selectedCustomer.Id + " " + _selectedCustomer.Fullname;
+            CustomersList.Items[Customers.IndexOf(_selectedCustomer)] = _selectedCustomer.Id + " " + _selectedCustomer.Fullname;
         }
     }
 }

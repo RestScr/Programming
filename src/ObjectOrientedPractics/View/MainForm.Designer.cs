@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             tabControl1 = new TabControl();
             ItemsTab = new TabPage();
-            itemsTab1 = new ObjectOrientedPractics.View.Tabs.ItemsTab();
+            ItemsControlTab = new ObjectOrientedPractics.View.Tabs.ItemsTab();
             CustomersTab = new TabPage();
-            customerTab1 = new ObjectOrientedPractics.View.Tabs.CustomerTab();
+            CustomersControlTab = new ObjectOrientedPractics.View.Tabs.CustomersTab();
             tabControl1.SuspendLayout();
             ItemsTab.SuspendLayout();
             CustomersTab.SuspendLayout();
@@ -42,58 +43,64 @@
             // 
             tabControl1.Controls.Add(ItemsTab);
             tabControl1.Controls.Add(CustomersTab);
+            tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(898, 525);
+            tabControl1.Size = new Size(931, 524);
             tabControl1.TabIndex = 0;
             // 
             // ItemsTab
             // 
-            ItemsTab.Controls.Add(itemsTab1);
+            ItemsTab.Controls.Add(ItemsControlTab);
             ItemsTab.Location = new Point(4, 29);
             ItemsTab.Name = "ItemsTab";
             ItemsTab.Padding = new Padding(3);
-            ItemsTab.Size = new Size(890, 481);
+            ItemsTab.Size = new Size(923, 491);
             ItemsTab.TabIndex = 0;
             ItemsTab.Text = "Items";
             ItemsTab.UseVisualStyleBackColor = true;
             // 
-            // itemsTab1
+            // ItemsControlTab
             // 
-            itemsTab1.Location = new Point(3, 3);
-            itemsTab1.Name = "itemsTab1";
-            itemsTab1.Size = new Size(878, 468);
-            itemsTab1.TabIndex = 0;
+            ItemsControlTab.AutoSize = true;
+            ItemsControlTab.Dock = DockStyle.Fill;
+            ItemsControlTab.Location = new Point(3, 3);
+            ItemsControlTab.Name = "ItemsControlTab";
+            ItemsControlTab.Size = new Size(917, 485);
+            ItemsControlTab.TabIndex = 0;
             // 
             // CustomersTab
             // 
-            CustomersTab.Controls.Add(customerTab1);
+            CustomersTab.Controls.Add(CustomersControlTab);
             CustomersTab.Location = new Point(4, 29);
             CustomersTab.Name = "CustomersTab";
             CustomersTab.Padding = new Padding(3);
-            CustomersTab.Size = new Size(890, 492);
+            CustomersTab.Size = new Size(923, 491);
             CustomersTab.TabIndex = 1;
             CustomersTab.Text = "Customers";
             CustomersTab.UseVisualStyleBackColor = true;
             // 
-            // customerTab1
+            // CustomersControlTab
             // 
-            customerTab1.Location = new Point(3, 3);
-            customerTab1.Name = "customerTab1";
-            customerTab1.Size = new Size(884, 486);
-            customerTab1.TabIndex = 0;
+            CustomersControlTab.Dock = DockStyle.Fill;
+            CustomersControlTab.Location = new Point(3, 3);
+            CustomersControlTab.Name = "CustomersControlTab";
+            CustomersControlTab.Size = new Size(917, 485);
+            CustomersControlTab.TabIndex = 0;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(897, 524);
+            ClientSize = new Size(931, 524);
             Controls.Add(tabControl1);
             Name = "MainForm";
             Text = "Project Oriented Practics";
+            Load += MainForm_Load;
             tabControl1.ResumeLayout(false);
             ItemsTab.ResumeLayout(false);
+            ItemsTab.PerformLayout();
             CustomersTab.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -103,7 +110,7 @@
         private TabControl tabControl1;
         private TabPage ItemsTab;
         private TabPage CustomersTab;
-        private View.Tabs.ItemsTab itemsTab1;
-        private View.Tabs.CustomerTab customerTab1;
+        private View.Tabs.ItemsTab ItemsControlTab;
+        private View.Tabs.CustomersTab CustomersControlTab;
     }
 }

@@ -8,13 +8,10 @@ using ObjectOrientedPractics.Model;
 namespace ObjectOrientedPractics.Services
 {
     /// <summary>
-    /// Класс фабрики товаров.
+    /// Класс для сериализации, десериализации, загрузки и выгрузки данных из файла.
     /// </summary>
-    internal static class ItemFactory
+    public static class StoreSerializer
     {
-        public static Item GenerateItem()
-        {
-            return new Item("Item", "Description", 10050, Category.Disk);
-        }
+
     }
 }

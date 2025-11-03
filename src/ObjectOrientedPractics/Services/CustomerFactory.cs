@@ -14,7 +14,7 @@ namespace ObjectOrientedPractics.Services
     {
         public static Customer GenerateCustomer()
         {
-            return new Customer("New Customer", "Address");
+            return new Customer("New Customer", new Address());
         }
     }
 }

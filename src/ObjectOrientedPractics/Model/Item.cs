@@ -10,7 +10,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Класс товара.
     /// </summary>
-    internal class Item
+    public class Item
     {
         private static int _createdItems = 0;
 
@@ -89,17 +89,24 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
+        /// Категория товара
+        /// </summary>
+        public Category ItemCategory { get; set; }
+
+        /// <summary>
         /// Конструктор товара.
         /// </summary>
         /// <param name="name"> Название товара. </param>
         /// <param name="info"> Описание товара. </param>
         /// <param name="cost"> Цена на товар. </param>
-        public Item(string name, string info, double cost)
+        /// <param name="itemCategory"> Категория товара </param>
+        public Item(string name, string info, double cost, Category itemCategory)
         {
             Id = ++_createdItems;
             Name = name;
             Info = info;
             Cost = cost;
+            ItemCategory = itemCategory;
         }
     }
 }
