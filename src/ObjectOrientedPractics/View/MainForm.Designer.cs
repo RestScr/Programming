@@ -28,14 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             tabControl1 = new TabControl();
             ItemsTab = new TabPage();
             ItemsControlTab = new ObjectOrientedPractics.View.Tabs.ItemsTab();
             CustomersTab = new TabPage();
             CustomersControlTab = new ObjectOrientedPractics.View.Tabs.CustomersTab();
             CartsTab = new TabPage();
-            cartsTab1 = new ObjectOrientedPractics.View.Tabs.CartsTab();
+            CustomerCartTab = new ObjectOrientedPractics.View.Tabs.CartsTab();
             tabControl1.SuspendLayout();
             ItemsTab.SuspendLayout();
             CustomersTab.SuspendLayout();
@@ -53,6 +52,7 @@
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(934, 481);
             tabControl1.TabIndex = 0;
+            tabControl1.TabIndexChanged += tabControl1_TabIndexChanged;
             // 
             // ItemsTab
             // 
@@ -95,7 +95,7 @@
             // 
             // CartsTab
             // 
-            CartsTab.Controls.Add(cartsTab1);
+            CartsTab.Controls.Add(CustomerCartTab);
             CartsTab.Location = new Point(4, 29);
             CartsTab.Name = "CartsTab";
             CartsTab.Size = new Size(926, 448);
@@ -103,13 +103,13 @@
             CartsTab.Text = "Carts";
             CartsTab.UseVisualStyleBackColor = true;
             // 
-            // cartsTab1
+            // CustomerCartTab
             // 
-            cartsTab1.Dock = DockStyle.Fill;
-            cartsTab1.Location = new Point(0, 0);
-            cartsTab1.Name = "cartsTab1";
-            cartsTab1.Size = new Size(926, 448);
-            cartsTab1.TabIndex = 0;
+            CustomerCartTab.Dock = DockStyle.Fill;
+            CustomerCartTab.Location = new Point(0, 0);
+            CustomerCartTab.Name = "CustomerCartTab";
+            CustomerCartTab.Size = new Size(926, 448);
+            CustomerCartTab.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -136,6 +136,6 @@
         private View.Tabs.ItemsTab ItemsControlTab;
         private View.Tabs.CustomersTab CustomersControlTab;
         private TabPage CartsTab;
-        private View.Tabs.CartsTab cartsTab1;
+        private View.Tabs.CartsTab CustomerCartTab;
     }
 }

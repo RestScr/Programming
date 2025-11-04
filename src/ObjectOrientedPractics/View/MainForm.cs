@@ -15,5 +15,10 @@ namespace ObjectOrientedPractics
         private void MainForm_Load(object sender, EventArgs e)
         {
         }
+
+        private void tabControl1_TabIndexChanged(object sender, EventArgs e)
+        {
+            CustomerCartTab.RefreshData();
+        }
     }
 }

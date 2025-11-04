@@ -118,13 +118,8 @@ namespace ObjectOrientedPractics.View.Tabs
             FillCart();
         }
 
-        private void CartsTab_VisibleChanged(object sender, EventArgs e)
+        public void RefreshData()
         {
-            if (!CustomerComboBox.Items.Contains(CustomerComboBox.Text))
-            {
-                SelectedCustomer = null;
-                CustomerComboBox.Text = "";
-            }
             if (SelectedCustomer != null)
             {
                 CustomerComboBox.Text = SelectedCustomer.Id + " " + SelectedCustomer.Fullname;
@@ -146,6 +141,16 @@ namespace ObjectOrientedPractics.View.Tabs
                     CustomerComboBox.Items.Add(customer.Id + " " + customer.Fullname);
                 }
             }
+            if (!CustomerComboBox.Items.Contains(CustomerComboBox.Text))
+            {
+                SelectedCustomer = null;
+                CustomerComboBox.Text = "";
+            }
+        }
+
+        private void CartsTab_VisibleChanged(object sender, EventArgs e)
+        {
+            RefreshData();
             FillCart();
         }
 

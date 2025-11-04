@@ -36,6 +36,8 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        public static OrderStatus Status { get; set; } = OrderStatus.New;
+
         /// <summary>
         /// Идентификатор класса.
         /// </summary>
@@ -74,8 +76,10 @@ namespace ObjectOrientedPractics.Model
         public Address OrderAddress { get; set; }
 
         /// <summary>
-        /// Стандартный конструктор класса заказа.
+        /// Конструктор заказа.
         /// </summary>
+        /// <param name="address"> Адрес доставки заказа. </param>
+        /// <param name="cart"> Корзина покупателя. </param>
         public Order(Address address, Cart cart)
         {
             Id = Created++;
@@ -84,6 +88,23 @@ namespace ObjectOrientedPractics.Model
             {
                 Items.Add(item);
             }
+        }
+
+        /// <summary>
+        /// Конструктор заказа.
+        /// </summary>
+        /// <param name="address"> Адрес доставки заказа. </param>
+        /// <param name="cart"> Корзина покупателя. </param>
+        /// <param name="status"> Статус заказа. </param>
+        public Order(Address address, Cart cart, OrderStatus status)
+        {
+            Id = Created++;
+            OrderAddress = address;
+            foreach (Item item in cart.Items)
+            {
+                Items.Add(item);
+            }
+            Status = status;
         }
     }
 }
