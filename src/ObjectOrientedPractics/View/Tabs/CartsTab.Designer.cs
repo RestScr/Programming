@@ -32,6 +32,8 @@
             panel1 = new Panel();
             panel6 = new Panel();
             ItemsCartListBox = new ListBox();
+            itemsBindingSource = new BindingSource(components);
+            storeBindingSource = new BindingSource(components);
             panel5 = new Panel();
             label1 = new Label();
             panel4 = new Panel();
@@ -50,14 +52,14 @@
             CreateOrderButton = new Button();
             panel8 = new Panel();
             CustomerComboBox = new ComboBox();
+            customersBindingSource = new BindingSource(components);
             label3 = new Label();
             label2 = new Label();
             panel7 = new Panel();
-            storeBindingSource = new BindingSource(components);
-            itemsBindingSource = new BindingSource(components);
-            customersBindingSource = new BindingSource(components);
             panel1.SuspendLayout();
             panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)itemsBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)storeBindingSource).BeginInit();
             panel5.SuspendLayout();
             panel4.SuspendLayout();
             panel3.SuspendLayout();
@@ -66,8 +68,6 @@
             panel12.SuspendLayout();
             panel11.SuspendLayout();
             panel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)storeBindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)itemsBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)customersBindingSource).BeginInit();
             SuspendLayout();
             // 
@@ -93,13 +93,21 @@
             // 
             // ItemsCartListBox
             // 
-            ItemsCartListBox.DataSource = itemsBindingSource;
             ItemsCartListBox.Dock = DockStyle.Fill;
             ItemsCartListBox.FormattingEnabled = true;
             ItemsCartListBox.Location = new Point(0, 0);
             ItemsCartListBox.Name = "ItemsCartListBox";
             ItemsCartListBox.Size = new Size(250, 362);
             ItemsCartListBox.TabIndex = 0;
+            // 
+            // itemsBindingSource
+            // 
+            itemsBindingSource.DataMember = "Items";
+            itemsBindingSource.DataSource = storeBindingSource;
+            // 
+            // storeBindingSource
+            // 
+            storeBindingSource.DataSource = typeof(Model.Store);
             // 
             // panel5
             // 
@@ -274,6 +282,11 @@
             CustomerComboBox.Size = new Size(394, 28);
             CustomerComboBox.TabIndex = 2;
             // 
+            // customersBindingSource
+            // 
+            customersBindingSource.DataMember = "Customers";
+            customersBindingSource.DataSource = storeBindingSource;
+            // 
             // label3
             // 
             label3.AutoSize = true;
@@ -301,20 +314,6 @@
             panel7.Size = new Size(494, 35);
             panel7.TabIndex = 0;
             // 
-            // storeBindingSource
-            // 
-            storeBindingSource.DataSource = typeof(Model.Store);
-            // 
-            // itemsBindingSource
-            // 
-            itemsBindingSource.DataMember = "Items";
-            itemsBindingSource.DataSource = storeBindingSource;
-            // 
-            // customersBindingSource
-            // 
-            customersBindingSource.DataMember = "Customers";
-            customersBindingSource.DataSource = storeBindingSource;
-            // 
             // CartsTab
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -326,6 +325,8 @@
             Size = new Size(771, 461);
             panel1.ResumeLayout(false);
             panel6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)itemsBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)storeBindingSource).EndInit();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             panel4.ResumeLayout(false);
@@ -337,8 +338,6 @@
             panel11.ResumeLayout(false);
             panel8.ResumeLayout(false);
             panel8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)storeBindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)itemsBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)customersBindingSource).EndInit();
             ResumeLayout(false);
         }
