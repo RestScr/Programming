@@ -198,6 +198,7 @@
             Name = "CustomersTab";
             Size = new Size(916, 490);
             Load += CustomerTab_Load;
+            VisibleChanged += CustomersTab_VisibleChanged;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel3.ResumeLayout(false);

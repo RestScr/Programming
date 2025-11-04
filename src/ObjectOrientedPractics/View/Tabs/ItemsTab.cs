@@ -209,10 +209,6 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 CategoryComboBox.Items.Add(category);
             }
-            foreach (Item item in Store.Items)
-            {
-                ItemsList.Items.Add(item.Name);
-            }
         }
 
         private void NameRichText_Leave(object sender, EventArgs e)
@@ -223,6 +219,18 @@ namespace ObjectOrientedPractics.View.Tabs
         private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             _selectedItem.ItemCategory = (Category)CategoryComboBox.SelectedIndex;
+        }
+
+        private void ItemsTab_VisibleChanged(object sender, EventArgs e)
+        {
+            ItemsList.Items.Clear();
+            foreach (Item item in Store.Items)
+            {
+                if (!ItemsList.Items.Contains(item.Id + " " + item.Name))
+                {
+                    ItemsList.Items.Add(item.Id + " " + item.Name);
+                }
+            }
         }
     }
 }

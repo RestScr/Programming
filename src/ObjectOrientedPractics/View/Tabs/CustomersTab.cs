@@ -135,10 +135,6 @@ namespace ObjectOrientedPractics.View.Tabs
         private void CustomerTab_Load(object sender, EventArgs e)
         {
             DisableElements();
-            foreach (Customer customer in Store.Customers)
-            {
-                CustomersList.Items.Add(customer.Fullname);
-            }
         }
 
         /// <summary>
@@ -188,6 +184,18 @@ namespace ObjectOrientedPractics.View.Tabs
         private void CustomerFullnameBox_Leave(object sender, EventArgs e)
         {
             CustomersList.Items[Store.Customers.IndexOf(_selectedCustomer)] = _selectedCustomer.Id + " " + _selectedCustomer.Fullname;
+        }
+
+        private void CustomersTab_VisibleChanged(object sender, EventArgs e)
+        {
+            CustomersList.Items.Clear();
+            foreach (Customer customer in Store.Customers)
+            {
+                if (!CustomersList.Items.Contains(customer.Id + " " + customer.Fullname))
+                {
+                    CustomersList.Items.Add(customer.Id + " " + customer.Fullname);
+                }
+            }
         }
     }
 }

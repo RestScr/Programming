@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             panel1 = new Panel();
             panel6 = new Panel();
             ItemsCartListBox = new ListBox();
@@ -36,8 +35,6 @@
             label1 = new Label();
             panel4 = new Panel();
             AddToCartButton = new Button();
-            itemsBindingSource = new BindingSource(components);
-            storeBindingSource = new BindingSource(components);
             panel2 = new Panel();
             panel3 = new Panel();
             panel10 = new Panel();
@@ -52,7 +49,6 @@
             CreateOrderButton = new Button();
             panel8 = new Panel();
             CustomerComboBox = new ComboBox();
-            customersBindingSource = new BindingSource(components);
             label3 = new Label();
             label2 = new Label();
             panel7 = new Panel();
@@ -60,15 +56,12 @@
             panel6.SuspendLayout();
             panel5.SuspendLayout();
             panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)itemsBindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)storeBindingSource).BeginInit();
             panel3.SuspendLayout();
             panel10.SuspendLayout();
             panel9.SuspendLayout();
             panel12.SuspendLayout();
             panel11.SuspendLayout();
             panel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)customersBindingSource).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -137,15 +130,6 @@
             AddToCartButton.TabIndex = 0;
             AddToCartButton.Text = "Add To Cart";
             AddToCartButton.UseVisualStyleBackColor = true;
-            // 
-            // itemsBindingSource
-            // 
-            itemsBindingSource.DataMember = "Items";
-            itemsBindingSource.DataSource = storeBindingSource;
-            // 
-            // storeBindingSource
-            // 
-            storeBindingSource.DataSource = typeof(Model.Store);
             // 
             // panel2
             // 
@@ -276,17 +260,12 @@
             // 
             // CustomerComboBox
             // 
-            CustomerComboBox.DataSource = customersBindingSource;
             CustomerComboBox.FormattingEnabled = true;
             CustomerComboBox.Location = new Point(94, 3);
             CustomerComboBox.Name = "CustomerComboBox";
             CustomerComboBox.Size = new Size(394, 28);
             CustomerComboBox.TabIndex = 2;
-            // 
-            // customersBindingSource
-            // 
-            customersBindingSource.DataMember = "Customers";
-            customersBindingSource.DataSource = storeBindingSource;
+            CustomerComboBox.SelectedIndexChanged += CustomerComboBox_SelectedIndexChanged;
             // 
             // label3
             // 
@@ -324,7 +303,7 @@
             Controls.Add(panel1);
             Name = "CartsTab";
             Size = new Size(771, 461);
-            Load += CartsTab_Load;
+            VisibleChanged += CartsTab_VisibleChanged;
             panel1.ResumeLayout(false);
             panel6.ResumeLayout(false);
             panel5.ResumeLayout(false);
@@ -338,7 +317,6 @@
             panel11.ResumeLayout(false);
             panel8.ResumeLayout(false);
             panel8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)customersBindingSource).EndInit();
             ResumeLayout(false);
         }
 
@@ -368,8 +346,5 @@
         private Button RemoveItemButton;
         private Panel panel12;
         private Panel panel11;
-        private BindingSource itemsBindingSource;
-        private BindingSource storeBindingSource;
-        private BindingSource customersBindingSource;
     }
 }
