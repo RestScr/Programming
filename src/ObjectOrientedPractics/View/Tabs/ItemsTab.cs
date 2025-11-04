@@ -19,23 +19,6 @@ namespace ObjectOrientedPractics.View.Tabs
     {
         private Item _selectedItem { get; set; } = null;
 
-        private List<Item> _items = new();
-
-        /// <summary>
-        /// Свойство списка товаров.
-        /// </summary>
-        public List<Item> Items
-        {
-            get
-            {
-                return _items;
-            }
-            set
-            {
-                _items = value;
-            }
-        }
-
         /// <summary>
         /// Конструктор формы.
         /// </summary>
@@ -72,7 +55,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="item"> Товар. </param>
         private void AddItem(Item item)
         {
-            Items.Add(item);
+            Store.Items.Add(item);
             ItemsList.Items.Add(Convert.ToString(item.Id) + " " + item.Name);
         }
 
@@ -82,13 +65,13 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="item"> Товар в списке для удаления. </param>
         private void RemoveItem(Item item)
         {
-            Items.Remove(item);
+            Store.Items.Remove(item);
             int selectedIndex = ItemsList.SelectedIndex - 1;
             ItemsList.Items.Remove(Convert.ToString(item.Id) + " " + item.Name);
             if (ItemsList.Items.Count > 0 && selectedIndex >= 0)
             {
                 ItemsList.SelectedIndex = selectedIndex;
-                _selectedItem = Items[selectedIndex];
+                _selectedItem = Store.Items[selectedIndex];
             }
             else
             {
@@ -141,7 +124,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 return;
             }
-            _selectedItem = Items[selectedIndex];
+            _selectedItem = Store.Items[selectedIndex];
             IDBox.Text = Convert.ToString(_selectedItem.Id);
             CostBox.Text = Convert.ToString(_selectedItem.Cost);
             NameRichText.Text = _selectedItem.Name;
@@ -226,11 +209,15 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 CategoryComboBox.Items.Add(category);
             }
+            foreach (Item item in Store.Items)
+            {
+                ItemsList.Items.Add(item.Name);
+            }
         }
 
         private void NameRichText_Leave(object sender, EventArgs e)
         {
-            ItemsList.Items[Items.IndexOf(_selectedItem)] = Convert.ToString(_selectedItem.Id) + " " + _selectedItem.Name;
+            ItemsList.Items[Store.Items.IndexOf(_selectedItem)] = Convert.ToString(_selectedItem.Id) + " " + _selectedItem.Name;
         }
 
         private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)

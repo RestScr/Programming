@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
-    public class Store
+    public static class Store
     {
-        List<Item> _items = new List<Item>();
-        List<Customer> _customers = new List<Customer>();
+        static List<Item> _items = new List<Item>();
+        static List<Customer> _customers = new List<Customer>();
 
         /// <summary>
         /// Свойство совокупности товаров.
         /// </summary>
-        public List<Item> Items
+        public static List<Item> Items
         {
             get
             {
@@ -25,7 +25,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Свойство совокупности покупателей.
         /// </summary>
-        public List<Customer> Customers
+        public static List<Customer> Customers
         {
             get
             {
@@ -36,6 +36,6 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Конструктор класса магазина по умолчанию.
         /// </summary>
-        public Store() { }
+        static Store() { }
     }
 }

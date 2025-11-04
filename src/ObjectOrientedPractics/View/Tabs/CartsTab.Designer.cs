@@ -32,12 +32,12 @@
             panel1 = new Panel();
             panel6 = new Panel();
             ItemsCartListBox = new ListBox();
-            itemsBindingSource = new BindingSource(components);
-            storeBindingSource = new BindingSource(components);
             panel5 = new Panel();
             label1 = new Label();
             panel4 = new Panel();
             AddToCartButton = new Button();
+            itemsBindingSource = new BindingSource(components);
+            storeBindingSource = new BindingSource(components);
             panel2 = new Panel();
             panel3 = new Panel();
             panel10 = new Panel();
@@ -58,10 +58,10 @@
             panel7 = new Panel();
             panel1.SuspendLayout();
             panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)itemsBindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)storeBindingSource).BeginInit();
             panel5.SuspendLayout();
             panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)itemsBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)storeBindingSource).BeginInit();
             panel3.SuspendLayout();
             panel10.SuspendLayout();
             panel9.SuspendLayout();
@@ -99,15 +99,7 @@
             ItemsCartListBox.Name = "ItemsCartListBox";
             ItemsCartListBox.Size = new Size(250, 362);
             ItemsCartListBox.TabIndex = 0;
-            // 
-            // itemsBindingSource
-            // 
-            itemsBindingSource.DataMember = "Items";
-            itemsBindingSource.DataSource = storeBindingSource;
-            // 
-            // storeBindingSource
-            // 
-            storeBindingSource.DataSource = typeof(Model.Store);
+            ItemsCartListBox.SelectedIndexChanged += ItemsCartListBox_SelectedIndexChanged;
             // 
             // panel5
             // 
@@ -145,6 +137,15 @@
             AddToCartButton.TabIndex = 0;
             AddToCartButton.Text = "Add To Cart";
             AddToCartButton.UseVisualStyleBackColor = true;
+            // 
+            // itemsBindingSource
+            // 
+            itemsBindingSource.DataMember = "Items";
+            itemsBindingSource.DataSource = storeBindingSource;
+            // 
+            // storeBindingSource
+            // 
+            storeBindingSource.DataSource = typeof(Model.Store);
             // 
             // panel2
             // 
@@ -323,13 +324,14 @@
             Controls.Add(panel1);
             Name = "CartsTab";
             Size = new Size(771, 461);
+            Load += CartsTab_Load;
             panel1.ResumeLayout(false);
             panel6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)itemsBindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)storeBindingSource).EndInit();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)itemsBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)storeBindingSource).EndInit();
             panel3.ResumeLayout(false);
             panel10.ResumeLayout(false);
             panel9.ResumeLayout(false);
