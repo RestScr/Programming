@@ -330,8 +330,6 @@
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             panel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)itemsBindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)storeBindingSource).EndInit();
             panel3.ResumeLayout(false);
             panel10.ResumeLayout(false);
             panel9.ResumeLayout(false);
