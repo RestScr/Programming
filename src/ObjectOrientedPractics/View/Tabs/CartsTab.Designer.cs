@@ -44,7 +44,7 @@
             RemoveItemButton = new Button();
             ClearCartButton = new Button();
             label4 = new Label();
-            label5 = new Label();
+            AmountLabel = new Label();
             panel11 = new Panel();
             CreateOrderButton = new Button();
             panel8 = new Panel();
@@ -130,6 +130,7 @@
             AddToCartButton.TabIndex = 0;
             AddToCartButton.Text = "Add To Cart";
             AddToCartButton.UseVisualStyleBackColor = true;
+            AddToCartButton.Click += AddToCartButton_Click;
             // 
             // panel2
             // 
@@ -168,6 +169,7 @@
             CartListBox.Name = "CartListBox";
             CartListBox.Size = new Size(494, 177);
             CartListBox.TabIndex = 0;
+            CartListBox.SelectedIndexChanged += CartListBox_SelectedIndexChanged;
             // 
             // panel9
             // 
@@ -184,7 +186,7 @@
             panel12.Controls.Add(RemoveItemButton);
             panel12.Controls.Add(ClearCartButton);
             panel12.Controls.Add(label4);
-            panel12.Controls.Add(label5);
+            panel12.Controls.Add(AmountLabel);
             panel12.Dock = DockStyle.Right;
             panel12.Location = new Point(244, 0);
             panel12.Name = "panel12";
@@ -199,15 +201,17 @@
             RemoveItemButton.TabIndex = 3;
             RemoveItemButton.Text = "Remove Item";
             RemoveItemButton.UseVisualStyleBackColor = true;
+            RemoveItemButton.Click += RemoveItemButton_Click;
             // 
             // ClearCartButton
             // 
-            ClearCartButton.Location = new Point(118, 68);
+            ClearCartButton.Location = new Point(122, 68);
             ClearCartButton.Name = "ClearCartButton";
             ClearCartButton.Size = new Size(128, 46);
             ClearCartButton.TabIndex = 4;
             ClearCartButton.Text = "Clear Cart";
             ClearCartButton.UseVisualStyleBackColor = true;
+            ClearCartButton.Click += ClearCartButton_Click;
             // 
             // label4
             // 
@@ -219,15 +223,15 @@
             label4.TabIndex = 1;
             label4.Text = "Amount:";
             // 
-            // label5
+            // AmountLabel
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label5.Location = new Point(175, 31);
-            label5.Name = "label5";
-            label5.Size = new Size(72, 31);
-            label5.TabIndex = 2;
-            label5.Text = "14,88";
+            AmountLabel.AutoSize = true;
+            AmountLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            AmountLabel.Location = new Point(175, 31);
+            AmountLabel.Name = "AmountLabel";
+            AmountLabel.Size = new Size(72, 31);
+            AmountLabel.TabIndex = 2;
+            AmountLabel.Text = "14,88";
             // 
             // panel11
             // 
@@ -240,12 +244,13 @@
             // 
             // CreateOrderButton
             // 
-            CreateOrderButton.Location = new Point(6, 68);
+            CreateOrderButton.Location = new Point(20, 68);
             CreateOrderButton.Name = "CreateOrderButton";
             CreateOrderButton.Size = new Size(121, 48);
             CreateOrderButton.TabIndex = 0;
             CreateOrderButton.Text = "Create Order";
             CreateOrderButton.UseVisualStyleBackColor = true;
+            CreateOrderButton.Click += CreateOrderButton_Click;
             // 
             // panel8
             // 
@@ -340,7 +345,7 @@
         private ComboBox CustomerComboBox;
         private ListBox CartListBox;
         private Button CreateOrderButton;
-        private Label label5;
+        private Label AmountLabel;
         private Label label4;
         private Button ClearCartButton;
         private Button RemoveItemButton;
