@@ -121,7 +121,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         public void RefreshData()
         {
-            
+            CustomerComboBox.BackColor = Color.White;
             if (SelectedCustomer != null)
             {
                 CustomerComboBox.Text = SelectedCustomer.Id + " " + SelectedCustomer.Fullname;
@@ -214,8 +214,11 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (SelectedCustomer == null)
             {
+                CustomerComboBox.BackColor = Color.LightPink;
                 return;
             }
+            CustomerComboBox.BackColor = Color.White;
+
             SelectedCustomer.Orders.Add(new Order(SelectedCustomer.Address, SelectedCustomer.CustomerCart));
             ClearCart();
             MessageBox.Show("Заказ успешно создан.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);

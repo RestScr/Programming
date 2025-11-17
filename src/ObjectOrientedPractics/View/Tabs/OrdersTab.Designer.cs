@@ -102,8 +102,10 @@
             OrdersData.Dock = DockStyle.Fill;
             OrdersData.Location = new Point(0, 0);
             OrdersData.Name = "OrdersData";
+            OrdersData.ReadOnly = true;
             OrdersData.RowHeadersWidth = 51;
             OrdersData.Size = new Size(554, 741);
+            OrdersData.StandardTab = true;
             OrdersData.TabIndex = 0;
             OrdersData.SelectionChanged += OrdersData_SelectionChanged;
             // 
@@ -112,6 +114,7 @@
             Id.HeaderText = "ID";
             Id.MinimumWidth = 6;
             Id.Name = "Id";
+            Id.ReadOnly = true;
             Id.Width = 125;
             // 
             // Created
@@ -119,6 +122,7 @@
             Created.HeaderText = "Created";
             Created.MinimumWidth = 6;
             Created.Name = "Created";
+            Created.ReadOnly = true;
             Created.Width = 125;
             // 
             // OrderStatus
@@ -126,6 +130,7 @@
             OrderStatus.HeaderText = "Order Status";
             OrderStatus.MinimumWidth = 6;
             OrderStatus.Name = "OrderStatus";
+            OrderStatus.ReadOnly = true;
             OrderStatus.Width = 125;
             // 
             // CustomerName
@@ -133,6 +138,7 @@
             CustomerName.HeaderText = "Customer Full Name";
             CustomerName.MinimumWidth = 6;
             CustomerName.Name = "CustomerName";
+            CustomerName.ReadOnly = true;
             CustomerName.Width = 125;
             // 
             // panel7
@@ -275,7 +281,6 @@
             DeliveryAddressControl.AutoSize = true;
             DeliveryAddressControl.DeliveryAddress = null;
             DeliveryAddressControl.Dock = DockStyle.Fill;
-            DeliveryAddressControl.Enabled = false;
             DeliveryAddressControl.Location = new Point(0, 0);
             DeliveryAddressControl.Name = "DeliveryAddressControl";
             DeliveryAddressControl.Size = new Size(810, 204);

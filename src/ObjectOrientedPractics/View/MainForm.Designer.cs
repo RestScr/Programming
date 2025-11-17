@@ -57,7 +57,6 @@
             TabControl.Size = new Size(1387, 794);
             TabControl.TabIndex = 0;
             TabControl.Selected += TabControl_Selected;
-            TabControl.TabIndexChanged += TabControl_TabIndexChanged;
             // 
             // ItemsTab
             // 
@@ -142,7 +141,6 @@
             Controls.Add(TabControl);
             Name = "MainForm";
             Text = "Project Oriented Practics";
-            Load += MainForm_Load;
             TabControl.ResumeLayout(false);
             ItemsTab.ResumeLayout(false);
             ItemsTab.PerformLayout();

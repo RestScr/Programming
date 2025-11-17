@@ -31,8 +31,12 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Метод для включения/отключения элементов интерфейса в зависимости от выбранного пользователя в листбоксе.
         /// </summary>
-        private void DisableElements()
+        public void DisableElements()
         {
+            if (CustomersList.SelectedIndex < 0)
+            {
+                _selectedCustomer = null;
+            }
             if (_selectedCustomer == null)
             {
                 CustomerFullnameBox.Enabled = false;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -30,8 +31,12 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Функция включения/отключения элементов в зависимости от выбранного элемента.
         /// </summary>
-        private void DisableElements()
+        public void DisableElements()
         {
+            if (ItemsList.SelectedIndex < 0 || !ItemsList.GetSelected(ItemsList.SelectedIndex))
+            {
+                _selectedItem = null;
+            }
             if (_selectedItem == null)
             {
                 CostBox.Enabled = false;

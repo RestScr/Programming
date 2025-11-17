@@ -82,7 +82,7 @@ namespace ObjectOrientedPractics.Model
         /// <param name="cart"> Корзина покупателя. </param>
         public Order(Address address, Cart cart)
         {
-            Id = Created++;
+            Id = ++Created;
             OrderAddress = address;
             foreach (Item item in cart.Items)
             {

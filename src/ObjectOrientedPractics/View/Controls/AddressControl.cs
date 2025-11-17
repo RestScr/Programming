@@ -80,12 +80,22 @@ namespace ObjectOrientedPractics.View.Controls
         /// </summary>
         public void FillBoxes(Address address)
         {
-            IndexBox.Text = address.Index;
-            CountryBox.Text = address.Country;
-            CityBox.Text = address.City;
-            StreetBox.Text = address.Street;
-            BuildingBox.Text = address.Building;
-            ApartmentBox.Text = address.Apartment;
+            DeliveryAddress = address;
+            FillBoxes();
+        }
+
+        /// <summary>
+        /// Функция задания режима для чтения элементам
+        /// </summary>
+        /// <param name="status"> Статус режима для чтения true - режим для чтения, false - редактирование. </param>
+        public void SetReadOnly(bool status)
+        {
+            IndexBox.ReadOnly = status;
+            CountryBox.ReadOnly = status;
+            CityBox.ReadOnly = status;
+            StreetBox.ReadOnly = status;
+            BuildingBox.ReadOnly = status;
+            ApartmentBox.ReadOnly = status;
         }
 
         private void IndexBox_TextChanged(object sender, EventArgs e)
@@ -164,11 +174,6 @@ namespace ObjectOrientedPractics.View.Controls
             {
                 ApartmentBox.BackColor = Color.LightPink;
             }
-        }
-
-        private void AddressControl_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

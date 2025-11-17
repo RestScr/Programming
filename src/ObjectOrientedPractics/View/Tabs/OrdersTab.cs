@@ -26,13 +26,15 @@ namespace ObjectOrientedPractics.View.Tabs
 
         public void UpdateOrders()
         {
-            Debug.WriteLine("hui");
+            OrdersData.Rows.Clear();
+            Orders.Clear();
             foreach (Customer customer in Store.Customers)
             {
-                
+
                 foreach (Order order in customer.Orders)
                 {
                     OrdersData.Rows.Add(order.Id, order.OrderTime, order.Status, customer.Fullname);
+                    Orders.Add(order);
                 }
             }
             foreach (string enumeration in Enum.GetNames(typeof(OrderStatus)))
@@ -44,10 +46,15 @@ namespace ObjectOrientedPractics.View.Tabs
         private void OrdersTab_Load(object sender, EventArgs e)
         {
             UpdateOrders();
+            DeliveryAddressControl.SetReadOnly(true);
         }
 
         private void OrdersData_SelectionChanged(object sender, EventArgs e)
         {
+            if (Orders.Count == 0 || OrdersData.SelectedCells.Count == 0)
+            {
+                return;
+            }
             int index = OrdersData.SelectedCells[0].RowIndex;
             Order order = Orders[index];
             IdTextBox.Text = Convert.ToString(order.Id);

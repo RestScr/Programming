@@ -13,26 +13,18 @@ namespace ObjectOrientedPractics
             InitializeComponent();
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TabControl_TabIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void TabControl_Selected(object sender, TabControlEventArgs e)
         {
-            if (TabControl.TabIndex == 2)
+            if (TabControl.SelectedIndex == 2)
             {
                 CartPanel.RefreshData();
             }
-            if (TabControl.TabIndex == 3)
+            if (TabControl.SelectedIndex == 3)
             {
                 OrdersPanel.UpdateOrders();
             }
+            ItemsControlTab.DisableElements();
+            CustomersControlTab.DisableElements();
         }
     }
 }
