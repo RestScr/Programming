@@ -308,6 +308,7 @@
             OrderStatusComboBox.Name = "OrderStatusComboBox";
             OrderStatusComboBox.Size = new Size(125, 28);
             OrderStatusComboBox.TabIndex = 6;
+            OrderStatusComboBox.SelectedIndexChanged += OrderStatusComboBox_SelectedIndexChanged;
             // 
             // CreationDateTextBox
             // 

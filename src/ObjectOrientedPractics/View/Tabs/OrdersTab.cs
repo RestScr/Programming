@@ -37,6 +37,11 @@ namespace ObjectOrientedPractics.View.Tabs
                     Orders.Add(order);
                 }
             }
+            if (DeliveryAddressControl.DeliveryAddress != null)
+            {
+                DeliveryAddressControl.FillBoxes();
+            }
+            OrderStatusComboBox.Items.Clear();
             foreach (string enumeration in Enum.GetNames(typeof(OrderStatus)))
             {
                 OrderStatusComboBox.Items.Add(enumeration);
@@ -57,9 +62,10 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             int index = OrdersData.SelectedCells[0].RowIndex;
             Order order = Orders[index];
+
             IdTextBox.Text = Convert.ToString(order.Id);
             CreationDateTextBox.Text = Convert.ToString(order.OrderTime);
-            OrderStatusComboBox.SelectedIndex = Convert.ToInt32(order.Status + 1);
+            OrderStatusComboBox.SelectedIndex = Convert.ToInt32(order.Status);
             DeliveryAddressControl.FillBoxes(order.OrderAddress);
 
             OrdersItemsListBox.Items.Clear();
@@ -68,6 +74,18 @@ namespace ObjectOrientedPractics.View.Tabs
                 OrdersItemsListBox.Items.Add(item.Id + " " + item.Name);
             }
             AmountLabel.Text = Convert.ToString(order.Amount);
+        }
+
+        private void OrderStatusComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Orders.Count == 0 || OrdersData.SelectedCells.Count == 0)
+            {
+                return;
+            }
+            int index = OrdersData.SelectedCells[0].RowIndex;
+            Order order = Orders[index];
+            order.Status = (OrderStatus)(OrderStatusComboBox.SelectedIndex);
+            OrdersData.Rows[index].Cells["OrderStatus"].Value = order.Status;
         }
     }
 }

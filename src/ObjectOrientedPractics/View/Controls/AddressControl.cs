@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -67,7 +68,9 @@ namespace ObjectOrientedPractics.View.Controls
         /// </summary>
         public void FillBoxes()
         {
+            Debug.WriteLine(IndexBox.ReadOnly);
             IndexBox.Text = DeliveryAddress.Index;
+            Debug.WriteLine(IndexBox.ReadOnly);
             CountryBox.Text = DeliveryAddress.Country;
             CityBox.Text = DeliveryAddress.City;
             StreetBox.Text = DeliveryAddress.Street;

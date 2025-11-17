@@ -217,6 +217,11 @@ namespace ObjectOrientedPractics.View.Tabs
                 CustomerComboBox.BackColor = Color.LightPink;
                 return;
             }
+            if (CartListBox.Items.Count == 0)
+            {
+                MessageBox.Show("Корзина пуста.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             CustomerComboBox.BackColor = Color.White;
 
             SelectedCustomer.Orders.Add(new Order(SelectedCustomer.Address, SelectedCustomer.CustomerCart));
