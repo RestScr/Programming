@@ -246,6 +246,7 @@
             Name = "ItemsTab";
             Size = new Size(916, 491);
             Load += ItemsTab_Load;
+            VisibleChanged += ItemsTab_VisibleChanged;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);

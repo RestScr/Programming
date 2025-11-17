@@ -18,24 +18,7 @@ namespace ObjectOrientedPractics.View.Tabs
     /// </summary>
     public partial class CustomersTab : UserControl
     {
-        private List<Customer> _customers = new List<Customer>();
-
         private Customer _selectedCustomer { get; set; } = null;
-
-        /// <summary>
-        /// Свойство списка объектов покупателя.
-        /// </summary>
-        public List<Customer> Customers
-        {
-            get
-            {
-                return _customers;
-            }
-            set
-            {
-                _customers = value;
-            }
-        }
 
         /// <summary>
         /// Конструктор вкладки с покупателями.
@@ -48,8 +31,12 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Метод для включения/отключения элементов интерфейса в зависимости от выбранного пользователя в листбоксе.
         /// </summary>
-        private void DisableElements()
+        public void DisableElements()
         {
+            if (CustomersList.SelectedIndex < 0)
+            {
+                _selectedCustomer = null;
+            }
             if (_selectedCustomer == null)
             {
                 CustomerFullnameBox.Enabled = false;
@@ -68,7 +55,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="customer"> Покупатель для добавления. </param>
         private void AddCustomer(Customer customer)
         {
-            Customers.Add(customer);
+            Store.Customers.Add(customer);
             CustomersList.Items.Add(Convert.ToString(customer.Id) + " " + customer.Fullname);
         }
 
@@ -82,7 +69,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 return;
             }
-            Customers.RemoveAt(selectedIndex);
+            Store.Customers.RemoveAt(selectedIndex);
             CustomersList.Items.RemoveAt(selectedIndex--);
             if (selectedIndex >= 0)
             {
@@ -171,7 +158,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 _selectedCustomer.Address = AddressField.DeliveryAddress;
             }
-            _selectedCustomer = Customers[selectedIndex];
+            _selectedCustomer = Store.Customers[selectedIndex];
             FillBoxes();
             DisableElements();
         }
@@ -200,7 +187,19 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="e"> Аргументы события. </param>
         private void CustomerFullnameBox_Leave(object sender, EventArgs e)
         {
-            CustomersList.Items[Customers.IndexOf(_selectedCustomer)] = _selectedCustomer.Id + " " + _selectedCustomer.Fullname;
+            CustomersList.Items[Store.Customers.IndexOf(_selectedCustomer)] = _selectedCustomer.Id + " " + _selectedCustomer.Fullname;
+        }
+
+        private void CustomersTab_VisibleChanged(object sender, EventArgs e)
+        {
+            CustomersList.Items.Clear();
+            foreach (Customer customer in Store.Customers)
+            {
+                if (!CustomersList.Items.Contains(customer.Id + " " + customer.Fullname))
+                {
+                    CustomersList.Items.Add(customer.Id + " " + customer.Fullname);
+                }
+            }
         }
     }
 }

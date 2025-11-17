@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -19,23 +20,6 @@ namespace ObjectOrientedPractics.View.Tabs
     {
         private Item _selectedItem { get; set; } = null;
 
-        private List<Item> _items = new();
-
-        /// <summary>
-        /// Свойство списка товаров.
-        /// </summary>
-        public List<Item> Items
-        {
-            get
-            {
-                return _items;
-            }
-            set
-            {
-                _items = value;
-            }
-        }
-
         /// <summary>
         /// Конструктор формы.
         /// </summary>
@@ -47,8 +31,12 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Функция включения/отключения элементов в зависимости от выбранного элемента.
         /// </summary>
-        private void DisableElements()
+        public void DisableElements()
         {
+            if (ItemsList.SelectedIndex < 0 || !ItemsList.GetSelected(ItemsList.SelectedIndex))
+            {
+                _selectedItem = null;
+            }
             if (_selectedItem == null)
             {
                 CostBox.Enabled = false;
@@ -72,7 +60,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="item"> Товар. </param>
         private void AddItem(Item item)
         {
-            Items.Add(item);
+            Store.Items.Add(item);
             ItemsList.Items.Add(Convert.ToString(item.Id) + " " + item.Name);
         }
 
@@ -82,13 +70,17 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="item"> Товар в списке для удаления. </param>
         private void RemoveItem(Item item)
         {
-            Items.Remove(item);
+            Store.Items.Remove(item);
             int selectedIndex = ItemsList.SelectedIndex - 1;
+            if (item == null)
+            {
+                return;
+            }
             ItemsList.Items.Remove(Convert.ToString(item.Id) + " " + item.Name);
             if (ItemsList.Items.Count > 0 && selectedIndex >= 0)
             {
                 ItemsList.SelectedIndex = selectedIndex;
-                _selectedItem = Items[selectedIndex];
+                _selectedItem = Store.Items[selectedIndex];
             }
             else
             {
@@ -141,7 +133,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 return;
             }
-            _selectedItem = Items[selectedIndex];
+            _selectedItem = Store.Items[selectedIndex];
             IDBox.Text = Convert.ToString(_selectedItem.Id);
             CostBox.Text = Convert.ToString(_selectedItem.Cost);
             NameRichText.Text = _selectedItem.Name;
@@ -230,12 +222,24 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void NameRichText_Leave(object sender, EventArgs e)
         {
-            ItemsList.Items[Items.IndexOf(_selectedItem)] = Convert.ToString(_selectedItem.Id) + " " + _selectedItem.Name;
+            ItemsList.Items[Store.Items.IndexOf(_selectedItem)] = Convert.ToString(_selectedItem.Id) + " " + _selectedItem.Name;
         }
 
         private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             _selectedItem.ItemCategory = (Category)CategoryComboBox.SelectedIndex;
+        }
+
+        private void ItemsTab_VisibleChanged(object sender, EventArgs e)
+        {
+            ItemsList.Items.Clear();
+            foreach (Item item in Store.Items)
+            {
+                if (!ItemsList.Items.Contains(item.Id + " " + item.Name))
+                {
+                    ItemsList.Items.Add(item.Id + " " + item.Name);
+                }
+            }
         }
     }
 }

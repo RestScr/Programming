@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using ObjectOrientedPractics.Model;
 
 namespace ObjectOrientedPractics
@@ -7,32 +8,23 @@ namespace ObjectOrientedPractics
     /// </summary>
     public partial class MainForm : Form
     {
-        private Store _shop = new Store();
-
-        /// <summary>
-        /// Свойство магазина главной формы, который хранит списки товаров и покупателей.
-        /// </summary>
-        public Store Shop
-        {
-            get
-            {
-                return _shop;
-            }
-            set
-            {
-                _shop = value;
-            }
-        }
-
         public MainForm()
         {
             InitializeComponent();
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private void TabControl_Selected(object sender, TabControlEventArgs e)
         {
-            CustomersControlTab.Customers = Shop.Customers;
-            ItemsControlTab.Items = Shop.Items;
+            if (TabControl.SelectedIndex == 2)
+            {
+                CartPanel.RefreshData();
+            }
+            if (TabControl.SelectedIndex == 3)
+            {
+                OrdersPanel.UpdateOrders();
+            }
+            ItemsControlTab.DisableElements();
+            CustomersControlTab.DisableElements();
         }
     }
 }

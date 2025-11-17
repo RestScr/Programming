@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -73,6 +74,29 @@ namespace ObjectOrientedPractics.View.Controls
             StreetBox.Text = DeliveryAddress.Street;
             BuildingBox.Text = DeliveryAddress.Building;
             ApartmentBox.Text = DeliveryAddress.Apartment;
+        }
+
+        /// <summary>
+        /// Заполнить все поля данными из объекта адреса.
+        /// </summary>
+        public void FillBoxes(Address address)
+        {
+            DeliveryAddress = address;
+            FillBoxes();
+        }
+
+        /// <summary>
+        /// Функция задания режима для чтения элементам
+        /// </summary>
+        /// <param name="status"> Статус режима для чтения true - режим для чтения, false - редактирование. </param>
+        public void SetReadOnly(bool status)
+        {
+            IndexBox.ReadOnly = status;
+            CountryBox.ReadOnly = status;
+            CityBox.ReadOnly = status;
+            StreetBox.ReadOnly = status;
+            BuildingBox.ReadOnly = status;
+            ApartmentBox.ReadOnly = status;
         }
 
         private void IndexBox_TextChanged(object sender, EventArgs e)
