@@ -68,9 +68,7 @@ namespace ObjectOrientedPractics.View.Controls
         /// </summary>
         public void FillBoxes()
         {
-            Debug.WriteLine(IndexBox.ReadOnly);
             IndexBox.Text = DeliveryAddress.Index;
-            Debug.WriteLine(IndexBox.ReadOnly);
             CountryBox.Text = DeliveryAddress.Country;
             CityBox.Text = DeliveryAddress.City;
             StreetBox.Text = DeliveryAddress.Street;
