@@ -181,6 +181,7 @@
             Controls.Add(label1);
             Name = "AddressControl";
             Size = new Size(613, 194);
+            Load += AddressControl_Load;
             ResumeLayout(false);
             PerformLayout();
         }

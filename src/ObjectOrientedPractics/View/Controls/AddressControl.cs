@@ -75,6 +75,19 @@ namespace ObjectOrientedPractics.View.Controls
             ApartmentBox.Text = DeliveryAddress.Apartment;
         }
 
+        /// <summary>
+        /// Заполнить все поля данными из объекта адреса.
+        /// </summary>
+        public void FillBoxes(Address address)
+        {
+            IndexBox.Text = address.Index;
+            CountryBox.Text = address.Country;
+            CityBox.Text = address.City;
+            StreetBox.Text = address.Street;
+            BuildingBox.Text = address.Building;
+            ApartmentBox.Text = address.Apartment;
+        }
+
         private void IndexBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -151,6 +164,11 @@ namespace ObjectOrientedPractics.View.Controls
             {
                 ApartmentBox.BackColor = Color.LightPink;
             }
+        }
+
+        private void AddressControl_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

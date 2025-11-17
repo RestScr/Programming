@@ -36,7 +36,7 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
-        public static OrderStatus Status { get; set; } = OrderStatus.New;
+        public OrderStatus Status { get; set; } = OrderStatus.New;
 
         /// <summary>
         /// Идентификатор класса.

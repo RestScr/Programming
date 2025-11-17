@@ -67,6 +67,10 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             Store.Items.Remove(item);
             int selectedIndex = ItemsList.SelectedIndex - 1;
+            if (item == null)
+            {
+                return;
+            }
             ItemsList.Items.Remove(Convert.ToString(item.Id) + " " + item.Name);
             if (ItemsList.Items.Count > 0 && selectedIndex >= 0)
             {
