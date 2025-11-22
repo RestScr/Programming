@@ -28,13 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-<<<<<<< HEAD
-            components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        }
-
-        #endregion
-=======
             panel1 = new Panel();
             panel6 = new Panel();
             ItemsCartListBox = new ListBox();
@@ -358,6 +351,5 @@
         private Button RemoveItemButton;
         private Panel panel12;
         private Panel panel11;
->>>>>>> Tasks/3_agregation
     }
 }
