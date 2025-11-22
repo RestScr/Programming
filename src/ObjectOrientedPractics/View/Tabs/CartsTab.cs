@@ -230,6 +230,5 @@ namespace ObjectOrientedPractics.View.Tabs
             ClearCart();
             MessageBox.Show("Заказ успешно создан.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
->>>>>>> Tasks/3_agregation
     }
 }
