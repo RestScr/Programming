@@ -19,7 +19,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Свойство созданных экземпляров класса.
         /// </summary>
-        private static int Created
+        protected static int Created
         {
             get
             {
