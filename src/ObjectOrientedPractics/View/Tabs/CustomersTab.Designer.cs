@@ -37,12 +37,12 @@
             panel2 = new Panel();
             AddressField = new ObjectOrientedPractics.View.Controls.AddressControl();
             CustomerField = new Panel();
+            PriorityCheckBox = new CheckBox();
             label2 = new Label();
             label3 = new Label();
             CustomerFullnameBox = new TextBox();
             label4 = new Label();
             CustomerIDBox = new TextBox();
-            PriorityCheckBox = new CheckBox();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
@@ -145,6 +145,17 @@
             CustomerField.Size = new Size(600, 161);
             CustomerField.TabIndex = 8;
             // 
+            // PriorityCheckBox
+            // 
+            PriorityCheckBox.AutoSize = true;
+            PriorityCheckBox.Location = new Point(91, 131);
+            PriorityCheckBox.Name = "PriorityCheckBox";
+            PriorityCheckBox.Size = new Size(92, 24);
+            PriorityCheckBox.TabIndex = 7;
+            PriorityCheckBox.Text = "Is Priority";
+            PriorityCheckBox.UseVisualStyleBackColor = true;
+            PriorityCheckBox.CheckedChanged += PriorityCheckBox_CheckedChanged;
+            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -190,16 +201,6 @@
             CustomerIDBox.Name = "CustomerIDBox";
             CustomerIDBox.Size = new Size(125, 27);
             CustomerIDBox.TabIndex = 5;
-            // 
-            // PriorityCheckBox
-            // 
-            PriorityCheckBox.AutoSize = true;
-            PriorityCheckBox.Location = new Point(91, 131);
-            PriorityCheckBox.Name = "PriorityCheckBox";
-            PriorityCheckBox.Size = new Size(92, 24);
-            PriorityCheckBox.TabIndex = 7;
-            PriorityCheckBox.Text = "Is Priority";
-            PriorityCheckBox.UseVisualStyleBackColor = true;
             // 
             // CustomersTab
             // 

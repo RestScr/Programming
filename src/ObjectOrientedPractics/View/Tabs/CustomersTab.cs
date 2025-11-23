@@ -41,11 +41,13 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 CustomerFullnameBox.Enabled = false;
                 AddressField.Enable(false);
+                PriorityCheckBox.Enabled = false;
             }
             else
             {
                 CustomerFullnameBox.Enabled = true;
                 AddressField.Enable(true);
+                PriorityCheckBox.Enabled = true;
             }
         }
 
@@ -96,6 +98,7 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomerFullnameBox.Text = _selectedCustomer.Fullname;
             AddressField.DeliveryAddress = _selectedCustomer.Address;
             AddressField.FillBoxes();
+            PriorityCheckBox.Checked = _selectedCustomer.IsPriority;
         }
 
         /// <summary>
@@ -200,6 +203,15 @@ namespace ObjectOrientedPractics.View.Tabs
                     CustomersList.Items.Add(customer.Id + " " + customer.Fullname);
                 }
             }
+        }
+
+        private void PriorityCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_selectedCustomer == null)
+            {
+                return;
+            }
+            _selectedCustomer.IsPriority = PriorityCheckBox.Checked;
         }
     }
 }
