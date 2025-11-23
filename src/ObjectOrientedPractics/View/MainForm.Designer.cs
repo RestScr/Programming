@@ -37,11 +37,14 @@
             CartPanel = new ObjectOrientedPractics.View.Tabs.CartsTab();
             OrdersTab = new TabPage();
             OrdersPanel = new ObjectOrientedPractics.View.Tabs.OrdersTab();
+            PriorityOrdersTab = new TabPage();
+            priorityOrdersTab1 = new ObjectOrientedPractics.View.Tabs.PriorityOrdersTab();
             TabControl.SuspendLayout();
             ItemsTab.SuspendLayout();
             CustomersTab.SuspendLayout();
             CartsTab.SuspendLayout();
             OrdersTab.SuspendLayout();
+            PriorityOrdersTab.SuspendLayout();
             SuspendLayout();
             // 
             // TabControl
@@ -50,11 +53,12 @@
             TabControl.Controls.Add(CustomersTab);
             TabControl.Controls.Add(CartsTab);
             TabControl.Controls.Add(OrdersTab);
+            TabControl.Controls.Add(PriorityOrdersTab);
             TabControl.Dock = DockStyle.Fill;
             TabControl.Location = new Point(0, 0);
             TabControl.Name = "TabControl";
             TabControl.SelectedIndex = 0;
-            TabControl.Size = new Size(1387, 794);
+            TabControl.Size = new Size(1081, 708);
             TabControl.TabIndex = 0;
             TabControl.Selected += TabControl_Selected;
             // 
@@ -133,11 +137,29 @@
             OrdersPanel.Size = new Size(1379, 761);
             OrdersPanel.TabIndex = 0;
             // 
+            // PriorityOrdersTab
+            // 
+            PriorityOrdersTab.Controls.Add(priorityOrdersTab1);
+            PriorityOrdersTab.Location = new Point(4, 29);
+            PriorityOrdersTab.Name = "PriorityOrdersTab";
+            PriorityOrdersTab.Size = new Size(1073, 675);
+            PriorityOrdersTab.TabIndex = 4;
+            PriorityOrdersTab.Text = "Priority Orders";
+            PriorityOrdersTab.UseVisualStyleBackColor = true;
+            // 
+            // priorityOrdersTab1
+            // 
+            priorityOrdersTab1.Dock = DockStyle.Fill;
+            priorityOrdersTab1.Location = new Point(0, 0);
+            priorityOrdersTab1.Name = "priorityOrdersTab1";
+            priorityOrdersTab1.Size = new Size(1073, 675);
+            priorityOrdersTab1.TabIndex = 0;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1387, 794);
+            ClientSize = new Size(1081, 708);
             Controls.Add(TabControl);
             Name = "MainForm";
             Text = "Project Oriented Practics";
@@ -147,6 +169,7 @@
             CustomersTab.ResumeLayout(false);
             CartsTab.ResumeLayout(false);
             OrdersTab.ResumeLayout(false);
+            PriorityOrdersTab.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -161,5 +184,7 @@
         private View.Tabs.CartsTab CartPanel;
         private TabPage OrdersTab;
         private View.Tabs.OrdersTab OrdersPanel;
+        private TabPage PriorityOrdersTab;
+        private View.Tabs.PriorityOrdersTab priorityOrdersTab1;
     }
 }
