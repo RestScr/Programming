@@ -16,5 +16,11 @@ namespace ObjectOrientedPractics.Model
             DeliveryDate = deliveryDate;
             DeliveryTimePeriod = deliveryTimePeriod;
         }
+
+        public PriorityOrder() : base()
+        {
+            DeliveryDate = DateTime.Now;
+            DeliveryTimePeriod = TimePeriod.NineToEleven;
+        }
     }
 }

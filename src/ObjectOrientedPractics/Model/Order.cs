@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -105,6 +107,12 @@ namespace ObjectOrientedPractics.Model
                 Items.Add(item);
             }
             Status = status;
+        }
+
+        public Order()
+        {
+            Id = ++Created;
+            OrderAddress = new Address();
         }
     }
 }
