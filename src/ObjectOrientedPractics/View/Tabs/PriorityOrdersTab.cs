@@ -26,6 +26,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         public void FillData()
         {
+            DeliveryAddress.DeliveryAddress = SelectedOrder.OrderAddress;
             ItemsListBox.Items.Clear();
             IDTextBox.Text = Convert.ToString(SelectedOrder.Id);
             CreationTextBox.Text = Convert.ToString(SelectedOrder.OrderTime);
@@ -43,6 +44,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="order"> Объект приоритетного заказа. </param>
         public void FillData(PriorityOrder order)
         {
+            DeliveryAddress.DeliveryAddress = order.OrderAddress;
             ItemsListBox.Items.Clear();
             IDTextBox.Text = Convert.ToString(order.Id);
             CreationTextBox.Text = Convert.ToString(order.OrderTime);
@@ -90,7 +92,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void PriorityOrdersTab_Load(object sender, EventArgs e)
         {
             FillData();
-            DeliveryAddress.Enable(false);
+            //DeliveryAddress.Enable(false);
         }
     }
 }

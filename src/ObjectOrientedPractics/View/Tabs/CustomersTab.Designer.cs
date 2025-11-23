@@ -42,6 +42,7 @@
             CustomerFullnameBox = new TextBox();
             label4 = new Label();
             CustomerIDBox = new TextBox();
+            PriorityCheckBox = new CheckBox();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
@@ -125,13 +126,14 @@
             AddressField.AutoSize = true;
             AddressField.DeliveryAddress = null;
             AddressField.Dock = DockStyle.Top;
-            AddressField.Location = new Point(0, 125);
+            AddressField.Location = new Point(0, 161);
             AddressField.Name = "AddressField";
             AddressField.Size = new Size(600, 182);
             AddressField.TabIndex = 7;
             // 
             // CustomerField
             // 
+            CustomerField.Controls.Add(PriorityCheckBox);
             CustomerField.Controls.Add(label2);
             CustomerField.Controls.Add(label3);
             CustomerField.Controls.Add(CustomerFullnameBox);
@@ -140,7 +142,7 @@
             CustomerField.Dock = DockStyle.Top;
             CustomerField.Location = new Point(0, 0);
             CustomerField.Name = "CustomerField";
-            CustomerField.Size = new Size(600, 125);
+            CustomerField.Size = new Size(600, 161);
             CustomerField.TabIndex = 8;
             // 
             // label2
@@ -189,6 +191,16 @@
             CustomerIDBox.Size = new Size(125, 27);
             CustomerIDBox.TabIndex = 5;
             // 
+            // PriorityCheckBox
+            // 
+            PriorityCheckBox.AutoSize = true;
+            PriorityCheckBox.Location = new Point(91, 131);
+            PriorityCheckBox.Name = "PriorityCheckBox";
+            PriorityCheckBox.Size = new Size(92, 24);
+            PriorityCheckBox.TabIndex = 7;
+            PriorityCheckBox.Text = "Is Priority";
+            PriorityCheckBox.UseVisualStyleBackColor = true;
+            // 
             // CustomersTab
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -225,5 +237,6 @@
         private Controls.AddressControl AddressField;
         private Panel panel3;
         private Panel CustomerField;
+        private CheckBox PriorityCheckBox;
     }
 }
