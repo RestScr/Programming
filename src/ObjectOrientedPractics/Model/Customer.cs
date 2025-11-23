@@ -31,6 +31,11 @@ namespace ObjectOrientedPractics.Model
         private Address _address;
 
         /// <summary>
+        /// Свойство, определяющее приоритетность покупателя.
+        /// </summary>
+        public bool IsPriority { get; set; } = false;
+
+        /// <summary>
         /// Корзина покупателя.
         /// </summary>
         public Cart CustomerCart { get; init; } = new Cart();
