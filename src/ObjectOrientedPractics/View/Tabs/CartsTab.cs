@@ -226,7 +226,14 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             CustomerComboBox.BackColor = Color.White;
 
-            SelectedCustomer.Orders.Add(new Order(SelectedCustomer.Address, SelectedCustomer.CustomerCart));
+            if (SelectedCustomer.IsPriority)
+            {
+                SelectedCustomer.Orders.Add(new PriorityOrder(SelectedCustomer.Address, SelectedCustomer.CustomerCart, DateTime.Now, TimePeriod.NineToEleven));
+            }
+            else
+            {
+                SelectedCustomer.Orders.Add(new Order(SelectedCustomer.Address, SelectedCustomer.CustomerCart));
+            }
             ClearCart();
             MessageBox.Show("Заказ успешно создан.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
