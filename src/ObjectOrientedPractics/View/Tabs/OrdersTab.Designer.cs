@@ -51,18 +51,18 @@
             panel5 = new Panel();
             DeliveryAddressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
             panel4 = new Panel();
+            panel13 = new Panel();
+            label2 = new Label();
+            label4 = new Label();
+            OrderStatusComboBox = new ComboBox();
+            label5 = new Label();
+            CreationDateTextBox = new TextBox();
+            label6 = new Label();
+            IdTextBox = new TextBox();
             PriorityPanel = new Panel();
             DeliveryTimeComboBox = new ComboBox();
             label8 = new Label();
             label9 = new Label();
-            OrderStatusComboBox = new ComboBox();
-            CreationDateTextBox = new TextBox();
-            IdTextBox = new TextBox();
-            label6 = new Label();
-            label5 = new Label();
-            label4 = new Label();
-            label2 = new Label();
-            panel13 = new Panel();
             panel1.SuspendLayout();
             panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)OrdersData).BeginInit();
@@ -75,8 +75,8 @@
             panel9.SuspendLayout();
             panel5.SuspendLayout();
             panel4.SuspendLayout();
-            PriorityPanel.SuspendLayout();
             panel13.SuspendLayout();
+            PriorityPanel.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -183,7 +183,7 @@
             panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(570, 0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(810, 761);
+            panel3.Size = new Size(613, 761);
             panel3.TabIndex = 2;
             // 
             // panel6
@@ -193,7 +193,7 @@
             panel6.Dock = DockStyle.Fill;
             panel6.Location = new Point(0, 396);
             panel6.Name = "panel6";
-            panel6.Size = new Size(810, 365);
+            panel6.Size = new Size(613, 365);
             panel6.TabIndex = 2;
             // 
             // panel10
@@ -203,7 +203,7 @@
             panel10.Dock = DockStyle.Fill;
             panel10.Location = new Point(0, 23);
             panel10.Name = "panel10";
-            panel10.Size = new Size(810, 342);
+            panel10.Size = new Size(613, 342);
             panel10.TabIndex = 1;
             // 
             // panel12
@@ -212,7 +212,7 @@
             panel12.Dock = DockStyle.Fill;
             panel12.Location = new Point(0, 0);
             panel12.Name = "panel12";
-            panel12.Size = new Size(810, 180);
+            panel12.Size = new Size(613, 180);
             panel12.TabIndex = 1;
             // 
             // OrdersItemsListBox
@@ -221,7 +221,7 @@
             OrdersItemsListBox.FormattingEnabled = true;
             OrdersItemsListBox.Location = new Point(0, 0);
             OrdersItemsListBox.Name = "OrdersItemsListBox";
-            OrdersItemsListBox.Size = new Size(810, 180);
+            OrdersItemsListBox.Size = new Size(613, 180);
             OrdersItemsListBox.TabIndex = 0;
             // 
             // panel11
@@ -231,7 +231,7 @@
             panel11.Dock = DockStyle.Bottom;
             panel11.Location = new Point(0, 180);
             panel11.Name = "panel11";
-            panel11.Size = new Size(810, 162);
+            panel11.Size = new Size(613, 162);
             panel11.TabIndex = 0;
             // 
             // AmountLabel
@@ -261,7 +261,7 @@
             panel9.Dock = DockStyle.Top;
             panel9.Location = new Point(0, 0);
             panel9.Name = "panel9";
-            panel9.Size = new Size(810, 23);
+            panel9.Size = new Size(613, 23);
             panel9.TabIndex = 0;
             // 
             // label3
@@ -280,7 +280,7 @@
             panel5.Dock = DockStyle.Top;
             panel5.Location = new Point(0, 192);
             panel5.Name = "panel5";
-            panel5.Size = new Size(810, 204);
+            panel5.Size = new Size(613, 204);
             panel5.TabIndex = 1;
             // 
             // DeliveryAddressControl
@@ -290,7 +290,7 @@
             DeliveryAddressControl.Dock = DockStyle.Fill;
             DeliveryAddressControl.Location = new Point(0, 0);
             DeliveryAddressControl.Name = "DeliveryAddressControl";
-            DeliveryAddressControl.Size = new Size(810, 204);
+            DeliveryAddressControl.Size = new Size(613, 204);
             DeliveryAddressControl.TabIndex = 0;
             // 
             // panel4
@@ -300,8 +300,85 @@
             panel4.Dock = DockStyle.Top;
             panel4.Location = new Point(0, 0);
             panel4.Name = "panel4";
-            panel4.Size = new Size(810, 192);
+            panel4.Size = new Size(613, 192);
             panel4.TabIndex = 0;
+            // 
+            // panel13
+            // 
+            panel13.Controls.Add(label2);
+            panel13.Controls.Add(label4);
+            panel13.Controls.Add(OrderStatusComboBox);
+            panel13.Controls.Add(label5);
+            panel13.Controls.Add(CreationDateTextBox);
+            panel13.Controls.Add(label6);
+            panel13.Controls.Add(IdTextBox);
+            panel13.Dock = DockStyle.Fill;
+            panel13.Location = new Point(0, 0);
+            panel13.Name = "panel13";
+            panel13.Size = new Size(276, 192);
+            panel13.TabIndex = 11;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label2.Location = new Point(3, 7);
+            label2.Name = "label2";
+            label2.Size = new Size(111, 20);
+            label2.TabIndex = 0;
+            label2.Text = "Selected Order";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(3, 37);
+            label4.Name = "label4";
+            label4.Size = new Size(27, 20);
+            label4.TabIndex = 1;
+            label4.Text = "ID:";
+            // 
+            // OrderStatusComboBox
+            // 
+            OrderStatusComboBox.FormattingEnabled = true;
+            OrderStatusComboBox.Location = new Point(92, 114);
+            OrderStatusComboBox.Name = "OrderStatusComboBox";
+            OrderStatusComboBox.Size = new Size(125, 28);
+            OrderStatusComboBox.TabIndex = 6;
+            OrderStatusComboBox.SelectedIndexChanged += OrderStatusComboBox_SelectedIndexChanged;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(3, 78);
+            label5.Name = "label5";
+            label5.Size = new Size(64, 20);
+            label5.TabIndex = 2;
+            label5.Text = "Created:";
+            // 
+            // CreationDateTextBox
+            // 
+            CreationDateTextBox.Location = new Point(92, 71);
+            CreationDateTextBox.Name = "CreationDateTextBox";
+            CreationDateTextBox.ReadOnly = true;
+            CreationDateTextBox.Size = new Size(125, 27);
+            CreationDateTextBox.TabIndex = 5;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(3, 122);
+            label6.Name = "label6";
+            label6.Size = new Size(52, 20);
+            label6.TabIndex = 3;
+            label6.Text = "Status:";
+            // 
+            // IdTextBox
+            // 
+            IdTextBox.Location = new Point(92, 30);
+            IdTextBox.Name = "IdTextBox";
+            IdTextBox.ReadOnly = true;
+            IdTextBox.Size = new Size(125, 27);
+            IdTextBox.TabIndex = 4;
             // 
             // PriorityPanel
             // 
@@ -309,9 +386,9 @@
             PriorityPanel.Controls.Add(label8);
             PriorityPanel.Controls.Add(label9);
             PriorityPanel.Dock = DockStyle.Right;
-            PriorityPanel.Location = new Point(316, 0);
+            PriorityPanel.Location = new Point(276, 0);
             PriorityPanel.Name = "PriorityPanel";
-            PriorityPanel.Size = new Size(494, 192);
+            PriorityPanel.Size = new Size(337, 192);
             PriorityPanel.TabIndex = 10;
             // 
             // DeliveryTimeComboBox
@@ -343,83 +420,6 @@
             label9.TabIndex = 8;
             label9.Text = "Delivery Time:";
             // 
-            // OrderStatusComboBox
-            // 
-            OrderStatusComboBox.FormattingEnabled = true;
-            OrderStatusComboBox.Location = new Point(92, 114);
-            OrderStatusComboBox.Name = "OrderStatusComboBox";
-            OrderStatusComboBox.Size = new Size(125, 28);
-            OrderStatusComboBox.TabIndex = 6;
-            OrderStatusComboBox.SelectedIndexChanged += OrderStatusComboBox_SelectedIndexChanged;
-            // 
-            // CreationDateTextBox
-            // 
-            CreationDateTextBox.Location = new Point(92, 71);
-            CreationDateTextBox.Name = "CreationDateTextBox";
-            CreationDateTextBox.ReadOnly = true;
-            CreationDateTextBox.Size = new Size(125, 27);
-            CreationDateTextBox.TabIndex = 5;
-            // 
-            // IdTextBox
-            // 
-            IdTextBox.Location = new Point(92, 30);
-            IdTextBox.Name = "IdTextBox";
-            IdTextBox.ReadOnly = true;
-            IdTextBox.Size = new Size(125, 27);
-            IdTextBox.TabIndex = 4;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(3, 122);
-            label6.Name = "label6";
-            label6.Size = new Size(52, 20);
-            label6.TabIndex = 3;
-            label6.Text = "Status:";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(3, 78);
-            label5.Name = "label5";
-            label5.Size = new Size(64, 20);
-            label5.TabIndex = 2;
-            label5.Text = "Created:";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(3, 37);
-            label4.Name = "label4";
-            label4.Size = new Size(27, 20);
-            label4.TabIndex = 1;
-            label4.Text = "ID:";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label2.Location = new Point(3, 7);
-            label2.Name = "label2";
-            label2.Size = new Size(111, 20);
-            label2.TabIndex = 0;
-            label2.Text = "Selected Order";
-            // 
-            // panel13
-            // 
-            panel13.Controls.Add(label2);
-            panel13.Controls.Add(label4);
-            panel13.Controls.Add(OrderStatusComboBox);
-            panel13.Controls.Add(label5);
-            panel13.Controls.Add(CreationDateTextBox);
-            panel13.Controls.Add(label6);
-            panel13.Controls.Add(IdTextBox);
-            panel13.Dock = DockStyle.Fill;
-            panel13.Location = new Point(0, 0);
-            panel13.Name = "panel13";
-            panel13.Size = new Size(316, 192);
-            panel13.TabIndex = 11;
-            // 
             // OrdersTab
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -428,7 +428,7 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "OrdersTab";
-            Size = new Size(1380, 761);
+            Size = new Size(1183, 761);
             Load += OrdersTab_Load;
             panel1.ResumeLayout(false);
             panel8.ResumeLayout(false);
@@ -446,10 +446,10 @@
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             panel4.ResumeLayout(false);
-            PriorityPanel.ResumeLayout(false);
-            PriorityPanel.PerformLayout();
             panel13.ResumeLayout(false);
             panel13.PerformLayout();
+            PriorityPanel.ResumeLayout(false);
+            PriorityPanel.PerformLayout();
             ResumeLayout(false);
         }
 
