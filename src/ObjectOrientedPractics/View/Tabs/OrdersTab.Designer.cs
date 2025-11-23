@@ -51,6 +51,10 @@
             panel5 = new Panel();
             DeliveryAddressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
             panel4 = new Panel();
+            PriorityPanel = new Panel();
+            DeliveryTimeComboBox = new ComboBox();
+            label8 = new Label();
+            label9 = new Label();
             OrderStatusComboBox = new ComboBox();
             CreationDateTextBox = new TextBox();
             IdTextBox = new TextBox();
@@ -58,6 +62,7 @@
             label5 = new Label();
             label4 = new Label();
             label2 = new Label();
+            panel13 = new Panel();
             panel1.SuspendLayout();
             panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)OrdersData).BeginInit();
@@ -70,6 +75,8 @@
             panel9.SuspendLayout();
             panel5.SuspendLayout();
             panel4.SuspendLayout();
+            PriorityPanel.SuspendLayout();
+            panel13.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -288,23 +295,58 @@
             // 
             // panel4
             // 
-            panel4.Controls.Add(OrderStatusComboBox);
-            panel4.Controls.Add(CreationDateTextBox);
-            panel4.Controls.Add(IdTextBox);
-            panel4.Controls.Add(label6);
-            panel4.Controls.Add(label5);
-            panel4.Controls.Add(label4);
-            panel4.Controls.Add(label2);
+            panel4.Controls.Add(panel13);
+            panel4.Controls.Add(PriorityPanel);
             panel4.Dock = DockStyle.Top;
             panel4.Location = new Point(0, 0);
             panel4.Name = "panel4";
             panel4.Size = new Size(810, 192);
             panel4.TabIndex = 0;
             // 
+            // PriorityPanel
+            // 
+            PriorityPanel.Controls.Add(DeliveryTimeComboBox);
+            PriorityPanel.Controls.Add(label8);
+            PriorityPanel.Controls.Add(label9);
+            PriorityPanel.Dock = DockStyle.Right;
+            PriorityPanel.Location = new Point(316, 0);
+            PriorityPanel.Name = "PriorityPanel";
+            PriorityPanel.Size = new Size(494, 192);
+            PriorityPanel.TabIndex = 10;
+            // 
+            // DeliveryTimeComboBox
+            // 
+            DeliveryTimeComboBox.FormattingEnabled = true;
+            DeliveryTimeComboBox.Items.AddRange(new object[] { "9:00 - 11:00", "11:00 - 13:00", "13:00 - 15:00", "15:00 - 17:00", "17:00 - 19:00", "19:00 - 21:00" });
+            DeliveryTimeComboBox.Location = new Point(125, 38);
+            DeliveryTimeComboBox.Name = "DeliveryTimeComboBox";
+            DeliveryTimeComboBox.Size = new Size(125, 28);
+            DeliveryTimeComboBox.TabIndex = 9;
+            DeliveryTimeComboBox.SelectedIndexChanged += DeliveryTimeComboBox_SelectedIndexChanged;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label8.Location = new Point(4, 4);
+            label8.Name = "label8";
+            label8.Size = new Size(120, 20);
+            label8.TabIndex = 7;
+            label8.Text = "Priority Options";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(4, 41);
+            label9.Name = "label9";
+            label9.Size = new Size(103, 20);
+            label9.TabIndex = 8;
+            label9.Text = "Delivery Time:";
+            // 
             // OrderStatusComboBox
             // 
             OrderStatusComboBox.FormattingEnabled = true;
-            OrderStatusComboBox.Location = new Point(95, 114);
+            OrderStatusComboBox.Location = new Point(92, 114);
             OrderStatusComboBox.Name = "OrderStatusComboBox";
             OrderStatusComboBox.Size = new Size(125, 28);
             OrderStatusComboBox.TabIndex = 6;
@@ -312,7 +354,7 @@
             // 
             // CreationDateTextBox
             // 
-            CreationDateTextBox.Location = new Point(95, 71);
+            CreationDateTextBox.Location = new Point(92, 71);
             CreationDateTextBox.Name = "CreationDateTextBox";
             CreationDateTextBox.ReadOnly = true;
             CreationDateTextBox.Size = new Size(125, 27);
@@ -320,7 +362,7 @@
             // 
             // IdTextBox
             // 
-            IdTextBox.Location = new Point(95, 30);
+            IdTextBox.Location = new Point(92, 30);
             IdTextBox.Name = "IdTextBox";
             IdTextBox.ReadOnly = true;
             IdTextBox.Size = new Size(125, 27);
@@ -329,7 +371,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(6, 122);
+            label6.Location = new Point(3, 122);
             label6.Name = "label6";
             label6.Size = new Size(52, 20);
             label6.TabIndex = 3;
@@ -338,7 +380,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(6, 78);
+            label5.Location = new Point(3, 78);
             label5.Name = "label5";
             label5.Size = new Size(64, 20);
             label5.TabIndex = 2;
@@ -347,7 +389,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(6, 37);
+            label4.Location = new Point(3, 37);
             label4.Name = "label4";
             label4.Size = new Size(27, 20);
             label4.TabIndex = 1;
@@ -357,11 +399,26 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label2.Location = new Point(6, 0);
+            label2.Location = new Point(3, 7);
             label2.Name = "label2";
             label2.Size = new Size(111, 20);
             label2.TabIndex = 0;
             label2.Text = "Selected Order";
+            // 
+            // panel13
+            // 
+            panel13.Controls.Add(label2);
+            panel13.Controls.Add(label4);
+            panel13.Controls.Add(OrderStatusComboBox);
+            panel13.Controls.Add(label5);
+            panel13.Controls.Add(CreationDateTextBox);
+            panel13.Controls.Add(label6);
+            panel13.Controls.Add(IdTextBox);
+            panel13.Dock = DockStyle.Fill;
+            panel13.Location = new Point(0, 0);
+            panel13.Name = "panel13";
+            panel13.Size = new Size(316, 192);
+            panel13.TabIndex = 11;
             // 
             // OrdersTab
             // 
@@ -389,7 +446,10 @@
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             panel4.ResumeLayout(false);
-            panel4.PerformLayout();
+            PriorityPanel.ResumeLayout(false);
+            PriorityPanel.PerformLayout();
+            panel13.ResumeLayout(false);
+            panel13.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -425,5 +485,10 @@
         private DataGridViewTextBoxColumn Created;
         private DataGridViewTextBoxColumn OrderStatus;
         private DataGridViewTextBoxColumn CustomerName;
+        private Label label9;
+        private Label label8;
+        private ComboBox DeliveryTimeComboBox;
+        private Panel PriorityPanel;
+        private Panel panel13;
     }
 }

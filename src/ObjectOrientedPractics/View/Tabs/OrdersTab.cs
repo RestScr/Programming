@@ -22,6 +22,7 @@ namespace ObjectOrientedPractics.View.Tabs
         public OrdersTab()
         {
             InitializeComponent();
+            PriorityPanel.Visible = false;
         }
 
         public void UpdateOrders()
@@ -63,6 +64,15 @@ namespace ObjectOrientedPractics.View.Tabs
             int index = OrdersData.SelectedCells[0].RowIndex;
             Order order = Orders[index];
 
+            if (order is PriorityOrder)
+            {
+                PriorityPanel.Visible = true;
+                DeliveryTimeComboBox.SelectedIndex = (int)((PriorityOrder)(order)).DeliveryTimePeriod;
+            }
+            else
+            {
+                PriorityPanel.Visible = false;
+            }
             IdTextBox.Text = Convert.ToString(order.Id);
             CreationDateTextBox.Text = Convert.ToString(order.OrderTime);
             OrderStatusComboBox.SelectedIndex = Convert.ToInt32(order.Status);
@@ -86,6 +96,18 @@ namespace ObjectOrientedPractics.View.Tabs
             Order order = Orders[index];
             order.Status = (OrderStatus)(OrderStatusComboBox.SelectedIndex);
             OrdersData.Rows[index].Cells["OrderStatus"].Value = order.Status;
+        }
+
+        private void DeliveryTimeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Orders.Count == 0 || OrdersData.SelectedCells.Count == 0)
+            {
+                return;
+            }
+            int index = OrdersData.SelectedCells[0].RowIndex;
+            PriorityOrder order = (PriorityOrder)Orders[index];
+
+            order.DeliveryTimePeriod = (TimePeriod)(DeliveryTimeComboBox.SelectedIndex);
         }
     }
 }
