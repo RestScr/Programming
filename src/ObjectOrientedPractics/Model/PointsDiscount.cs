@@ -43,7 +43,7 @@ namespace ObjectOrientedPractics.Model
             return (int)Math.Ceiling(Math.Min(Points, totalPrice * 0.3));
         }
 
-        public double Apply(List<Item> items)
+        public int Apply(List<Item> items)
         {
             double totalPrice = 0;
             foreach (Item item in items)

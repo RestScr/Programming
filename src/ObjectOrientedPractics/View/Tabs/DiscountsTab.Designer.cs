@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            panel2 = new Panel();
-            panel3 = new Panel();
-            DiscountInfoLabel = new Label();
-            ApplyButton = new Button();
-            CalculateButton = new Button();
             UpdateButton = new Button();
-            label3 = new Label();
-            label1 = new Label();
+            CalculateButton = new Button();
+            ApplyButton = new Button();
+            DiscountInfoLabel = new Label();
+            panel2 = new Panel();
+            DiscountAmountLabel = new Label();
             ProductsAmountLabel = new Label();
-            label2 = new Label();
+            label1 = new Label();
+            label3 = new Label();
+            panel3 = new Panel();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -55,25 +55,35 @@
             panel1.Size = new Size(418, 158);
             panel1.TabIndex = 0;
             // 
-            // panel2
+            // UpdateButton
             // 
-            panel2.Controls.Add(label2);
-            panel2.Controls.Add(ProductsAmountLabel);
-            panel2.Controls.Add(label1);
-            panel2.Controls.Add(label3);
-            panel2.Dock = DockStyle.Right;
-            panel2.Location = new Point(442, 0);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(169, 158);
-            panel2.TabIndex = 1;
+            UpdateButton.Location = new Point(260, 37);
+            UpdateButton.Name = "UpdateButton";
+            UpdateButton.Size = new Size(115, 58);
+            UpdateButton.TabIndex = 3;
+            UpdateButton.Text = "Update";
+            UpdateButton.UseVisualStyleBackColor = true;
+            UpdateButton.Click += UpdateButton_Click;
             // 
-            // panel3
+            // CalculateButton
             // 
-            panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(418, 0);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(24, 158);
-            panel3.TabIndex = 2;
+            CalculateButton.Location = new Point(18, 37);
+            CalculateButton.Name = "CalculateButton";
+            CalculateButton.Size = new Size(115, 58);
+            CalculateButton.TabIndex = 2;
+            CalculateButton.Text = "Calculate";
+            CalculateButton.UseVisualStyleBackColor = true;
+            CalculateButton.Click += CalculateButton_Click;
+            // 
+            // ApplyButton
+            // 
+            ApplyButton.Location = new Point(139, 37);
+            ApplyButton.Name = "ApplyButton";
+            ApplyButton.Size = new Size(115, 58);
+            ApplyButton.TabIndex = 1;
+            ApplyButton.Text = "Apply";
+            ApplyButton.UseVisualStyleBackColor = true;
+            ApplyButton.Click += ApplyButton_Click;
             // 
             // DiscountInfoLabel
             // 
@@ -85,42 +95,40 @@
             DiscountInfoLabel.TabIndex = 0;
             DiscountInfoLabel.Text = "Info: ";
             // 
-            // ApplyButton
+            // panel2
             // 
-            ApplyButton.Location = new Point(139, 37);
-            ApplyButton.Name = "ApplyButton";
-            ApplyButton.Size = new Size(115, 58);
-            ApplyButton.TabIndex = 1;
-            ApplyButton.Text = "Apply";
-            ApplyButton.UseVisualStyleBackColor = true;
+            panel2.Controls.Add(DiscountAmountLabel);
+            panel2.Controls.Add(ProductsAmountLabel);
+            panel2.Controls.Add(label1);
+            panel2.Controls.Add(label3);
+            panel2.Dock = DockStyle.Right;
+            panel2.Location = new Point(442, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(169, 158);
+            panel2.TabIndex = 1;
             // 
-            // CalculateButton
+            // DiscountAmountLabel
             // 
-            CalculateButton.Location = new Point(18, 37);
-            CalculateButton.Name = "CalculateButton";
-            CalculateButton.Size = new Size(115, 58);
-            CalculateButton.TabIndex = 2;
-            CalculateButton.Text = "Calculate";
-            CalculateButton.UseVisualStyleBackColor = true;
+            DiscountAmountLabel.AutoSize = true;
+            DiscountAmountLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            DiscountAmountLabel.Location = new Point(84, 104);
+            DiscountAmountLabel.Name = "DiscountAmountLabel";
+            DiscountAmountLabel.Size = new Size(23, 31);
+            DiscountAmountLabel.TabIndex = 3;
+            DiscountAmountLabel.Text = "-";
+            DiscountAmountLabel.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // UpdateButton
+            // ProductsAmountLabel
             // 
-            UpdateButton.Location = new Point(260, 37);
-            UpdateButton.Name = "UpdateButton";
-            UpdateButton.Size = new Size(115, 58);
-            UpdateButton.TabIndex = 3;
-            UpdateButton.Text = "Update";
-            UpdateButton.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label3.Location = new Point(27, 14);
-            label3.Name = "label3";
-            label3.Size = new Size(133, 20);
-            label3.TabIndex = 0;
-            label3.Text = "Products Amount";
+            ProductsAmountLabel.AutoSize = true;
+            ProductsAmountLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            ProductsAmountLabel.ImageAlign = ContentAlignment.MiddleRight;
+            ProductsAmountLabel.Location = new Point(84, 34);
+            ProductsAmountLabel.Name = "ProductsAmountLabel";
+            ProductsAmountLabel.Size = new Size(23, 31);
+            ProductsAmountLabel.TabIndex = 2;
+            ProductsAmountLabel.Text = "-";
+            ProductsAmountLabel.TextAlign = ContentAlignment.MiddleRight;
             // 
             // label1
             // 
@@ -132,27 +140,23 @@
             label1.TabIndex = 1;
             label1.Text = "Discount Amount";
             // 
-            // ProductsAmountLabel
+            // label3
             // 
-            ProductsAmountLabel.AutoSize = true;
-            ProductsAmountLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            ProductsAmountLabel.Location = new Point(137, 34);
-            ProductsAmountLabel.Name = "ProductsAmountLabel";
-            ProductsAmountLabel.Size = new Size(23, 31);
-            ProductsAmountLabel.TabIndex = 2;
-            ProductsAmountLabel.Text = "-";
-            ProductsAmountLabel.TextAlign = ContentAlignment.MiddleRight;
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label3.Location = new Point(27, 14);
+            label3.Name = "label3";
+            label3.Size = new Size(133, 20);
+            label3.TabIndex = 0;
+            label3.Text = "Products Amount";
             // 
-            // label2
+            // panel3
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label2.Location = new Point(137, 104);
-            label2.Name = "label2";
-            label2.Size = new Size(23, 31);
-            label2.TabIndex = 3;
-            label2.Text = "-";
-            label2.TextAlign = ContentAlignment.MiddleRight;
+            panel3.Dock = DockStyle.Fill;
+            panel3.Location = new Point(418, 0);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(24, 158);
+            panel3.TabIndex = 2;
             // 
             // DiscountsTab
             // 
@@ -182,6 +186,6 @@
         private Label ProductsAmountLabel;
         private Label label1;
         private Label label3;
-        private Label label2;
+        private Label DiscountAmountLabel;
     }
 }
