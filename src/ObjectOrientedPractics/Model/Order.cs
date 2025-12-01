@@ -16,6 +16,8 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         private static int _created = 0;
 
+        private double _discountAmount = 0;
+
         /// <summary>
         /// Свойство созданных экземпляров класса.
         /// </summary>
@@ -33,6 +35,37 @@ namespace ObjectOrientedPractics.Model
                 }
 
                 _created = value;
+            }
+        }
+
+        /// <summary>
+        /// Свойство размера примененной скидки.
+        /// </summary>
+        public double DiscountAmount 
+        { 
+            get
+            {
+                return _discountAmount;
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException("DiscountAmount property must be higher or equal to zero.");
+                }
+
+                _discountAmount = value;
+            }
+        }
+
+        /// <summary>
+        /// РАссчет стоимости всех товаров с учетом скидок.
+        /// </summary>
+        public double Total 
+        {
+            get
+            {
+                return Amount - DiscountAmount;
             }
         }
 

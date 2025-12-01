@@ -41,6 +41,11 @@ namespace ObjectOrientedPractics.Model
         public List<Order> Orders { get; init; } = new List<Order>();
 
         /// <summary>
+        /// СВойство скидок покупателя.
+        /// </summary>
+        public List<IDiscount> discounts { get; init; } = new List<IDiscount>(new IDiscount[] {new PointsDiscount()});
+
+        /// <summary>
         /// Свойство идентификатора объекта.
         /// </summary>
         public int Id
