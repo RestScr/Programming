@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
-    public class PointsDiscount
+    public class PointsDiscount : IDiscount
     {
         private int _points = 0;
         public int Points { 
@@ -32,7 +32,7 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
-        public int Calculate(List<Item> items)
+        public double Calculate(List<Item> items)
         {
             double totalPrice = 0;
             foreach (Item item in items)
@@ -43,7 +43,7 @@ namespace ObjectOrientedPractics.Model
             return (int)Math.Ceiling(Math.Min(Points, totalPrice * 0.3));
         }
 
-        public int Apply(List<Item> items)
+        public double Apply(List<Item> items)
         {
             double totalPrice = 0;
             foreach (Item item in items)

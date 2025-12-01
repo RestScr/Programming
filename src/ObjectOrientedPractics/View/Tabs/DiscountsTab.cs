@@ -13,7 +13,7 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class DiscountsTab : UserControl
     {
-        private PercentDiscount Discounter { get; set; } = new PercentDiscount();
+        private IDiscount Discounter { get; set; } = new PercentDiscount();
         public DiscountsTab()
         {
             InitializeComponent();

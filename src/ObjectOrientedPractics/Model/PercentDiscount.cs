@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
-    public class PercentDiscount
+    public class PercentDiscount : IDiscount
     {
         private double _moneySpentOnCategory = 0;
         public Category DiscountCategory { get; set; }
@@ -42,7 +42,7 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
-        public int Calculate(List<Item> items)
+        public double Calculate(List<Item> items)
         {
             double totalPrice = 0;
             foreach (Item item in items)
@@ -56,7 +56,7 @@ namespace ObjectOrientedPractics.Model
             return (int)(totalPrice / 100 * CurrentDiscount);
         }
 
-        public int Apply(List<Item> items)
+        public double Apply(List<Item> items)
         {
             MoneySpentOnCategory = 0;
 
