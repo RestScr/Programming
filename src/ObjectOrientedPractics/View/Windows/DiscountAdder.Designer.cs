@@ -61,10 +61,12 @@
             DiscountCategoryComboBox.Name = "DiscountCategoryComboBox";
             DiscountCategoryComboBox.Size = new Size(206, 28);
             DiscountCategoryComboBox.TabIndex = 2;
+            DiscountCategoryComboBox.Text = "Выберите категорию...";
             DiscountCategoryComboBox.SelectedIndexChanged += DiscountCategoryComboBox_SelectedIndexChanged;
             // 
             // OkButton
             // 
+            OkButton.DialogResult = DialogResult.OK;
             OkButton.Location = new Point(103, 97);
             OkButton.Name = "OkButton";
             OkButton.Size = new Size(93, 46);
@@ -74,13 +76,13 @@
             // 
             // CancelButton
             // 
+            CancelButton.DialogResult = DialogResult.Cancel;
             CancelButton.Location = new Point(202, 97);
             CancelButton.Name = "CancelButton";
             CancelButton.Size = new Size(94, 48);
             CancelButton.TabIndex = 4;
             CancelButton.Text = "Cancel";
             CancelButton.UseVisualStyleBackColor = true;
-            CancelButton.Click += CancelButton_Click;
             // 
             // DiscountAdder
             // 
@@ -92,6 +94,7 @@
             Controls.Add(DiscountCategoryComboBox);
             Controls.Add(label2);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "DiscountAdder";
             Text = "DiscountAdder";
             Load += DiscountAdder_Load;

@@ -10,7 +10,9 @@ namespace ObjectOrientedPractics.Model.Discounts
     public class PercentDiscount : IDiscount
     {
         private double _moneySpentOnCategory = 0;
-        public Category DiscountCategory { get; set; }
+
+
+        public Category DiscountCategory { get; set; } = Category.Disk;
         public double MoneySpentOnCategory
         {
             get
@@ -76,6 +78,13 @@ namespace ObjectOrientedPractics.Model.Discounts
             }
 
             MoneySpentOnCategory += totalPrice; 
+        }
+
+        public PercentDiscount() : base() { }
+
+        public PercentDiscount(Category category) : base()
+        {
+            DiscountCategory = category;
         }
     }
 }
