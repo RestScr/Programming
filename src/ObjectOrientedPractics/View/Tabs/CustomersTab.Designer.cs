@@ -35,7 +35,13 @@
             RemoveCustomerButton = new Button();
             AddCustomerButton = new Button();
             panel2 = new Panel();
+            panel5 = new Panel();
             AddressField = new ObjectOrientedPractics.View.Controls.AddressControl();
+            panel4 = new Panel();
+            RemoveButton = new Button();
+            AddDiscountButton = new Button();
+            DiscountsListBox = new ListBox();
+            label5 = new Label();
             CustomerField = new Panel();
             label2 = new Label();
             label3 = new Label();
@@ -45,6 +51,8 @@
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
+            panel5.SuspendLayout();
+            panel4.SuspendLayout();
             CustomerField.SuspendLayout();
             SuspendLayout();
             // 
@@ -56,7 +64,7 @@
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(313, 490);
+            panel1.Size = new Size(313, 563);
             panel1.TabIndex = 0;
             // 
             // CustomersList
@@ -65,7 +73,7 @@
             CustomersList.FormattingEnabled = true;
             CustomersList.Location = new Point(0, 20);
             CustomersList.Name = "CustomersList";
-            CustomersList.Size = new Size(307, 393);
+            CustomersList.Size = new Size(307, 466);
             CustomersList.TabIndex = 1;
             CustomersList.SelectedIndexChanged += CustomersList_SelectedIndexChanged;
             // 
@@ -85,7 +93,7 @@
             panel3.Controls.Add(RemoveCustomerButton);
             panel3.Controls.Add(AddCustomerButton);
             panel3.Dock = DockStyle.Bottom;
-            panel3.Location = new Point(0, 413);
+            panel3.Location = new Point(0, 486);
             panel3.Name = "panel3";
             panel3.Size = new Size(313, 77);
             panel3.TabIndex = 8;
@@ -112,23 +120,84 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(AddressField);
+            panel2.Controls.Add(panel5);
+            panel2.Controls.Add(panel4);
             panel2.Controls.Add(CustomerField);
             panel2.Dock = DockStyle.Left;
             panel2.Location = new Point(313, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(600, 490);
+            panel2.Size = new Size(600, 563);
             panel2.TabIndex = 1;
+            // 
+            // panel5
+            // 
+            panel5.Controls.Add(AddressField);
+            panel5.Dock = DockStyle.Fill;
+            panel5.Location = new Point(0, 125);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(600, 203);
+            panel5.TabIndex = 10;
             // 
             // AddressField
             // 
             AddressField.AutoSize = true;
             AddressField.DeliveryAddress = null;
-            AddressField.Dock = DockStyle.Top;
-            AddressField.Location = new Point(0, 125);
+            AddressField.Dock = DockStyle.Fill;
+            AddressField.Location = new Point(0, 0);
             AddressField.Name = "AddressField";
-            AddressField.Size = new Size(600, 182);
+            AddressField.Size = new Size(600, 203);
             AddressField.TabIndex = 7;
+            // 
+            // panel4
+            // 
+            panel4.Controls.Add(RemoveButton);
+            panel4.Controls.Add(AddDiscountButton);
+            panel4.Controls.Add(DiscountsListBox);
+            panel4.Controls.Add(label5);
+            panel4.Dock = DockStyle.Bottom;
+            panel4.Location = new Point(0, 328);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(600, 235);
+            panel4.TabIndex = 9;
+            // 
+            // RemoveButton
+            // 
+            RemoveButton.Location = new Point(432, 85);
+            RemoveButton.Name = "RemoveButton";
+            RemoveButton.Size = new Size(155, 53);
+            RemoveButton.TabIndex = 3;
+            RemoveButton.Text = "Remove";
+            RemoveButton.UseVisualStyleBackColor = true;
+            RemoveButton.Click += RemoveButton_Click;
+            // 
+            // AddDiscountButton
+            // 
+            AddDiscountButton.Location = new Point(432, 26);
+            AddDiscountButton.Name = "AddDiscountButton";
+            AddDiscountButton.Size = new Size(155, 53);
+            AddDiscountButton.TabIndex = 2;
+            AddDiscountButton.Text = "Add";
+            AddDiscountButton.UseVisualStyleBackColor = true;
+            AddDiscountButton.Click += AddDiscountButton_Click;
+            // 
+            // DiscountsListBox
+            // 
+            DiscountsListBox.FormattingEnabled = true;
+            DiscountsListBox.Location = new Point(6, 26);
+            DiscountsListBox.Name = "DiscountsListBox";
+            DiscountsListBox.Size = new Size(420, 124);
+            DiscountsListBox.TabIndex = 1;
+            DiscountsListBox.SelectedIndexChanged += DiscountsListBox_SelectedIndexChanged;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label5.Location = new Point(3, 3);
+            label5.Name = "label5";
+            label5.Size = new Size(78, 20);
+            label5.TabIndex = 0;
+            label5.Text = "Discounts";
             // 
             // CustomerField
             // 
@@ -196,14 +265,17 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "CustomersTab";
-            Size = new Size(916, 490);
+            Size = new Size(916, 563);
             Load += CustomerTab_Load;
             VisibleChanged += CustomersTab_VisibleChanged;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel3.ResumeLayout(false);
             panel2.ResumeLayout(false);
-            panel2.PerformLayout();
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
             CustomerField.ResumeLayout(false);
             CustomerField.PerformLayout();
             ResumeLayout(false);
@@ -225,5 +297,11 @@
         private Controls.AddressControl AddressField;
         private Panel panel3;
         private Panel CustomerField;
+        private Panel panel5;
+        private Panel panel4;
+        private ListBox DiscountsListBox;
+        private Label label5;
+        private Button AddDiscountButton;
+        private Button RemoveButton;
     }
 }

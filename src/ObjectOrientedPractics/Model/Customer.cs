@@ -46,7 +46,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// СВойство скидок покупателя.
         /// </summary>
-        public List<IDiscount> discounts { get; init; } = new List<IDiscount>(new IDiscount[] {new PointsDiscount()});
+        public List<IDiscount> Discounts { get; init; } = new List<IDiscount>(new IDiscount[] {new PointsDiscount()});
 
         /// <summary>
         /// Свойство идентификатора объекта.

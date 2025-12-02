@@ -19,6 +19,7 @@ namespace ObjectOrientedPractics.View.Tabs
     public partial class CustomersTab : UserControl
     {
         private Customer _selectedCustomer { get; set; } = null;
+        private IDiscount SelectedDiscount { get; set; } = null;
 
         /// <summary>
         /// Конструктор вкладки с покупателями.
@@ -159,6 +160,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 _selectedCustomer.Address = AddressField.DeliveryAddress;
             }
             _selectedCustomer = Store.Customers[selectedIndex];
+            FillDiscountsListBox(_selectedCustomer);
             FillBoxes();
             DisableElements();
         }
@@ -200,6 +202,41 @@ namespace ObjectOrientedPractics.View.Tabs
                     CustomersList.Items.Add(customer.Id + " " + customer.Fullname);
                 }
             }
+        }
+
+        /// <summary>
+        /// Закрытый вспомогательный метод заполнения списка скидок скидками из мписка покупателя.
+        /// </summary>
+        /// <param name="customer"> Объект покупателя. </param>
+        private void FillDiscountsListBox(Customer customer)
+        {
+            DiscountsListBox.Items.Clear();
+            foreach (IDiscount discount in customer.Discounts)
+            {
+                DiscountsListBox.Items.Add(discount.Info);
+            }
+        }
+
+        private void DiscountsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_selectedCustomer == null)
+            {
+                return;
+            }
+
+            SelectedDiscount = _selectedCustomer.Discounts[DiscountsListBox.SelectedIndex];
+        }
+
+        private void AddDiscountButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RemoveButton_Click(object sender, EventArgs e)
+        {
+            int selectedIndex = DiscountsListBox.SelectedIndex;
+            _selectedCustomer.Discounts.RemoveAt(selectedIndex);
+            DiscountsListBox.Items.RemoveAt(selectedIndex);
         }
     }
 }
