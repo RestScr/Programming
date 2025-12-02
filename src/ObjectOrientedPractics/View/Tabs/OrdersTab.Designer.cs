@@ -31,10 +31,6 @@
             panel1 = new Panel();
             panel8 = new Panel();
             OrdersData = new DataGridView();
-            Id = new DataGridViewTextBoxColumn();
-            Created = new DataGridViewTextBoxColumn();
-            OrderStatus = new DataGridViewTextBoxColumn();
-            CustomerName = new DataGridViewTextBoxColumn();
             panel7 = new Panel();
             label1 = new Label();
             panel2 = new Panel();
@@ -58,6 +54,14 @@
             label5 = new Label();
             CreationDateTextBox = new TextBox();
             label6 = new Label();
+            label5 = new Label();
+            label4 = new Label();
+            label2 = new Label();
+            Id = new DataGridViewTextBoxColumn();
+            Created = new DataGridViewTextBoxColumn();
+            OrderStatus = new DataGridViewTextBoxColumn();
+            CustomerName = new DataGridViewTextBoxColumn();
+            Total = new DataGridViewTextBoxColumn();
             IdTextBox = new TextBox();
             PriorityPanel = new Panel();
             DeliveryTimeComboBox = new ComboBox();
@@ -105,7 +109,7 @@
             OrdersData.AllowUserToResizeColumns = false;
             OrdersData.AllowUserToResizeRows = false;
             OrdersData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            OrdersData.Columns.AddRange(new DataGridViewColumn[] { Id, Created, OrderStatus, CustomerName });
+            OrdersData.Columns.AddRange(new DataGridViewColumn[] { Id, Created, OrderStatus, CustomerName, Total });
             OrdersData.Dock = DockStyle.Fill;
             OrdersData.Location = new Point(0, 0);
             OrdersData.Name = "OrdersData";
@@ -115,38 +119,6 @@
             OrdersData.StandardTab = true;
             OrdersData.TabIndex = 0;
             OrdersData.SelectionChanged += OrdersData_SelectionChanged;
-            // 
-            // Id
-            // 
-            Id.HeaderText = "ID";
-            Id.MinimumWidth = 6;
-            Id.Name = "Id";
-            Id.ReadOnly = true;
-            Id.Width = 125;
-            // 
-            // Created
-            // 
-            Created.HeaderText = "Created";
-            Created.MinimumWidth = 6;
-            Created.Name = "Created";
-            Created.ReadOnly = true;
-            Created.Width = 125;
-            // 
-            // OrderStatus
-            // 
-            OrderStatus.HeaderText = "Order Status";
-            OrderStatus.MinimumWidth = 6;
-            OrderStatus.Name = "OrderStatus";
-            OrderStatus.ReadOnly = true;
-            OrderStatus.Width = 125;
-            // 
-            // CustomerName
-            // 
-            CustomerName.HeaderText = "Customer Full Name";
-            CustomerName.MinimumWidth = 6;
-            CustomerName.Name = "CustomerName";
-            CustomerName.ReadOnly = true;
-            CustomerName.Width = 125;
             // 
             // panel7
             // 
@@ -420,6 +392,46 @@
             label9.TabIndex = 8;
             label9.Text = "Delivery Time:";
             // 
+            // Id
+            // 
+            Id.HeaderText = "ID";
+            Id.MinimumWidth = 6;
+            Id.Name = "Id";
+            Id.ReadOnly = true;
+            Id.Width = 125;
+            // 
+            // Created
+            // 
+            Created.HeaderText = "Created";
+            Created.MinimumWidth = 6;
+            Created.Name = "Created";
+            Created.ReadOnly = true;
+            Created.Width = 125;
+            // 
+            // OrderStatus
+            // 
+            OrderStatus.HeaderText = "Order Status";
+            OrderStatus.MinimumWidth = 6;
+            OrderStatus.Name = "OrderStatus";
+            OrderStatus.ReadOnly = true;
+            OrderStatus.Width = 125;
+            // 
+            // CustomerName
+            // 
+            CustomerName.HeaderText = "Customer Full Name";
+            CustomerName.MinimumWidth = 6;
+            CustomerName.Name = "CustomerName";
+            CustomerName.ReadOnly = true;
+            CustomerName.Width = 125;
+            // 
+            // Total
+            // 
+            Total.HeaderText = "Total";
+            Total.MinimumWidth = 6;
+            Total.Name = "Total";
+            Total.ReadOnly = true;
+            Total.Width = 125;
+            // 
             // OrdersTab
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -490,5 +502,6 @@
         private ComboBox DeliveryTimeComboBox;
         private Panel PriorityPanel;
         private Panel panel13;
+        private DataGridViewTextBoxColumn Total;
     }
 }

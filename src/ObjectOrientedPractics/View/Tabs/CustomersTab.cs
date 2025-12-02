@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Discounts;
 using ObjectOrientedPractics.Services;
 using ObjectOrientedPractics.View.Controls;
+using ObjectOrientedPractics.View.Windows;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
@@ -19,6 +22,7 @@ namespace ObjectOrientedPractics.View.Tabs
     public partial class CustomersTab : UserControl
     {
         private Customer _selectedCustomer { get; set; } = null;
+        private IDiscount SelectedDiscount { get; set; } = null;
 
         /// <summary>
         /// Конструктор вкладки с покупателями.
@@ -162,6 +166,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 _selectedCustomer.Address = AddressField.DeliveryAddress;
             }
             _selectedCustomer = Store.Customers[selectedIndex];
+            FillDiscountsListBox(_selectedCustomer);
             FillBoxes();
             DisableElements();
         }
@@ -212,6 +217,70 @@ namespace ObjectOrientedPractics.View.Tabs
                 return;
             }
             _selectedCustomer.IsPriority = PriorityCheckBox.Checked;
+        }
+
+        /// <summary>
+        /// Закрытый вспомогательный метод заполнения списка скидок скидками из мписка покупателя.
+        /// </summary>
+        /// <param name="customer"> Объект покупателя. </param>
+        private void FillDiscountsListBox(Customer customer)
+        {
+            DiscountsListBox.Items.Clear();
+            foreach (IDiscount discount in customer.Discounts)
+            {
+                DiscountsListBox.Items.Add(discount.Info);
+            }
+        }
+
+        private void DiscountsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_selectedCustomer == null)
+            {
+                return;
+            }
+
+            int index = DiscountsListBox.SelectedIndex;
+            if (index < 0)
+            {
+                return;
+            }
+
+            SelectedDiscount = _selectedCustomer.Discounts[index];
+        }
+
+        private void AddDiscountButton_Click(object sender, EventArgs e)
+        {
+            if (_selectedCustomer == null)
+            {
+                return;
+            }
+
+            DiscountAdder modalWindow = new DiscountAdder();
+            DialogResult result = modalWindow.ShowDialog(this);
+
+            if (result == DialogResult.OK)
+            {
+                _selectedCustomer.Discounts.Add(new PercentDiscount(modalWindow.ReturnCategory()));
+                FillDiscountsListBox(_selectedCustomer);
+            }
+        }
+
+        private void RemoveButton_Click(object sender, EventArgs e)
+        {
+            if (_selectedCustomer == null)
+            {
+                return;
+            }
+
+            int selectedIndex = DiscountsListBox.SelectedIndex;
+            if (_selectedCustomer.Discounts[selectedIndex].GetType() == typeof(PointsDiscount))
+            {
+                return;
+            }
+
+            _selectedCustomer.Discounts.RemoveAt(selectedIndex);
+            DiscountsListBox.Items.RemoveAt(selectedIndex);
+            SelectedDiscount = null;
         }
     }
 }

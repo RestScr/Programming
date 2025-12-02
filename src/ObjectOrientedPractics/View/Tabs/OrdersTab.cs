@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Enums;
+using ObjectOrientedPractics.Model.Orders;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
@@ -34,7 +36,10 @@ namespace ObjectOrientedPractics.View.Tabs
 
                 foreach (Order order in customer.Orders)
                 {
-                    OrdersData.Rows.Add(order.Id, order.OrderTime, order.Status, customer.Fullname);
+                    Debug.WriteLine(order.Total);
+                    Debug.WriteLine(order.Amount);
+                    Debug.WriteLine(order.DiscountAmount);
+                    OrdersData.Rows.Add(order.Id, order.OrderTime, order.Status, customer.Fullname, order.Total);
                     Orders.Add(order);
                 }
             }

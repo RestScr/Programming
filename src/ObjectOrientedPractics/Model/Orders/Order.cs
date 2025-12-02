@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using ObjectOrientedPractics.Model.Enums;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Orders
 {
     /// <summary>
     /// Класс заказа.
@@ -17,6 +19,8 @@ namespace ObjectOrientedPractics.Model
         /// Поле класса, отвечающее за общее количество созданных экземпляров.
         /// </summary>
         private static int _created = 0;
+
+        private double _discountAmount = 0;
 
         /// <summary>
         /// Свойство созданных экземпляров класса.
@@ -35,6 +39,37 @@ namespace ObjectOrientedPractics.Model
                 }
 
                 _created = value;
+            }
+        }
+
+        /// <summary>
+        /// Свойство размера примененной скидки.
+        /// </summary>
+        public double DiscountAmount 
+        { 
+            get
+            {
+                return _discountAmount;
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException("DiscountAmount property must be higher or equal to zero.");
+                }
+
+                _discountAmount = value;
+            }
+        }
+
+        /// <summary>
+        /// Рассчет стоимости всех товаров с учетом скидок.
+        /// </summary>
+        public double Total 
+        {
+            get
+            {
+                return Amount - DiscountAmount;
             }
         }
 
@@ -90,6 +125,23 @@ namespace ObjectOrientedPractics.Model
             {
                 Items.Add(item);
             }
+        }
+
+        /// <summary>
+        /// Конструктор заказа.
+        /// </summary>
+        /// <param name="address"> Адрес доставки заказа. </param>
+        /// <param name="cart"> Корзина покупателя. </param>
+        /// <param name="totalOrderDiscount"> Размер примененной скидки. </param>
+        public Order(Address address, Cart cart, double totalOrderDiscount)
+        {
+            Id = ++Created;
+            OrderAddress = address;
+            foreach (Item item in cart.Items)
+            {
+                Items.Add(item);
+            }
+            DiscountAmount = totalOrderDiscount;
         }
 
         /// <summary>

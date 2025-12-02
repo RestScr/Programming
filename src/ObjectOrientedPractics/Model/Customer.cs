@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ObjectOrientedPractics.Model.Orders;
+using ObjectOrientedPractics.Model.Discounts;
+using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.Model
@@ -44,6 +47,11 @@ namespace ObjectOrientedPractics.Model
         /// Список заказов покупателя.
         /// </summary>
         public List<Order> Orders { get; init; } = new List<Order>();
+
+        /// <summary>
+        /// СВойство скидок покупателя.
+        /// </summary>
+        public List<IDiscount> Discounts { get; init; } = new List<IDiscount>(new IDiscount[] {new PointsDiscount()});
 
         /// <summary>
         /// Свойство идентификатора объекта.

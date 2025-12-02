@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Orders;
 
 
 namespace ObjectOrientedPractics.View.Tabs
@@ -152,6 +153,19 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        private void FillDiscountCheckedListBox(Customer customer)
+        {
+            if (SelectedCustomer == null)
+            {
+                return;
+            }
+            DiscountCheckedListBox.Items.Clear();
+            foreach (IDiscount discount in customer.Discounts)
+            {
+                DiscountCheckedListBox.Items.Add(discount.Info);
+            }
+        }
+
         private void CartsTab_VisibleChanged(object sender, EventArgs e)
         {
             RefreshData();
@@ -165,6 +179,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 return;
             }
             _selectedCustomer = Store.Customers[CustomerComboBox.SelectedIndex];
+            FillDiscountCheckedListBox(_selectedCustomer);
             FillCart();
         }
 
@@ -175,6 +190,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 return;
             }
             SelectedCustomer.CustomerCart.Items.Add(SelectedItem);
+            UpdateDiscounts();
             FillCart();
         }
 
@@ -212,6 +228,26 @@ namespace ObjectOrientedPractics.View.Tabs
             SelectedCartItem = SelectedCustomer.CustomerCart.Items[CartListBox.SelectedIndex];
         }
 
+        /// <summary>
+        /// Рассчитать итоговую скидку.
+        /// </summary>
+        /// <returns> Рассчитанную итоговую скидку. </returns>
+        double CalculateDiscounts()
+        {
+            if (SelectedCustomer == null)
+            {
+                return 0;
+            }
+
+            double discount = 0;
+            foreach (int i in DiscountCheckedListBox.CheckedIndices)
+            {
+                discount += SelectedCustomer.Discounts[i].Calculate(SelectedCustomer.CustomerCart.Items);
+            }
+
+            return discount;
+        }
+
         private void CreateOrderButton_Click(object sender, EventArgs e)
         {
             if (SelectedCustomer == null)
@@ -226,6 +262,19 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             CustomerComboBox.BackColor = Color.White;
 
+            double totalOrderDiscount = 0;
+            foreach (int i in DiscountCheckedListBox.CheckedIndices)
+            {
+                totalOrderDiscount += SelectedCustomer.Discounts[i].Apply(SelectedCustomer.CustomerCart.Items);
+            }
+
+            foreach (IDiscount discount in SelectedCustomer.Discounts)
+            {
+                discount.Update(SelectedCustomer.CustomerCart.Items);
+            }
+
+            SelectedCustomer.Orders.Add(new Order(SelectedCustomer.Address, SelectedCustomer.CustomerCart, totalOrderDiscount));
+
             if (SelectedCustomer.IsPriority)
             {
                 SelectedCustomer.Orders.Add(new PriorityOrder(SelectedCustomer.Address, SelectedCustomer.CustomerCart, DateTime.Now, TimePeriod.NineToEleven));
@@ -235,7 +284,48 @@ namespace ObjectOrientedPractics.View.Tabs
                 SelectedCustomer.Orders.Add(new Order(SelectedCustomer.Address, SelectedCustomer.CustomerCart));
             }
             ClearCart();
+            UpdateUI();
             MessageBox.Show("Заказ успешно создан.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        /// <summary>
+        /// Функция обновления надписей о скидках.
+        /// </summary>
+        private void UpdateDiscounts()
+        {
+            if (SelectedCustomer == null)
+            {
+                return;
+            }
+
+            double discount = 0;
+            foreach (int i in DiscountCheckedListBox.CheckedIndices)
+            {
+                discount += SelectedCustomer.Discounts[i].Calculate(SelectedCustomer.CustomerCart.Items);
+            }
+            DiscountAmountLabel.Text = Convert.ToString(discount);
+            TotalAmountLabel.Text = Convert.ToString(SelectedCustomer.CustomerCart.Amount - discount);
+        }
+
+        /// <summary>
+        /// Обновление интерфейса.
+        /// </summary>
+        private void UpdateUI()
+        {
+            if (SelectedCustomer == null)
+            {
+                return;
+            }
+
+            AmountLabel.Text = Convert.ToString(SelectedCustomer.CustomerCart.Amount);
+            DiscountAmountLabel.Text = Convert.ToString(CalculateDiscounts());
+            TotalAmountLabel.Text = Convert.ToString(SelectedCustomer.CustomerCart.Amount - CalculateDiscounts());
+            FillDiscountCheckedListBox(SelectedCustomer);
+        }
+
+        private void DiscountCheckedListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateDiscounts();
         }
     }
 }
