@@ -240,7 +240,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
 
             double discount = 0;
-            foreach (int i in DiscountCheckedListBox.SelectedIndices)
+            foreach (int i in DiscountCheckedListBox.CheckedIndices)
             {
                 discount += SelectedCustomer.Discounts[i].Calculate(SelectedCustomer.CustomerCart.Items);
             }
@@ -263,7 +263,7 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomerComboBox.BackColor = Color.White;
 
             double totalOrderDiscount = 0;
-            foreach (int i in DiscountCheckedListBox.SelectedIndices)
+            foreach (int i in DiscountCheckedListBox.CheckedIndices)
             {
                 totalOrderDiscount += SelectedCustomer.Discounts[i].Apply(SelectedCustomer.CustomerCart.Items);
             }
@@ -291,7 +291,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
 
             double discount = 0;
-            foreach (int i in DiscountCheckedListBox.SelectedIndices)
+            foreach (int i in DiscountCheckedListBox.CheckedIndices)
             {
                 discount += SelectedCustomer.Discounts[i].Calculate(SelectedCustomer.CustomerCart.Items);
             }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -60,7 +61,7 @@ namespace ObjectOrientedPractics.Model.Orders
         }
 
         /// <summary>
-        /// РАссчет стоимости всех товаров с учетом скидок.
+        /// Рассчет стоимости всех товаров с учетом скидок.
         /// </summary>
         public double Total 
         {

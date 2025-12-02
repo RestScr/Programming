@@ -61,9 +61,10 @@ namespace ObjectOrientedPractics.Model.Discounts
 
         public double Apply(List<Item> items)
         {
+            double result = Calculate(items);
             MoneySpentOnCategory = 0;
 
-            return Calculate(items);
+            return result;
         }
 
         public void Update(List<Item> items)

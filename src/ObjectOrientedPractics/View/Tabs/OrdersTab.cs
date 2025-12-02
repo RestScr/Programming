@@ -35,7 +35,10 @@ namespace ObjectOrientedPractics.View.Tabs
 
                 foreach (Order order in customer.Orders)
                 {
-                    OrdersData.Rows.Add(order.Id, order.OrderTime, order.Status, customer.Fullname);
+                    Debug.WriteLine(order.Total);
+                    Debug.WriteLine(order.Amount);
+                    Debug.WriteLine(order.DiscountAmount);
+                    OrdersData.Rows.Add(order.Id, order.OrderTime, order.Status, customer.Fullname, order.Total);
                     Orders.Add(order);
                 }
             }

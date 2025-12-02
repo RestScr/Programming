@@ -51,7 +51,9 @@ namespace ObjectOrientedPractics.Model.Discounts
                 totalPrice += item.Cost;
             }
 
-            if (Calculate(items) >= totalPrice * 0.3)
+            double discount = Calculate(items);
+
+            if (discount >= totalPrice * 0.3)
             {
                 Points = Math.Max(Points - (int)totalPrice, 0);
             }
@@ -60,7 +62,7 @@ namespace ObjectOrientedPractics.Model.Discounts
                 Points = 0;
             }
 
-            return Calculate(items);
+            return discount;
         }
 
         public void Update(List<Item> items)
