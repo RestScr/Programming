@@ -53,7 +53,7 @@ namespace ObjectOrientedPractics.Model.Discounts
 
             if (Calculate(items) >= totalPrice * 0.3)
             {
-                Points -= (int)totalPrice;
+                Points = Math.Max(Points - (int)totalPrice, 0);
             }
             else
             {

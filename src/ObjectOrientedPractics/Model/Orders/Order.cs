@@ -129,6 +129,23 @@ namespace ObjectOrientedPractics.Model.Orders
         /// </summary>
         /// <param name="address"> Адрес доставки заказа. </param>
         /// <param name="cart"> Корзина покупателя. </param>
+        /// <param name="totalOrderDiscount"> Размер примененной скидки. </param>
+        public Order(Address address, Cart cart, double totalOrderDiscount)
+        {
+            Id = ++Created;
+            OrderAddress = address;
+            foreach (Item item in cart.Items)
+            {
+                Items.Add(item);
+            }
+            DiscountAmount = totalOrderDiscount;
+        }
+
+        /// <summary>
+        /// Конструктор заказа.
+        /// </summary>
+        /// <param name="address"> Адрес доставки заказа. </param>
+        /// <param name="cart"> Корзина покупателя. </param>
         /// <param name="status"> Статус заказа. </param>
         public Order(Address address, Cart cart, OrderStatus status)
         {
