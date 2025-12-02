@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ObjectOrientedPractics.Model.Enums;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Orders
 {
     public class PriorityOrder : Order
     {
@@ -17,8 +18,8 @@ namespace ObjectOrientedPractics.Model
             DeliveryTimePeriod = deliveryTimePeriod;
         }
 
-        public PriorityOrder(Address address, Cart cart, DateTime deliveryDate, TimePeriod deliveryTimePeriod) :
-        base(address, cart)
+        public PriorityOrder(Address address, Cart cart, DateTime deliveryDate, TimePeriod deliveryTimePeriod, double totalDiscountAmount) :
+        base(address, cart, totalDiscountAmount)
         {
             DeliveryDate = deliveryDate;
             DeliveryTimePeriod = deliveryTimePeriod;

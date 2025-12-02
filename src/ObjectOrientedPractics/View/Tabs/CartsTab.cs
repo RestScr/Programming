@@ -273,15 +273,13 @@ namespace ObjectOrientedPractics.View.Tabs
                 discount.Update(SelectedCustomer.CustomerCart.Items);
             }
 
-            SelectedCustomer.Orders.Add(new Order(SelectedCustomer.Address, SelectedCustomer.CustomerCart, totalOrderDiscount));
-
             if (SelectedCustomer.IsPriority)
             {
-                SelectedCustomer.Orders.Add(new PriorityOrder(SelectedCustomer.Address, SelectedCustomer.CustomerCart, DateTime.Now, TimePeriod.NineToEleven));
+                SelectedCustomer.Orders.Add(new PriorityOrder(SelectedCustomer.Address, SelectedCustomer.CustomerCart, DateTime.Now, TimePeriod.NineToEleven, totalOrderDiscount));
             }
             else
             {
-                SelectedCustomer.Orders.Add(new Order(SelectedCustomer.Address, SelectedCustomer.CustomerCart));
+                SelectedCustomer.Orders.Add(new Order(SelectedCustomer.Address, SelectedCustomer.CustomerCart, totalOrderDiscount));
             }
             ClearCart();
             UpdateUI();
