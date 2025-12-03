@@ -11,7 +11,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Класс товара.
     /// </summary>
-    public class Item
+    public class Item : ICloneable
     {
         private static int _createdItems = 0;
 
@@ -108,6 +108,13 @@ namespace ObjectOrientedPractics.Model
             Info = info;
             Cost = cost;
             ItemCategory = itemCategory;
+        }
+
+        public object Clone()
+        {
+            Item clone = new Item(Name, Info, Cost, ItemCategory);
+
+            return clone;
         }
     }
 }

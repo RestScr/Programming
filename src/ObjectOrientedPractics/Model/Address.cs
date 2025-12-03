@@ -10,7 +10,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Класс адреса.
     /// </summary>
-    public class Address
+    public class Address : ICloneable
     {
         private string _index;
         private string _country;
@@ -151,6 +151,13 @@ namespace ObjectOrientedPractics.Model
             Street = "";
             Building = "";
             Apartment = "";
+        }
+
+        public object Clone()
+        {
+            Address address = new Address(Index, Country, City, Street, Building, Apartment);
+
+            return address;
         }
     }
 }
