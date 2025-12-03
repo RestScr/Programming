@@ -20,6 +20,10 @@ namespace ObjectOrientedPractics.Model
         private string _info;
         private double _cost;
 
+        public event EventHandler<EventArgs> NameChanged;
+        public event EventHandler<EventArgs> CostChanged;
+        public event EventHandler<EventArgs> InfoChanged;
+
         /// <summary>
         /// Свойство, определяющее идентификатор объекта класса.
         /// </summary>
@@ -53,6 +57,8 @@ namespace ObjectOrientedPractics.Model
             {
                 ValueValidator.AssertStringOnLength(value, 200, "Name");
                 _name = value;
+
+                NameChanged?.Invoke(this, new EventArgs());
             }
         }
 
@@ -69,6 +75,8 @@ namespace ObjectOrientedPractics.Model
             {
                 ValueValidator.AssertStringOnLength(value, 1000, "Info");
                 _info = value;
+
+                InfoChanged?.Invoke(this, new EventArgs());
             }
         }
 
@@ -86,6 +94,7 @@ namespace ObjectOrientedPractics.Model
                 ValueValidator.AssertValueInRange(value, 0, 100000, "Cost");
 
                 _cost = value;
+                CostChanged?.Invoke(this, new EventArgs());
             }
         }
 
