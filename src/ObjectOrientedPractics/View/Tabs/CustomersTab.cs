@@ -24,6 +24,8 @@ namespace ObjectOrientedPractics.View.Tabs
         private Customer _selectedCustomer { get; set; } = null;
         private IDiscount SelectedDiscount { get; set; } = null;
 
+        public event EventHandler<EventArgs> CustomersChanged;
+
         /// <summary>
         /// Конструктор вкладки с покупателями.
         /// </summary>
@@ -63,6 +65,8 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             Store.Customers.Add(customer);
             CustomersList.Items.Add(Convert.ToString(customer.Id) + " " + customer.Fullname);
+
+            CustomersChanged?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -86,6 +90,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 _selectedCustomer = null;
                 ClearBoxes();
             }
+            CustomersChanged?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -181,6 +186,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 }
                 CustomerFullnameBox.BackColor = Color.White;
                 _selectedCustomer.Fullname = CustomerFullnameBox.Text;
+                CustomersChanged?.Invoke(this, EventArgs.Empty);
             }
             catch (ArgumentException)
             {
@@ -196,6 +202,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void CustomerFullnameBox_Leave(object sender, EventArgs e)
         {
             CustomersList.Items[Store.Customers.IndexOf(_selectedCustomer)] = _selectedCustomer.Id + " " + _selectedCustomer.Fullname;
+            CustomersChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void CustomersTab_VisibleChanged(object sender, EventArgs e)
@@ -217,6 +224,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 return;
             }
             _selectedCustomer.IsPriority = PriorityCheckBox.Checked;
+            CustomersChanged?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -263,6 +271,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 _selectedCustomer.Discounts.Add(new PercentDiscount(modalWindow.ReturnCategory()));
                 FillDiscountsListBox(_selectedCustomer);
             }
+            CustomersChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void RemoveButton_Click(object sender, EventArgs e)
@@ -281,6 +290,7 @@ namespace ObjectOrientedPractics.View.Tabs
             _selectedCustomer.Discounts.RemoveAt(selectedIndex);
             DiscountsListBox.Items.RemoveAt(selectedIndex);
             SelectedDiscount = null;
+            CustomersChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

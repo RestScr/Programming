@@ -15,14 +15,12 @@ namespace ObjectOrientedPractics
 
         private void TabControl_Selected(object sender, TabControlEventArgs e)
         {
-            if (TabControl.SelectedIndex == 2)
-            {
-                CartPanel.RefreshData();
-            }
-            if (TabControl.SelectedIndex == 3)
-            {
-                OrdersPanel.UpdateOrders();
-            }
+            ItemsControlTab.ItemsChanged += CartPanel.RefreshData;
+            ItemsControlTab.ItemsChanged += OrdersPanel.RefreshData;
+            CustomersControlTab.CustomersChanged += CartPanel.RefreshData;
+            CustomersControlTab.CustomersChanged += OrdersPanel.RefreshData;
+            CartPanel.OrderCreated += OrdersPanel.RefreshData;
+
             ItemsControlTab.DisableElements();
             CustomersControlTab.DisableElements();
         }

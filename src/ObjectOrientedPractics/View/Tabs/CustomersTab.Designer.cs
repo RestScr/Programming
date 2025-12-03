@@ -134,21 +134,19 @@
             // 
             panel5.Controls.Add(AddressField);
             panel5.Dock = DockStyle.Fill;
-            panel5.Location = new Point(0, 125);
+            panel5.Location = new Point(0, 161);
             panel5.Name = "panel5";
-            panel5.Size = new Size(600, 203);
+            panel5.Size = new Size(600, 167);
             panel5.TabIndex = 10;
             // 
             // AddressField
             // 
             AddressField.AutoSize = true;
             AddressField.DeliveryAddress = null;
-            AddressField.Dock = DockStyle.Fill;
-            AddressField.Location = new Point(0, 0);
             AddressField.Dock = DockStyle.Top;
-            AddressField.Location = new Point(0, 161);
+            AddressField.Location = new Point(0, 0);
             AddressField.Name = "AddressField";
-            AddressField.Size = new Size(600, 203);
+            AddressField.Size = new Size(600, 182);
             AddressField.TabIndex = 7;
             // 
             // panel4

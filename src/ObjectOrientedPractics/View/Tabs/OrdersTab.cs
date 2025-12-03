@@ -27,7 +27,7 @@ namespace ObjectOrientedPractics.View.Tabs
             PriorityPanel.Visible = false;
         }
 
-        public void UpdateOrders()
+        public void RefreshData(object? sender, EventArgs args)
         {
             OrdersData.Rows.Clear();
             Orders.Clear();
@@ -56,7 +56,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void OrdersTab_Load(object sender, EventArgs e)
         {
-            UpdateOrders();
+            RefreshData(sender, e);
             DeliveryAddressControl.SetReadOnly(true);
         }
 
