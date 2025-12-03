@@ -72,6 +72,67 @@ namespace ObjectOrientedPractics.Services
             return output;
         }
 
+        /// <summary>
+        /// Делегат критерия сортировки.
+        /// </summary>
+        /// <param name="item1"> Первый товар. </param>
+        /// <param name="item2"> Второй товар. </param>
+        /// <returns> true или false. </returns>
+        public delegate bool SortCriteria(Item item1, Item item2);
 
+        /// <summary>
+        /// Критерий сортировки по возрастанию.
+        /// </summary>
+        /// <param name="item1"> Объект первого товара. </param>
+        /// <param name="item2"> Объект второго товара. </param>
+        /// <returns>true или false. </returns>
+        public static bool AscendByCostSort(Item item1, Item item2)
+        {
+            return item1.Cost > item2.Cost;
+        }
+
+        /// <summary>
+        /// Критерий сортировки по убыванию.
+        /// </summary>
+        /// <param name="item1"> Объект первого товара. </param>
+        /// <param name="item2"> Объект второго товара. </param>
+        /// <returns> true или false. </returns>
+        public static bool DecreaseByCostSort(Item item1, Item item2)
+        {
+            return item1.Cost < item2.Cost;
+        }
+
+        /// <summary>
+        /// Критерий по названию.
+        /// </summary>
+        /// <param name="item1"> Объект первого товара. </param>
+        /// <param name="item2"> Объект второго товара. </param>
+        /// <returns> true или false. </returns>
+        public static bool ByNameSort(Item item1, Item item2)
+        {
+            int result = item1.Name.CompareTo(item2.Name);
+            return (result >= 0) ? true : false;
+        }
+
+        /// <summary>
+        /// Сортировка списка товаров.
+        /// </summary>
+        /// <param name="items"> Список товаров. </param>
+        /// <param name="criteria"> Критерий сортировки. </param>
+        public static void Sort(List<Item> items, SortCriteria criteria)
+        {
+            for (int i = 0; i < items.Count; i++)
+            {
+                for (int j = 1; j < items.Count; j++)
+                {
+                    if (criteria(items[j - 1], items[j]))
+                    {
+                        Item temp = items[j];
+                        items[j] = items[j - 1];
+                        items[j - 1] = temp;
+                    }
+                }
+            }
+        }
     }
 }

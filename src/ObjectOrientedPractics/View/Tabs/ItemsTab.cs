@@ -63,6 +63,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             Store.Items.Add(item);
             ItemsList.Items.Add(Convert.ToString(item.Id) + " " + item.Name);
+            SortByOption();
         }
 
         /// <summary>
@@ -110,6 +111,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void AddItemButton_Click(object sender, EventArgs e)
         {
             AddItem(ItemFactory.GenerateItem());
+            FillItemsListBoxThroughSearch();
         }
 
         /// <summary>
@@ -134,7 +136,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 return;
             }
-            _selectedItem = Store.Items[selectedIndex];
+            _selectedItem = Search()[selectedIndex];
             IDBox.Text = Convert.ToString(_selectedItem.Id);
             CostBox.Text = Convert.ToString(_selectedItem.Cost);
             NameRichText.Text = _selectedItem.Name;
@@ -182,7 +184,10 @@ namespace ObjectOrientedPractics.View.Tabs
                 NameRichText.BackColor = Color.White;
                 if (_selectedItem != null)
                 {
-                    _selectedItem.Name = NameRichText.Text;
+                    if (_selectedItem.Name != NameRichText.Text)
+                    {
+                        _selectedItem.Name = NameRichText.Text;
+                    }
                 }
             }
             catch (ArgumentException)
@@ -219,11 +224,20 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 CategoryComboBox.Items.Add(category);
             }
+            OrderByComboBox.SelectedIndex = 0;
         }
 
         private void NameRichText_Leave(object sender, EventArgs e)
         {
-            ItemsList.Items[Store.Items.IndexOf(_selectedItem)] = Convert.ToString(_selectedItem.Id) + " " + _selectedItem.Name;
+            try
+            {
+                ItemsList.Items[Store.Items.IndexOf(_selectedItem)] = Convert.ToString(_selectedItem.Id) + " " + _selectedItem.Name;
+                SortByOption();
+            }
+            catch (System.ArgumentOutOfRangeException)
+            {
+                FillItemsListBoxThroughSearch();
+            }
         }
 
         private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -241,6 +255,85 @@ namespace ObjectOrientedPractics.View.Tabs
                     ItemsList.Items.Add(item.Id + " " + item.Name);
                 }
             }
+        }
+
+        /// <summary>
+        /// Критерий фильтра предметов по названию.
+        /// </summary>
+        /// <param name="item"> Объект товара. </param>
+        /// <returns> true или false. </returns>
+        private bool FilterBySearch(Item item)
+        {
+            return item.Name.Contains(SearchTextBox.Text);
+        }
+
+        /// <summary>
+        /// Заполнить листбокс предметов по данному списку.
+        /// </summary>
+        /// <param name="items"> Список предметов. </param>
+        private void FillItemsListBox(List<Item> items)
+        {
+            ItemsList.Items.Clear();
+
+            foreach (Item item in items)
+            {
+                ItemsList.Items.Add(item.Id + " " + item.Name);
+            }
+        }
+
+        /// <summary>
+        /// Функция фильтрации списка предметов из магазина по названию из поисковой строки.
+        /// </summary>
+        /// <returns> Список предметов по фильтру. </returns>
+        private List<Item> Search()
+        {
+            return DataTools.Filter(Store.Items, FilterBySearch);
+        }
+
+        /// <summary>
+        /// Функция заполнения списка предметов из магазина по поисковой строке.
+        /// </summary>
+        private void FillItemsListBoxThroughSearch()
+        {
+            FillItemsListBox(Search());
+        }
+
+        private void SearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            FillItemsListBoxThroughSearch();
+        }
+
+        /// <summary>
+        /// Сортировка списка товаров согласно выбранной опции сортировки товаров.
+        /// </summary>
+        private void SortByOption()
+        {
+            if (OrderByComboBox.SelectedIndex < 0)
+            {
+                return;
+            }
+
+            if (OrderByComboBox.SelectedIndex == 0)
+            {
+                DataTools.Sort(Store.Items, DataTools.ByNameSort);
+            }
+
+            if (OrderByComboBox.SelectedIndex == 1)
+            {
+                DataTools.Sort(Store.Items, DataTools.AscendByCostSort);
+            }
+
+            if (OrderByComboBox.SelectedIndex == 2)
+            {
+                DataTools.Sort(Store.Items, DataTools.DecreaseByCostSort);
+            }
+
+            FillItemsListBox(Search());
+        }
+
+        private void OrderByComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SortByOption();
         }
     }
 }
