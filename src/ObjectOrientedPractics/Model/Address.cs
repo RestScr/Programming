@@ -19,6 +19,8 @@ namespace ObjectOrientedPractics.Model
         private string _building;
         private string _apartment;
 
+        public event EventHandler<EventArgs> AddressChanged;
+
         /// <summary>
         /// Свойство 6-значного индекса адреса доставки.
         /// </summary>
@@ -34,6 +36,8 @@ namespace ObjectOrientedPractics.Model
                 ValueValidator.AssertStringOnStrictLengthEquality(value, 6, "Index");
 
                 _index = value;
+
+                AddressChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -50,6 +54,8 @@ namespace ObjectOrientedPractics.Model
             {
                 ValueValidator.AssertStringOnLength(value, 50, "Country");
                 _country = value;
+
+                AddressChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -67,6 +73,8 @@ namespace ObjectOrientedPractics.Model
                 ValueValidator.AssertStringOnLength(value, 50, "City");
 
                 _city = value;
+
+                AddressChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -84,6 +92,8 @@ namespace ObjectOrientedPractics.Model
                 ValueValidator.AssertStringOnLength(value, 100, "Street");
 
                 _street = value;
+
+                AddressChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -101,6 +111,8 @@ namespace ObjectOrientedPractics.Model
                 ValueValidator.AssertStringOnLength(value, 10, "Building");
 
                 _building = value;
+
+                AddressChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -118,6 +130,8 @@ namespace ObjectOrientedPractics.Model
                 ValueValidator.AssertStringOnLength(value, 10, "Apartment");
 
                 _apartment = value;
+
+                AddressChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 

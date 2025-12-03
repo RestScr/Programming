@@ -32,6 +32,8 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private Item _selectedCartItem = null;
 
+        public event EventHandler<EventArgs> OrderCreated;
+
         /// <summary>
         /// Свойство выбранного товара.
         /// </summary>
@@ -122,7 +124,7 @@ namespace ObjectOrientedPractics.View.Tabs
             FillCart();
         }
 
-        public void RefreshData()
+        public void RefreshData(object? sender, EventArgs args)
         {
             CustomerComboBox.BackColor = Color.White;
             if (SelectedCustomer != null)
@@ -168,7 +170,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void CartsTab_VisibleChanged(object sender, EventArgs e)
         {
-            RefreshData();
+            RefreshData(sender, e);
             FillCart();
         }
 
@@ -201,7 +203,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 return;
             }
-            SelectedCustomer.CustomerCart.Items.Remove(SelectedCartItem);
+            SelectedCustomer.CustomerCart.Items.RemoveAt(previousIndex);
             if (CartListBox.Items.Count > 0)
             {
                 CartListBox.SelectedIndex = previousIndex;
@@ -283,6 +285,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             ClearCart();
             UpdateUI();
+            OrderCreated?.Invoke(this, EventArgs.Empty);
             MessageBox.Show("Заказ успешно создан.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 

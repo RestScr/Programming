@@ -21,6 +21,8 @@ namespace ObjectOrientedPractics.View.Tabs
     {
         private Item _selectedItem { get; set; } = null;
 
+        public event EventHandler<EventArgs> ItemsChanged;
+
         /// <summary>
         /// Конструктор формы.
         /// </summary>
@@ -64,6 +66,8 @@ namespace ObjectOrientedPractics.View.Tabs
             Store.Items.Add(item);
             ItemsList.Items.Add(Convert.ToString(item.Id) + " " + item.Name);
             SortByOption();
+
+            ItemsChanged?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -89,6 +93,8 @@ namespace ObjectOrientedPractics.View.Tabs
                 _selectedItem = null;
             }
             DisableElements();
+
+            ItemsChanged?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -160,6 +166,8 @@ namespace ObjectOrientedPractics.View.Tabs
                     double enteredValue = Convert.ToDouble(CostBox.Text);
                     ValueValidator.AssertValueInRange(enteredValue, 0, 100000, "Cost");
                     _selectedItem.Cost = enteredValue;
+
+                    ItemsChanged?.Invoke(this, EventArgs.Empty);
                 }
             }
             catch (FormatException)
@@ -184,10 +192,8 @@ namespace ObjectOrientedPractics.View.Tabs
                 NameRichText.BackColor = Color.White;
                 if (_selectedItem != null)
                 {
-                    if (_selectedItem.Name != NameRichText.Text)
-                    {
-                        _selectedItem.Name = NameRichText.Text;
-                    }
+                    _selectedItem.Name = NameRichText.Text;
+                    ItemsChanged?.Invoke(this, EventArgs.Empty);
                 }
             }
             catch (ArgumentException)
@@ -209,6 +215,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 if (_selectedItem != null)
                 {
                     _selectedItem.Info = DescriptionRichText.Text;
+                    ItemsChanged?.Invoke(this, EventArgs.Empty);
                 }
             }
             catch (ArgumentException)
