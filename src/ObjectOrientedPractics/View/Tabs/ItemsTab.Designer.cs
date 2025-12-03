@@ -43,30 +43,45 @@
             CategoryComboBox = new ComboBox();
             label7 = new Label();
             panel2 = new Panel();
+            panel5 = new Panel();
+            panel7 = new Panel();
+            panel9 = new Panel();
+            panel8 = new Panel();
+            OrderByComboBox = new ComboBox();
+            label9 = new Label();
+            panel6 = new Panel();
+            SearchTextBox = new TextBox();
+            label8 = new Label();
+            panel4 = new Panel();
             panel3 = new Panel();
             AddItemButton = new Button();
             RemoveItemButton = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            panel5.SuspendLayout();
+            panel7.SuspendLayout();
+            panel9.SuspendLayout();
+            panel8.SuspendLayout();
+            panel6.SuspendLayout();
+            panel4.SuspendLayout();
             panel3.SuspendLayout();
             SuspendLayout();
             // 
             // ItemsList
             // 
-            ItemsList.Dock = DockStyle.Left;
+            ItemsList.Dock = DockStyle.Fill;
             ItemsList.FormattingEnabled = true;
-            ItemsList.Location = new Point(0, 20);
+            ItemsList.Location = new Point(0, 0);
             ItemsList.Name = "ItemsList";
-            ItemsList.Size = new Size(302, 353);
+            ItemsList.Size = new Size(302, 294);
             ItemsList.TabIndex = 0;
             ItemsList.SelectedIndexChanged += ItemsList_SelectedIndexChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Dock = DockStyle.Top;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label1.Location = new Point(0, 0);
+            label1.Location = new Point(3, 11);
             label1.Name = "label1";
             label1.Size = new Size(49, 20);
             label1.TabIndex = 1;
@@ -119,7 +134,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(12, 177);
+            label5.Location = new Point(12, 186);
             label5.Name = "label5";
             label5.Size = new Size(52, 20);
             label5.TabIndex = 7;
@@ -195,23 +210,118 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(ItemsList);
+            panel2.Controls.Add(panel5);
+            panel2.Controls.Add(panel4);
             panel2.Controls.Add(panel3);
-            panel2.Controls.Add(label1);
             panel2.Dock = DockStyle.Left;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
             panel2.Size = new Size(302, 491);
             panel2.TabIndex = 11;
             // 
+            // panel5
+            // 
+            panel5.Controls.Add(panel7);
+            panel5.Controls.Add(panel6);
+            panel5.Dock = DockStyle.Fill;
+            panel5.Location = new Point(0, 34);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(302, 372);
+            panel5.TabIndex = 15;
+            // 
+            // panel7
+            // 
+            panel7.Controls.Add(panel9);
+            panel7.Controls.Add(panel8);
+            panel7.Dock = DockStyle.Fill;
+            panel7.Location = new Point(0, 37);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(302, 335);
+            panel7.TabIndex = 2;
+            // 
+            // panel9
+            // 
+            panel9.Controls.Add(ItemsList);
+            panel9.Dock = DockStyle.Fill;
+            panel9.Location = new Point(0, 0);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(302, 294);
+            panel9.TabIndex = 0;
+            // 
+            // panel8
+            // 
+            panel8.Controls.Add(OrderByComboBox);
+            panel8.Controls.Add(label9);
+            panel8.Dock = DockStyle.Bottom;
+            panel8.Location = new Point(0, 294);
+            panel8.Name = "panel8";
+            panel8.Size = new Size(302, 41);
+            panel8.TabIndex = 3;
+            // 
+            // OrderByComboBox
+            // 
+            OrderByComboBox.FormattingEnabled = true;
+            OrderByComboBox.Items.AddRange(new object[] { "Name", "Cost (Ascending)", "Cost (Decreasing)" });
+            OrderByComboBox.Location = new Point(82, 7);
+            OrderByComboBox.Name = "OrderByComboBox";
+            OrderByComboBox.Size = new Size(214, 28);
+            OrderByComboBox.TabIndex = 1;
+            OrderByComboBox.SelectedIndexChanged += OrderByComboBox_SelectedIndexChanged;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(6, 10);
+            label9.Name = "label9";
+            label9.Size = new Size(70, 20);
+            label9.TabIndex = 0;
+            label9.Text = "Order By:";
+            // 
+            // panel6
+            // 
+            panel6.Controls.Add(SearchTextBox);
+            panel6.Controls.Add(label8);
+            panel6.Dock = DockStyle.Top;
+            panel6.Location = new Point(0, 0);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(302, 37);
+            panel6.TabIndex = 1;
+            // 
+            // SearchTextBox
+            // 
+            SearchTextBox.Dock = DockStyle.Right;
+            SearchTextBox.Location = new Point(55, 0);
+            SearchTextBox.Name = "SearchTextBox";
+            SearchTextBox.Size = new Size(247, 27);
+            SearchTextBox.TabIndex = 1;
+            SearchTextBox.TextChanged += SearchTextBox_TextChanged;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(3, 3);
+            label8.Name = "label8";
+            label8.Size = new Size(40, 20);
+            label8.TabIndex = 0;
+            label8.Text = "Find:";
+            // 
+            // panel4
+            // 
+            panel4.Controls.Add(label1);
+            panel4.Dock = DockStyle.Top;
+            panel4.Location = new Point(0, 0);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(302, 34);
+            panel4.TabIndex = 14;
+            // 
             // panel3
             // 
             panel3.Controls.Add(AddItemButton);
             panel3.Controls.Add(RemoveItemButton);
             panel3.Dock = DockStyle.Bottom;
-            panel3.Location = new Point(0, 373);
+            panel3.Location = new Point(0, 406);
             panel3.Name = "panel3";
-            panel3.Size = new Size(302, 118);
+            panel3.Size = new Size(302, 85);
             panel3.TabIndex = 13;
             // 
             // AddItemButton
@@ -219,7 +329,7 @@
             AddItemButton.Dock = DockStyle.Left;
             AddItemButton.Location = new Point(86, 0);
             AddItemButton.Name = "AddItemButton";
-            AddItemButton.Size = new Size(88, 118);
+            AddItemButton.Size = new Size(88, 85);
             AddItemButton.TabIndex = 11;
             AddItemButton.Text = "Add";
             AddItemButton.UseVisualStyleBackColor = true;
@@ -230,7 +340,7 @@
             RemoveItemButton.Dock = DockStyle.Left;
             RemoveItemButton.Location = new Point(0, 0);
             RemoveItemButton.Name = "RemoveItemButton";
-            RemoveItemButton.Size = new Size(86, 118);
+            RemoveItemButton.Size = new Size(86, 85);
             RemoveItemButton.TabIndex = 12;
             RemoveItemButton.Text = "Remove";
             RemoveItemButton.UseVisualStyleBackColor = true;
@@ -244,13 +354,21 @@
             Controls.Add(panel1);
             Controls.Add(panel2);
             Name = "ItemsTab";
-            Size = new Size(916, 491);
+            Size = new Size(903, 491);
             Load += ItemsTab_Load;
             VisibleChanged += ItemsTab_VisibleChanged;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
-            panel2.PerformLayout();
+            panel5.ResumeLayout(false);
+            panel7.ResumeLayout(false);
+            panel9.ResumeLayout(false);
+            panel8.ResumeLayout(false);
+            panel8.PerformLayout();
+            panel6.ResumeLayout(false);
+            panel6.PerformLayout();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
             panel3.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -275,5 +393,15 @@
         private Panel panel3;
         private Button AddItemButton;
         private Button RemoveItemButton;
+        private Panel panel4;
+        private Panel panel5;
+        private Panel panel7;
+        private Panel panel6;
+        private TextBox SearchTextBox;
+        private Label label8;
+        private Panel panel9;
+        private Panel panel8;
+        private Label label9;
+        private ComboBox OrderByComboBox;
     }
 }
