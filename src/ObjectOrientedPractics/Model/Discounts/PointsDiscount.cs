@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model.Discounts
 {
-    public class PointsDiscount : IDiscount
+    public class PointsDiscount : IDiscount, IComparable<PointsDiscount>
     {
         private int _points = 0;
         public int Points { 
@@ -73,6 +73,28 @@ namespace ObjectOrientedPractics.Model.Discounts
                 totalPrice += item.Cost;
             }
             Points += (int)Math.Ceiling(totalPrice * 0.1);
+        }
+
+        /// <summary>
+        /// Сравнить скидки по баллам.
+        /// </summary>
+        /// <param name="pointsDiscount"> Объект скидки для сравнения. </param>
+        /// <returns> -1 - если передаваемый объект больше, 0 - равны и 1 - если меньше. </returns>
+        public int CompareTo(PointsDiscount pointsDiscount)
+        {
+            if (Points == pointsDiscount.Points)
+            {
+                return 0;
+            }
+
+            if (Points > pointsDiscount.Points)
+            {
+                return 1;
+            }
+            else
+            {
+                return -1;
+            }
         }
     }
 }

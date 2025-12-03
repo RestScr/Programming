@@ -10,7 +10,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Класс адреса.
     /// </summary>
-    public class Address : ICloneable
+    public class Address : ICloneable, IEquatable<Address>
     {
         private string _index;
         private string _country;
@@ -158,6 +158,21 @@ namespace ObjectOrientedPractics.Model
             Address address = new Address(Index, Country, City, Street, Building, Apartment);
 
             return address;
+        }
+
+        public bool Equals(Address? address)
+        {
+            if (address == null)
+            {
+                return false;
+            }
+
+            return address.Index == Index &&
+                address.Country == Country &&
+                address.City == City &&
+                address.Street == Street &&
+                address.Building == Building &&
+                address.Apartment == Apartment;
         }
     }
 }

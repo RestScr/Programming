@@ -7,12 +7,21 @@ using ObjectOrientedPractics.Model.Enums;
 
 namespace ObjectOrientedPractics.Model.Discounts
 {
-    public class PercentDiscount : IDiscount
+    /// <summary>
+    /// Класс процентной скидки.
+    /// </summary>
+    public class PercentDiscount : IDiscount, IComparable<PercentDiscount>
     {
         private double _moneySpentOnCategory = 0;
 
-
+        /// <summary>
+        /// Свойство категории скидки.
+        /// </summary>
         public Category DiscountCategory { get; set; } = Category.Disk;
+
+        /// <summary>
+        /// Количество потраченных денег на определенную категорию.
+        /// </summary>
         public double MoneySpentOnCategory
         {
             get
@@ -29,6 +38,10 @@ namespace ObjectOrientedPractics.Model.Discounts
                 _moneySpentOnCategory = value;
             }
         }
+
+        /// <summary>
+        /// Свойство текущей скидки в процентах.
+        /// </summary>
         public int CurrentDiscount
         {
             get
@@ -37,6 +50,9 @@ namespace ObjectOrientedPractics.Model.Discounts
             }
         }
 
+        /// <summary>
+        /// Свойство информации о скидке.
+        /// </summary>
         public string Info
         {
             get
@@ -45,6 +61,11 @@ namespace ObjectOrientedPractics.Model.Discounts
             }
         }
 
+        /// <summary>
+        /// Рассчет скидки.
+        /// </summary>
+        /// <param name="items"> Список товаров к покупке. </param>
+        /// <returns> Величину потенциальной скидки. </returns>
         public double Calculate(List<Item> items)
         {
             double totalPrice = 0;
@@ -59,6 +80,11 @@ namespace ObjectOrientedPractics.Model.Discounts
             return (int)(totalPrice / 100 * CurrentDiscount);
         }
 
+        /// <summary>
+        /// Применить скидку.
+        /// </summary>
+        /// <param name="items"> Список товаров, на основе которых считается скидка. </param>
+        /// <returns> Величину скидки. </returns>
         public double Apply(List<Item> items)
         {
             double result = Calculate(items);
@@ -67,6 +93,10 @@ namespace ObjectOrientedPractics.Model.Discounts
             return result;
         }
 
+        /// <summary>
+        /// Обновление скидки.
+        /// </summary>
+        /// <param name="items"> Список товаров к покупке. </param>
         public void Update(List<Item> items)
         {
             double totalPrice = 0;
@@ -81,11 +111,40 @@ namespace ObjectOrientedPractics.Model.Discounts
             MoneySpentOnCategory += totalPrice; 
         }
 
+        /// <summary>
+        /// Стандартный конструктор оьъекта процентной скидки.
+        /// </summary>
         public PercentDiscount() : base() { }
 
+        /// <summary>
+        /// Конструктор скидки с передаваемой категорией.
+        /// </summary>
+        /// <param name="category"> Категория товара. </param>
         public PercentDiscount(Category category) : base()
         {
             DiscountCategory = category;
+        }
+
+        /// <summary>
+        /// Сравнение двух объектов по скидке в процентах. 
+        /// </summary>
+        /// <param name="percentDiscount"> Объект скидки. </param>
+        /// <returns> -1, если передаваемый объект больше, 1 - иначе</returns>
+        public int CompareTo(PercentDiscount percentDiscount)
+        {
+            if (CurrentDiscount == percentDiscount.CurrentDiscount)
+            {
+                return 0;
+            }
+
+            if (CurrentDiscount < percentDiscount.CurrentDiscount)
+            {
+                return -1;
+            }
+            else
+            {
+                return 1;
+            }
         }
     }
 }

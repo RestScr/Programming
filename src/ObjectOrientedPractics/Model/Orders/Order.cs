@@ -161,10 +161,32 @@ namespace ObjectOrientedPractics.Model.Orders
             Status = status;
         }
 
+        /// <summary>
+        /// Стандартный конструктор объекта заказа.
+        /// </summary>
         public Order()
         {
             Id = ++Created;
             OrderAddress = new Address();
+        }
+
+        /// <summary>
+        /// Узнать, не равны ли заказы.
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns> true - если да, false - нет. </returns>
+        public bool Equal(Order? order)
+        {
+            if (order == null)
+            {
+                return false;
+            }
+
+            return order.OrderTime == OrderTime &&
+                order.OrderAddress == OrderAddress &&
+                order.DiscountAmount == order.DiscountAmount &&
+                order.Status == Status &&
+                order.Items == Items;
         }
     }
 }

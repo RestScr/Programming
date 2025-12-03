@@ -11,7 +11,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Класс товара.
     /// </summary>
-    public class Item : ICloneable
+    public class Item : ICloneable, IEquatable<Item>, IComparable<Item>
     {
         private static int _createdItems = 0;
 
@@ -110,11 +110,55 @@ namespace ObjectOrientedPractics.Model
             ItemCategory = itemCategory;
         }
 
+        /// <summary>
+        /// Клонировать объект.
+        /// </summary>
+        /// <returns> Клон объекта. </returns>
         public object Clone()
         {
             Item clone = new Item(Name, Info, Cost, ItemCategory);
 
             return clone;
+        }
+
+        /// <summary>
+        /// Узнать, не равны ли объекты.
+        /// </summary>
+        /// <param name="item"> Объект товара. </param>
+        /// <returns> true, если равны, false - иначе. </returns>
+        public bool Equals(Item? item)
+        {
+            if (item == null)
+            {
+                return false;
+            }
+
+            return item.Name == Name && 
+                item.Cost == Cost &&
+                item.Info == Info &&
+                item.ItemCategory == ItemCategory;
+        }
+
+        /// <summary>
+        /// Сравнить предметы по стоимости.
+        /// </summary>
+        /// <param name="other"> Объект к сравнению. </param>
+        /// <returns> -1 - если передаваемый предмет больше, 0 - равны, 1 - если передаваемый объект меньше. </returns>
+        public int CompareTo(Item other)
+        {
+            if (Cost == other.Cost)
+            {
+                return 0;
+            }
+
+            if (other.Cost > Cost)
+            {
+                return -1;
+            }
+            else
+            {
+                return 1;
+            }
         }
     }
 }
