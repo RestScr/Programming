@@ -18,7 +18,7 @@ namespace ObjectOrientedPractics.Model.Orders
         /// <summary>
         /// Поле класса, отвечающее за общее количество созданных экземпляров.
         /// </summary>
-        private static int _created = 0;
+        private static int _createdOrders = 0;
 
         private double _discountAmount = 0;
 
@@ -29,16 +29,16 @@ namespace ObjectOrientedPractics.Model.Orders
         {
             get
             {
-                return _created;
+                return _createdOrders;
             }
             set
             {
-                if (value - _created != 1)
+                if (value - _createdOrders != 1)
                 {
                     throw new ArgumentException("Created property must be always higher by 1 when set");
                 }
 
-                _created = value;
+                _createdOrders = value;
             }
         }
 
