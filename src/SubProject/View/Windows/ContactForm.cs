@@ -15,7 +15,16 @@ namespace SubProject.View.Windows
 {
     public partial class ContactForm : Form
     {
-        public event EventHandler<EventArgs> FieldChanged;
+        public class ContactArgs : EventArgs
+        {
+            public string NewName { get; set; } = "";
+            public string NewPhone { get; set; } = "";
+            public string NewAddress { get; set; } = "";
+        }
+
+        public event EventHandler<ContactArgs> FieldChanged;
+
+        private Contact _contact { get; set; } = new Contact();
 
         public ContactForm()
         {
@@ -27,34 +36,49 @@ namespace SubProject.View.Windows
         /// </summary>
         /// <param name="sender"> Объект, пославший событие. </param>
         /// <param name="e"> Аргументы события. </param>
-        public void FillFields(object? sender, EventArgs e)
+        public void FillFields(object? sender, ContactArgs contactArguments)
         {
-            NameBox.Text = Contact.FullName;
+            NameBox.Text = contactArguments.NewName;
 
-            PhoneBox.Text = Contact.Phone;
+            PhoneBox.Text = contactArguments.NewPhone;
 
-            AddressBox.Text = Contact.Address;
+            AddressBox.Text = contactArguments.NewAddress;
         }
 
         private void NameBox_TextChanged(object sender, EventArgs e)
         {
-            Contact.FullName = NameBox.Text;
+            _contact.FullName = NameBox.Text;
 
-            FieldChanged?.Invoke(this, EventArgs.Empty);
+            ContactArgs contactArguments = new ContactArgs();
+            contactArguments.NewName = NameBox.Text;
+            contactArguments.NewPhone = PhoneBox.Text;
+            contactArguments.NewAddress = AddressBox.Text;
+
+            FieldChanged?.Invoke(this, contactArguments);
         }
 
         private void PhoneBox_TextChanged(object sender, EventArgs e)
         {
-            Contact.Phone = PhoneBox.Text;
+            _contact.Phone = PhoneBox.Text;
 
-            FieldChanged?.Invoke(this, EventArgs.Empty);
+            ContactArgs contactArguments = new ContactArgs();
+            contactArguments.NewName = NameBox.Text;
+            contactArguments.NewPhone = PhoneBox.Text;
+            contactArguments.NewAddress = AddressBox.Text;
+
+            FieldChanged?.Invoke(this, contactArguments);
         }
 
         private void AddressBox_TextChanged(object sender, EventArgs e)
         {
-            Contact.Address = AddressBox.Text;
+            _contact.Address = AddressBox.Text;
 
-            FieldChanged?.Invoke(this, EventArgs.Empty);
+            ContactArgs contactArguments = new ContactArgs();
+            contactArguments.NewName = NameBox.Text;
+            contactArguments.NewPhone = PhoneBox.Text;
+            contactArguments.NewAddress = AddressBox.Text;
+
+            FieldChanged?.Invoke(this, contactArguments);
         }
 
         private void CloseButton_Click(object sender, EventArgs e)

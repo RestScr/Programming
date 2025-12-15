@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace SubProject.Model
 {
-    public static class Contact
+    public class Contact
     {
-        public static string FullName { get; set; } = "";
-        public static string Phone { get; set; } = "";
-        public static string Address { get; set; } = "";
+        public string FullName { get; set; } = "";
+        public string Phone { get; set; } = "";
+        public string Address { get; set; } = "";
     }
 }
