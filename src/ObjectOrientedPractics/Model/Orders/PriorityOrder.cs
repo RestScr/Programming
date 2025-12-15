@@ -11,12 +11,6 @@ namespace ObjectOrientedPractics.Model.Orders
     {
         public TimePeriod DeliveryTimePeriod { get; set; }
         public DateTime DeliveryDate { get; set; }
-        PriorityOrder(Address address, Cart cart, OrderStatus status, DateTime deliveryDate, TimePeriod deliveryTimePeriod) : 
-        base(address, cart, status)
-        {
-            DeliveryDate = deliveryDate;
-            DeliveryTimePeriod = deliveryTimePeriod;
-        }
 
         public PriorityOrder(Address address, Cart cart, DateTime deliveryDate, TimePeriod deliveryTimePeriod, double totalDiscountAmount) :
         base(address, cart, totalDiscountAmount)
