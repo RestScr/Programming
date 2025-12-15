@@ -125,6 +125,11 @@ namespace ObjectOrientedPractics.View.Tabs
             FillCart();
         }
 
+        /// <summary>
+        /// Метод обновления вкладки с корзиной.
+        /// </summary>
+        /// <param name="sender"> Объект посылателя. </param>
+        /// <param name="args"> Аргументы события. </param>
         public void RefreshData(object? sender, EventArgs args)
         {
             CustomerComboBox.BackColor = Color.White;
