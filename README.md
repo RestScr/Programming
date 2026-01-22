@@ -1,2 +1,2 @@
 # Programming
-Brave Lonely Branch
+This repository was created for Object Oriented Programming Laboratory Tasks.
