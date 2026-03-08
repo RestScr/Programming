@@ -7,6 +7,143 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition 
+                Width="100*"
+                />
+            <ColumnDefinition 
+                Width="154*"
+                />
+        </Grid.ColumnDefinitions>
+        <GridSplitter 
+            HorizontalAlignment="Left" 
+            Height="450" 
+            VerticalAlignment="Top" 
+            Width="3" Grid.Column="1"/>
+        <Border 
+            Background="#F8F8F8"
+            Grid.Column="0"/>
 
+        <Grid Margin="8,8,8,8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="33*"/>
+                <RowDefinition Height="364*"/>
+                <RowDefinition Height="35"/>
+            </Grid.RowDefinitions>
+            <TextBox
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="3"
+                />
+
+            <ListBox 
+                Grid.Column="0"
+                Grid.Row="1"
+                d:ItemsSource="{d:SampleData ItemCount=100}"
+                Margin="3"
+                />
+
+            <Grid
+                Grid.Row="2"
+                Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Button
+                    Grid.Column="0"
+                    Height="25"
+                    Margin="3"
+                    Content="Add"
+                    />
+                <Button
+                    Grid.Column="1"
+                    Height="25"
+                    Margin="3"
+                    Content="Edit"
+                    />
+                <Button
+                    Grid.Column="2"
+                    Height="25"
+                    Margin="3"
+                    Content="Remove"
+                    />
+            </Grid>
+        </Grid>
+        <Grid 
+            Grid.Column="1"
+            Margin="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="222*"/>
+                <ColumnDefinition Width="263*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32"/>
+                <RowDefinition Height="27"/>
+                <RowDefinition Height="34"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="34"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Image
+                Grid.RowSpan="4"
+                Grid.Row="1"
+                Grid.Column="0" 
+                Margin="3" 
+                Source="/photo_placeholder_100x100.png"
+                />
+
+            <Label
+                Grid.Column="1"
+                Grid.Row="0"
+                Content="Name:"
+                Margin="3,3,3,3"/>
+            <TextBox
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="3,3,3,3"
+                />
+
+            <Label
+                Grid.Column="1"
+                Grid.Row="2"
+                Content="Phone Number:"
+                Margin="3,3,3,3"/>
+            <TextBox
+                Grid.Row="3"
+                Grid.Column="1"
+                Margin="3,3,3,3"
+                />
+
+            <Label
+                Grid.Column="1"
+                Grid.Row="4"
+                Content="Email:"
+                Margin="3,3,3,3"/>
+            <TextBox
+                Grid.Row="5"
+                Grid.Column="1"
+                Margin="3,3,3,3"
+                />
+
+            <StackPanel
+                Grid.Row="7"
+                Grid.Column="1"
+                Orientation="Horizontal"
+                HorizontalAlignment="Left" Width="81">
+                <Button 
+                    Content="Apply"
+                    Grid.Column="1"
+                    Grid.Row="7"
+                    Height="25"
+                    Width="75" 
+                    Margin="3"
+                    />
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
