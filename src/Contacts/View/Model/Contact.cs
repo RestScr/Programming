@@ -14,23 +14,29 @@ namespace View.Model
         public void OnPropertyChanged([CallerMemberName] string prop = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
 
         /// <summary>
-        /// Изменение данных.
+        /// Функция изменения свойств с уведомлением.
         /// </summary>
-        public virtual bool Set<T>(ref T Field, T Value, [CallerMemberName] string PropertyName = null)
+        /// <param name="field"> Ссылка на поле. </param>
+        /// <param name="value"> Значение для записи в поле. </param>
+        /// <returns> 
+        /// true, если значение было успешно записано в поле,
+        /// false - если в поле итак записано одно и то же значение.
+        /// </returns>
+        public bool Set<T>(ref T field, T value, [CallerMemberName] string PropertyName = null)
         {
-            if (Equals(Field, Value))
+            if (Equals(field, value))
             {
                 return false;
             }
             else
             {
-                Field = Value;
+                field = value;
                 OnPropertyChanged(PropertyName);
                 return true;
             }
         }
 
-        private string _name;
+        private string _name = "";
 
         public string Name
         {
@@ -41,15 +47,14 @@ namespace View.Model
             }
         }
 
-        private string _phoneNumber;
+        private string _phoneNumber = "";
 
         public string PhoneNumber
         {
             get => _phoneNumber;
             set
             {
-                _phoneNumber = value;
-                OnPropertyChanged(nameof(PhoneNumber));
+                Set(ref _phoneNumber, value);
             }
         }
 
@@ -60,8 +65,7 @@ namespace View.Model
             get => _email;
             set
             {
-                _email = value;
-                OnPropertyChanged(nameof(Email));
+                Set(ref _email, value);
             }
         }
 
@@ -70,6 +74,13 @@ namespace View.Model
             Name = name;
             PhoneNumber = phoneNumber;
             Email = email;
+        }
+
+        public Contact()
+        {
+            Name = "";
+            PhoneNumber = "";
+            Email = "";
         }
     }
 }
