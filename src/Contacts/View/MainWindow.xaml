@@ -93,11 +93,13 @@
             <Button Width="75" 
                     Height="25"
                     Content="Save"
-                    Margin="3"/>
+                    Margin="3"
+                    Command="{Binding SaveOperation}"/>
             <Button Width="75"
                     Height="25"
                     Content="Load"
-                    Margin="3"/>
+                    Margin="3"
+                    Command="{Binding LoadOperation}"/>
         </StackPanel>
     </Grid>
 </Window>

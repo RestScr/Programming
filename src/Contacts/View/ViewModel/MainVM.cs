@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using View.Model;
+using View.Model.Services;
 
 namespace View.ViewModel
 {
@@ -15,6 +16,63 @@ namespace View.ViewModel
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+        }
+
+        ContactSerializer Serializer { get; set; } = new ContactSerializer();
+
+        private SaveCommand _saveOperation;
+
+        public SaveCommand SaveOperation
+        {
+            get
+            {
+                return _saveOperation ?? 
+                    (
+                        _saveOperation = new SaveCommand
+                        (
+                            obj => 
+                            {
+                                Serializer.Save(SelectedContact);
+                            }
+                        )
+                    );
+            }
+        }
+
+        private LoadCommand _loadOperation;
+
+        public LoadCommand LoadOperation
+        {
+            get
+            {
+                return _loadOperation ??
+                    (
+                        _loadOperation = new LoadCommand
+                        (
+                            obj =>
+                            {
+                                SelectedContact = Serializer.Load();
+                            }
+                        )
+                    );
+            }
+        }
+
+
+        private Contact _selectedContact;
+
+        public Contact SelectedContact
+        {
+            get => _selectedContact;
+            set 
+            {
+                Set(ref _selectedContact, value);
+            }
+        }
+
+        public MainVM()
+        {
+            SelectedContact = new Contact();
         }
 
         /// <summary>
@@ -38,21 +96,6 @@ namespace View.ViewModel
                 OnPropertyChanged(PropertyName);
                 return true;
             }
-        }
-
-        private Contact _selectedContact;
-
-        public Contact SelectedContact
-        {
-            get => _selectedContact;
-            set 
-            {
-                Set(ref _selectedContact, value);
-            }
-        }
-        public MainVM()
-        {
-            SelectedContact = new Contact();
         }
     }
 }
