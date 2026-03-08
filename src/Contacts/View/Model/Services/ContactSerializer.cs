@@ -8,6 +8,16 @@ namespace View.Model.Services
 {
     public class ContactSerializer
     {
+		private string _path = "Документы\\Contacts\\contacts.json";
 
-    }
+		public string Path
+		{
+			get => _path;
+			set 
+			{ 
+				_path = value;
+			}
+		}
+
+	}
 }
