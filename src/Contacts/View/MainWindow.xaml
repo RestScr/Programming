@@ -4,8 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
+        xmlns:vm="clr-namespace:View.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="547">
+    <Window.DataContext>
+        <vm:MainVM/>
+    </Window.DataContext>
     <Grid Margin="15">
         <Grid.RowDefinitions>
             <RowDefinition Height="371*"/>
@@ -31,16 +35,19 @@
                        Grid.Row="0"
                        Margin="3"/>
                 <TextBox Grid.Row="1"
-                         Margin="3"/>
+                         Margin="3"
+                         Text="{Binding SelectedContact.Name, UpdateSourceTrigger=PropertyChanged}"/>
                 <Label Content="Phone Number:"
                        Grid.Row="2"
                        Margin="3"/>
-                <TextBox Grid.Row="3"/>
+                <TextBox Grid.Row="3"
+                         Text="{Binding SelectedContact.PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
                 <Label Content="Email:"
                        Grid.Row="4"
                        Margin="3"/>
                 <TextBox Grid.Row="5"
-                         Margin="3"/>
+                         Margin="3"
+                         Text="{Binding SelectedContact.Email, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="Read Contact"
@@ -59,19 +66,19 @@
                 <Label Content="Name:"
                        Grid.Row="0"
                        Margin="3"/>
-                <Label Content=""
+                <Label Content="{Binding SelectedContact.Name}"
                        Grid.Row="1"
                        Margin="3"/>
                 <Label Content="Phone Number:"
                        Grid.Row="2"
                        Margin="3"/>
-                <Label Content=""
+                <Label Content="{Binding SelectedContact.PhoneNumber}"
                        Grid.Row="3"
                        Margin="3"/>
                 <Label Content="Email:"
                        Grid.Row="4"
                        Margin="3"/>
-                <Label Content=""
+                <Label Content="{Binding SelectedContact.Email}"
                        Grid.Row="5"
                        Margin="3"/>
 
