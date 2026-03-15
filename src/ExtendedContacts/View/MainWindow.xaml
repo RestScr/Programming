@@ -44,6 +44,7 @@
                 Grid.Column="0"
                 Grid.Row="1"
                 ItemsSource="{Binding ContactList}"
+                SelectedItem="{Binding SelectedContact}"
                 Margin="3"
                 />
 

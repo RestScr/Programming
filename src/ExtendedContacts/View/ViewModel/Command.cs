@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using View.Model;
 
 namespace View.ViewModel.Commands
 {
     /// <summary>
-    /// Класс команды добавления.
+    /// Класс команды.
     /// </summary>
-    public class AddCommand : ICommand
+    public class Command : ICommand
     {
         /// <summary>
         /// Событие, уведомляющее об изменении состояния вызова команды.
@@ -18,7 +20,7 @@ namespace View.ViewModel.Commands
         public event EventHandler? CanExecuteChanged;
 
         /// <summary>
-        /// Поле функции команды.
+        /// Полек функции команды.
         /// </summary>
         private Action<object> _executionCommand;
 
@@ -27,11 +29,8 @@ namespace View.ViewModel.Commands
         /// </summary>
         public Action<object> ExecutionCommand
         {
-            get => _executionCommand;
-            set 
-            { 
-                _executionCommand = value; 
-            }
+            get { return _executionCommand; }
+            set { _executionCommand = value; }
         }
 
         /// <summary>
@@ -57,9 +56,9 @@ namespace View.ViewModel.Commands
         /// Конструктор команды с аргументом функции.
         /// </summary>
         /// <param name="action"> Делегат. </param>
-        public AddCommand(Action<object> action)
+        public Command(Action<object> action)
         {
-            _executionCommand = action;
+            ExecutionCommand = action;
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using View.Model;
+using View.ViewModel.Commands;
 
 namespace View.ViewModel
 {
@@ -48,7 +49,7 @@ namespace View.ViewModel
         /// <summary>
         /// Поле коллекции контактов.
         /// </summary>
-        private ObservableCollection<Contact> _contactList = new ObservableCollection<Contact>();
+        private ObservableCollection<Contact> _contactList;
 
         /// <summary>
         /// Свойство коллекции контактов.
@@ -60,6 +61,34 @@ namespace View.ViewModel
             { 
                 _contactList = value; 
             }
+        }
+
+        /// <summary>
+        /// Поле команды добавления.
+        /// </summary>
+        private Command _addCommand;
+
+        /// <summary>
+        /// Свойство команды добавления.
+        /// </summary>
+        public Command AddCommand
+        {
+            get => _addCommand;
+            init
+            {
+                _addCommand = value;
+            }
+        }
+
+        public MainVM()
+        {
+            ContactList = new ObservableCollection<Contact>();
+            AddCommand = new Command(
+                obj => 
+                {
+                    ContactList.Add(new Contact()); 
+                }
+            );
         }
 
 

@@ -11,9 +11,14 @@ namespace View.Model
 	/// </summary>
     public class Contact
     {
+		/// <summary>
+		/// Поле имени контакта.
+		/// </summary>
+		private string _name = "No Name";
 
-		private string _name = "";
-
+		/// <summary>
+		/// Свойство имени контакта.
+		/// </summary>
 		public string Name
 		{
 			get => _name;
@@ -23,8 +28,14 @@ namespace View.Model
 			}
 		}
 
+		/// <summary>
+		/// Поле номера телефона контакта.
+		/// </summary>
 		private string _phoneNumber = "";
 
+		/// <summary>
+		/// Свойство номера телефона контакта.
+		/// </summary>
 		public string PhoneNumber
 		{
 			get => _phoneNumber;
@@ -34,8 +45,14 @@ namespace View.Model
 			}
 		}
 
+		/// <summary>
+		/// Поле почты контакта.
+		/// </summary>
 		private string _email = "";
 
+		/// <summary>
+		/// Свойство почты контакта.
+		/// </summary>
 		public string Email
 		{
 			get => _email;
