@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace View.Model
 {
+	/// <summary>
+	/// Класс контакта.
+	/// </summary>
     public class Contact
     {
+
 		private string _name = "";
 
 		public string Name

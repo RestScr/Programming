@@ -43,7 +43,7 @@
             <ListBox 
                 Grid.Column="0"
                 Grid.Row="1"
-                d:ItemsSource="{d:SampleData ItemCount=100}"
+                ItemsSource="{Binding ContactList}"
                 Margin="3"
                 />
 

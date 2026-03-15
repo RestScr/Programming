@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -21,11 +22,46 @@ namespace View.ViewModel
         /// </summary>
         /// <param name="propertyName"></param>
         /// <returns> Всегда true. </returns>
-        public bool OnPropertyChanged([CallerMemberName] string propertyName="")
+        public bool OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             return true;
         }
+
+        /// <summary>
+        /// Поле выбранного контакта.
+        /// </summary>
+        private Contact _selectedContact = new Contact();
+
+        /// <summary>
+        /// Свойство выбранного контакта.
+        /// </summary>
+        public Contact SelectedContact
+        {
+            get => _selectedContact;
+            set
+            {
+                Set(ref _selectedContact, value, nameof(SelectedContact));
+            }
+        }
+
+        /// <summary>
+        /// Поле коллекции контактов.
+        /// </summary>
+        private ObservableCollection<Contact> _contactList = new ObservableCollection<Contact>();
+
+        /// <summary>
+        /// Свойство коллекции контактов.
+        /// </summary>
+        public ObservableCollection<Contact> ContactList
+        {
+            get => _contactList;
+            set
+            { 
+                _contactList = value; 
+            }
+        }
+
 
         /// <summary>
         /// Функция задания нового уникального значения полю с уведомлением.
@@ -48,24 +84,5 @@ namespace View.ViewModel
                 return true;
             }
         }
-
-        /// <summary>
-        /// Поле выбранного контакта.
-        /// </summary>
-        private Contact _selectedContact = new Contact();
-
-        /// <summary>
-        /// Свойство выбранного контакта.
-        /// </summary>
-        public Contact SelectedContact
-        {
-            get => _selectedContact;
-            set 
-            {
-                Set(ref _selectedContact, value, nameof(SelectedContact));
-            }
-        }
-
-
     }
 }
