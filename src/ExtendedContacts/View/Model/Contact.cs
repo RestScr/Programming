@@ -8,7 +8,7 @@ namespace View.Model
 {
     public class Contact
     {
-		private string _name;
+		private string _name = "";
 
 		public string Name
 		{
@@ -19,7 +19,7 @@ namespace View.Model
 			}
 		}
 
-		private string _phoneNumber;
+		private string _phoneNumber = "";
 
 		public string PhoneNumber
 		{
@@ -30,7 +30,7 @@ namespace View.Model
 			}
 		}
 
-		private string _email;
+		private string _email = "";
 
 		public string Email
 		{
