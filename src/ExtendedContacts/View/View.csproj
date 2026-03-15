@@ -16,8 +16,4 @@
     <Resource Include="photo_placeholder_100x100.png" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Model\Services\" />
-  </ItemGroup>
-
 </Project>
