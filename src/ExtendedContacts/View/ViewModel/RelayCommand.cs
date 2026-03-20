@@ -9,99 +9,90 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using View.Model;
 
-namespace View.ViewModel.Commands
+namespace View.ViewModel.Commands;
+
+/// <summary>
+/// Класс команды.
+/// </summary>
+public class RelayCommand : ICommand
 {
     /// <summary>
-    /// Класс команды.
+    /// Событие, уведомляющее об изменении состояния вызова команды.
     /// </summary>
-    public class RelayCommand : ICommand
+    public event EventHandler? CanExecuteChanged;
+
+    /// <summary>
+    /// Полек функции команды.
+    /// </summary>
+    private Action<object> _executionCommand;
+
+    /// <summary>
+    /// Поле, хранящее возможность выполнения команды.
+    /// </summary>
+    private bool _isExecutable = true;
+
+    /// <summary>
+    /// Свойство функции команды.
+    /// </summary>
+    public Action<object> ExecutionCommand
     {
-        // ----------------------- События ---------------------------
-
-        /// <summary>
-        /// Событие, уведомляющее об изменении состояния вызова команды.
-        /// </summary>
-        public event EventHandler? CanExecuteChanged;
-
-        // -------------------- Поля и свойства ----------------------
-
-        /// <summary>
-        /// Полек функции команды.
-        /// </summary>
-        private Action<object> _executionCommand;
-
-        /// <summary>
-        /// Свойство функции команды.
-        /// </summary>
-        public Action<object> ExecutionCommand
-        {
-            get => _executionCommand;
-            set 
-            { 
-                _executionCommand = value; 
-            }
+        get => _executionCommand;
+        set 
+        { 
+            _executionCommand = value; 
         }
+    }
 
-        /// <summary>
-        /// Поле, хранящее возможность выполнения команды.
-        /// </summary>
-        private bool _isExecutable = true;
-
-        /// <summary>
-        /// Свойство, хранящее свойство возможности выполнения команды.
-        /// </summary>
-        public bool IsExecutable
+    /// <summary>
+    /// Свойство, хранящее свойство возможности выполнения команды.
+    /// </summary>
+    public bool IsExecutable
+    {
+        get => _isExecutable;
+        set 
         {
-            get => _isExecutable;
-            set 
+            if (!Equals(value, _isExecutable))
             {
-                if (!Equals(value, _isExecutable))
-                {
-                    _isExecutable = value;
-                    CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-                }
+                _isExecutable = value;
+                CanExecuteChanged?.Invoke(this, EventArgs.Empty);
             }
         }
+    }
 
-        /// <summary>
-        /// Инвертированное свойство возможности выполнения команды.
-        /// </summary>
-        public bool ReversedIsExecutable
-        {
-            get => !IsExecutable;
-        }
+    /// <summary>
+    /// Инвертированное свойство возможности выполнения команды.
+    /// </summary>
+    public bool ReversedIsExecutable
+    {
+        get => !IsExecutable;
+    }
 
-        // ----------------------------- Конструкторы ---------------------------------
+    /// <summary>
+    /// Конструктор команды с аргументом функции.
+    /// </summary>
+    /// <param name="action"> Делегат. </param>
+    public RelayCommand(Action<object> action, bool isExecutable = true)
+    {
+        ExecutionCommand = action;
+        IsExecutable = isExecutable;
+    }
 
-        /// <summary>
-        /// Конструктор команды с аргументом функции.
-        /// </summary>
-        /// <param name="action"> Делегат. </param>
-        public RelayCommand(Action<object> action, bool isExecutable = true)
-        {
-            ExecutionCommand = action;
-            IsExecutable = isExecutable;
-        }
+    /// <summary>
+    /// Функция, уведомляющее можно ли вызвать команду.
+    /// </summary>
+    /// <param name="parameter"> Параметр функции. </param>
+    /// <returns> Можно ли вызвать команду. </returns>
+    public bool CanExecute(object? parameter)
+    {
+        return IsExecutable;
+    }
 
-        // ------------------ Методы -----------------------
-
-        /// <summary>
-        /// Функция, уведомляющее можно ли вызвать команду.
-        /// </summary>
-        /// <param name="parameter"> Параметр функции. </param>
-        /// <returns> Можно ли вызвать команду. </returns>
-        public bool CanExecute(object? parameter)
-        {
-            return IsExecutable;
-        }
-
-        /// <summary>
-        /// Вызвать функцию команды.
-        /// </summary>
-        /// <param name="parameter"> Параметр команды. </param>
-        public void Execute(object? parameter)
-        {
-            ExecutionCommand(parameter);
-        }
+    /// <summary>
+    /// Вызвать функцию команды.
+    /// </summary>
+    /// <param name="parameter"> Параметр команды. </param>
+    public void Execute(object? parameter)
+    {
+        ExecutionCommand(parameter);
     }
 }

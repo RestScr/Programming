@@ -8,63 +8,62 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace View.Model.Services
+namespace View.Model.Services;
+
+/// <summary>
+/// Класс JSON сериализатора и работы с файлами
+/// </summary>
+public class ContactListSerializer
 {
     /// <summary>
-    /// Класс JSON сериализатора и работы с файлами
+    /// Поле, хранящее путь к файлу сохранения.
     /// </summary>
-    public class ContactListSerializer
+    private string _path = "/Мои Документы/Contacts.json";
+
+    /// <summary>
+    /// Свойство пути файла сохранения.
+    /// </summary>
+    public string Path
     {
-        /// <summary>
-        /// Поле, хранящее путь к файлу сохранения.
-        /// </summary>
-        private string _path = "/Мои Документы/Contacts.json";
+        get => _path;
+    }
 
-        /// <summary>
-        /// Свойство пути файла сохранения.
-        /// </summary>
-        public string Path
+    /// <summary>
+    /// Метод выгрузки списка контактов из файла.
+    /// </summary>
+    /// <returns></returns>
+    public ObservableCollection<Contact> Load()
+    {
+        FileInfo fileInfo = new FileInfo(Path);
+        if (!fileInfo.Directory.Exists)
         {
-            get => _path;
+            Directory.CreateDirectory(fileInfo.Directory.FullName);
         }
 
-        /// <summary>
-        /// Метод выгрузки списка контактов из файла.
-        /// </summary>
-        /// <returns></returns>
-        public ObservableCollection<Contact> Load()
+        if (!File.Exists(Path))
         {
-            FileInfo fileInfo = new FileInfo(Path);
-            if (!fileInfo.Directory.Exists)
-            {
-                Directory.CreateDirectory(fileInfo.Directory.FullName);
-            }
-
-            if (!File.Exists(Path))
-            {
-                File.Create(Path);
-            }
-
-            string content = File.ReadAllText(Path);
-
-            ObservableCollection<Contact> loadedContacts = JsonConvert.DeserializeObject<ObservableCollection<Contact>>(content);
-
-            if (loadedContacts == null)
-            {
-                return new ObservableCollection<Contact>();
-            }
-
-            return loadedContacts;
+            File.Create(Path);
         }
 
-        /// <summary>
-        /// Метод сохранения списка контактов.
-        /// </summary>
-        /// <param name="contactList"> Список контактов. </param>
-        public void Save(ObservableCollection<Contact> contactList)
+        string content = File.ReadAllText(Path);
+
+        ObservableCollection<Contact> loadedContacts = JsonConvert.DeserializeObject<ObservableCollection<Contact>>(content);
+
+        if (loadedContacts == null)
         {
-            string content = JsonConvert.SerializeObject(contactList);
-            File.WriteAllText(Path, content);
+            return new ObservableCollection<Contact>();
         }
+
+        return loadedContacts;
+    }
+
+    /// <summary>
+    /// Метод сохранения списка контактов.
+    /// </summary>
+    /// <param name="contactList"> Список контактов. </param>
+    public void Save(ObservableCollection<Contact> contactList)
+    {
+        string content = JsonConvert.SerializeObject(contactList);
+        File.WriteAllText(Path, content);
     }
 }
