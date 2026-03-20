@@ -8,10 +8,22 @@ using Newtonsoft.Json;
 
 namespace View.Model.Services
 {
+	/// <summary>
+	/// Класс сериализатора.
+	/// </summary>
     public class ContactSerializer
     {
+
+		// ------------ Поля и свойства -------------
+
+		/// <summary>
+		/// Статическое поле пути сохранения.
+		/// </summary>
 		static private string _path = "Документы\\Contacts\\contacts.json";
 
+		/// <summary>
+		/// Статическое свойство пути сохранения.
+		/// </summary>
 		public static string Path
 		{
 			get => _path;
@@ -21,6 +33,14 @@ namespace View.Model.Services
 			}
 		}
 
+		// ------------------- Конструкторы ------------------
+
+		// ---------------- Методы ----------------------
+
+		/// <summary>
+		/// Метод выгрузки контакта.
+		/// </summary>
+		/// <returns> Выгруженный контакт из файла. </returns>
 		public Contact Load()
 		{
             FileInfo fileInfo = new FileInfo(Path);
@@ -35,6 +55,10 @@ namespace View.Model.Services
             return JsonConvert.DeserializeObject<Contact>(content);
 		}
 
+		/// <summary>
+		/// Метод сохранения контакта в файл.
+		/// </summary>
+		/// <param name="contact"> Контакт для сохранения. </param>
 		public void Save(Contact contact)
 		{
 			FileInfo fileInfo = new FileInfo(Path);

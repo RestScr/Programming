@@ -10,57 +10,75 @@ using View.Model.Services;
 
 namespace View.ViewModel
 {
+    /// <summary>
+    /// Класс ViewModel.
+    /// </summary>
     public class MainVM : INotifyPropertyChanged
     {
+        // ------------------- События ------------------
+        /// <summary>
+        /// Событие уведомления об изменении свойств.
+        /// </summary>
         public event PropertyChangedEventHandler? PropertyChanged;
+
+        /// <summary>
+        /// Метод объявления об изменении свойств.
+        /// </summary>
+        /// <param name="prop"></param>
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
 
-        ContactSerializer Serializer { get; set; } = new ContactSerializer();
+        // ----------------- Поля и свойства ------------------
 
-        private SaveCommand _saveOperation;
+        /// <summary>
+        /// Свойство объекта сериализатора.
+        /// </summary>
+        public ContactSerializer Serializer { get; private set; } = new ContactSerializer();
 
-        public SaveCommand SaveOperation
+        /// <summary>
+        /// Поле команды сохранения контакта.
+        /// </summary>
+        private Command _saveCommand;
+
+        /// <summary>
+        /// Свойство команды сохранения контакта.
+        /// </summary>
+        public Command SaveCommand
         {
-            get
+            get => _saveCommand;
+            private set
             {
-                return _saveOperation ?? 
-                    (
-                        _saveOperation = new SaveCommand
-                        (
-                            obj => 
-                            {
-                                Serializer.Save(SelectedContact);
-                            }
-                        )
-                    );
+                _saveCommand = value;
             }
         }
 
-        private LoadCommand _loadOperation;
+        /// <summary>
+        /// Поле команды выгрузки.
+        /// </summary>
+        private Command _loadCommand;
 
-        public LoadCommand LoadOperation
+        /// <summary>
+        /// Свойство команды выгрузки.
+        /// </summary>
+        public Command LoadCommand
         {
-            get
+            get => _loadCommand;
+            private set
             {
-                return _loadOperation ??
-                    (
-                        _loadOperation = new LoadCommand
-                        (
-                            obj =>
-                            {
-                                SelectedContact = Serializer.Load();
-                            }
-                        )
-                    );
+                _loadCommand = value;
             }
         }
 
-
+        /// <summary>
+        /// Поле выбранного контакта.
+        /// </summary>
         private Contact _selectedContact;
 
+        /// <summary>
+        /// Свойство выбранного контакта.
+        /// </summary>
         public Contact SelectedContact
         {
             get => _selectedContact;
@@ -70,10 +88,19 @@ namespace View.ViewModel
             }
         }
 
+        // -------------------- Конструкторы ----------------
+
+        /// <summary>
+        /// Стандартный инициализирующий конструтор разделения ViewModel.
+        /// </summary>
         public MainVM()
         {
             SelectedContact = new Contact();
+
+            LoadCommand = new Command(LoadContact);
         }
+
+        // ------------------- Методы ------------------------
 
         /// <summary>
         /// Функция изменения свойств с уведомлением.
@@ -96,6 +123,24 @@ namespace View.ViewModel
                 OnPropertyChanged(PropertyName);
                 return true;
             }
+        }
+
+        /// <summary>
+        /// Функция выгрузки контакта из файла.
+        /// </summary>
+        /// <param name="parameter"></param>
+        public void LoadContact(object? parameter)
+        {
+            SelectedContact = Serializer.Load();
+        }
+
+        /// <summary>
+        /// Функция загрузки контакта в файл.
+        /// </summary>
+        /// <param name="parameter"></param>
+        public void SaveContact(object? parameter)
+        {
+            Serializer.Save(SelectedContact);
         }
     }
 }
