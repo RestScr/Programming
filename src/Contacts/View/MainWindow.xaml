@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:View"
         xmlns:vm="clr-namespace:View.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" 
+        Title="Contacts" 
         Height="450" 
         Width="547" 
         Icon="/assets/ContactsApp_96x96.ico">
@@ -19,7 +19,7 @@
         
         <Grid.RowDefinitions>
             <RowDefinition Height="371*"/>
-            <RowDefinition Height="33*"/>
+            <RowDefinition Height="33"/>
         </Grid.RowDefinitions>
         
         <Grid.ColumnDefinitions>
@@ -45,21 +45,24 @@
                        Margin="3"/>
                 <TextBox Grid.Row="1"
                          Margin="3"
-                         Text="{Binding SelectedContact.Name, UpdateSourceTrigger=PropertyChanged}"/>
+                         Text="{Binding SelectedContact.Name, UpdateSourceTrigger=PropertyChanged}" 
+                         VerticalContentAlignment="Center"/>
                 
                 <Label Content="Phone Number:"
                        Grid.Row="2"
                        Margin="3"/>
                 <TextBox Grid.Row="3"
                         Text="{Binding SelectedContact.PhoneNumber, UpdateSourceTrigger=PropertyChanged}"
-                        Margin="3"/>
+                        Margin="3" 
+                        VerticalContentAlignment="Center"/>
                 
                 <Label Content="Email:"
                        Grid.Row="4"
                        Margin="3"/>
                 <TextBox Grid.Row="5"
                          Margin="3"
-                         Text="{Binding SelectedContact.Email, UpdateSourceTrigger=PropertyChanged}"/>
+                         Text="{Binding SelectedContact.Email, UpdateSourceTrigger=PropertyChanged}" 
+                         VerticalContentAlignment="Center"/>
             </Grid>
         </GroupBox>
         
@@ -81,19 +84,22 @@
                        Margin="3"/>
                 <Label Content="{Binding SelectedContact.Name}"
                        Grid.Row="1"
-                       Margin="3"/>
+                       Margin="3" 
+                       FontWeight="Bold"/>
                 <Label Content="Phone Number:"
                        Grid.Row="2"
                        Margin="3"/>
                 <Label Content="{Binding SelectedContact.PhoneNumber}"
                        Grid.Row="3"
-                       Margin="3"/>
+                       Margin="3"
+                       FontWeight="Bold"/>
                 <Label Content="Email:"
                        Grid.Row="4"
                        Margin="3"/>
                 <Label Content="{Binding SelectedContact.Email}"
                        Grid.Row="5"
-                       Margin="3"/>
+                       Margin="3"
+                       FontWeight="Bold"/>
 
             </Grid>
         </GroupBox>
