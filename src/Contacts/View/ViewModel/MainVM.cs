@@ -10,19 +10,8 @@ namespace View.ViewModel;
 /// </summary>
 public class MainVM : INotifyPropertyChanged
 {
-    /// <summary>
-    /// Событие уведомления об изменении свойств.
-    /// </summary>
+    /// <inheritdoc/>
     public event PropertyChangedEventHandler? PropertyChanged;
-
-    /// <summary>
-    /// Метод объявления об изменении свойств.
-    /// </summary>
-    /// <param name="prop"></param>
-    private void OnPropertyChanged([CallerMemberName] string propertyName = "")
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
 
     /// <summary>
     /// Свойство объекта сериализатора.
@@ -89,6 +78,15 @@ public class MainVM : INotifyPropertyChanged
 
         LoadCommand = new RelayCommand(LoadContact);
         SaveCommand = new RelayCommand(SaveContact);
+    }
+
+    /// <summary>
+    /// Метод объявления об изменении свойств.
+    /// </summary>
+    /// <param name="prop"></param>
+    private void OnPropertyChanged([CallerMemberName] string propertyName = "")
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
     /// <summary>

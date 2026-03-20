@@ -81,7 +81,7 @@ public class Contact : INotifyPropertyChanged
     /// Метод объявления об изменении свойств.
     /// </summary>
     /// <param name="prop"></param>
-    public void OnPropertyChanged([CallerMemberName] string prop = "")
+    private void OnPropertyChanged([CallerMemberName] string prop = "")
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
     }
