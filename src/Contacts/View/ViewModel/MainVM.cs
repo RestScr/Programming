@@ -26,9 +26,9 @@ namespace View.ViewModel
         /// Метод объявления об изменении свойств.
         /// </summary>
         /// <param name="prop"></param>
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         // ----------------- Поля и свойства ------------------
@@ -130,7 +130,7 @@ namespace View.ViewModel
         /// <summary>
         /// Функция выгрузки контакта из файла.
         /// </summary>
-        /// <param name="parameter"></param>
+        /// <param name="parameter"> Дополнительный параметр команды. </param>
         public void LoadContact(object? parameter)
         {
             SelectedContact = Serializer.Load();
@@ -139,7 +139,7 @@ namespace View.ViewModel
         /// <summary>
         /// Функция загрузки контакта в файл.
         /// </summary>
-        /// <param name="parameter"></param>
+        /// <param name="parameter"> Дополнительный параметр команды. </param>
         public void SaveContact(object? parameter)
         {
             Serializer.Save(SelectedContact);
