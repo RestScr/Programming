@@ -7,17 +7,23 @@
         xmlns:vm="clr-namespace:View.ViewModel"
         xmlns:databinding="clr-namespace:View.ViewModel.Converters"
         mc:Ignorable="d"
-        Title="MainWindow" 
+        Title="Contacts" 
         Height="450" 
         Width="800" 
         Icon="/assets/ContactsApp_96x96.ico">
+    
+    <!-- Добавление контекста данных из MainVM -->
     <Window.DataContext>
         <vm:MainVM/>
     </Window.DataContext>
+    
     <Window.Resources>
+        <!-- Добавление конвертера -->
         <databinding:ReverseBoolConverter 
             x:Key="ReverseBoolConverter"/>
     </Window.Resources>
+    
+    <!-- Главный интерфейс окна -->
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition 
@@ -27,6 +33,7 @@
                 Width="154*"
                 />
         </Grid.ColumnDefinitions>
+
         <GridSplitter 
             HorizontalAlignment="Left" 
             Height="450" 
@@ -35,7 +42,8 @@
         <Border 
             Background="#F8F8F8"
             Grid.Column="0"/>
-
+        
+        <!-- Левая колонка -->
         <Grid Margin="8,8,8,8">
             <Grid.RowDefinitions>
                 <RowDefinition Height="33*"/>
@@ -59,7 +67,8 @@
                     Grid.Column="1"
                     Margin="3"/>
             </Grid>
-
+            
+            <!-- Список контактов -->
             <ListBox 
                 Grid.Column="0"
                 Grid.Row="1"
@@ -68,7 +77,8 @@
                 DisplayMemberPath="Name"
                 Margin="3"
                 />
-
+            
+            <!-- Набор кнопок добавления/редактирования/удаления-->
             <Grid
                 Grid.Row="2"
                 Grid.Column="0">
@@ -102,6 +112,7 @@
                     />
             </Grid>
         </Grid>
+        <!-- Правая колонка -->
         <Grid 
             Grid.Column="1"
             Margin="8">
@@ -127,7 +138,8 @@
                 Margin="3" 
                 Source="assets/photo_placeholder_100x100.png"
                 />
-
+            
+            <!-- Ввод и отображение имени -->
             <Label
                 Grid.Column="1"
                 Grid.Row="0"
@@ -141,6 +153,7 @@
                 IsReadOnly="{Binding EditMode, Converter={StaticResource ReverseBoolConverter}}"
                 />
 
+            <!-- Ввод и отображение номера телефона -->
             <Label
                 Grid.Column="1"
                 Grid.Row="2"
@@ -154,6 +167,7 @@
                 IsReadOnly="{Binding EditMode, Converter={StaticResource ReverseBoolConverter}}"
                 />
 
+            <!-- Ввод и отображение электронной почты -->
             <Label
                 Grid.Column="1"
                 Grid.Row="4"
@@ -166,7 +180,8 @@
                 Text="{Binding SelectedContact.TemporaryEmailField}"
                 IsReadOnly="{Binding EditMode, Converter={StaticResource ReverseBoolConverter}}"
                 />
-
+            
+            <!-- Кнопка подтверждения -->
             <StackPanel
                 Grid.Row="7"
                 Grid.Column="1"

@@ -37,7 +37,7 @@ namespace View.ViewModel
         /// <summary>
         /// Свойство сериализатора.
         /// </summary>
-        public DataSerializer Serializer { get; private set; } = new DataSerializer();
+        public ContactListSerializer Serializer { get; private set; } = new ContactListSerializer();
 
         /// <summary>
         /// Поле выбранного контакта.
@@ -114,12 +114,12 @@ namespace View.ViewModel
         /// <summary>
         /// Поле команды добавления.
         /// </summary>
-        private Command _addCommand;
+        private RelayCommand _addCommand;
 
         /// <summary>
         /// Свойство команды добавления.
         /// </summary>
-        public Command AddCommand
+        public RelayCommand AddCommand
         {
             get => _addCommand;
             init
@@ -131,12 +131,12 @@ namespace View.ViewModel
         /// <summary>
         /// Поле команды добавления нового контакта.
         /// </summary>
-        private Command _applyCommand;
+        private RelayCommand _applyCommand;
 
         /// <summary>
         /// Свойство команды добавления нового контакта.
         /// </summary>
-        public Command ApplyCommand
+        public RelayCommand ApplyCommand
         {
             get => _applyCommand;
             set 
@@ -148,12 +148,12 @@ namespace View.ViewModel
         /// <summary>
         /// Поле команды редактирования.
         /// </summary>
-        private Command _editCommand;
+        private RelayCommand _editCommand;
 
         /// <summary>
         /// Свойство команды редактирования.
         /// </summary>
-        public Command EditCommand
+        public RelayCommand EditCommand
         {
             get => _editCommand;
             set 
@@ -165,12 +165,12 @@ namespace View.ViewModel
         /// <summary>
         /// Поле команды удаления.
         /// </summary>
-        private Command _removeCommand;
+        private RelayCommand _removeCommand;
 
         /// <summary>
         /// Свойство команды удаления.
         /// </summary>
-        public Command RemoveCommand
+        public RelayCommand RemoveCommand
         {
             get => _removeCommand;
             set 
@@ -187,10 +187,10 @@ namespace View.ViewModel
         /// </summary>
         public MainVM()
         {
-            AddCommand = new Command(AddContact);
-            ApplyCommand = new Command(ApplyContact, false);
-            EditCommand = new Command(EditContact);
-            RemoveCommand = new Command(RemoveContact);
+            AddCommand = new RelayCommand(AddContact);
+            ApplyCommand = new RelayCommand(ApplyContact, false);
+            EditCommand = new RelayCommand(EditContact);
+            RemoveCommand = new RelayCommand(RemoveContact);
             SelectedContact = null;
 
             LoadContactlist();

@@ -13,7 +13,7 @@ namespace View.Model.Services
     /// <summary>
     /// Класс JSON сериализатора и работы с файлами
     /// </summary>
-    public class DataSerializer
+    public class ContactListSerializer
     {
         /// <summary>
         /// Поле, хранящее путь к файлу сохранения.
