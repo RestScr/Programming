@@ -41,12 +41,12 @@ namespace View.ViewModel
         /// <summary>
         /// Поле команды сохранения контакта.
         /// </summary>
-        private Command _saveCommand;
+        private RelayCommand _saveCommand;
 
         /// <summary>
         /// Свойство команды сохранения контакта.
         /// </summary>
-        public Command SaveCommand
+        public RelayCommand SaveCommand
         {
             get => _saveCommand;
             private set
@@ -58,12 +58,12 @@ namespace View.ViewModel
         /// <summary>
         /// Поле команды выгрузки.
         /// </summary>
-        private Command _loadCommand;
+        private RelayCommand _loadCommand;
 
         /// <summary>
         /// Свойство команды выгрузки.
         /// </summary>
-        public Command LoadCommand
+        public RelayCommand LoadCommand
         {
             get => _loadCommand;
             private set
@@ -98,8 +98,8 @@ namespace View.ViewModel
         {
             SelectedContact = new Contact();
 
-            LoadCommand = new Command(LoadContact);
-            SaveCommand = new Command(SaveContact);
+            LoadCommand = new RelayCommand(LoadContact);
+            SaveCommand = new RelayCommand(SaveContact);
         }
 
         // ------------------- Методы ------------------------

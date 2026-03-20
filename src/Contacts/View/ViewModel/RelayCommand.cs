@@ -10,7 +10,7 @@ namespace View.ViewModel
     /// <summary>
     /// Общий класс команд.
     /// </summary>
-    public class Command : ICommand
+    public class RelayCommand : ICommand
     {
         // ---------------- События --------------------
         /// <summary>
@@ -61,7 +61,7 @@ namespace View.ViewModel
         /// Конструктор команды.
         /// </summary>
         /// <param name="executionCommand"> Функция выполнения команды. </param>
-        public Command(Action<object> executionCommand, bool isExecutable=true)
+        public RelayCommand(Action<object> executionCommand, bool isExecutable=true)
         {
             ExecutionCommand = executionCommand;
             IsExecutable = isExecutable;
