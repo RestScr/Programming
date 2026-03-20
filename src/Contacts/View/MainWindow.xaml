@@ -6,19 +6,27 @@
         xmlns:local="clr-namespace:View"
         xmlns:vm="clr-namespace:View.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="547" Icon="/assets/ContactsApp_96x96.ico">
+        Title="MainWindow" 
+        Height="450" 
+        Width="547" 
+        Icon="/assets/ContactsApp_96x96.ico">
+    
     <Window.DataContext>
         <vm:MainVM/>
     </Window.DataContext>
+    
     <Grid Margin="15">
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="371*"/>
             <RowDefinition Height="33*"/>
         </Grid.RowDefinitions>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="273*"/>
             <ColumnDefinition Width="274*"/>
         </Grid.ColumnDefinitions>
+        
         <GroupBox Grid.Column="0" 
                   Header="Edit Contact">
             <Grid>
@@ -31,18 +39,21 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="122*"/>
                 </Grid.RowDefinitions>
+
                 <Label Content="Name:" 
                        Grid.Row="0"
                        Margin="3"/>
                 <TextBox Grid.Row="1"
                          Margin="3"
                          Text="{Binding SelectedContact.Name, UpdateSourceTrigger=PropertyChanged}"/>
+                
                 <Label Content="Phone Number:"
                        Grid.Row="2"
                        Margin="3"/>
                 <TextBox Grid.Row="3"
                         Text="{Binding SelectedContact.PhoneNumber, UpdateSourceTrigger=PropertyChanged}"
-                         Margin="3"/>
+                        Margin="3"/>
+                
                 <Label Content="Email:"
                        Grid.Row="4"
                        Margin="3"/>
@@ -51,6 +62,7 @@
                          Text="{Binding SelectedContact.Email, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
         </GroupBox>
+        
         <GroupBox Header="Read Contact"
                   Grid.Column="1">
             <Grid>
@@ -83,9 +95,9 @@
                        Grid.Row="5"
                        Margin="3"/>
 
-
             </Grid>
         </GroupBox>
+        
         <StackPanel Orientation="Horizontal"
                     Grid.Row="1"
                     Grid.ColumnSpan="2"
@@ -102,5 +114,6 @@
                     Margin="3"
                     Command="{Binding LoadCommand}"/>
         </StackPanel>
+        
     </Grid>
 </Window>
