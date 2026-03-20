@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -50,7 +51,7 @@ namespace View.ViewModel
             get => _saveCommand;
             private set
             {
-                _saveCommand = value;
+                Set(ref _saveCommand, value, nameof(SaveCommand));
             }
         }
 
@@ -67,7 +68,7 @@ namespace View.ViewModel
             get => _loadCommand;
             private set
             {
-                _loadCommand = value;
+                Set(ref _loadCommand, value, nameof(LoadCommand));
             }
         }
 
@@ -98,6 +99,7 @@ namespace View.ViewModel
             SelectedContact = new Contact();
 
             LoadCommand = new Command(LoadContact);
+            SaveCommand = new Command(SaveContact);
         }
 
         // ------------------- Методы ------------------------

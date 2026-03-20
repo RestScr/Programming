@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:View"
         xmlns:vm="clr-namespace:View.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="547">
+        Title="MainWindow" Height="450" Width="547" Icon="/assets/ContactsApp_96x96.ico">
     <Window.DataContext>
         <vm:MainVM/>
     </Window.DataContext>
@@ -23,12 +23,12 @@
                   Header="Edit Contact">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
                     <RowDefinition Height="122*"/>
                 </Grid.RowDefinitions>
                 <Label Content="Name:" 
@@ -41,7 +41,8 @@
                        Grid.Row="2"
                        Margin="3"/>
                 <TextBox Grid.Row="3"
-                         Text="{Binding SelectedContact.PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
+                        Text="{Binding SelectedContact.PhoneNumber, UpdateSourceTrigger=PropertyChanged}"
+                         Margin="3"/>
                 <Label Content="Email:"
                        Grid.Row="4"
                        Margin="3"/>
@@ -54,12 +55,12 @@
                   Grid.Column="1">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
                     <RowDefinition Height="187*"/>
                     <RowDefinition Height="32*"/>
                 </Grid.RowDefinitions>
@@ -94,12 +95,12 @@
                     Height="25"
                     Content="Save"
                     Margin="3"
-                    Command="{Binding SaveOperation}"/>
+                    Command="{Binding SaveCommand}"/>
             <Button Width="75"
                     Height="25"
                     Content="Load"
                     Margin="3"
-                    Command="{Binding LoadOperation}"/>
+                    Command="{Binding LoadCommand}"/>
         </StackPanel>
     </Grid>
 </Window>

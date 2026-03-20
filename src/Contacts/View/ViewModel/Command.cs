@@ -61,9 +61,10 @@ namespace View.ViewModel
         /// Конструктор команды.
         /// </summary>
         /// <param name="executionCommand"> Функция выполнения команды. </param>
-        public Command(Action<object> executionCommand)
+        public Command(Action<object> executionCommand, bool isExecutable=true)
         {
             ExecutionCommand = executionCommand;
+            IsExecutable = isExecutable;
         }
 
         // ---------------------------- Методы --------------------
