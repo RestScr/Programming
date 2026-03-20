@@ -1,148 +1,134 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using View.Model;
 using View.Model.Services;
 
-namespace View.ViewModel
+namespace View.ViewModel;
+
+/// <summary>
+/// Класс ViewModel.
+/// </summary>
+public class MainVM : INotifyPropertyChanged
 {
     /// <summary>
-    /// Класс ViewModel.
+    /// Событие уведомления об изменении свойств.
     /// </summary>
-    public class MainVM : INotifyPropertyChanged
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    /// <summary>
+    /// Метод объявления об изменении свойств.
+    /// </summary>
+    /// <param name="prop"></param>
+    private void OnPropertyChanged([CallerMemberName] string propertyName = "")
     {
-        // ------------------- События ------------------
-        /// <summary>
-        /// Событие уведомления об изменении свойств.
-        /// </summary>
-        public event PropertyChangedEventHandler? PropertyChanged;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
 
-        /// <summary>
-        /// Метод объявления об изменении свойств.
-        /// </summary>
-        /// <param name="prop"></param>
-        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
+    /// <summary>
+    /// Свойство объекта сериализатора.
+    /// </summary>
+    public ContactSerializer Serializer { get; private set; } = new ContactSerializer();
+
+    /// <summary>
+    /// Поле команды сохранения контакта.
+    /// </summary>
+    private RelayCommand _saveCommand;
+
+    /// <summary>
+    /// Поле команды выгрузки.
+    /// </summary>
+    private RelayCommand _loadCommand;
+
+    /// <summary>
+    /// Поле выбранного контакта.
+    /// </summary>
+    private Contact _selectedContact;
+
+    /// <summary>
+    /// Свойство команды сохранения контакта.
+    /// </summary>
+    public RelayCommand SaveCommand
+    {
+        get => _saveCommand;
+        private set
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            Set(ref _saveCommand, value, nameof(SaveCommand));
         }
+    }
 
-        // ----------------- Поля и свойства ------------------
-
-        /// <summary>
-        /// Свойство объекта сериализатора.
-        /// </summary>
-        public ContactSerializer Serializer { get; private set; } = new ContactSerializer();
-
-        /// <summary>
-        /// Поле команды сохранения контакта.
-        /// </summary>
-        private RelayCommand _saveCommand;
-
-        /// <summary>
-        /// Свойство команды сохранения контакта.
-        /// </summary>
-        public RelayCommand SaveCommand
+    /// <summary>
+    /// Свойство команды выгрузки.
+    /// </summary>
+    public RelayCommand LoadCommand
+    {
+        get => _loadCommand;
+        private set
         {
-            get => _saveCommand;
-            private set
-            {
-                Set(ref _saveCommand, value, nameof(SaveCommand));
-            }
+            Set(ref _loadCommand, value, nameof(LoadCommand));
         }
+    }
 
-        /// <summary>
-        /// Поле команды выгрузки.
-        /// </summary>
-        private RelayCommand _loadCommand;
-
-        /// <summary>
-        /// Свойство команды выгрузки.
-        /// </summary>
-        public RelayCommand LoadCommand
+    /// <summary>
+    /// Свойство выбранного контакта.
+    /// </summary>
+    public Contact SelectedContact
+    {
+        get => _selectedContact;
+        set 
         {
-            get => _loadCommand;
-            private set
-            {
-                Set(ref _loadCommand, value, nameof(LoadCommand));
-            }
+            Set(ref _selectedContact, value);
         }
+    }
 
-        /// <summary>
-        /// Поле выбранного контакта.
-        /// </summary>
-        private Contact _selectedContact;
+    /// <summary>
+    /// Стандартный инициализирующий конструтор разделения ViewModel.
+    /// </summary>
+    public MainVM()
+    {
+        SelectedContact = new Contact();
 
-        /// <summary>
-        /// Свойство выбранного контакта.
-        /// </summary>
-        public Contact SelectedContact
+        LoadCommand = new RelayCommand(LoadContact);
+        SaveCommand = new RelayCommand(SaveContact);
+    }
+
+    /// <summary>
+    /// Функция изменения свойств с уведомлением.
+    /// </summary>
+    /// <param name="field"> Ссылка на поле. </param>
+    /// <param name="value"> Значение для записи в поле. </param>
+    /// <returns> 
+    /// true, если значение было успешно записано в поле,
+    /// false - если в поле итак записано одно и то же значение.
+    /// </returns>
+    public bool Set<T>(ref T field, T value, [CallerMemberName] string PropertyName = null)
+    {
+        if (Equals(field, value))
         {
-            get => _selectedContact;
-            set 
-            {
-                Set(ref _selectedContact, value);
-            }
+            return false;
         }
-
-        // -------------------- Конструкторы ----------------
-
-        /// <summary>
-        /// Стандартный инициализирующий конструтор разделения ViewModel.
-        /// </summary>
-        public MainVM()
+        else
         {
-            SelectedContact = new Contact();
-
-            LoadCommand = new RelayCommand(LoadContact);
-            SaveCommand = new RelayCommand(SaveContact);
+            field = value;
+            OnPropertyChanged(PropertyName);
+            return true;
         }
+    }
 
-        // ------------------- Методы ------------------------
+    /// <summary>
+    /// Функция выгрузки контакта из файла.
+    /// </summary>
+    /// <param name="parameter"> Дополнительный параметр команды. </param>
+    public void LoadContact(object? parameter)
+    {
+        SelectedContact = Serializer.Load();
+    }
 
-        /// <summary>
-        /// Функция изменения свойств с уведомлением.
-        /// </summary>
-        /// <param name="field"> Ссылка на поле. </param>
-        /// <param name="value"> Значение для записи в поле. </param>
-        /// <returns> 
-        /// true, если значение было успешно записано в поле,
-        /// false - если в поле итак записано одно и то же значение.
-        /// </returns>
-        public bool Set<T>(ref T field, T value, [CallerMemberName] string PropertyName = null)
-        {
-            if (Equals(field, value))
-            {
-                return false;
-            }
-            else
-            {
-                field = value;
-                OnPropertyChanged(PropertyName);
-                return true;
-            }
-        }
-
-        /// <summary>
-        /// Функция выгрузки контакта из файла.
-        /// </summary>
-        /// <param name="parameter"> Дополнительный параметр команды. </param>
-        public void LoadContact(object? parameter)
-        {
-            SelectedContact = Serializer.Load();
-        }
-
-        /// <summary>
-        /// Функция загрузки контакта в файл.
-        /// </summary>
-        /// <param name="parameter"> Дополнительный параметр команды. </param>
-        public void SaveContact(object? parameter)
-        {
-            Serializer.Save(SelectedContact);
-        }
+    /// <summary>
+    /// Функция загрузки контакта в файл.
+    /// </summary>
+    /// <param name="parameter"> Дополнительный параметр команды. </param>
+    public void SaveContact(object? parameter)
+    {
+        Serializer.Save(SelectedContact);
     }
 }

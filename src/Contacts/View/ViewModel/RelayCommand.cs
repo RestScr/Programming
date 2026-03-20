@@ -12,18 +12,20 @@ namespace View.ViewModel
     /// </summary>
     public class RelayCommand : ICommand
     {
-        // ---------------- События --------------------
         /// <summary>
         /// Событие изменения возможности выполнения.
         /// </summary>
         public event EventHandler? CanExecuteChanged;
 
-        // ------------------ Поля и свойства --------------
-
         /// <summary>
         /// Поле, хранящее функцию выполнения команды.
         /// </summary>
         private Action<object> _executionCommand;
+
+        /// <summary>
+        /// Поле, хранящее возможность выполнения команды.
+        /// </summary>
+        private bool _isExecutable;
 
         /// <summary>
         /// Свойство функции выполнения команды.
@@ -38,11 +40,6 @@ namespace View.ViewModel
         }
 
         /// <summary>
-        /// Поле, хранящее возможность выполнения команды.
-        /// </summary>
-        private bool _isExecutable;
-
-        /// <summary>
         /// Свойство возможности выполнения команды.
         /// </summary>
         public bool IsExecutable
@@ -55,8 +52,6 @@ namespace View.ViewModel
             }
         }
 
-        // ------------------ Конструкторы -------------------
-
         /// <summary>
         /// Конструктор команды.
         /// </summary>
@@ -66,8 +61,6 @@ namespace View.ViewModel
             ExecutionCommand = executionCommand;
             IsExecutable = isExecutable;
         }
-
-        // ---------------------------- Методы --------------------
 
         /// <summary>
         /// Метод возвращения возможности выполнения команды.
