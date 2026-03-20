@@ -11,10 +11,12 @@
         Width="547" 
         Icon="/assets/ContactsApp_96x96.ico">
     
+    <!-- Добавление MainVM в качестве контекста данных -->
     <Window.DataContext>
         <vm:MainVM/>
     </Window.DataContext>
     
+    <!-- Главный интерфейс приложения -->
     <Grid Margin="15">
         
         <Grid.RowDefinitions>
@@ -27,6 +29,7 @@
             <ColumnDefinition Width="274*"/>
         </Grid.ColumnDefinitions>
         
+        <!-- Левая колонка -->
         <GroupBox Grid.Column="0" 
                   Header="Edit Contact">
             <Grid>
@@ -39,7 +42,8 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="122*"/>
                 </Grid.RowDefinitions>
-
+                
+                <!-- Ввод имени -->
                 <Label Content="Name:" 
                        Grid.Row="0"
                        Margin="3"/>
@@ -48,6 +52,7 @@
                          Text="{Binding SelectedContact.Name, UpdateSourceTrigger=PropertyChanged}" 
                          VerticalContentAlignment="Center"/>
                 
+                <!-- Ввод номера телефона -->
                 <Label Content="Phone Number:"
                        Grid.Row="2"
                        Margin="3"/>
@@ -56,6 +61,7 @@
                         Margin="3" 
                         VerticalContentAlignment="Center"/>
                 
+                <!-- Ввод электронной почты -->
                 <Label Content="Email:"
                        Grid.Row="4"
                        Margin="3"/>
@@ -66,6 +72,7 @@
             </Grid>
         </GroupBox>
         
+        <!-- Правая колонка -->
         <GroupBox Header="Read Contact"
                   Grid.Column="1">
             <Grid>
@@ -79,6 +86,8 @@
                     <RowDefinition Height="187*"/>
                     <RowDefinition Height="32*"/>
                 </Grid.RowDefinitions>
+                
+                <!-- Отображение имени -->
                 <Label Content="Name:"
                        Grid.Row="0"
                        Margin="3"/>
@@ -86,6 +95,8 @@
                        Grid.Row="1"
                        Margin="3" 
                        FontWeight="Bold"/>
+                
+                <!-- Отображение номера телефона -->
                 <Label Content="Phone Number:"
                        Grid.Row="2"
                        Margin="3"/>
@@ -93,6 +104,8 @@
                        Grid.Row="3"
                        Margin="3"
                        FontWeight="Bold"/>
+                
+                <!-- отображение электронной почты -->
                 <Label Content="Email:"
                        Grid.Row="4"
                        Margin="3"/>
@@ -104,6 +117,7 @@
             </Grid>
         </GroupBox>
         
+        <!-- Расположение кнопок в левой колонке -->
         <StackPanel Orientation="Horizontal"
                     Grid.Row="1"
                     Grid.ColumnSpan="2"
