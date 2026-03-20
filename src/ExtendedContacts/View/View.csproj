@@ -9,11 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="photo_placeholder_100x100.png" />
+    <None Remove="assets/photo_placeholder_100x100.png" />
+	  
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="photo_placeholder_100x100.png" />
+	  <Resource Include="assets/photo_placeholder_100x100.png" />
+	  <Resource Include="assets/ContactsApp_96x96.ico"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
   </ItemGroup>
 
 </Project>

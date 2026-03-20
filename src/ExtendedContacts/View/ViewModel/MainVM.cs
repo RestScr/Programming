@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using View.Model;
+using View.Model.Comparators;
+using View.Model.Services;
 using View.ViewModel.Commands;
 
 namespace View.ViewModel
 {
-    class MainVM : INotifyPropertyChanged
+    public class MainVM : INotifyPropertyChanged
     {
         /// <summary>
         /// Событие уведомления об изменении свойства.
@@ -21,7 +24,7 @@ namespace View.ViewModel
         /// <summary>
         /// Функция, вызывающее событие изменения свойства.
         /// </summary>
-        /// <param name="propertyName"></param>
+        /// <param name="propertyName"> Название изменяемого свойства. </param>
         /// <returns> Всегда true. </returns>
         public bool OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
@@ -29,10 +32,17 @@ namespace View.ViewModel
             return true;
         }
 
+        // ---------------------- Поля и свойства ------------------------
+
+        /// <summary>
+        /// Свойство сериализатора.
+        /// </summary>
+        public DataSerializer Serializer { get; private set; } = new DataSerializer();
+
         /// <summary>
         /// Поле выбранного контакта.
         /// </summary>
-        private Contact _selectedContact = new Contact();
+        private Contact _selectedContact;
 
         /// <summary>
         /// Свойство выбранного контакта.
@@ -42,7 +52,43 @@ namespace View.ViewModel
             get => _selectedContact;
             set
             {
+                if ((value != SelectedContact) && EditMode)
+                {
+                    EditMode = false;
+                    SelectedContact?.RollBack();
+                }
+
+                if (value == null)
+                {
+                    EditCommand.IsExecutable = false;
+                    RemoveCommand.IsExecutable = false;
+                }
+                else
+                {
+                    EditCommand.IsExecutable = true;
+                    RemoveCommand.IsExecutable = true;
+                }
+
                 Set(ref _selectedContact, value, nameof(SelectedContact));
+            }
+        }
+
+        /// <summary>
+        /// Поле, хранящее статус режима редактирования.
+        /// </summary>
+        private bool _editMode = false;
+
+        /// <summary>
+        /// Свойство статуса режима редактирования.
+        /// </summary>
+        public bool EditMode
+        {
+            get => _editMode;
+            set 
+            {
+                ApplyCommand.IsExecutable = value;
+
+                Set(ref _editMode, value, nameof(EditMode));
             }
         }
 
@@ -63,6 +109,8 @@ namespace View.ViewModel
             }
         }
 
+        // ---------------------------------- Команды для кнопок ---------------------------------------
+
         /// <summary>
         /// Поле команды добавления.
         /// </summary>
@@ -80,17 +128,75 @@ namespace View.ViewModel
             }
         }
 
-        public MainVM()
+        /// <summary>
+        /// Поле команды добавления нового контакта.
+        /// </summary>
+        private Command _applyCommand;
+
+        /// <summary>
+        /// Свойство команды добавления нового контакта.
+        /// </summary>
+        public Command ApplyCommand
         {
-            ContactList = new ObservableCollection<Contact>();
-            AddCommand = new Command(
-                obj => 
-                {
-                    ContactList.Add(new Contact()); 
-                }
-            );
+            get => _applyCommand;
+            set 
+            { 
+                _applyCommand = value; 
+            }
         }
 
+        /// <summary>
+        /// Поле команды редактирования.
+        /// </summary>
+        private Command _editCommand;
+
+        /// <summary>
+        /// Свойство команды редактирования.
+        /// </summary>
+        public Command EditCommand
+        {
+            get => _editCommand;
+            set 
+            { 
+                _editCommand = value; 
+            }
+        }
+
+        /// <summary>
+        /// Поле команды удаления.
+        /// </summary>
+        private Command _removeCommand;
+
+        /// <summary>
+        /// Свойство команды удаления.
+        /// </summary>
+        public Command RemoveCommand
+        {
+            get => _removeCommand;
+            set 
+            { 
+                _removeCommand = value; 
+            }
+        }
+
+
+        // ------------------------- Конструкторы ----------------------------
+
+        /// <summary>
+        /// Стандартный конструктор MainVM.
+        /// </summary>
+        public MainVM()
+        {
+            AddCommand = new Command(AddContact);
+            ApplyCommand = new Command(ApplyContact, false);
+            EditCommand = new Command(EditContact);
+            RemoveCommand = new Command(RemoveContact);
+            SelectedContact = null;
+
+            LoadContactlist();
+        }
+
+        // -------------------- Продвинутые сеттеры --------------------------
 
         /// <summary>
         /// Функция задания нового уникального значения полю с уведомлением.
@@ -109,9 +215,79 @@ namespace View.ViewModel
             else
             {
                 fieldToSet = setValue;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+                OnPropertyChanged(propertyName);
                 return true;
             }
+        }
+
+        // ------------------------ Командные функции -----------------------------
+
+        /// <summary>
+        /// Функция добавления нового контакта.
+        /// </summary>
+        /// <param name="parameter"> Дополнительный параметр. </param>
+        public void AddContact(object? parameter)
+        {
+            SelectedContact = new Contact();
+            EditCommand.IsExecutable = false;
+            RemoveCommand.IsExecutable = false;
+
+            EditMode = true;
+        }
+
+        /// <summary>
+        /// Функция редактирования контакта.
+        /// </summary>
+        /// <param name="parameter"> Дополнительный параметр для команды. </param>
+        public void EditContact(object? parameter)
+        {
+            EditMode = true;
+        }
+
+        /// <summary>
+        /// Функция добавления нового контакта в список.
+        /// </summary>
+        /// <param name="parameter"> Дополнительный параметр для команды. </param>
+        public void ApplyContact(object? parameter)
+        {
+            if (!ContactList.Contains(SelectedContact))
+            {
+                ContactList.Add(SelectedContact);
+            }
+
+            SelectedContact.Commit();
+            EditCommand.IsExecutable = true;
+            RemoveCommand.IsExecutable = true;
+
+            EditMode = false;
+            Serializer.Save(ContactList);
+        }
+
+        /// <summary>
+        /// Функция удаления выбранного контакта.
+        /// </summary>
+        /// <param name="parameter"> Параметр команды. </param>
+        public void RemoveContact(object? parameter)
+        {
+            int selectedIndex = ContactList.IndexOf(SelectedContact) - 1;
+            ContactList?.Remove(SelectedContact);
+
+            if (selectedIndex >= 0)
+            {
+                SelectedContact = ContactList[selectedIndex];
+            }
+            else
+            {
+                SelectedContact = null;
+            }
+        }
+
+        /// <summary>
+        /// Метод выгрузки списка контактов.
+        /// </summary>
+        public void LoadContactlist()
+        {
+            ContactList = Serializer.Load();
         }
     }
 }

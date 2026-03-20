@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -14,10 +16,14 @@ namespace View.ViewModel.Commands
     /// </summary>
     public class Command : ICommand
     {
+        // ----------------------- События ---------------------------
+
         /// <summary>
         /// Событие, уведомляющее об изменении состояния вызова команды.
         /// </summary>
         public event EventHandler? CanExecuteChanged;
+
+        // -------------------- Поля и свойства ----------------------
 
         /// <summary>
         /// Полек функции команды.
@@ -29,9 +35,55 @@ namespace View.ViewModel.Commands
         /// </summary>
         public Action<object> ExecutionCommand
         {
-            get { return _executionCommand; }
-            set { _executionCommand = value; }
+            get => _executionCommand;
+            set 
+            { 
+                _executionCommand = value; 
+            }
         }
+
+        /// <summary>
+        /// Поле, хранящее возможность выполнения команды.
+        /// </summary>
+        private bool _isExecutable = true;
+
+        /// <summary>
+        /// Свойство, хранящее свойство возможности выполнения команды.
+        /// </summary>
+        public bool IsExecutable
+        {
+            get => _isExecutable;
+            set 
+            {
+                if (!Equals(value, _isExecutable))
+                {
+                    _isExecutable = value;
+                    CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Инвертированное свойство возможности выполнения команды.
+        /// </summary>
+        public bool ReversedIsExecutable
+        {
+            get => !IsExecutable;
+        }
+
+        // ----------------------------- Конструкторы ---------------------------------
+
+        /// <summary>
+        /// Конструктор команды с аргументом функции.
+        /// </summary>
+        /// <param name="action"> Делегат. </param>
+        public Command(Action<object> action, bool isExecutable = true)
+        {
+            ExecutionCommand = action;
+            IsExecutable = isExecutable;
+        }
+
+        // ------------------ Методы -----------------------
 
         /// <summary>
         /// Функция, уведомляющее можно ли вызвать команду.
@@ -40,7 +92,7 @@ namespace View.ViewModel.Commands
         /// <returns> Можно ли вызвать команду. </returns>
         public bool CanExecute(object? parameter)
         {
-            return true;
+            return IsExecutable;
         }
 
         /// <summary>
@@ -50,15 +102,6 @@ namespace View.ViewModel.Commands
         public void Execute(object? parameter)
         {
             ExecutionCommand(parameter);
-        }
-
-        /// <summary>
-        /// Конструктор команды с аргументом функции.
-        /// </summary>
-        /// <param name="action"> Делегат. </param>
-        public Command(Action<object> action)
-        {
-            ExecutionCommand = action;
         }
     }
 }
