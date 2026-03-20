@@ -280,6 +280,8 @@ namespace View.ViewModel
             {
                 SelectedContact = null;
             }
+
+            Serializer.Save(ContactList);
         }
 
         /// <summary>
