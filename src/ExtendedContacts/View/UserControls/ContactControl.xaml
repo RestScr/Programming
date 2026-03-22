@@ -4,12 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:View.UserControls"
-             xmlns:vm="clr-namespace:View.ViewModel"
              xmlns:databinding="clr-namespace:View.ViewModel.Converters"
-             mc:Ignorable="d" d:DesignWidth="480" Height="165">
+             mc:Ignorable="d" d:DesignWidth="800" Height="166">
 
     <UserControl.Resources>
-        <!-- Подключение конвертера -->
         <databinding:ReverseBoolConverter x:Key="ReverseBoolConverter"/>
     </UserControl.Resources>
 
@@ -40,37 +38,37 @@
                Content="Name:"
                Margin="3,3,3,3"/>
         <TextBox Grid.Row="1"
-                 Grid.Column="1"
-                 Margin="3,3,3,3"
-                 Text="{Binding SelectedContact.TemporaryNameField}"
-                 IsReadOnly="{Binding EditMode, Converter={StaticResource ReverseBoolConverter}}"/>
+             Grid.Column="1"
+             Margin="3,3,3,3"
+             Text="{Binding SelectedContact.TemporaryNameField}"
+             IsReadOnly="{Binding EditMode, Converter={StaticResource ReverseBoolConverter}}"/>
 
         <!-- Ввод и отображение номера телефона -->
         <Label
-        Grid.Column="1"
-        Grid.Row="2"
-        Content="Phone Number:"
-        Margin="3,3,3,3"/>
+            Grid.Column="1"
+            Grid.Row="2"
+            Content="Phone Number:"
+            Margin="3,3,3,3"/>
         <TextBox
-        Grid.Row="3"
-        Grid.Column="1"
-        Margin="3,3,3,3"
-        Text="{Binding SelectedContact.TemporaryPhoneNumberField}"
-        IsReadOnly="{Binding EditMode, Converter={StaticResource ReverseBoolConverter}}"
-        />
+            Grid.Row="3"
+            Grid.Column="1"
+            Margin="3,3,3,3"
+            Text="{Binding SelectedContact.TemporaryPhoneNumberField}"
+            IsReadOnly="{Binding EditMode, Converter={StaticResource ReverseBoolConverter}}"
+            />
 
         <!-- Ввод и отображение электронной почты -->
         <Label
-        Grid.Column="1"
-        Grid.Row="4"
-        Content="Email:"
-        Margin="3,3,3,3"/>
+            Grid.Column="1"
+            Grid.Row="4"
+            Content="Email:"
+            Margin="3,3,3,3"/>
         <TextBox
-        Grid.Row="5"
-        Grid.Column="1"
-        Margin="3,3,3,3"
-        Text="{Binding SelectedContact.TemporaryEmailField}"
-        IsReadOnly="{Binding EditMode, Converter={StaticResource ReverseBoolConverter}}"
-        />
+            Grid.Row="5"
+            Grid.Column="1"
+            Margin="3,3,3,3"
+            Text="{Binding SelectedContact.TemporaryEmailField}"
+            IsReadOnly="{Binding EditMode, Converter={StaticResource ReverseBoolConverter}}"
+            />
     </Grid>
 </UserControl>

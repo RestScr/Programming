@@ -103,7 +103,7 @@ public class MainVM : INotifyPropertyChanged
     public bool EditMode
     {
         get => _editMode;
-        set 
+        set
         {
             ApplyCommand.IsExecutable = value;
 
@@ -118,8 +118,8 @@ public class MainVM : INotifyPropertyChanged
     {
         get => _contactList;
         set
-        { 
-            _contactList = value; 
+        {
+            _contactList = value;
         }
     }
 
@@ -141,9 +141,9 @@ public class MainVM : INotifyPropertyChanged
     public RelayCommand ApplyCommand
     {
         get => _applyCommand;
-        set 
-        { 
-            _applyCommand = value; 
+        set
+        {
+            _applyCommand = value;
         }
     }
 
@@ -153,9 +153,9 @@ public class MainVM : INotifyPropertyChanged
     public RelayCommand EditCommand
     {
         get => _editCommand;
-        set 
-        { 
-            _editCommand = value; 
+        set
+        {
+            _editCommand = value;
         }
     }
 
@@ -165,9 +165,9 @@ public class MainVM : INotifyPropertyChanged
     public RelayCommand RemoveCommand
     {
         get => _removeCommand;
-        set 
-        { 
-            _removeCommand = value; 
+        set
+        {
+            _removeCommand = value;
         }
     }
 

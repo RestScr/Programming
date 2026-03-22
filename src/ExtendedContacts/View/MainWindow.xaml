@@ -134,8 +134,7 @@
             Grid.Column="1"
             Margin="8">
 
-            <!-- ContactEditControl -->
-            <uc:ContactControl/>
+            <uc:ContactControl Margin="0,0,0,50"/>
 
             <!-- Кнопка подтверждения -->
             <StackPanel

@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using View.Model;
+﻿using System.Windows.Input;
 
 namespace View.ViewModel.Commands;
 
@@ -37,9 +28,9 @@ public class RelayCommand : ICommand
     public Action<object> ExecutionCommand
     {
         get => _executionCommand;
-        set 
-        { 
-            _executionCommand = value; 
+        set
+        {
+            _executionCommand = value;
         }
     }
 
@@ -49,7 +40,7 @@ public class RelayCommand : ICommand
     public bool IsExecutable
     {
         get => _isExecutable;
-        set 
+        set
         {
             if (!Equals(value, _isExecutable))
             {

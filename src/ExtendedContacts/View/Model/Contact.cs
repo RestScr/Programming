@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace View.Model;
 
@@ -70,147 +65,147 @@ public class Contact : ICloneable, IEquatable<Contact>, INotifyPropertyChanged
     /// Статическое свойство, возвращающее количество созданных экземпляров класса.
     /// </summary>
     private static int Created
-	{
-		get => _created;
-		set
-		{
-                if (value - _created != 1)
-                {
-				throw new ArgumentException($"{nameof(Created)} must be higher than new value precisely by 1");
-                }
-
-                _created = value;
-		}
-	}
-
-	/// <summary>
-	/// Свойство идентификатора экземпляра класса.
-	/// </summary>
-	public int Id
-	{
-		get => _id;
-		init 
-		{
-			if (value < 0)
-			{
-				throw new ArgumentException($"{nameof(Id)} must be higher than zero.");
-			}
-
-                Set(ref _id, value, nameof(Id));
+    {
+        get => _created;
+        set
+        {
+            if (value - _created != 1)
+            {
+                throw new ArgumentException($"{nameof(Created)} must be higher than new value precisely by 1");
             }
-	}
 
-	/// <summary>
-	/// Свойство имени контакта.
-	/// </summary>
-	public string Name
-	{
-		get => _name;
-		set 
-		{
-                Set(ref _name, value, nameof(Name));
-            }
-	}
+            _created = value;
+        }
+    }
 
-	/// <summary>
-	/// Свойство номера телефона контакта.
-	/// </summary>
-	public string PhoneNumber
-	{
-		get => _phoneNumber;
-		set 
-		{ 
-                Set(ref _phoneNumber, value, nameof(PhoneNumber));
+    /// <summary>
+    /// Свойство идентификатора экземпляра класса.
+    /// </summary>
+    public int Id
+    {
+        get => _id;
+        init
+        {
+            if (value < 0)
+            {
+                throw new ArgumentException($"{nameof(Id)} must be higher than zero.");
             }
-	}
+
+            Set(ref _id, value, nameof(Id));
+        }
+    }
+
+    /// <summary>
+    /// Свойство имени контакта.
+    /// </summary>
+    public string Name
+    {
+        get => _name;
+        set
+        {
+            Set(ref _name, value, nameof(Name));
+        }
+    }
+
+    /// <summary>
+    /// Свойство номера телефона контакта.
+    /// </summary>
+    public string PhoneNumber
+    {
+        get => _phoneNumber;
+        set
+        {
+            Set(ref _phoneNumber, value, nameof(PhoneNumber));
+        }
+    }
 
     /// <summary>
     /// Свойство почты контакта.
     /// </summary>
     public string Email
-	{
-		get => _email;
-		set 
-		{
-			Set(ref _email, value, nameof(Email)); 
-		}
-	}
+    {
+        get => _email;
+        set
+        {
+            Set(ref _email, value, nameof(Email));
+        }
+    }
 
-	/// <summary>
-	/// Свойство редактируемого имени.
-	/// </summary>
-	public string TemporaryNameField
-	{
-		get => _temporaryNameField;
-		set 
-		{
-			Set(ref _temporaryNameField, value, nameof(TemporaryNameField));
-		}
-	}
+    /// <summary>
+    /// Свойство редактируемого имени.
+    /// </summary>
+    public string TemporaryNameField
+    {
+        get => _temporaryNameField;
+        set
+        {
+            Set(ref _temporaryNameField, value, nameof(TemporaryNameField));
+        }
+    }
 
-	/// <summary>
-	/// Свойство редактируемого номера телефона.
-	/// </summary>
-	public string TemporaryPhoneNumberField
-	{
-		get => _temporaryPhoneNumberField;
-		set 
-		{ 
-			Set(ref _temporaryPhoneNumberField, value, nameof(TemporaryPhoneNumberField));
-		}
-	}
-	
-	/// <summary>
-	/// Свойство редактируемой электронной почты.
-	/// </summary>
-	public string TemporaryEmailField
-	{
-		get => _temporaryEmailField;
-		set 
-		{
-			Set(ref _temporaryEmailField, value, nameof(TemporaryEmailField));
-		}
-	}
+    /// <summary>
+    /// Свойство редактируемого номера телефона.
+    /// </summary>
+    public string TemporaryPhoneNumberField
+    {
+        get => _temporaryPhoneNumberField;
+        set
+        {
+            Set(ref _temporaryPhoneNumberField, value, nameof(TemporaryPhoneNumberField));
+        }
+    }
 
-	public Contact(string name="No Name", string phoneNumber="", string email="")
-	{
-		Name = name;
-		PhoneNumber = phoneNumber;
-		Email = email;
-		Id = Created++;
+    /// <summary>
+    /// Свойство редактируемой электронной почты.
+    /// </summary>
+    public string TemporaryEmailField
+    {
+        get => _temporaryEmailField;
+        set
+        {
+            Set(ref _temporaryEmailField, value, nameof(TemporaryEmailField));
+        }
+    }
 
-		TemporaryNameField = name;
-		TemporaryPhoneNumberField = phoneNumber;
-		TemporaryEmailField = email;
-	}
+    public Contact(string name = "No Name", string phoneNumber = "", string email = "")
+    {
+        Name = name;
+        PhoneNumber = phoneNumber;
+        Email = email;
+        Id = Created++;
 
-	/// <summary>
-	/// Закрытый конструктор для клонирования контакта.
-	/// </summary>
-	/// <param name="id"> Идентификатор клона. </param>
-	/// <param name="name"> Название контакта. </param>
-	/// <param name="phoneNumber"> Номер телефона контакта. </param>
-	/// <param name="email"> Почта контакта. </param>
-	/// <param name="temporaryNameField"> Значение редактируемого поля имени. </param>
-	/// <param name="temporaryPhoneNumberField"> Значение редактируемого поля номера телефона. </param>
-	/// <param name="temporaryEmailField"> Значение редактируемого поля почты. </param>
-	private Contact(
-		int id, 
-		string name = "No Name", 
-		string phoneNumber = "", 
-		string email = "",
-		string temporaryNameField = "No Name",
-		string temporaryPhoneNumberField = "",
-		string temporaryEmailField = "")
-	{
-		Name = name;
-		PhoneNumber = phoneNumber;
-		Email = email;
-		Id = id;
+        TemporaryNameField = name;
+        TemporaryPhoneNumberField = phoneNumber;
+        TemporaryEmailField = email;
+    }
 
-		TemporaryNameField = temporaryNameField;
-		TemporaryPhoneNumberField = temporaryPhoneNumberField;
-		TemporaryEmailField = temporaryEmailField;
+    /// <summary>
+    /// Закрытый конструктор для клонирования контакта.
+    /// </summary>
+    /// <param name="id"> Идентификатор клона. </param>
+    /// <param name="name"> Название контакта. </param>
+    /// <param name="phoneNumber"> Номер телефона контакта. </param>
+    /// <param name="email"> Почта контакта. </param>
+    /// <param name="temporaryNameField"> Значение редактируемого поля имени. </param>
+    /// <param name="temporaryPhoneNumberField"> Значение редактируемого поля номера телефона. </param>
+    /// <param name="temporaryEmailField"> Значение редактируемого поля почты. </param>
+    private Contact(
+        int id,
+        string name = "No Name",
+        string phoneNumber = "",
+        string email = "",
+        string temporaryNameField = "No Name",
+        string temporaryPhoneNumberField = "",
+        string temporaryEmailField = "")
+    {
+        Name = name;
+        PhoneNumber = phoneNumber;
+        Email = email;
+        Id = id;
+
+        TemporaryNameField = temporaryNameField;
+        TemporaryPhoneNumberField = temporaryPhoneNumberField;
+        TemporaryEmailField = temporaryEmailField;
     }
 
     /// <summary>
@@ -220,23 +215,23 @@ public class Contact : ICloneable, IEquatable<Contact>, INotifyPropertyChanged
     public object Clone()
     {
         return new Contact(
-		Id, 
-		Name, 
-		PhoneNumber, 
-		Email,
-		TemporaryNameField,
-		TemporaryPhoneNumberField,
-		TemporaryEmailField);
+        Id,
+        Name,
+        PhoneNumber,
+        Email,
+        TemporaryNameField,
+        TemporaryPhoneNumberField,
+        TemporaryEmailField);
     }
 
-	/// <summary>
-	/// Метод эквивалентного сравнения интерфейса по идентификатору.
-	/// </summary>
-	/// <param name="other"> Объект для сравнения. </param>
-	/// <returns> true, если объеты равны, false - иначе. </returns>
+    /// <summary>
+    /// Метод эквивалентного сравнения интерфейса по идентификатору.
+    /// </summary>
+    /// <param name="other"> Объект для сравнения. </param>
+    /// <returns> true, если объеты равны, false - иначе. </returns>
     public bool Equals(Contact? other)
     {
-	return other.Id == Id;
+        return other.Id == Id;
     }
 
     /// <summary>
@@ -261,23 +256,23 @@ public class Contact : ICloneable, IEquatable<Contact>, INotifyPropertyChanged
         }
     }
 
-	/// <summary>
-	/// Метод для фиксации отредактированных значений полей.
-	/// </summary>
-	public void Commit()
-	{
-		Name = TemporaryNameField;
-		PhoneNumber = TemporaryPhoneNumberField;
-		Email = TemporaryEmailField;
-	}
+    /// <summary>
+    /// Метод для фиксации отредактированных значений полей.
+    /// </summary>
+    public void Commit()
+    {
+        Name = TemporaryNameField;
+        PhoneNumber = TemporaryPhoneNumberField;
+        Email = TemporaryEmailField;
+    }
 
-	/// <summary>
-	/// Отменить изменение свойств.
-	/// </summary>
-	public void RollBack()
-	{
-		TemporaryNameField = Name;
-            TemporaryPhoneNumberField = PhoneNumber;
-            TemporaryEmailField = Email;
-	}
+    /// <summary>
+    /// Отменить изменение свойств.
+    /// </summary>
+    public void RollBack()
+    {
+        TemporaryNameField = Name;
+        TemporaryPhoneNumberField = PhoneNumber;
+        TemporaryEmailField = Email;
+    }
 }
