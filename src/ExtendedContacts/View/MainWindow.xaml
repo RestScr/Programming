@@ -4,25 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
-        xmlns:vm="clr-namespace:View.ViewModel"
         xmlns:databinding="clr-namespace:View.ViewModel.Converters"
-        xmlns:uc=""
+        xmlns:uc="clr-namespace:View.UserControls"
         mc:Ignorable="d"
         Title="Contacts" 
         Height="450" 
         Width="800" 
         Icon="/assets/ContactsApp_96x96.ico">
 
-    <!-- Добавление контекста данных из MainVM -->
-    <Window.DataContext>
-        <vm:MainVM/>
-    </Window.DataContext>
-
     <Window.Resources>
-        <!-- Добавление конвертера -->
-        <databinding:ReverseBoolConverter 
-            x:Key="ReverseBoolConverter"/>
-        
+
         <!-- Оформление элемента в листбоксе -->
         <DataTemplate x:Key="ContactListTemplate">
             <Grid Width="279">
@@ -139,28 +130,20 @@
             </Grid>
         </Grid>
         <!-- Правая колонка -->
-        <Grid 
+        <StackPanel
             Grid.Column="1"
             Margin="8">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="130"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            
+
+            <!-- ContactEditControl -->
+            <uc:ContactControl/>
 
             <!-- Кнопка подтверждения -->
             <StackPanel
-                Grid.Row="2"
                 Grid.Column="1"
+                Grid.Row="1"
                 Orientation="Horizontal"
-                HorizontalAlignment="Left" Width="81">
+                HorizontalAlignment="Left"
+                Margin="130, 0, 0, 0">
                 <Button 
                     Content="Apply"
                     Height="25"
@@ -170,6 +153,6 @@
                     AutomationProperties.Name="ApplyButton"
                     />
             </StackPanel>
-        </Grid>
+        </StackPanel>
     </Grid>
 </Window>

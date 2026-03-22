@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace View.UCEs
+namespace View.UserControls
 {
     /// <summary>
-    /// Логика взаимодействия для ContactEditControl.xaml
+    /// Логика взаимодействия для ContactControl.xaml
     /// </summary>
-    public partial class ContactEditControl : UserControl
+    public partial class ContactControl : UserControl
     {
-        public ContactEditControl()
+        public ContactControl()
         {
             InitializeComponent();
         }
