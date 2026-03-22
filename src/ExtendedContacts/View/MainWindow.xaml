@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:View"
         xmlns:vm="clr-namespace:View.ViewModel"
         xmlns:databinding="clr-namespace:View.ViewModel.Converters"
+        xmlns:uc=""
         mc:Ignorable="d"
         Title="Contacts" 
         Height="450" 
@@ -147,75 +148,21 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="25"/>
+                
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="40"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Image
-                Grid.RowSpan="4"
-                Grid.Row="1"
-                Grid.Column="0" 
-                Margin="3,3,3,3" 
-                Source="assets/photo_placeholder_100x100.png"
-                />
-
-            <!-- Ввод и отображение имени -->
-            <Label
-                Grid.Column="1"
-                Grid.Row="0"
-                Content="Name:"
-                Margin="3,3,3,3"/>
-            <TextBox
-                Grid.Row="1"
-                Grid.Column="1"
-                Margin="3,3,3,3"
-                Text="{Binding SelectedContact.TemporaryNameField}"
-                IsReadOnly="{Binding EditMode, Converter={StaticResource ReverseBoolConverter}}"
-                />
-
-            <!-- Ввод и отображение номера телефона -->
-            <Label
-                Grid.Column="1"
-                Grid.Row="2"
-                Content="Phone Number:"
-                Margin="3,3,3,3"/>
-            <TextBox
-                Grid.Row="3"
-                Grid.Column="1"
-                Margin="3,3,3,3"
-                Text="{Binding SelectedContact.TemporaryPhoneNumberField}"
-                IsReadOnly="{Binding EditMode, Converter={StaticResource ReverseBoolConverter}}"
-                />
-
-            <!-- Ввод и отображение электронной почты -->
-            <Label
-                Grid.Column="1"
-                Grid.Row="4"
-                Content="Email:"
-                Margin="3,3,3,3"/>
-            <TextBox
-                Grid.Row="5"
-                Grid.Column="1"
-                Margin="3,3,3,3"
-                Text="{Binding SelectedContact.TemporaryEmailField}"
-                IsReadOnly="{Binding EditMode, Converter={StaticResource ReverseBoolConverter}}"
-                />
+            
 
             <!-- Кнопка подтверждения -->
             <StackPanel
-                Grid.Row="7"
+                Grid.Row="2"
                 Grid.Column="1"
                 Orientation="Horizontal"
                 HorizontalAlignment="Left" Width="81">
                 <Button 
                     Content="Apply"
-                    Grid.Column="1"
-                    Grid.Row="7"
                     Height="25"
                     Width="75" 
                     Margin="3"

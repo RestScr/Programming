@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="View.UCEs.ContactEditControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:View.UCEs"
+             xmlns:vm="clr-namespace:View.ViewModel"
+             xmlns:databinding="clr-namespace:View.ViewModel.Converters"
+             mc:Ignorable="d" d:DesignWidth="480" Height="165">
+
+    <UserControl.Resources>
+        <!-- Подключение конвертера -->
+        <databinding:ReverseBoolConverter x:Key="ReverseBoolConverter"/>
+    </UserControl.Resources>
+
+    <UserControl.DataContext>
+        <!-- Подключение ViewModel -->
+        <vm:MainVM/>
+    </UserControl.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="130"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Image Grid.RowSpan="4"
+               Grid.Row="1"
+               Grid.Column="0"
+               Margin="3,3,3,3"
+               Source="/assets/photo_placeholder_100x100.png"/>
+
+        <!-- Ввод и отображение имени -->
+        <Label Grid.Column="1"
+               Grid.Row="0"
+               Content="Name:"
+               Margin="3,3,3,3"/>
+        <TextBox Grid.Row="1"
+                 Grid.Column="1"
+                 Margin="3,3,3,3"
+                 Text="{Binding SelectedContact.TemporaryNameField}"
+                 IsReadOnly="{Binding EditMode, Converter={StaticResource ReverseBoolConverter}}"/>
+
+        <!-- Ввод и отображение номера телефона -->
+        <Label
+        Grid.Column="1"
+        Grid.Row="2"
+        Content="Phone Number:"
+        Margin="3,3,3,3"/>
+        <TextBox
+        Grid.Row="3"
+        Grid.Column="1"
+        Margin="3,3,3,3"
+        Text="{Binding SelectedContact.TemporaryPhoneNumberField}"
+        IsReadOnly="{Binding EditMode, Converter={StaticResource ReverseBoolConverter}}"
+        />
+
+        <!-- Ввод и отображение электронной почты -->
+        <Label
+        Grid.Column="1"
+        Grid.Row="4"
+        Content="Email:"
+        Margin="3,3,3,3"/>
+        <TextBox
+        Grid.Row="5"
+        Grid.Column="1"
+        Margin="3,3,3,3"
+        Text="{Binding SelectedContact.TemporaryEmailField}"
+        IsReadOnly="{Binding EditMode, Converter={StaticResource ReverseBoolConverter}}"
+        />
+    </Grid>
+</UserControl>
