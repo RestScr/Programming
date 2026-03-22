@@ -21,6 +21,31 @@
         <!-- Добавление конвертера -->
         <databinding:ReverseBoolConverter 
             x:Key="ReverseBoolConverter"/>
+        
+        <!-- Оформление элемента в листбоксе -->
+        <DataTemplate x:Key="ContactListTemplate">
+            <Grid Width="279">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="44*"/>
+                    <ColumnDefinition Width="235*"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="assets/photo_placeholder_100x100.png"
+                       Margin="3"
+                       />
+                <StackPanel 
+                    Margin="3,3,3,3" 
+                    Grid.Column="1">
+                    <TextBlock 
+                        FontSize="12"
+                        FontWeight="SemiBold"
+                        Text="{Binding Name}"/>
+                    <TextBlock
+                        FontSize="10"
+                        Text="{Binding PhoneNumber}"/>
+                </StackPanel>
+            </Grid>
+
+        </DataTemplate>
     </Window.Resources>
 
     <!-- Главный интерфейс окна -->
@@ -30,7 +55,7 @@
                 Width="100*"
                 />
             <ColumnDefinition 
-                Width="154*"
+                Width="150*"
                 />
         </Grid.ColumnDefinitions>
 
@@ -74,8 +99,8 @@
                 Grid.Row="1"
                 ItemsSource="{Binding ContactList}"
                 SelectedItem="{Binding SelectedContact}"
-                DisplayMemberPath="Name"
                 Margin="3"
+                ItemTemplate="{StaticResource ContactListTemplate}"
                 />
 
             <!-- Набор кнопок добавления/редактирования/удаления-->
