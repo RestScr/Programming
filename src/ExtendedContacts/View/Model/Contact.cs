@@ -53,21 +53,6 @@ public class Contact : ICloneable, IEquatable<Contact>, INotifyPropertyChanged
     private string _email;
 
     /// <summary>
-    /// Поле редактируемого имени.
-    /// </summary>
-    private string _temporaryNameField;
-
-    /// <summary>
-    /// Поле редактируемого номера телефона.
-    /// </summary>
-    private string _temporaryPhoneNumberField;
-
-    /// <summary>
-    /// Поле редактируемой электронной почты.
-    /// </summary>
-    private string _temporaryEmailField;
-
-    /// <summary>
     /// Статическое свойство, возвращающее количество созданных экземпляров класса.
     /// </summary>
     private static int Created
@@ -137,52 +122,12 @@ public class Contact : ICloneable, IEquatable<Contact>, INotifyPropertyChanged
 		}
 	}
 
-	/// <summary>
-	/// Свойство редактируемого имени.
-	/// </summary>
-	public string TemporaryNameField
-	{
-		get => _temporaryNameField;
-		set 
-		{
-			Set(ref _temporaryNameField, value, nameof(TemporaryNameField));
-		}
-	}
-
-	/// <summary>
-	/// Свойство редактируемого номера телефона.
-	/// </summary>
-	public string TemporaryPhoneNumberField
-	{
-		get => _temporaryPhoneNumberField;
-		set 
-		{ 
-			Set(ref _temporaryPhoneNumberField, value, nameof(TemporaryPhoneNumberField));
-		}
-	}
-	
-	/// <summary>
-	/// Свойство редактируемой электронной почты.
-	/// </summary>
-	public string TemporaryEmailField
-	{
-		get => _temporaryEmailField;
-		set 
-		{
-			Set(ref _temporaryEmailField, value, nameof(TemporaryEmailField));
-		}
-	}
-
 	public Contact(string name="No Name", string phoneNumber="", string email="")
 	{
 		Name = name;
 		PhoneNumber = phoneNumber;
 		Email = email;
 		Id = Created++;
-
-		TemporaryNameField = name;
-		TemporaryPhoneNumberField = phoneNumber;
-		TemporaryEmailField = email;
 	}
 
 	/// <summary>
@@ -199,19 +144,12 @@ public class Contact : ICloneable, IEquatable<Contact>, INotifyPropertyChanged
 		int id, 
 		string name = "No Name", 
 		string phoneNumber = "", 
-		string email = "",
-		string temporaryNameField = "No Name",
-		string temporaryPhoneNumberField = "",
-		string temporaryEmailField = "")
+		string email = "")
 	{
 		Name = name;
 		PhoneNumber = phoneNumber;
 		Email = email;
 		Id = id;
-
-		TemporaryNameField = temporaryNameField;
-		TemporaryPhoneNumberField = temporaryPhoneNumberField;
-		TemporaryEmailField = temporaryEmailField;
     }
 
     /// <summary>
@@ -224,10 +162,7 @@ public class Contact : ICloneable, IEquatable<Contact>, INotifyPropertyChanged
 		Id, 
 		Name, 
 		PhoneNumber, 
-		Email,
-		TemporaryNameField,
-		TemporaryPhoneNumberField,
-		TemporaryEmailField);
+		Email);
     }
 
 	/// <summary>
@@ -261,24 +196,4 @@ public class Contact : ICloneable, IEquatable<Contact>, INotifyPropertyChanged
             return true;
         }
     }
-
-	/// <summary>
-	/// Метод для фиксации отредактированных значений полей.
-	/// </summary>
-	public void Commit()
-	{
-		Name = TemporaryNameField;
-		PhoneNumber = TemporaryPhoneNumberField;
-		Email = TemporaryEmailField;
-	}
-
-	/// <summary>
-	/// Отменить изменение свойств.
-	/// </summary>
-	public void RollBack()
-	{
-		TemporaryNameField = Name;
-            TemporaryPhoneNumberField = PhoneNumber;
-            TemporaryEmailField = Email;
-	}
 }

@@ -46,7 +46,7 @@
         <!-- Левая колонка -->
         <Grid Margin="8,8,8,8">
             <Grid.RowDefinitions>
-                <RowDefinition Height="33*"/>
+                <RowDefinition Height="33"/>
                 <RowDefinition Height="364*"/>
                 <RowDefinition Height="35"/>
             </Grid.RowDefinitions>
@@ -72,7 +72,7 @@
             <ListBox 
                 Grid.Column="0"
                 Grid.Row="1"
-                ItemsSource="{Binding ContactList}"
+                ItemsSource="{Binding Contacts}"
                 SelectedItem="{Binding SelectedContact}"
                 DisplayMemberPath="Name"
                 Margin="3"
@@ -120,82 +120,73 @@
                 <ColumnDefinition Width="130"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Image
-                Grid.RowSpan="4"
-                Grid.Row="1"
-                Grid.Column="0" 
-                Margin="3,3,3,3" 
-                Source="assets/photo_placeholder_100x100.png"
-                />
 
-            <!-- Ввод и отображение имени -->
-            <Label
-                Grid.Column="1"
-                Grid.Row="0"
-                Content="Name:"
-                Margin="3,3,3,3"/>
-            <TextBox
-                Grid.Row="1"
-                Grid.Column="1"
-                Margin="3,3,3,3"
-                Text="{Binding SelectedContact.TemporaryNameField}"
-                IsReadOnly="{Binding EditMode, Converter={StaticResource ReverseBoolConverter}}"
-                />
-
-            <!-- Ввод и отображение номера телефона -->
-            <Label
-                Grid.Column="1"
-                Grid.Row="2"
-                Content="Phone Number:"
-                Margin="3,3,3,3"/>
-            <TextBox
-                Grid.Row="3"
-                Grid.Column="1"
-                Margin="3,3,3,3"
-                Text="{Binding SelectedContact.TemporaryPhoneNumberField}"
-                IsReadOnly="{Binding EditMode, Converter={StaticResource ReverseBoolConverter}}"
-                />
-
-            <!-- Ввод и отображение электронной почты -->
-            <Label
-                Grid.Column="1"
-                Grid.Row="4"
-                Content="Email:"
-                Margin="3,3,3,3"/>
-            <TextBox
-                Grid.Row="5"
-                Grid.Column="1"
-                Margin="3,3,3,3"
-                Text="{Binding SelectedContact.TemporaryEmailField}"
-                IsReadOnly="{Binding EditMode, Converter={StaticResource ReverseBoolConverter}}"
-                />
-
-            <!-- Кнопка подтверждения -->
             <StackPanel
-                Grid.Row="7"
-                Grid.Column="1"
-                Orientation="Horizontal"
-                HorizontalAlignment="Left" Width="81">
+                Orientation="Vertical"
+                Grid.Column="0">
+                <Image
+                    Grid.RowSpan="4"
+                    Grid.Row="1"
+                    Grid.Column="0" 
+                    Margin="3,35,3,3" 
+                    Source="assets/photo_placeholder_100x100.png"
+                    />
+            </StackPanel>
+
+            <StackPanel
+                Grid.Column="1">
+                <!-- Ввод и отображение имени -->
+                <Label
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Content="Name:"
+                    Margin="3,3,3,3" HorizontalAlignment="Left"/>
+                <TextBox
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="3,3,3,3"
+                    Text="{Binding EditingContact.Name}"
+                    IsReadOnly="{Binding EditMode, Converter={StaticResource ReverseBoolConverter}}"
+                    />
+
+                <!-- Ввод и отображение номера телефона -->
+                <Label
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    Content="Phone Number:"
+                    Margin="3,3,3,3" HorizontalAlignment="Left"/>
+                <TextBox
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Margin="3,3,3,3"
+                    Text="{Binding EditingContact.PhoneNumber}"
+                    IsReadOnly="{Binding EditMode, Converter={StaticResource ReverseBoolConverter}}"
+                    />
+
+                <!-- Ввод и отображение электронной почты -->
+                <Label
+                    Grid.Column="1"
+                    Grid.Row="4"
+                    Content="Email:"
+                    Margin="3,3,3,3" HorizontalAlignment="Left"/>
+                <TextBox
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    Margin="3,3,3,3"
+                    Text="{Binding EditingContact.Email}"
+                    IsReadOnly="{Binding EditMode, Converter={StaticResource ReverseBoolConverter}}"
+                    />
+
+                <!-- Кнопка подтверждения -->
                 <Button 
                     Content="Apply"
                     Grid.Column="1"
                     Grid.Row="7"
                     Height="25"
                     Width="75" 
-                    Margin="3"
+                    Margin="3, 50, 3, 3"
                     Command="{Binding ApplyCommand}" 
-                    AutomationProperties.Name="ApplyButton"
+                    CommandParameter="{Binding EditingContact}" HorizontalAlignment="Left"
                     />
             </StackPanel>
         </Grid>

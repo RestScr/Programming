@@ -34,6 +34,11 @@ public class MainVM : INotifyPropertyChanged
     private Contact _selectedContact;
 
     /// <summary>
+    /// Поле выбранного контакта.
+    /// </summary>
+    private Contact _editingContact;
+
+    /// <summary>
     /// Поле, хранящее статус режима редактирования.
     /// </summary>
     private bool _editMode = false;
@@ -41,7 +46,7 @@ public class MainVM : INotifyPropertyChanged
     /// <summary>
     /// Поле коллекции контактов.
     /// </summary>
-    private ObservableCollection<Contact> _contactList;
+    private ObservableCollection<Contact> _contacts;
 
     /// <summary>
     /// Поле команды добавления.
@@ -76,14 +81,9 @@ public class MainVM : INotifyPropertyChanged
         get => _selectedContact;
         set
         {
-            if ((value != SelectedContact) && EditMode)
-            {
-                EditMode = false;
-                SelectedContact?.RollBack();
-            }
-
             if (value == null)
             {
+                EditMode = false;
                 EditCommand.IsExecutable = false;
                 RemoveCommand.IsExecutable = false;
             }
@@ -93,7 +93,25 @@ public class MainVM : INotifyPropertyChanged
                 RemoveCommand.IsExecutable = true;
             }
 
+            if (value != _selectedContact)
+            {
+                EditMode = false;
+            }
+
             Set(ref _selectedContact, value, nameof(SelectedContact));
+            EditingContact = (Contact)value?.Clone();
+        }
+    }
+
+    /// <summary>
+    /// СВойство редактируемого контакта.
+    /// </summary>
+    public Contact EditingContact
+    {
+        get => _editingContact;
+        set
+        {
+            Set(ref _editingContact, value, nameof(EditingContact));
         }
     }
 
@@ -114,12 +132,12 @@ public class MainVM : INotifyPropertyChanged
     /// <summary>
     /// Свойство коллекции контактов.
     /// </summary>
-    public ObservableCollection<Contact> ContactList
+    public ObservableCollection<Contact> Contacts
     {
-        get => _contactList;
+        get => _contacts;
         set
         { 
-            _contactList = value; 
+            _contacts = value;
         }
     }
 
@@ -128,11 +146,7 @@ public class MainVM : INotifyPropertyChanged
     /// </summary>
     public RelayCommand AddCommand
     {
-        get => _addCommand;
-        init
-        {
-            _addCommand = value;
-        }
+        get => _addCommand ?? (_addCommand = new RelayCommand(AddContact));
     }
 
     /// <summary>
@@ -140,11 +154,7 @@ public class MainVM : INotifyPropertyChanged
     /// </summary>
     public RelayCommand ApplyCommand
     {
-        get => _applyCommand;
-        set 
-        { 
-            _applyCommand = value; 
-        }
+        get => _applyCommand ?? (_applyCommand = new RelayCommand(ApplyContact, false));
     }
 
     /// <summary>
@@ -152,11 +162,7 @@ public class MainVM : INotifyPropertyChanged
     /// </summary>
     public RelayCommand EditCommand
     {
-        get => _editCommand;
-        set 
-        { 
-            _editCommand = value; 
-        }
+        get => _editCommand ?? (_editCommand = new RelayCommand(EditContact));
     }
 
     /// <summary>
@@ -164,11 +170,7 @@ public class MainVM : INotifyPropertyChanged
     /// </summary>
     public RelayCommand RemoveCommand
     {
-        get => _removeCommand;
-        set 
-        { 
-            _removeCommand = value; 
-        }
+        get => _removeCommand ?? (_removeCommand = new RelayCommand(RemoveContact));
     }
 
     /// <summary>
@@ -176,10 +178,6 @@ public class MainVM : INotifyPropertyChanged
     /// </summary>
     public MainVM()
     {
-        AddCommand = new RelayCommand(AddContact);
-        ApplyCommand = new RelayCommand(ApplyContact, false);
-        EditCommand = new RelayCommand(EditContact);
-        RemoveCommand = new RelayCommand(RemoveContact);
         SelectedContact = null;
 
         LoadContactlist();
@@ -235,17 +233,22 @@ public class MainVM : INotifyPropertyChanged
     /// <param name="parameter"> Дополнительный параметр для команды. </param>
     public void ApplyContact(object? parameter)
     {
-        if (!ContactList.Contains(SelectedContact))
+        Contact appliedContact = (Contact) parameter;
+
+        if (!Contacts.Contains(appliedContact))
         {
-            ContactList.Add(SelectedContact);
+            Contacts.Add(appliedContact);
+        }
+        else
+        {
+            int id = Contacts.IndexOf(appliedContact);
+            Contacts[id] = appliedContact;
         }
 
-        SelectedContact.Commit();
-        EditCommand.IsExecutable = true;
-        RemoveCommand.IsExecutable = true;
+        SelectedContact = appliedContact;
 
         EditMode = false;
-        Serializer.Save(ContactList);
+        Serializer.Save(Contacts);
     }
 
     /// <summary>
@@ -254,19 +257,19 @@ public class MainVM : INotifyPropertyChanged
     /// <param name="parameter"> Параметр команды. </param>
     public void RemoveContact(object? parameter)
     {
-        int selectedIndex = ContactList.IndexOf(SelectedContact) - 1;
-        ContactList?.Remove(SelectedContact);
+        int selectedIndex = Contacts.IndexOf(SelectedContact) - 1;
+        Contacts?.Remove(SelectedContact);
 
         if (selectedIndex >= 0)
         {
-            SelectedContact = ContactList[selectedIndex];
+            SelectedContact = Contacts[selectedIndex];
         }
         else
         {
             SelectedContact = null;
         }
 
-        Serializer.Save(ContactList);
+        Serializer.Save(Contacts);
     }
 
     /// <summary>
@@ -274,6 +277,6 @@ public class MainVM : INotifyPropertyChanged
     /// </summary>
     public void LoadContactlist()
     {
-        ContactList = Serializer.Load();
+        Contacts = Serializer.Load();
     }
 }
