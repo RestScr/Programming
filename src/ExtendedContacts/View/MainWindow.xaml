@@ -21,6 +21,35 @@
         <!-- Добавление конвертера -->
         <databinding:ReverseBoolConverter 
             x:Key="ReverseBoolConverter"/>
+        <DataTemplate x:Key="ContactDataTemplate">
+            <StackPanel
+                Orientation="Horizontal">
+                <!-- Изображение контакта с закругленными краями -->
+                <Border 
+                    CornerRadius="50"
+                    Width="40"
+                    Height="40">
+                    <Border.Background>
+                        <ImageBrush
+                            ImageSource="assets/photo_placeholder_100x100.png"
+                            Stretch="Fill"
+                            />
+                    </Border.Background>
+                </Border>
+                
+                <!-- Блоки текста с именем и номером телефона контактов -->
+                
+                <StackPanel 
+                    Margin="3"
+                    Orientation="Vertical">
+                    <TextBlock 
+                        Text="{Binding Name}"
+                        FontWeight="Bold"/>
+                    <TextBlock 
+                        Text="{Binding PhoneNumber}"/>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
     </Window.Resources>
 
     <!-- Главный интерфейс окна -->
@@ -74,9 +103,9 @@
                 Grid.Row="1"
                 ItemsSource="{Binding Contacts}"
                 SelectedItem="{Binding SelectedContact}"
-                DisplayMemberPath="Name"
                 Margin="3"
-                />
+                ItemTemplate="{StaticResource ContactDataTemplate}"
+            />
 
             <!-- Набор кнопок добавления/редактирования/удаления-->
             <Grid
@@ -154,7 +183,8 @@
                     Grid.Column="1"
                     Grid.Row="2"
                     Content="Phone Number:"
-                    Margin="3,3,3,3" HorizontalAlignment="Left"/>
+                    Margin="3,3,3,3" 
+                    HorizontalAlignment="Left"/>
                 <TextBox
                     Grid.Row="3"
                     Grid.Column="1"
