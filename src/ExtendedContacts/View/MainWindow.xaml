@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:View"
         xmlns:vm="clr-namespace:View.ViewModel"
         xmlns:databinding="clr-namespace:View.ViewModel.Converters"
+        xmlns:ctrls="clr-namespace:View.Controls"
         mc:Ignorable="d"
         Title="Contacts" 
         Height="450" 
@@ -18,27 +19,24 @@
     </Window.DataContext>
 
     <Window.Resources>
-        <!-- Добавление конвертера -->
-        <databinding:ReverseBoolConverter 
-            x:Key="ReverseBoolConverter"/>
+
         <DataTemplate x:Key="ContactDataTemplate">
             <StackPanel
                 Orientation="Horizontal">
                 <!-- Изображение контакта с закругленными краями -->
-                <Border 
+                <Border
                     CornerRadius="50"
                     Width="40"
                     Height="40">
                     <Border.Background>
                         <ImageBrush
-                            ImageSource="assets/photo_placeholder_100x100.png"
+                            ImageSource="/assets/photo_placeholder_100x100.png"
                             Stretch="Fill"
-                            />
+                    />
                     </Border.Background>
                 </Border>
-                
+
                 <!-- Блоки текста с именем и номером телефона контактов -->
-                
                 <StackPanel 
                     Margin="3"
                     Orientation="Vertical">
@@ -71,7 +69,6 @@
         <Border 
             Background="#F8F8F8"
             Grid.Column="0"/>
-
         <!-- Левая колонка -->
         <Grid Margin="8,8,8,8">
             <Grid.RowDefinitions>
@@ -141,84 +138,25 @@
                     />
             </Grid>
         </Grid>
+        
         <!-- Правая колонка -->
-        <Grid 
-            Grid.Column="1"
-            Margin="8">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="130"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-
-            <StackPanel
-                Orientation="Vertical"
-                Grid.Column="0">
-                <Image
-                    Grid.RowSpan="4"
-                    Grid.Row="1"
-                    Grid.Column="0" 
-                    Margin="3,35,3,3" 
-                    Source="assets/photo_placeholder_100x100.png"
-                    />
-            </StackPanel>
-
-            <StackPanel
-                Grid.Column="1">
-                <!-- Ввод и отображение имени -->
-                <Label
-                    Grid.Column="1"
-                    Grid.Row="0"
-                    Content="Name:"
-                    Margin="3,3,3,3" HorizontalAlignment="Left"/>
-                <TextBox
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Margin="3,3,3,3"
-                    Text="{Binding EditingContact.Name}"
-                    IsReadOnly="{Binding EditMode, Converter={StaticResource ReverseBoolConverter}}"
-                    />
-
-                <!-- Ввод и отображение номера телефона -->
-                <Label
-                    Grid.Column="1"
-                    Grid.Row="2"
-                    Content="Phone Number:"
-                    Margin="3,3,3,3" 
-                    HorizontalAlignment="Left"/>
-                <TextBox
-                    Grid.Row="3"
-                    Grid.Column="1"
-                    Margin="3,3,3,3"
-                    Text="{Binding EditingContact.PhoneNumber}"
-                    IsReadOnly="{Binding EditMode, Converter={StaticResource ReverseBoolConverter}}"
-                    />
-
-                <!-- Ввод и отображение электронной почты -->
-                <Label
-                    Grid.Column="1"
-                    Grid.Row="4"
-                    Content="Email:"
-                    Margin="3,3,3,3" HorizontalAlignment="Left"/>
-                <TextBox
-                    Grid.Row="5"
-                    Grid.Column="1"
-                    Margin="3,3,3,3"
-                    Text="{Binding EditingContact.Email}"
-                    IsReadOnly="{Binding EditMode, Converter={StaticResource ReverseBoolConverter}}"
-                    />
-
-                <!-- Кнопка подтверждения -->
-                <Button 
-                    Content="Apply"
-                    Grid.Column="1"
-                    Grid.Row="7"
-                    Height="25"
-                    Width="75" 
-                    Margin="3, 50, 3, 3"
-                    Command="{Binding ApplyCommand}" 
-                    CommandParameter="{Binding EditingContact}" HorizontalAlignment="Left"
-                    />
-            </StackPanel>
-        </Grid>
+        <StackPanel
+            Grid.Column="1">
+            <ctrls:ContactControl
+                IsEnabled="{Binding EditMode}"
+                />
+            <!-- Кнопка подтверждения -->
+            <Button 
+                Content="Apply"
+                Grid.Column="1"
+                Grid.Row="7"
+                Height="25"
+                Width="75" 
+                Margin="140, 50, 3, 3"
+                Command="{Binding ApplyCommand}" 
+                CommandParameter="{Binding EditingContact}" HorizontalAlignment="Left"
+                />
+        </StackPanel>
+        
     </Grid>
 </Window>

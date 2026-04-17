@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 
 
 namespace View.Model;
@@ -7,7 +8,7 @@ namespace View.Model;
 /// <summary>
 /// Класс контакта.
 /// </summary>
-public class Contact : ICloneable, IEquatable<Contact>, INotifyPropertyChanged
+public class Contact : ICloneable, IEquatable<Contact>, INotifyPropertyChanged, IDataErrorInfo
 {
     public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -90,7 +91,7 @@ public class Contact : ICloneable, IEquatable<Contact>, INotifyPropertyChanged
 		set 
 		{
                 Set(ref _name, value, nameof(Name));
-            }
+        }
 	}
 
 	/// <summary>
@@ -102,7 +103,7 @@ public class Contact : ICloneable, IEquatable<Contact>, INotifyPropertyChanged
 		set 
 		{ 
                 Set(ref _phoneNumber, value, nameof(PhoneNumber));
-            }
+        }
 	}
 
     /// <summary>
@@ -117,7 +118,57 @@ public class Contact : ICloneable, IEquatable<Contact>, INotifyPropertyChanged
 		}
 	}
 
-	public Contact(string name="No Name", string phoneNumber="", string email="")
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    public string Error => throw new NotImplementedException();
+
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    /// <param name="columnName"></param>
+    /// <returns></returns>
+    /// <exception cref="NotImplementedException"></exception>
+    public string this[string columnName]
+    {
+        get
+        {
+            string error = string.Empty;
+            switch (columnName)
+            {
+                case "Name":
+                    if (Name.Length > 100)
+                    {
+                        error = "Имя должно состоять из менее, чем 100 символов.";
+                    }
+                    break;
+                case "PhoneNumber":
+                    if (PhoneNumber.Length > 100)
+                    {
+                        error = "Телефон должен состоять из менее, чем 100 символов.";
+                    }
+                    if (Regex.IsMatch(PhoneNumber, @"\+7\(\s\d{3}\)\s\d{3}-\s\d{2}-\d{2}"))
+                    {
+                        error = "Телефон должен соответствовать шаблону +7 (xxx) xxx-xx-xx";
+                    }
+                    break;
+                case "Email":
+                    if (Email.Length > 100)
+                    {
+                        error = "Почта должна состоять из менее, чем 100 символов.";
+                    }
+                    if (Regex.IsMatch(Email, "^\\S+@\\S+\\.\\S+$"))
+                    {
+                        error = "Почта должна удовлетворять шаблону emailname@email.com";
+                    }
+                    break;
+            }
+
+            return error;
+        }
+    }
+
+    public Contact(string name="No Name", string phoneNumber="", string email="")
 	{
 		Name = name;
 		PhoneNumber = phoneNumber;
