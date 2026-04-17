@@ -12,7 +12,7 @@ public class ContactListSerializer
     /// <summary>
     /// Поле, хранящее путь к файлу сохранения.
     /// </summary>
-    private string _path = "/Мои Документы/ContactsList.json";
+    private string _path = "/Documents/ContactsList.json";
 
     /// <summary>
     /// Свойство пути файла сохранения.
@@ -25,7 +25,7 @@ public class ContactListSerializer
     /// <summary>
     /// Метод выгрузки списка контактов из файла.
     /// </summary>
-    /// <returns></returns>
+    /// <returns> Заруженный список контактов. </returns>
     public ObservableCollection<Contact> Load()
     {
         FileInfo fileInfo = new FileInfo(Path);
