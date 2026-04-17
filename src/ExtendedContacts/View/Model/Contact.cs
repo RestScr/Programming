@@ -142,6 +142,7 @@ public class Contact : ICloneable, IEquatable<Contact>, INotifyPropertyChanged, 
                         error = "Имя должно состоять из менее, чем 100 символов.";
                     }
                     break;
+                    /*
                 case "PhoneNumber":
                     if (PhoneNumber.Length > 100)
                     {
@@ -162,6 +163,7 @@ public class Contact : ICloneable, IEquatable<Contact>, INotifyPropertyChanged, 
                         error = "Почта должна удовлетворять шаблону emailname@email.com";
                     }
                     break;
+                    */
             }
 
             return error;

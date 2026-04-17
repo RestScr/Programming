@@ -141,7 +141,7 @@ public class MainVM : INotifyPropertyChanged
         RemoveCommand.IsExecutable = false;
         ApplyCommand.IsExecutable = true;
 
-        ContactViewModel.EditMode = false;
+        ContactViewModel.EditMode = true;
     }
 
     /// <summary>

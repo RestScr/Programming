@@ -141,7 +141,8 @@
         <StackPanel
             Grid.Column="1">
             <ctrls:ContactControl
-                DataContext="{Binding ContactViewModel}"/>
+                DataContext="{Binding ContactViewModel}"
+                IsEnabled="{Binding EditMode}"/>
             <!-- Кнопка подтверждения -->
             <Button 
                 Content="Apply"

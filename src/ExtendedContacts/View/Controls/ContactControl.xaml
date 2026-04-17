@@ -48,13 +48,11 @@
                     Grid.Row="1"
                     Grid.Column="1"
                     Margin="3,3,3,3"
-                    IsReadOnly="{Binding IsEditable}"
+                    IsReadOnly="{Binding EditMode}"
                     >
                     <TextBox.Text>
-                        <Binding Path="Name">
-                            <Binding.ValidationRules>
-                                <DataErrorValidationRule />
-                            </Binding.ValidationRules>
+                        <Binding Path="EditingContact.Name">
+                            
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
@@ -70,8 +68,8 @@
                     Grid.Row="3"
                     Grid.Column="1"
                     Margin="3,3,3,3"
-                    Text="{Binding PhoneNumber}"
-                    IsReadOnly="{Binding IsEditable}"
+                    Text="{Binding EditingContact.PhoneNumber}"
+                    IsReadOnly="{Binding EditMode, Converter=}"
                     />
 
                 <!-- Ввод и отображение электронной почты -->
@@ -84,8 +82,8 @@
                     Grid.Row="5"
                     Grid.Column="1"
                     Margin="3,3,3,3"
-                    Text="{Binding Email}"
-                    IsReadOnly="{Binding IsEditable}"
+                    Text="{Binding EditingContact.Email}"
+                    IsReadOnly="{Binding EditMode}"
                     />
             </StackPanel>
         </Grid>
