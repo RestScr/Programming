@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:View.Controls"
-             xmlns:vm="clr-namespace:View.ViewModel"
              xmlns:databinding="clr-namespace:View.ViewModel.Converters"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -49,6 +48,7 @@
                     Grid.Row="1"
                     Grid.Column="1"
                     Margin="3,3,3,3"
+                    IsReadOnly="{Binding IsEditable}"
                     >
                     <TextBox.Text>
                         <Binding Path="Name">
@@ -71,6 +71,7 @@
                     Grid.Column="1"
                     Margin="3,3,3,3"
                     Text="{Binding PhoneNumber}"
+                    IsReadOnly="{Binding IsEditable}"
                     />
 
                 <!-- Ввод и отображение электронной почты -->
@@ -84,6 +85,7 @@
                     Grid.Column="1"
                     Margin="3,3,3,3"
                     Text="{Binding Email}"
+                    IsReadOnly="{Binding IsEditable}"
                     />
             </StackPanel>
         </Grid>

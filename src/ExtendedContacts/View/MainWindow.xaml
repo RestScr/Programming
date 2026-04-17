@@ -13,13 +13,7 @@
         Width="800" 
         Icon="/assets/ContactsApp_96x96.ico">
 
-    <!-- Добавление контекста данных из MainVM -->
-    <Window.DataContext>
-        <vm:MainVM/>
-    </Window.DataContext>
-
     <Window.Resources>
-
         <DataTemplate x:Key="ContactDataTemplate">
             <StackPanel
                 Orientation="Horizontal">
@@ -49,6 +43,10 @@
             </StackPanel>
         </DataTemplate>
     </Window.Resources>
+
+    <Window.DataContext>
+        <vm:MainVM/>
+    </Window.DataContext>
 
     <!-- Главный интерфейс окна -->
     <Grid>
@@ -98,8 +96,8 @@
             <ListBox 
                 Grid.Column="0"
                 Grid.Row="1"
-                ItemsSource="{Binding Contacts}"
-                SelectedItem="{Binding SelectedContact}"
+                ItemsSource="{Binding ContactViewModel.Contacts}"
+                SelectedItem="{Binding ContactViewModel.SelectedContact}"
                 Margin="3"
                 ItemTemplate="{StaticResource ContactDataTemplate}"
             />
@@ -126,7 +124,7 @@
                     Margin="3"
                     Content="Edit"
                     Command="{Binding EditCommand}"
-                    CommandParameter="{Binding SelectedContact}"
+                    CommandParameter="{Binding ContactViewModel.SelectedContact}"
                     />
                 <Button
                     Grid.Column="2"
@@ -134,7 +132,7 @@
                     Margin="3"
                     Content="Remove"
                     Command="{Binding RemoveCommand}"
-                    CommandParameter="{Binding SelectedContact}"
+                    CommandParameter="{Binding ContactViewModel.SelectedContact}"
                     />
             </Grid>
         </Grid>
@@ -143,8 +141,7 @@
         <StackPanel
             Grid.Column="1">
             <ctrls:ContactControl
-                IsEnabled="{Binding EditMode}"
-                />
+                DataContext="{Binding ContactViewModel}"/>
             <!-- Кнопка подтверждения -->
             <Button 
                 Content="Apply"
@@ -154,7 +151,8 @@
                 Width="75" 
                 Margin="140, 50, 3, 3"
                 Command="{Binding ApplyCommand}" 
-                CommandParameter="{Binding EditingContact}" HorizontalAlignment="Left"
+                CommandParameter="{Binding ContactViewModel.EditingContact}" 
+                HorizontalAlignment="Left"
                 />
         </StackPanel>
         
