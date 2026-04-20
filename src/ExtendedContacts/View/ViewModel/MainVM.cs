@@ -31,6 +31,11 @@ public class MainVM : INotifyPropertyChanged
     /// <summary>
     /// Поле выбранного контакта.
     /// </summary>
+    private Contact _selectedContact;
+
+    /// <summary>
+    /// Поле выбранного контакта.
+    /// </summary>
     private ContactVM _contactViewModel;
 
     /// <summary>
@@ -54,9 +59,53 @@ public class MainVM : INotifyPropertyChanged
     private RelayCommand _removeCommand;
 
     /// <summary>
+    /// Поле коллекции контактов.
+    /// </summary>
+    private ObservableCollection<Contact> _contacts;
+
+    /// <summary>
     /// Свойство сериализатора.
     /// </summary>
     public ContactListSerializer Serializer { get; private set; } = new ContactListSerializer();
+
+    /// <summary>
+    /// Свойство выбранного контакта.
+    /// </summary>
+    public Contact SelectedContact
+    {
+        get => _selectedContact;
+        set
+        {
+            if (value == null)
+            {
+                ContactViewModel.EditMode = false;
+                EditCommand.IsExecutable = false;
+                RemoveCommand.IsExecutable = false;
+            }
+            else
+            {
+                ContactViewModel.EditMode = true;
+                EditCommand.IsExecutable = true;
+                RemoveCommand.IsExecutable = true;
+            }
+
+            if (value != _selectedContact)
+            {
+                ContactViewModel.EditMode = false;
+                ApplyCommand.IsExecutable = false;
+            }
+
+            Set(ref _selectedContact, value, nameof(SelectedContact));
+            if (SelectedContact != null)
+            {
+                ContactViewModel.EditingContact = (Contact)SelectedContact.Clone();
+            }
+            else
+            {
+                ContactViewModel.EditingContact = null;
+            }
+        }
+    }
 
     /// <summary>
     /// Свойство выбранного контакта.
@@ -99,11 +148,23 @@ public class MainVM : INotifyPropertyChanged
     }
 
     /// <summary>
+    /// Свойство коллекции контактов.
+    /// </summary>
+    public ObservableCollection<Contact> Contacts
+    {
+        get => _contacts ?? (_contacts = new ObservableCollection<Contact>());
+        set
+        {
+            _contacts = value;
+        }
+    }
+
+    /// <summary>
     /// Стандартный конструктор MainVM.
     /// </summary>
     public MainVM()
     {
-        ContactViewModel.SelectedContact = null;
+        SelectedContact = null;
 
         LoadContactlist();
     }
@@ -136,7 +197,7 @@ public class MainVM : INotifyPropertyChanged
     /// <param name="parameter"> Дополнительный параметр. </param>
     public void AddContact(object? parameter)
     {
-        ContactViewModel.SelectedContact = new Contact();
+        SelectedContact = new Contact();
         EditCommand.IsExecutable = false;
         RemoveCommand.IsExecutable = false;
         ApplyCommand.IsExecutable = true;
@@ -150,7 +211,8 @@ public class MainVM : INotifyPropertyChanged
     /// <param name="parameter"> Дополнительный параметр для команды. </param>
     public void EditContact(object? parameter)
     {
-        ContactViewModel.EditMode = false;
+        ContactViewModel.EditMode = true;
+        ApplyCommand.IsExecutable = true;
     }
 
     /// <summary>
@@ -161,20 +223,21 @@ public class MainVM : INotifyPropertyChanged
     {
         Contact appliedContact = (Contact) parameter;
 
-        if (!ContactViewModel.Contacts.Contains(appliedContact))
+        if (!Contacts.Contains(appliedContact))
         {
-            ContactViewModel.Contacts.Add(appliedContact);
+            Contacts.Add(appliedContact);
         }
         else
         {
-            int id = ContactViewModel.Contacts.IndexOf(appliedContact);
-            ContactViewModel.Contacts[id] = appliedContact;
+            int id = Contacts.IndexOf(appliedContact);
+            Contacts[id] = appliedContact;
         }
 
-        ContactViewModel.SelectedContact = appliedContact;
+        SelectedContact = appliedContact;
 
         ContactViewModel.EditMode = false;
-        Serializer.Save(ContactViewModel.Contacts);
+        SetEditMode();
+        Serializer.Save(Contacts);
     }
 
     /// <summary>
@@ -183,19 +246,32 @@ public class MainVM : INotifyPropertyChanged
     /// <param name="parameter"> Параметр команды. </param>
     public void RemoveContact(object? parameter)
     {
-        int selectedIndex = ContactViewModel.Contacts.IndexOf(ContactViewModel.SelectedContact) - 1;
-        ContactViewModel.Contacts?.Remove(ContactViewModel.SelectedContact);
+        int selectedIndex = Contacts.IndexOf(SelectedContact) - 1;
+        Contacts?.Remove(SelectedContact);
 
         if (selectedIndex >= 0)
         {
-            ContactViewModel.SelectedContact = ContactViewModel.Contacts[selectedIndex];
+            SelectedContact = Contacts[selectedIndex];
         }
         else
         {
-            ContactViewModel.SelectedContact = null;
+            SelectedContact = null;
         }
 
-        Serializer.Save(ContactViewModel.Contacts);
+        Serializer.Save(Contacts);
+    }
+
+    private void SetEditMode()
+    {
+        if (ContactViewModel.EditMode)
+        {
+            ApplyCommand.IsExecutable = true;
+            
+        }
+        else
+        {
+            ApplyCommand.IsExecutable = false;
+        }
     }
 
     /// <summary>
@@ -203,6 +279,6 @@ public class MainVM : INotifyPropertyChanged
     /// </summary>
     public void LoadContactlist()
     {
-        ContactViewModel.Contacts = Serializer.Load();
+        Contacts = Serializer.Load();
     }
 }

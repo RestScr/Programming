@@ -8,7 +8,7 @@ namespace View.Model;
 /// <summary>
 /// Класс контакта.
 /// </summary>
-public class Contact : ICloneable, IEquatable<Contact>, INotifyPropertyChanged, IDataErrorInfo
+public class Contact : ICloneable, IEquatable<Contact>, INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -119,57 +119,11 @@ public class Contact : ICloneable, IEquatable<Contact>, INotifyPropertyChanged, 
 	}
 
     /// <summary>
-    /// <inheritdoc/>
+    /// Конструктор контакта.
     /// </summary>
-    public string Error => throw new NotImplementedException();
-
-    /// <summary>
-    /// <inheritdoc/>
-    /// </summary>
-    /// <param name="columnName"></param>
-    /// <returns></returns>
-    /// <exception cref="NotImplementedException"></exception>
-    public string this[string columnName]
-    {
-        get
-        {
-            string error = string.Empty;
-            switch (columnName)
-            {
-                case "Name":
-                    if (Name.Length > 100)
-                    {
-                        error = "Имя должно состоять из менее, чем 100 символов.";
-                    }
-                    break;
-                    /*
-                case "PhoneNumber":
-                    if (PhoneNumber.Length > 100)
-                    {
-                        error = "Телефон должен состоять из менее, чем 100 символов.";
-                    }
-                    if (Regex.IsMatch(PhoneNumber, @"\+7\(\s\d{3}\)\s\d{3}-\s\d{2}-\d{2}"))
-                    {
-                        error = "Телефон должен соответствовать шаблону +7 (xxx) xxx-xx-xx";
-                    }
-                    break;
-                case "Email":
-                    if (Email.Length > 100)
-                    {
-                        error = "Почта должна состоять из менее, чем 100 символов.";
-                    }
-                    if (Regex.IsMatch(Email, "^\\S+@\\S+\\.\\S+$"))
-                    {
-                        error = "Почта должна удовлетворять шаблону emailname@email.com";
-                    }
-                    break;
-                    */
-            }
-
-            return error;
-        }
-    }
-
+    /// <param name="name"> Имя контакта.</param>
+    /// <param name="phoneNumber"> Телефон. </param>
+    /// <param name="email"> Почта. </param>
     public Contact(string name="No Name", string phoneNumber="", string email="")
 	{
 		Name = name;

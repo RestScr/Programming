@@ -96,8 +96,8 @@
             <ListBox 
                 Grid.Column="0"
                 Grid.Row="1"
-                ItemsSource="{Binding ContactViewModel.Contacts}"
-                SelectedItem="{Binding ContactViewModel.SelectedContact}"
+                ItemsSource="{Binding Contacts}"
+                SelectedItem="{Binding SelectedContact}"
                 Margin="3"
                 ItemTemplate="{StaticResource ContactDataTemplate}"
             />
@@ -124,7 +124,7 @@
                     Margin="3"
                     Content="Edit"
                     Command="{Binding EditCommand}"
-                    CommandParameter="{Binding ContactViewModel.SelectedContact}"
+                    CommandParameter="{Binding SelectedContact}"
                     />
                 <Button
                     Grid.Column="2"
@@ -132,7 +132,7 @@
                     Margin="3"
                     Content="Remove"
                     Command="{Binding RemoveCommand}"
-                    CommandParameter="{Binding ContactViewModel.SelectedContact}"
+                    CommandParameter="{Binding SelectedContact}"
                     />
             </Grid>
         </Grid>
@@ -142,7 +142,7 @@
             Grid.Column="1">
             <ctrls:ContactControl
                 DataContext="{Binding ContactViewModel}"
-                IsEnabled="{Binding EditMode}"/>
+                />
             <!-- Кнопка подтверждения -->
             <Button 
                 Content="Apply"

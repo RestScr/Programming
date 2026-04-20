@@ -21,50 +21,14 @@ public class ContactVM : INotifyPropertyChanged
     public event PropertyChangedEventHandler? PropertyChanged;
 
     /// <summary>
-    /// Поле выбранного контакта.
-    /// </summary>
-    private Contact _selectedContact;
-
-    /// <summary>
     /// Поле редактируемого контакта.
     /// </summary>
     private Contact _editingContact;
 
     /// <summary>
-    /// Поле коллекции контактов.
-    /// </summary>
-    private ObservableCollection<Contact> _contacts;
-
-    /// <summary>
     /// Флажок редактирования.
     /// </summary>
     private bool _editMode;
-
-    /// <summary>
-    /// Свойство выбранного контакта.
-    /// </summary>
-    public Contact SelectedContact
-    {
-        get => _selectedContact;
-        set 
-        {
-            if (value == null)
-            {
-                EditMode = false;
-            }
-
-            if (value != _selectedContact)
-            {
-                EditMode = false;
-            }
-
-            Set(ref _selectedContact, value, nameof(SelectedContact));
-            if (SelectedContact != null)
-            {
-                EditingContact = (Contact)SelectedContact.Clone();
-            }
-        }
-    }
 
     /// <summary>
     /// Свойство редактируемого контакта.
@@ -87,18 +51,6 @@ public class ContactVM : INotifyPropertyChanged
         set
         {
             Set(ref _editMode, value, nameof(EditMode));
-        }
-    }
-
-    /// <summary>
-    /// Свойство коллекции контактов.
-    /// </summary>
-    public ObservableCollection<Contact> Contacts
-    {
-        get => _contacts ?? (_contacts = new ObservableCollection<Contact>());
-        set
-        {
-            _contacts = value;
         }
     }
 

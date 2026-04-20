@@ -18,7 +18,7 @@ public class ContactListSerializer
     /// <summary>
     /// Поле, хранящее путь к файлу сохранения.
     /// </summary>
-    private string _path = "/Мои Документы/Contacts.json";
+    private string _path = "/Мои Документы/ContactsList.json";
 
     /// <summary>
     /// Свойство пути файла сохранения.
