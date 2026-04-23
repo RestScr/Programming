@@ -8,14 +8,20 @@ namespace View.ViewModel.ValidationRules;
 /// </summary>
 public class NameRule : ValidationRule
 {
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="cultureInfo"></param>
+    /// <returns> <inheritdoc/> </returns>
     public override ValidationResult Validate(object value, CultureInfo cultureInfo)
     {
         string name = (string)value;
-        if (name.Length <= 100)
+        if (name.Length > 100)
         {
-            return ValidationResult.ValidResult;
+            return new ValidationResult(false, $"Name property must be less than 100 characters.");
         }
 
-        return new ValidationResult(false, $"Name property must be less than 100 characters.");
+        return ValidationResult.ValidResult;
     }
 }

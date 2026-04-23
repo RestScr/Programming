@@ -1,30 +1,64 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using View.Model;
+using View.ViewModel.Converters;
 
-namespace View.Controls
+namespace View.Controls;
+
+/// <summary>
+/// Логика взаимодействия для ContactControl.xaml
+/// </summary>
+public partial class ContactControl : UserControl
 {
     /// <summary>
-    /// Логика взаимодействия для ContactControl.xaml
+    /// Соответствующее свойство валидации текстовых полей элемента.
     /// </summary>
-    public partial class ContactControl : UserControl
+    public static readonly DependencyProperty IsValidProperty = DependencyProperty.RegisterAttached(
+        nameof(IsValid),
+        typeof(bool),
+        typeof(ContactControl),
+        new FrameworkPropertyMetadata(null)
+    );
+
+    /// <summary>
+    /// Свойство получения успеха валидации поля.
+    /// </summary>
+    public bool IsValid
     {
-        public ContactControl()
+        get => (bool)GetValue(IsValidProperty);
+        set => SetValue(IsValidProperty, value);
+    }
+
+    /// <summary>
+    /// Конструктор по умолчанию.
+    /// </summary>
+    public ContactControl()
+    {
+        InitializeComponent();
+        MultiBinding multiBinding = new MultiBinding() 
+        { 
+            Converter = new ValidationConverter() 
+        };
+
+        TextBox nameTextBox = (TextBox)FindName("NameTextBox");
+        TextBox phoneNumberTextBox = (TextBox)FindName("PhoneNumberTextBox");
+        TextBox emailTextBox = (TextBox)FindName("EmailTextBox");
+
+        multiBinding.Bindings.Add(new Binding("(Validation.HasError)")
         {
-            InitializeComponent();
-        }
+            Source = nameTextBox
+        });
+
+        multiBinding.Bindings.Add(new Binding("(Validation.HasError)")
+        {
+            Source = phoneNumberTextBox
+        });
+
+        multiBinding.Bindings.Add(new Binding("(Validation.HasError)")
+        {
+            Source = emailTextBox
+        });
+
+        SetBinding(IsValidProperty, multiBinding);
     }
 }

@@ -26,7 +26,7 @@
                         <ImageBrush
                             ImageSource="/assets/photo_placeholder_100x100.png"
                             Stretch="Fill"
-                    />
+                        />
                     </Border.Background>
                 </Border>
 
@@ -42,6 +42,8 @@
                 </StackPanel>
             </StackPanel>
         </DataTemplate>
+        <databinding:ReverseBoolConverter 
+            x:Key="InverseBoolConverter"/>
     </Window.Resources>
 
     <Window.DataContext>
@@ -142,6 +144,7 @@
             Grid.Column="1">
             <ctrls:ContactControl
                 DataContext="{Binding ContactViewModel}"
+                x:Name="ContactControl"
                 />
             <!-- Кнопка подтверждения -->
             <Button 
@@ -154,7 +157,11 @@
                 Command="{Binding ApplyCommand}" 
                 CommandParameter="{Binding ContactViewModel.EditingContact}" 
                 HorizontalAlignment="Left"
-                />
+                IsEnabled="{Binding IsValid, 
+                            ElementName=ContactControl}"
+                >
+                
+            </Button>
         </StackPanel>
         
     </Grid>

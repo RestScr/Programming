@@ -6,7 +6,7 @@ namespace View.ViewModel.Converters;
 /// <summary>
 /// Конвертер, инвертирующий булевы значения.
 /// </summary>
-class ReverseBoolConverter : IValueConverter
+public class ReverseBoolConverter : IValueConverter
 {
     /// <summary>
     /// Метод преобразования для элемента.
