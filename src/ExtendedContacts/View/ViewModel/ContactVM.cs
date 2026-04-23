@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using View.Model;
 using View.Model.Services;
-using View.ViewModel.Commands;
 
 namespace View.ViewModel;
 
@@ -33,11 +26,6 @@ public class ContactVM : INotifyPropertyChanged
     /// Флажок редактирования.
     /// </summary>
     private bool _editMode;
-
-    /// <summary>
-    /// Поле команды обработки вставки текста в текстовое поле.
-    /// </summary>
-    private RelayCommand _onPasteCommand;
 
     /// <summary>
     /// Свойство редактируемого контакта.
