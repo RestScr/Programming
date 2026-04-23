@@ -1,7 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Windows.Data;
 using View.Model;
+using View.Model.Comparators;
 using View.Model.Services;
 using View.ViewModel.Commands;
 
@@ -62,6 +65,8 @@ public class MainVM : INotifyPropertyChanged
     /// Поле коллекции контактов.
     /// </summary>
     private ObservableCollection<Contact> _contacts;
+
+    private string _textFiler;
 
     /// <summary>
     /// Свойство сериализатора.
@@ -159,14 +164,30 @@ public class MainVM : INotifyPropertyChanged
         }
     }
 
+    public string TextFilter
+    {
+        get => _textFiler;
+        set
+        {
+            Set(ref _textFiler, value, nameof(TextFilter));
+
+            ContactsView.Refresh();
+        }
+    }
+
+    public ICollectionView ContactsView { get; init; }
+
     /// <summary>
     /// Стандартный конструктор MainVM.
     /// </summary>
     public MainVM()
     {
         SelectedContact = null;
-
         LoadContactlist();
+
+        ContactsView = CollectionViewSource.GetDefaultView(Contacts);
+        ContactsView.Filter = FilterContactsByName;
+        ContactsView.Refresh();
     }
 
     /// <summary>
@@ -221,7 +242,7 @@ public class MainVM : INotifyPropertyChanged
     /// <param name="parameter"> Дополнительный параметр для команды. </param>
     public void ApplyContact(object? parameter)
     {
-        Contact appliedContact = (Contact) parameter;
+        Contact appliedContact = (Contact)parameter;
 
         if (!Contacts.Contains(appliedContact))
         {
@@ -261,6 +282,9 @@ public class MainVM : INotifyPropertyChanged
         Serializer.Save(Contacts);
     }
 
+    /// <summary>
+    /// Функция задания режима редактирования в ContactVM.
+    /// </summary>
     private void SetEditMode()
     {
         if (ContactViewModel.EditMode)
@@ -279,5 +303,22 @@ public class MainVM : INotifyPropertyChanged
     public void LoadContactlist()
     {
         Contacts = Serializer.Load();
+    }
+
+    /// <summary>
+    /// Фильтрация контактов по введенному имени в поисковой строке контактов.
+    /// </summary>
+    /// <param name="parameter"> Введенное имя. </param>
+    /// <returns> true или false </returns>
+    private bool FilterContactsByName(object? parameter)
+    {
+        if (parameter == null)
+        {
+            return false;
+        }
+
+        Contact filteringContact = (Contact)parameter;
+
+        return String.IsNullOrEmpty(TextFilter) || filteringContact.Name.Contains(TextFilter);
     }
 }

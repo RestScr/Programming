@@ -18,7 +18,7 @@ public class ContactListSerializer
     /// <summary>
     /// Поле, хранящее путь к файлу сохранения.
     /// </summary>
-    private string _path = "/Мои Документы/ContactsList.json";
+    private string _path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ExtendedContacts/Contacts.json";
 
     /// <summary>
     /// Свойство пути файла сохранения.
@@ -38,7 +38,9 @@ public class ContactListSerializer
         if (!fileInfo.Directory.Exists)
         {
             Directory.CreateDirectory(fileInfo.Directory.FullName);
+            fileInfo = new FileInfo(Path);
         }
+
 
         if (!File.Exists(Path))
         {

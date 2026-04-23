@@ -87,14 +87,15 @@
                 <TextBox
                     Grid.Row="0"
                     Grid.Column="1"
-                    Margin="3"/>
+                    Margin="3"
+                    Text="{Binding TextFilter, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
 
             <!-- Список контактов -->
             <ListBox 
                 Grid.Column="0"
                 Grid.Row="1"
-                ItemsSource="{Binding Contacts}"
+                ItemsSource="{Binding ContactsView}"
                 SelectedItem="{Binding SelectedContact}"
                 Margin="3"
                 ItemTemplate="{StaticResource ContactDataTemplate}"
