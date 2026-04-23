@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using View.ViewModel;
 using View.ViewModel.Converters;
 
 namespace View.Controls;
@@ -13,7 +14,7 @@ public partial class ContactControl : UserControl
     /// <summary>
     /// Соответствующее свойство валидации текстовых полей элемента.
     /// </summary>
-    public static readonly DependencyProperty IsValidProperty = DependencyProperty.RegisterAttached(
+    public static readonly DependencyProperty IsValidProperty = DependencyProperty.Register(
         nameof(IsValid),
         typeof(bool),
         typeof(ContactControl),
@@ -35,6 +36,7 @@ public partial class ContactControl : UserControl
     public ContactControl()
     {
         InitializeComponent();
+
         MultiBinding multiBinding = new MultiBinding() 
         { 
             Converter = new ValidationConverter() 

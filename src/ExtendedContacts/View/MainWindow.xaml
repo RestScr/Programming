@@ -46,10 +46,6 @@
             x:Key="InverseBoolConverter"/>
     </Window.Resources>
 
-    <Window.DataContext>
-        <vm:MainVM/>
-    </Window.DataContext>
-
     <!-- Главный интерфейс окна -->
     <Grid>
         <Grid.ColumnDefinitions>

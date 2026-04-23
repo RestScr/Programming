@@ -1,25 +1,26 @@
-﻿using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using View.Controls;
 using View.ViewModel;
 
-namespace View
+namespace View;
+
+/// <summary>
+/// Interaction logic for MainWindow.xaml
+/// </summary>
+public partial class MainWindow : Window
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Стандартный конструктор главного окна.
     /// </summary>
-    public partial class MainWindow : Window
+    public MainWindow()
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+        this.DataContext = new MainVM();
+
+        ContactControl contactControl = (ContactControl)FindName("ContactControl");
+        TextBox phoneNumberTextBox = (TextBox)contactControl.FindName("PhoneNumberTextBox");
+
+        DataObject.AddPastingHandler(phoneNumberTextBox, ((MainVM)this.DataContext).ContactViewModel.OnPasting);
     }
 }

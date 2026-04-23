@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using View.Model;
+using View.Model.Services;
+using View.ViewModel.Commands;
 
 namespace View.ViewModel;
 
@@ -29,6 +33,11 @@ public class ContactVM : INotifyPropertyChanged
     /// Флажок редактирования.
     /// </summary>
     private bool _editMode;
+
+    /// <summary>
+    /// Поле команды обработки вставки текста в текстовое поле.
+    /// </summary>
+    private RelayCommand _onPasteCommand;
 
     /// <summary>
     /// Свойство редактируемого контакта.
@@ -55,6 +64,11 @@ public class ContactVM : INotifyPropertyChanged
     }
 
     /// <summary>
+    /// Закрытое свойство форматора строк.
+    /// </summary>
+    private StringFormatter Formatter { get; set; } = new StringFormatter();
+
+    /// <summary>
     /// Функция правильного задания свойств.
     /// </summary>
     /// <typeparam name="Type"> Тип задаваемого свойства. </typeparam>
@@ -62,7 +76,7 @@ public class ContactVM : INotifyPropertyChanged
     /// <param name="setValue"> Задаваемое значение. </param>
     /// <param name="propertyName"> Имя свойства. </param>
     /// <returns> true. </returns>
-    public bool Set<Type>(ref Type fieldToSet, Type setValue, [CallerMemberName] string propertyName = null)
+    private bool Set<Type>(ref Type fieldToSet, Type setValue, [CallerMemberName] string propertyName = null)
     {
         if (Equals(fieldToSet, setValue))
         {
@@ -85,5 +99,21 @@ public class ContactVM : INotifyPropertyChanged
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         return true;
+    }
+
+    /// <summary>
+    /// Функция преформатирования вводимого текста в текстбокс с номером телефона.
+    /// </summary>
+    /// <param name="sender"> Инициализатор события. </param>
+    /// <param name="eventArgs"> Аргументы вставки. </param>
+    public void OnPasting(object sender, DataObjectPastingEventArgs eventArgs)
+    {
+        Debug.WriteLine("Pasted text!");
+        string pastedText = (string)eventArgs.DataObject.GetData(typeof(string));
+
+        DataObject preformatedText = new DataObject();
+        preformatedText.SetData(DataFormats.Text, Formatter.ConvertIntoPhoneNumber(pastedText));
+
+        eventArgs.DataObject = preformatedText;
     }
 }

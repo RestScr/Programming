@@ -266,7 +266,6 @@ public class MainVM : INotifyPropertyChanged
         if (ContactViewModel.EditMode)
         {
             ApplyCommand.IsExecutable = true;
-            
         }
         else
         {

@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text.RegularExpressions;
 
 
 namespace View.Model;
@@ -124,7 +123,7 @@ public class Contact : ICloneable, IEquatable<Contact>, INotifyPropertyChanged
     /// <param name="name"> Имя контакта.</param>
     /// <param name="phoneNumber"> Телефон. </param>
     /// <param name="email"> Почта. </param>
-    public Contact(string name="No Name", string phoneNumber="", string email="")
+    public Contact(string name="No Name", string phoneNumber="+7 (999) 999-99-99", string email="email@gmail.com")
 	{
 		Name = name;
 		PhoneNumber = phoneNumber;
@@ -145,8 +144,8 @@ public class Contact : ICloneable, IEquatable<Contact>, INotifyPropertyChanged
 	private Contact(
 		int id, 
 		string name = "No Name", 
-		string phoneNumber = "", 
-		string email = "")
+		string phoneNumber = "+7 (999) 999-99-99", 
+		string email = "email@gmail.com")
 	{
 		Name = name;
 		PhoneNumber = phoneNumber;
