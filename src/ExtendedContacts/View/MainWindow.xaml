@@ -115,14 +115,14 @@
                     Height="25"
                     Margin="3"
                     Content="Add"
-                    Command="{Binding AddCommand}"
+                    Command="{Binding AddContactCommand}"
                     />
                 <Button
                     Grid.Column="1"
                     Height="25"
                     Margin="3"
                     Content="Edit"
-                    Command="{Binding EditCommand}"
+                    Command="{Binding EditContactCommand}"
                     CommandParameter="{Binding SelectedContact}"
                     />
                 <Button
@@ -130,7 +130,7 @@
                     Height="25"
                     Margin="3"
                     Content="Remove"
-                    Command="{Binding RemoveCommand}"
+                    Command="{Binding RemoveContactCommand}"
                     CommandParameter="{Binding SelectedContact}"
                     />
             </Grid>
@@ -151,13 +151,12 @@
                 Height="25"
                 Width="75" 
                 Margin="140, 50, 3, 3"
-                Command="{Binding ApplyCommand}" 
+                Command="{Binding ApplyContactCommand}" 
                 CommandParameter="{Binding ContactViewModel.EditingContact}" 
                 HorizontalAlignment="Left"
                 IsEnabled="{Binding IsValid, 
                             ElementName=ContactControl}"
                 >
-                
             </Button>
         </StackPanel>
         

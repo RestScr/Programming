@@ -21,6 +21,10 @@ public class NameRule : ValidationRule
         {
             return new ValidationResult(false, $"Name property must be less than 100 characters.");
         }
+        if (name.Length <= 2)
+        {
+            return new ValidationResult(false, $"Name property must be higher than 2 characters.");
+        }
 
         return ValidationResult.ValidResult;
     }

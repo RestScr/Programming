@@ -1,38 +1,25 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Windows.Data;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using View.Model;
 using View.Model.Services;
-using View.ViewModel.Commands;
 
 namespace View.ViewModel;
 
 /// <summary>
 /// Класс ViewModel.
 /// </summary>
-public class MainVM : INotifyPropertyChanged
+public partial class MainVM : ObservableObject
 {
-    /// <summary>
-    /// Событие уведомления об изменении свойства.
-    /// </summary>
-    public event PropertyChangedEventHandler? PropertyChanged;
-
-    /// <summary>
-    /// Функция, вызывающее событие изменения свойства.
-    /// </summary>
-    /// <param name="propertyName"> Название изменяемого свойства. </param>
-    /// <returns> Всегда true. </returns>
-    public bool OnPropertyChanged([CallerMemberName] string propertyName = "")
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        return true;
-    }
-
     /// <summary>
     /// Поле выбранного контакта.
     /// </summary>
-    private Contact _selectedContact;
+    [ObservableProperty]
+    private Contact? _selectedContact;
 
     /// <summary>
     /// Поле выбранного контакта.
@@ -40,75 +27,21 @@ public class MainVM : INotifyPropertyChanged
     private ContactVM _contactViewModel;
 
     /// <summary>
-    /// Поле команды добавления.
-    /// </summary>
-    private RelayCommand _addCommand;
-
-    /// <summary>
-    /// Поле команды добавления нового контакта.
-    /// </summary>
-    private RelayCommand _applyCommand;
-
-    /// <summary>
-    /// Поле команды редактирования.
-    /// </summary>
-    private RelayCommand _editCommand;
-
-    /// <summary>
-    /// Поле команды удаления.
-    /// </summary>
-    private RelayCommand _removeCommand;
-
-    /// <summary>
     /// Поле коллекции контактов.
     /// </summary>
+    [ObservableProperty]
     private ObservableCollection<Contact> _contacts;
 
-    private string _textFiler;
+    /// <summary>
+    /// Поле текста текстового поля фильтра.
+    /// </summary>
+    [ObservableProperty]
+    private string _textFilter;
 
     /// <summary>
     /// Свойство сериализатора.
     /// </summary>
     public ContactListSerializer Serializer { get; private set; } = new ContactListSerializer();
-
-    /// <summary>
-    /// Свойство выбранного контакта.
-    /// </summary>
-    public Contact SelectedContact
-    {
-        get => _selectedContact;
-        set
-        {
-            if (value == null)
-            {
-                ContactViewModel.EditMode = false;
-                EditCommand.IsExecutable = false;
-                RemoveCommand.IsExecutable = false;
-            }
-            else
-            {
-                ContactViewModel.EditMode = true;
-                EditCommand.IsExecutable = true;
-                RemoveCommand.IsExecutable = true;
-            }
-
-            if (value != _selectedContact)
-            {
-                ContactViewModel.EditMode = false;
-                ApplyCommand.IsExecutable = false;
-            }
-
-            Set(ref _selectedContact, value, nameof(SelectedContact));
-            if (SelectedContact != null)
-            {
-                ContactViewModel.EditingContact = (Contact)SelectedContact.Clone();
-            }
-            else
-            {
-                ContactViewModel.EditingContact = null;
-            }
-        }
-    }
 
     /// <summary>
     /// Свойство выбранного контакта.
@@ -119,60 +52,8 @@ public class MainVM : INotifyPropertyChanged
     }
 
     /// <summary>
-    /// Свойство команды добавления.
+    /// Свойство подсписка полученных элементов по фильтру.
     /// </summary>
-    public RelayCommand AddCommand
-    {
-        get => _addCommand ?? (_addCommand = new RelayCommand(AddContact));
-    }
-
-    /// <summary>
-    /// Свойство команды добавления нового контакта.
-    /// </summary>
-    public RelayCommand ApplyCommand
-    {
-        get => _applyCommand ?? (_applyCommand = new RelayCommand(ApplyContact, false));
-    }
-
-    /// <summary>
-    /// Свойство команды редактирования.
-    /// </summary>
-    public RelayCommand EditCommand
-    {
-        get => _editCommand ?? (_editCommand = new RelayCommand(EditContact));
-    }
-
-    /// <summary>
-    /// Свойство команды удаления.
-    /// </summary>
-    public RelayCommand RemoveCommand
-    {
-        get => _removeCommand ?? (_removeCommand = new RelayCommand(RemoveContact));
-    }
-
-    /// <summary>
-    /// Свойство коллекции контактов.
-    /// </summary>
-    public ObservableCollection<Contact> Contacts
-    {
-        get => _contacts ?? (_contacts = new ObservableCollection<Contact>());
-        set
-        {
-            _contacts = value;
-        }
-    }
-
-    public string TextFilter
-    {
-        get => _textFiler;
-        set
-        {
-            Set(ref _textFiler, value, nameof(TextFilter));
-
-            ContactsView.Refresh();
-        }
-    }
-
     public ICollectionView ContactsView { get; init; }
 
     /// <summary>
@@ -186,40 +67,74 @@ public class MainVM : INotifyPropertyChanged
         ContactsView = CollectionViewSource.GetDefaultView(Contacts);
         ContactsView.Filter = FilterContactsByName;
         ContactsView.Refresh();
+
+        ContactViewModel.PropertyChanged += ContactViewModel_PropertyChanged;
     }
 
     /// <summary>
-    /// Функция задания нового уникального значения полю с уведомлением.
+    /// Функция, которая исполняется на изменении текста в строке
+    /// поиска контактов.
     /// </summary>
-    /// <typeparam name="Type"> Тип поля. </typeparam>
-    /// <param name="fieldToSet"> Ссылка на поле, которому нужно задать значение. </param>
-    /// <param name="setValue"> Значение для задания. </param>
-    /// <param name="propertyName"> Имя свойства, в котором задается значение. </param>
-    /// <returns> Является ли значение новым для поля. (true - да, false - нет). </returns>
-    public bool Set<Type>(ref Type fieldToSet, Type setValue, [CallerMemberName] string propertyName = null)
+    /// <param name="value"></param>
+    partial void OnTextFilterChanged(string value)
     {
-        if (Equals(fieldToSet, setValue))
+        ContactsView.Refresh();
+    }
+
+    /// <summary>
+    /// Функция, которая выполняется после задания свойства выбранного контакта.
+    /// </summary>
+    /// <param name="oldValue"> Старое значение. </param>
+    /// <param name="newValue"> Новое значение. </param>
+    partial void OnSelectedContactChanged(Contact? oldValue, Contact? newValue)
+    {
+        if (oldValue == newValue)
         {
-            return false;
+            return;
+        }
+
+        if (oldValue != newValue)
+        {
+            ContactViewModel.EditMode = false;
+        }
+
+        if (newValue != null)
+        {
+            ContactViewModel.EditingContact = (Contact)(newValue.Clone());
         }
         else
         {
-            fieldToSet = setValue;
-            OnPropertyChanged(propertyName);
-            return true;
+            ContactViewModel.EditingContact = null;
         }
+    }
+
+    /// <summary>
+    /// Функция для включения кнопки редактирования или удаления.
+    /// </summary>
+    /// <returns> Можно ли редактировать контакт - true или false. </returns>
+    private bool CanEdit()
+    {
+        return SelectedContact != null;
+    }
+
+    /// <summary>
+    /// Функция проверки окна редактирования контакта на состояние редактирования.
+    /// </summary>
+    /// <returns> true или false. </returns>
+    private bool IsOnEditMode()
+    {
+        return ContactViewModel.EditMode;
     }
 
     /// <summary>
     /// Функция добавления нового контакта.
     /// </summary>
     /// <param name="parameter"> Дополнительный параметр. </param>
+    [RelayCommand]
     public void AddContact(object? parameter)
     {
+        SelectedContact = null;
         SelectedContact = new Contact();
-        EditCommand.IsExecutable = false;
-        RemoveCommand.IsExecutable = false;
-        ApplyCommand.IsExecutable = true;
 
         ContactViewModel.EditMode = true;
     }
@@ -228,41 +143,17 @@ public class MainVM : INotifyPropertyChanged
     /// Функция редактирования контакта.
     /// </summary>
     /// <param name="parameter"> Дополнительный параметр для команды. </param>
+    [RelayCommand(CanExecute = nameof(CanEdit))]
     public void EditContact(object? parameter)
     {
         ContactViewModel.EditMode = true;
-        ApplyCommand.IsExecutable = true;
-    }
-
-    /// <summary>
-    /// Функция добавления нового контакта в список.
-    /// </summary>
-    /// <param name="parameter"> Дополнительный параметр для команды. </param>
-    public void ApplyContact(object? parameter)
-    {
-        Contact appliedContact = (Contact)parameter;
-
-        if (!Contacts.Contains(appliedContact))
-        {
-            Contacts.Add(appliedContact);
-        }
-        else
-        {
-            int id = Contacts.IndexOf(appliedContact);
-            Contacts[id] = appliedContact;
-        }
-
-        SelectedContact = appliedContact;
-
-        ContactViewModel.EditMode = false;
-        SetEditMode();
-        Serializer.Save(Contacts);
     }
 
     /// <summary>
     /// Функция удаления выбранного контакта.
     /// </summary>
     /// <param name="parameter"> Параметр команды. </param>
+    [RelayCommand(CanExecute = nameof(CanEdit))]
     public void RemoveContact(object? parameter)
     {
         int selectedIndex = Contacts.IndexOf(SelectedContact) - 1;
@@ -281,24 +172,33 @@ public class MainVM : INotifyPropertyChanged
     }
 
     /// <summary>
-    /// Функция задания режима редактирования в ContactVM.
+    /// Функция добавления нового контакта в список.
     /// </summary>
-    private void SetEditMode()
+    /// <param name="appliedContact"> Дополнительный параметр для команды. </param>
+    [RelayCommand(CanExecute = nameof(IsOnEditMode))]
+    public void ApplyContact(Contact? appliedContact)
     {
-        if (ContactViewModel.EditMode)
+        if (Contacts.Contains(appliedContact))
         {
-            ApplyCommand.IsExecutable = true;
+            int id = Contacts.IndexOf(appliedContact);
+            Contacts[id] = appliedContact;
         }
         else
         {
-            ApplyCommand.IsExecutable = false;
+            Contacts.Add(appliedContact);
         }
+
+        SelectedContact = null;
+        SelectedContact = appliedContact;
+
+        ContactViewModel.EditMode = false;
+        Serializer.Save(Contacts);
     }
 
     /// <summary>
     /// Метод выгрузки списка контактов.
     /// </summary>
-    public void LoadContactlist()
+    private void LoadContactlist()
     {
         Contacts = Serializer.Load();
     }
@@ -318,5 +218,18 @@ public class MainVM : INotifyPropertyChanged
         Contact filteringContact = (Contact)parameter;
 
         return String.IsNullOrEmpty(TextFilter) || filteringContact.Name.Contains(TextFilter);
+    }
+
+    /// <summary>
+    /// Фукнция проброса объявления об изменении внутреннего состояния объекта ContactVM.
+    /// </summary>
+    /// <param name="sender"> Объект, вызвавший событие. </param>
+    /// <param name="eventArgs"> Аргументы измененных свойств. </param>
+    private void ContactViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs eventArgs)
+    {
+        if (eventArgs.PropertyName == nameof(ContactViewModel.EditMode))
+        {
+            ApplyContactCommand.NotifyCanExecuteChanged();
+        }
     }
 }
