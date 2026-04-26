@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using Newtonsoft.Json;
+using View.Model;
 
-namespace View.Model.Services;
+namespace View.Services;
 
 /// <summary>
 /// Класс JSON сериализатора и работы с файлами

@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Windows.Data;
 
-namespace View.ViewModel.Converters;
+namespace View.Converters;
 
 /// <summary>
 /// Конвертер, инвертирующий булевы значения.
@@ -18,7 +18,7 @@ public class ReverseBoolConverter : IValueConverter
     /// <returns> Инвертированное булево значение. </returns>
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        return !((bool)value);
+        return !(bool)value;
     }
 
     /// <summary>

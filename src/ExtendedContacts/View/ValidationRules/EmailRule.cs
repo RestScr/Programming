@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
 
-namespace View.ViewModel.ValidationRules;
+namespace View.ValidationRules;
 
 /// <summary>
 /// Класс правила валидации для почты.

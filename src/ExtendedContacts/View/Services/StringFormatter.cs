@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace View.Model.Services;
+namespace View.Services;
 
 /// <summary>
 /// Класс с преобразованием строк в нужный формат.
@@ -14,7 +14,7 @@ public class StringFormatter
     public string ConvertIntoPhoneNumber(string phoneNumber)
     {
         Debug.WriteLine("Formating...");
-        string digitsString = String.Empty;
+        string digitsString = string.Empty;
 
         // Флаг, который отмечает, записана ли исходная страка с плюсом в начале
         bool specialFormat = true;
@@ -31,7 +31,7 @@ public class StringFormatter
                 specialFormat = false;
             }
 
-            if (Char.IsDigit(phoneNumber[i]))
+            if (char.IsDigit(phoneNumber[i]))
             {
                 digitsString += phoneNumber[i];
             }

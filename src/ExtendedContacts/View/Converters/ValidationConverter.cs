@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Windows.Data;
 
-namespace View.ViewModel.Converters;
+namespace View.Converters;
 
 /// <summary>
 /// Класс конвертера валидации. Если значение во всех текстбоксах корректны.
