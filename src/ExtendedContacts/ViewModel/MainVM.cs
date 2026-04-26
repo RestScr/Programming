@@ -3,11 +3,11 @@ using System.ComponentModel;
 using System.Windows.Data;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using View.Model;
-using View.Model.Services;
+using Model.Services;
+using Model;
 
-namespace View.ViewModel;
 
+namespace ViewModel;
 /// <summary>
 /// Класс ViewModel.
 /// </summary>

@@ -4,8 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
-        xmlns:vm="clr-namespace:View.ViewModel"
-        xmlns:databinding="clr-namespace:View.ViewModel.Converters"
+        xmlns:databinding="clr-namespace:View.Converters"
         xmlns:ctrls="clr-namespace:View.Controls"
         mc:Ignorable="d"
         Title="Contacts" 
@@ -42,8 +41,6 @@
                 </StackPanel>
             </StackPanel>
         </DataTemplate>
-        <databinding:ReverseBoolConverter 
-            x:Key="InverseBoolConverter"/>
     </Window.Resources>
 
     <!-- Главный интерфейс окна -->
@@ -142,7 +139,7 @@
             <ctrls:ContactControl
                 DataContext="{Binding ContactViewModel}"
                 x:Name="ContactControl"
-                />
+            />
             <!-- Кнопка подтверждения -->
             <Button 
                 Content="Apply"

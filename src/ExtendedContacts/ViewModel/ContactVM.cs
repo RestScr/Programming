@@ -1,9 +1,9 @@
 ﻿using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Model;
+using Model.Services;
 
-
-namespace View.ViewModel;
+namespace ViewModel;
 
 /// <summary>
 /// Класс управления контактом.

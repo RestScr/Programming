@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace View.Services;
+namespace Model.Services;
 
 /// <summary>
 /// Класс с преобразованием строк в нужный формат.

@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using View.ViewModel.Converters;
+using View.Converters;
 
 namespace View.Controls;
 
