@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
-using View.Model;
-using View.Model.Services;
+using Model;
+
 
 namespace View.ViewModel;
 
