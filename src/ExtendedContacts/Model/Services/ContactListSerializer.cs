@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 
-namespace Model.Services;
 
+namespace Model.Services;
 /// <summary>
 /// Класс JSON сериализатора и работы с файлами
 /// </summary>
